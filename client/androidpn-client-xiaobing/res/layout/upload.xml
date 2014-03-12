@@ -1,0 +1,82 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="5dp"
+    android:orientation="vertical"
+    android:background="@drawable/bg3" >
+    
+    <LinearLayout
+ 	    android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:paddingTop="5dp"
+    	android:orientation="horizontal">
+	 	<Button
+		    android:id="@+id/btnCameraActivity"
+        	android:textColor="@drawable/magenta"
+            android:layout_width="0dip"  
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button3"
+		    android:text="拍照上传"
+		    android:onClick="startCameraActivity" />   
+		    
+	 	<Button
+		    android:id="@+id/btnGalleryActivity"
+        	android:textColor="@drawable/magenta"
+            android:layout_width="0dip" 
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button3"
+		    android:text="本地上传"
+		    android:onClick="startGalleryActivity" />   
+	</LinearLayout> 
+	 	
+ 	<LinearLayout
+ 	    android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:paddingTop="5dp"
+    	android:gravity="center"
+    	android:orientation="horizontal">
+	 		 	     
+		<EditText android:id="@+id/edit_description"
+	        android:layout_height="fill_parent"
+	        android:layout_width="230dp"
+	        android:hint="添加个简短描述" />  
+	    
+ 		<Button
+	        android:layout_width="wrap_content"
+	        android:layout_height="fill_parent"
+	        android:text="开始上传"
+	        android:textColor="@drawable/magenta"
+	        android:background="@drawable/button3"
+	        android:onClick="startSubmit" /> 
+	</LinearLayout>
+	<LinearLayout 
+	    android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:paddingTop="5dp"
+    	android:gravity="center"
+    	android:orientation="vertical">
+	    
+	    <Button android:id="@+id/barcode_button"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:text="扫一扫"
+	        android:textColor="@drawable/magenta"
+	        android:background="@drawable/button3"
+	        android:onClick="barcodeScanStart"
+	        />
+	    
+	</LinearLayout>
+	    
+       <ImageView 
+		android:layout_width="fill_parent" 
+		android:layout_height="fill_parent" 
+		android:visibility="visible"
+		android:id="@+id/imageViewWindow"
+		android:padding="10dp" />
+	
+</LinearLayout>

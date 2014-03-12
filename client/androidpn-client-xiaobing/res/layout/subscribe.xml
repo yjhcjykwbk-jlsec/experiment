@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+	android:paddingLeft="90dip"
+    android:background="@drawable/bg3"
+    >
+    <CheckBox
+     	android:id="@+id/subAll"
+      	android:layout_width="wrap_content" 
+      	android:layout_height="wrap_content"
+      	android:checked="true"
+      	android:paddingTop="20dip"
+      	android:text="订阅所有" >
+    </CheckBox>
+    
+    <CheckBox
+     	android:id="@+id/subNews"
+      	android:layout_width="wrap_content" 
+      	android:layout_height="wrap_content"
+      	android:checked="true"
+      	android:paddingTop="20dip"
+      	android:text="南燕新闻" >
+    </CheckBox>
+    
+    <CheckBox
+     	android:id="@+id/subNotification"
+      	android:layout_width="wrap_content" 
+      	android:layout_height="wrap_content"
+      	android:checked="true"
+      	android:paddingTop="20dip"
+      	android:text="校内公告" >
+    </CheckBox>
+    
+    <CheckBox
+     	android:id="@+id/subCieVideo"
+      	android:layout_width="wrap_content" 
+      	android:layout_height="wrap_content"
+      	android:checked="true"
+      	android:paddingTop="20dip"
+      	android:text="信息学院视频课件" >
+    </CheckBox>
+    
+    <CheckBox
+     	android:id="@+id/subHsbcVideo"
+      	android:layout_width="wrap_content" 
+      	android:layout_height="wrap_content"
+      	android:checked="true"
+      	android:paddingTop="20dip"
+      	android:text="商学院视频课件" >
+    </CheckBox>
+    
+    <CheckBox
+     	android:id="@+id/subStlVideo"
+      	android:layout_width="wrap_content" 
+      	android:layout_height="wrap_content"
+      	android:checked="true"
+      	android:paddingTop="20dip"
+      	android:text="国际法学院视频课件"
+      	>
+    </CheckBox>
+    
+    <CheckBox
+     	android:id="@+id/subRenwenVideo"
+      	android:layout_width="wrap_content" 
+      	android:layout_height="wrap_content"
+      	android:checked="true"
+      	android:paddingTop="20dip"
+      	android:text="人文学院视频课件"
+      	android:visibility="gone" >
+    </CheckBox>
+    
+    <CheckBox
+     	android:id="@+id/subSchoolVideo"
+      	android:layout_width="wrap_content" 
+      	android:layout_height="wrap_content"
+      	android:checked="true"
+      	android:paddingTop="20dip"
+      	android:text="校园视频" >
+    </CheckBox>  
+    
+    <CheckBox
+     	android:id="@+id/subLeisureVideo"
+      	android:layout_width="wrap_content" 
+      	android:layout_height="wrap_content"
+      	android:checked="true"
+      	android:paddingTop="20dip"
+      	android:text="休闲视频" >
+    </CheckBox>
+    
+    <Button
+    	android:id="@+id/btn_subsub"
+    	android:layout_marginTop="20dip"
+    	android:layout_width="150dip"
+    	android:layout_height="wrap_content"
+    	android:text="提交"
+    	android:textSize="22dip"
+    	android:textColor="@drawable/blue"
+    	>
+    </Button>
+</LinearLayout>

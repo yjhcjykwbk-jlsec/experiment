@@ -1,0 +1,34 @@
+When we have done the character string segmentation,
+we can come back to the recognition processing about the
+incorrect word which is from the optical character
+recognition. The correct way is similar with the spelling
+check [4]. When we get the waiting recognition character
+string, we deal with it using four change which includes
+exchange, delete, replace, insert. When we dispose the string
+by above four methods, we use the transformational character
+strings to match the word in the dictionary. When we get the
+proper one, we can say the work of correcting the character
+recognition by the dictionary method is well done.
+The key of this method is we must use the segmented
+result which gets from the Reverse Maximum Matching
+algorithm [5] to do the work. The increasing of recognition
+rate depends on the previous step. To begin with, we still rely
+on the dictionary to match with the character string. Due to
+the incorrect character string needs to be transformed, we
+must contemplate which is the best transformation pattern. In
+the traditional method which we deal with the English words
+character string with four character transformation, the first
+one is interchange characters that mean if a recognized word
+consists of 5 characters, we can try to interchange the
+position in every two characters from the first one to the last
+one in turn If a 5 length word that can have 10 permutations
+in totally and in the every interchanges we may find the
+dictionary word which we want to make corrections. The
+second method is to delete characters that imply we can
+delete one positional character in turn until we discover the
+right character string which can match with dictionary word.
+The third one is the replace character that seems like
+interchange, but the difference is we use other character
+which may be right to instead of the character in the
+pretreatment Japanese character from the first position to the
+last position one by one. And when we do the work, there is

@@ -1,0 +1,119 @@
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<link rel="stylesheet" type="text/css" href="/styles/console.css;jsessionid=1506685738CB6DDE8CAE3D18B1BF8B31" />
+	<script type="text/javascript" src="/scripts/jquery.js;jsessionid=1506685738CB6DDE8CAE3D18B1BF8B31"></script>
+	<script type="text/javascript"> 
+		function checkOK(){
+			$('#content').show();
+			$('#loginform').hide();
+		}
+		function checkFailed(){
+			$('#content').hide();
+			$('#loginform').show();
+		}
+		function logout(){
+			//session.invalidate();
+			//response.sendRedirect("index.jsp");
+		}
+	</script>
+	
+</head>
+			
+			
+<body>
+     
+<div id="page">
+    <div id="header">
+        
+
+
+
+
+
+
+
+
+<div id="branding">
+	<h1><a href="/;jsessionid=1506685738CB6DDE8CAE3D18B1BF8B31">android推送平台</a></h1>
+</div>
+
+    </div>
+        
+
+        
+<div style="text-align:center">
+<form id="loginform" action="adminlogin.do?action=login" method="post" style="text-align:center">
+<table width="500" cellpadding="4" cellspacing="0" border="0">
+<tr id="adminName">
+	<td>用户名:</td>
+	<td><input type="text" id="adminname" name="adminname" value="" style="width:380px;" /></td>
+</tr>
+<tr>
+	<td>密码:</td>
+	<td><input type="password" id="adminpwd" name="adminpwd" value="" style="width:380px;" /></td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td><input type="submit" value="登陆" /></td>
+</tr>
+</table> 
+</form>
+</div>
+请先登录，谢谢
+
+<script  type="text/javascript">
+checkFailed();
+</script>
+
+
+        <div id="content">
+			<ul id="tabmenu">
+				<li><a href="index.do"
+					class="">首页</a></li>
+				<li><a href="user.do"
+					class="">所有用户</a></li>
+				<li><a href="session.do"
+					class="">在线用户</a></li>
+				<li><a href="notification.do"
+					class="">推送消息</a></li>
+				<li><a href="pushstatics.do"
+					class="">推送情况统计</a></li>
+				<li><a href="subscriptions.do"
+					class="">订阅情况</a></li>
+				<li><a href="reply.do"
+					class="">用户留言区</a></li>
+				<li><a href="upload.do"
+					class="">用户上传</a></li>
+			</ul>
+			<div id="tabcontent">
+				this is the result
+			</div>
+        </div>
+        <div id="footer">
+            
+
+
+
+
+
+
+
+
+<div id="copyright">androidpn server @pkusz</div>
+
+        </div>
+    </div>
+</body>
+</html>

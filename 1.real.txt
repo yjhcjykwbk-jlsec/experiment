@@ -1,0 +1,5 @@
+The key of this method is we must use the segmented
+result which gets from the Reverse Maximum Matching
+algorithm [5] to do the work. The increasing of recognition
+rate depends on the previous step. To begin with, we still rely
+on the dictionary to match with the character string. Due to

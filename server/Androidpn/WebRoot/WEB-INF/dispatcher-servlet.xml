@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="urlMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<value>
+				/index.do=filenameController
+				/user.do=userController
+				/session.do=sessionController
+				/notification.do=notificationController
+				/pushstatics.do=pushstaticsController
+				/subscriptions.do=subscriptionsController	
+				/adminlogin.do=adminLoginController	
+				/reply.do=replyController
+				/upload.do=uploadController
+				/index.xml=filenameController
+				/user.xml=userController
+				/session.xml=sessionController
+				/notification.xml=notificationController
+				/pushstatics.xml=pushstaticsController
+				/subscriptions.xml=subscriptionsController	
+				/adminlogin.xml=adminLoginController	
+				/reply.xml=replyController
+				/upload.xml=uploadController
+			</value>
+		</property>
+		<property name="order" value="1" />
+	</bean>
+
+	<bean id="filenameController"
+		class="org.springframework.web.servlet.mvc.UrlFilenameViewController" />
+
+	<bean id="userController" class="org.androidpn.server.console.controller.UserController">
+		<property name="methodNameResolver" ref="paramResolver" />
+	</bean>
+
+	<bean id="sessionController"
+		class="org.androidpn.server.console.controller.SessionController">
+		<property name="methodNameResolver" ref="paramResolver" />
+	</bean>
+
+	<bean id="replyController"
+		class="org.androidpn.server.console.controller.ReplyController">
+		<property name="methodNameResolver" ref="paramResolver" />
+	</bean>
+
+	<bean id="uploadController"
+		class="org.androidpn.server.console.controller.UploadController">
+		<property name="methodNameResolver" ref="paramResolver" />
+	</bean>
+	
+	<bean id="notificationController"
+		class="org.androidpn.server.console.controller.NotificationController">
+		<property name="methodNameResolver" ref="paramResolver" />
+	</bean>
+	
+	<bean id="pushstaticsController"
+		class="org.androidpn.server.console.controller.PushstaticsController">
+		<property name="methodNameResolver" ref="paramResolver" />
+	</bean>
+	
+	<bean id="subscriptionsController"
+		class="org.androidpn.server.console.controller.SubscriptionsController">
+		<property name="methodNameResolver" ref="paramResolver" />
+	</bean>
+	
+	<bean id="adminLoginController"
+		class="org.androidpn.server.console.controller.AdminLoginController">
+		<property name="methodNameResolver" ref="paramResolver" />
+	</bean>
+	
+
+
+	<!-- <bean class="org.springframework.web.servlet.view.ResourceBundleViewResolver">  -->
+		<!-- <property name="basename" value="views" />  -->
+		<!-- <property name="order" value="0" /> -->
+	<!-- </bean>  -->
+
+	
+	<!-- class usage: map view-name to view-file  -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="requestContextAttribute" value="rc" />
+		<property name="prefix" value="/WEB-INF/pages/" />
+		<property name="suffix" value=".jsp" />
+    <property name="order" value="1"/>
+	</bean>
+	
+	<!-- class usage: map view-name to view-file  -->
+<!-- 	<bean id="xmlViewResolver" class="org.springframework.web.servlet.view.XmlViewResolver">  -->
+<!-- 		<property name="location" value="/WEB-INF/xml-views.xml"/> -->
+<!-- 		<property name="templateLoaderPath" value="/WEB-INF/pages/"/>  -->
+<!-- 		<property name= "prefix" value="/WEB-INF/pages/"/>   -->
+<!-- 		<property name= "suffix" value=".xml" />   -->
+<!--     		<property name="order" value="0"/> -->
+<!-- 	</bean> -->
+
+	<bean id="paramResolver"
+		class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+		<property name="paramName" value="action" />
+		<property name="defaultMethodName" value="list" />
+	</bean>
+
+
+<!-- 	<bean id="xmlViewResolver"  -->
+<!-- 		class="org.springframework.web.servlet.view.XmlViewResolver"> -->
+<!-- 		<property name="location" value="WEB-INF/xml-views.xml"/> -->
+<!--     <property name="order" value="1"/> -->
+<!-- 	</bean> -->
+
+	<!--
+		<bean id="exceptionResolver"
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings"> <props> <prop
+		key="java.lang.Exception">error</prop> </props> </property> </bean>
+	-->
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="messages" />
+		<property name="useCodeAsDefaultMessage" value="true" />
+	</bean>
+
+	
+</beans>

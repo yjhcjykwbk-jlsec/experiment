@@ -1,0 +1,5 @@
+Th: kcy of this mcthod is w: must us: Lhc scgmemcd
+rcsult which gals rmni [ha Rcvcrsc Maximum Matching
+algorithm [5] to do [ha work. Th: increasing of recognition
+raft dcpcnds an [ha prcviaus sttp. To bcgin with, w: still rely
+on th: dictionary to match with Lhc characlcr string. Du: to

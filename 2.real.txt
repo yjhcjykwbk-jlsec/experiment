@@ -1,0 +1,16 @@
+As I just mentioned, the traditional English OCR
+post-processing methods isn't the best way to solve the
+Chinese Written characters such as Japanese characters. Due
+to when we do the step like English, we not only have to add
+a new step to segment the afferent Japanese string but also
+lead to a sparse data and lack of efficiency. So we can try to
+change our focus and find a more efficient way to solve the
+particular OCR post-processing such as Japanese Language
+Model. To solve it, I adopt a maximum likelihood string
+matching algorithm [8]. And then I use a method that is based
+on the Bayesian Theory to train the phrase dates to get the
+possibility of every word group. After we get the possible
+value of every phrase, we can try to correct the error
+character in the recognition. By the experimental tests, it can
+be proved that the new method has a higher accuracy in the
+detail test item.

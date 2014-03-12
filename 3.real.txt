@@ -1,0 +1,13 @@
+With the development of the OCR (Optical Character
+Recognition) technology, people want to have a more
+intelligent method to deal with some problems in the word
+recognition. Such as correct the error characters in the
+processing of the recognition automatically.
+The Dictionary Method gives us a way to solve such
+problems and it can increase the relatively stable rate of
+character recognition. This method is based mainly on the
+pending recognize characters when comparing with the
+dictionary library. If the comparative weight is higher than
+the minimum alteration numerical value, the waiting
+recognition characters are considered as the characters which
+in the dictionary not based on the OCR scanning any more.
