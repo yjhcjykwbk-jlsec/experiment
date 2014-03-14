@@ -1,0 +1,525 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2004-08-02 10:27+0100\n"
+"Last-Translator: E.S. de Boer <eric@jeti.tk>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "alertwindow.Time_to_show_alert"
+msgstr "Time to show alert:"
+
+msgid "alertwindow.sec"
+msgstr "sec."
+
+msgid "alertwindow.Transparancy,_100%_is_opaque"
+msgstr "Transparancy, 100% is opaque"
+
+msgid "alertwindow.Background_color"
+msgstr "Background color"
+
+msgid "alertwindow.Color"
+msgstr "Color"
+
+msgid "alertwindow.Demonstration"
+msgstr "Demonstration"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\alertwindow\Plugin.java:27
+msgid "alertwindow.Shows_an_alert_window_when_a_message_arrives"
+msgstr "Shows an alert window when a message arrives"
+
+msgid "alertwindow.This_is_a_Demonstration_PopupWindow"
+msgstr "This is a demonstration popup"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\alertwindow\Plugin.java:189
+#, java-format
+msgid "alertwindow.Alpha_is_{0},_Time_is_{1}"
+msgstr "Alpha is {0}, Time is {1}"
+
+msgid "emoticons.Name"
+msgstr "Name"
+
+msgid "emoticons.Enabled"
+msgstr "Enabled"
+
+msgid "emoticons.Description"
+msgstr "Description"
+
+msgid "emoticons.Version"
+msgstr "Version"
+
+msgid "emoticons.Scan_Emoticons"
+msgstr "Scan Emoticons"
+
+msgid "emoticons.Shows_graphical_emoticons"
+msgstr "Show graphical emoticons"
+
+msgid "emoticons.Select_Icon"
+msgstr "Select Icon"
+
+msgid "emoticons.Change_Set"
+msgstr "Change Set"
+
+msgid "emoticons.No_Emoticons"
+msgstr "No Emoticons"
+
+msgid "filetransfer.Description"
+msgstr "Description"
+
+msgid "filetransfer.URL"
+msgstr "URL"
+
+msgid "filetransfer.GetSize"
+msgstr "Get Size"
+
+msgid "filetransfer.Download"
+msgstr "Download"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "filetransfer.File_Transfer"
+msgstr "File Transfer"
+
+msgid "filetransfer.File_Name"
+msgstr "File Name"
+
+msgid "filetransfer.Send"
+msgstr "Send"
+
+#, java-format
+msgid "filetransfer.{0}_does_not_exist"
+msgstr "{0} does not exist"
+
+msgid "filetransfer.File_Error"
+msgstr "File Error"
+
+#, java-format
+msgid "filetransfer.{0}_is_not_readable"
+msgstr "{0} is not readable"
+
+msgid "filetransfer.Abort"
+msgstr "Abort"
+
+#, java-format
+msgid "filetransfer.{0}_did_not_accept_the_file."
+msgstr "{0} did not accept the file."
+
+#, java-format
+msgid "filetransfer.{0}_occured_while_transferring_{1}"
+msgstr "{0} occured while transfering {1}"
+
+msgid "filetransfer.Transfer_file"
+msgstr "Transfer file..."
+
+msgid "groupchat.Configure_Room"
+msgstr "Configure Room"
+
+msgid "groupchat.Decline"
+msgstr "Decline"
+
+msgid "groupchat.Accept"
+msgstr "Accept"
+
+#, java-format
+msgid "groupchat.{0}_invites_you_to_{1}"
+msgstr "{0} invites you to {1}"
+
+msgid "groupchat.Groupchat_Invitation"
+msgstr "Groupchat Invitation"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\groupchat\GroupchatWindow.java:46
+msgid "Online"
+msgstr "v"
+
+msgid "groupchat.Subject"
+msgstr "Subject:"
+
+#, java-format
+msgid "groupchat.Subject {0}"
+msgstr "Subject: {0}"
+
+msgid "groupchat.User"
+msgstr "User"
+
+msgid "groupchat.Change_nickname"
+msgstr "Change nickname"
+
+msgid "groupchat.Change_nickname_to"
+msgstr "Change nickname to:"
+
+msgid "groupchat.Change_Subject"
+msgstr "Change Subject"
+
+msgid "groupchat.Change_room_subject_to"
+msgstr "room subject to"
+
+msgid "groupchat.Change_subject_to"
+msgstr "Change Subject to"
+
+msgid "groupchat.Exit_Room"
+msgstr "Exit Room"
+
+msgid "groupchat.Moderator"
+msgstr "Moderator"
+
+msgid "groupchat.Admin"
+msgstr "Admin"
+
+msgid "groupchat.Owner"
+msgstr "Owner"
+
+msgid "groupchat.Send"
+msgstr "Send"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\groupchat\GroupchatWindow.java:257
+msgid "main.rostermenu.Message"
+msgstr "v"
+
+msgid "main.statusmenu.Change_message"
+msgstr "Change message"
+
+msgid "main.statusmenu.Status_message:"
+msgstr "Status message:"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\groupchat\GroupchatWindow.java:301
+msgid "main.rostermenu.Invisible"
+msgstr "v"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\groupchat\GroupchatWindow.java:317
+msgid "main.statusmenu.Offline"
+msgstr "v"
+
+msgid "groupchat.Room"
+msgstr "Room"
+
+msgid "groupchat.Nickname"
+msgstr "nickname"
+
+msgid "groupchat.Server"
+msgstr "Server"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\groupchat\GroupchatSignin.java:98
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\xhtml\fontchooser\DialogShell.java:171
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\cam\CamSendWindow.java:96
+msgid "OK"
+msgstr "v"
+
+msgid "groupchat.Available_rooms"
+msgstr "Available rooms"
+
+msgid "groupchat.groupchat"
+msgstr "Groupchat (beta)"
+
+msgid "groupchat.Groupchat_(beta)"
+msgstr "Groupchat (beta)"
+
+msgid "groupchat.Invite_for_groupchat"
+msgstr "Invite for groupchat"
+
+#, java-format
+msgid "groupchat.Invite_{0}_to_room"
+msgstr "Invite {0} to room"
+
+#, java-format
+msgid "groupchat.{0}_is_an_invalid_room_name"
+msgstr "{0} is an invalid room name"
+
+msgid "groupchat.invalid_room_name"
+msgstr "invalid room name"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\messagelog\Plugin.java:37
+msgid "messagelog.message_logger"
+msgstr "message logger"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\messagelog\Plugin.java:57
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\messagelog\Plugin.java:79
+msgid "messagelog.Show_MessageLog"
+msgstr "Show Messagelog"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\messagelog\Plugin.java:97
+msgid "messagelog.I_ say:"
+msgstr "I say:"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\messagelog\Plugin.java:112
+msgid "messagelog.says:"
+msgstr "says:"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\messagelog\Plugin.java:143
+#, java-format
+msgid "messagelog.{0}_could_not_be_opened_in_write_mode"
+msgstr "{0} could not be opened in write mode"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\messagelog\Plugin.java:143
+msgid "messagelog.Logfile_Error"
+msgstr "Logfile Error"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\messagelog\MessageLogWindow.java:63
+msgid "messagelog.Search"
+msgstr "Search"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\messagelog\MessageLogWindow.java:75
+msgid "messagelog.Search_Next"
+msgstr "Search next"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\messagelog\MessageLogWindow.java:86
+msgid "Close"
+msgstr "v"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\messagelog\MessageLogWindow.java:183
+msgid "popup.'{0}'_not_found_until_the_end_of_this_file,_start_again_from_the_beginning?"
+msgstr "v"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\systemtray\Plugin.java:33
+msgid "systemtray.shows_system_tray_icon"
+msgstr "shows system tray icon"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\systemtray\Plugin.java:90
+msgid "main.jetimenu.Account"
+msgstr "v"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\systemtray\Plugin.java:91
+msgid "main.jetimenu.Login"
+msgstr "v"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\systemtray\Plugin.java:112
+msgid "main.jetimenu.Manage_Services"
+msgstr "v"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\systemtray\Plugin.java:134
+msgid "systemtray.Status"
+msgstr "Status"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\systemtray\Plugin.java:154
+msgid "main.statusmenu.Invisible"
+msgstr "v"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\systemtray\Plugin.java:190
+msgid "main.jetimenu.Exit"
+msgstr "v"
+
+msgid "xhtml.The_quick_brown_fox_jumped_over_the_lazy_dogs"
+msgstr "The quick brown fox jumped over the lazy dogs."
+
+msgid "xhtml.Preview"
+msgstr "Preview"
+
+msgid "xhtml.Font_Family"
+msgstr "Font Family"
+
+msgid "xhtml.Size"
+msgstr "Size"
+
+msgid "xhtml.Plain"
+msgstr "Plain"
+
+msgid "xhtml.Bold"
+msgstr "Bold"
+
+msgid "xhtml.Italic"
+msgstr "Italic"
+
+msgid "xhtml.BoldItalic"
+msgstr "BoldItalic"
+
+msgid "xhtml.Style"
+msgstr "Style"
+
+msgid "xhtml.Color"
+msgstr "Color"
+
+msgid "xhtml.foreground"
+msgstr "foreground"
+
+msgid "xhtml.background"
+msgstr "background"
+
+msgid "xhtml.Select_Color"
+msgstr "Select Color"
+
+msgid "xhtml.Formats_messages"
+msgstr "Formats messages"
+
+msgid "xhtml.Font"
+msgstr "Font"
+
+msgid "xhtml.Choose_Font"
+msgstr "Choose Font"
+
+msgid "xhtml.Underline"
+msgstr "Underline"
+
+#, java-format
+msgid "xhtml.{0}_doesn't_support_formatted_messages"
+msgstr "{0} doesn't support formatted messages"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\keyboardflash\Plugin.java:20
+msgid "keyboardflash.Flashes_the_scrollock_led_on_new_message"
+msgstr "Flashes the scrollock led on new message"
+
+msgid "idle.Minutes_of_no_activity_before_auto_Away"
+msgstr "Minutes of no activity before auto Away"
+
+msgid "idle.Auto_Away_Message"
+msgstr "Auto Away Message"
+
+msgid "idle.Minutes_of_no_activity_before_auto_Extended_Away"
+msgstr "Minutes of no activity before auto Extended Away"
+
+msgid "idle.Auto_Extended_Away_Message"
+msgstr "Auto Extended Away Message"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\idle\Plugin.java:19
+msgid "idle.Sets_status_to_away_when_no_activity"
+msgstr "Sets status to away when no activity"
+
+msgid "cam.Send_Webcam"
+msgstr "Send Webcam"
+
+msgid "cam.Description"
+msgstr "Description:"
+
+msgid "cam.Webcam_URL"
+msgstr "Webcam URL:"
+
+msgid "cam.Refresh_time_in_seconds"
+msgstr "Refresh time in seconds:"
+
+msgid "cam.Wrong_URL"
+msgstr "Wrong URL"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\cam\Plugin.java:31
+msgid "cam.Shows_an_image_from_a_website_and_refreshes_every_x_times"
+msgstr "Shows an image from a website and refreshes every x times"
+
+msgid "cam.Show_Webcam"
+msgstr "Show Webcam"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\sound\Plugin.java:45
+msgid "sound.Plays_a_sound_on_new_message_or_person_available"
+msgstr "Plays a sound on new message or person available"
+
+msgid "lookandfeel.Changes_Look_and_Feel"
+msgstr "Changes Look and Feel"
+
+msgid "lookandfeel.lookandfeel_cfg_not_found"
+msgstr "lookandfeel.cfg not found"
+
+msgid "lookandfeel.lookandfeel_could_not_be_loaded"
+msgstr "lookandfeel could not be loaded"
+
+msgid "lookandfeel.Show_Look_and_Feels"
+msgstr "Show Look and Feels"
+
+msgid "lookandfeel.File_not_Found"
+msgstr "File not Found"
+
+msgid "lookandfeel.Set_Oyoaha_Theme"
+msgstr "Set Oyoaha Theme"
+
+msgid "lookandfeel.Set_Metal_Theme"
+msgstr "Set Metal Theme"
+
+msgid "lookandfeel.Oyoaha_options"
+msgstr "Oyoaha options"
+
+msgid "lookandfeel.Set_Theme"
+msgstr "Set Theme"
+
+msgid "lookandfeel.SkinLF_options"
+msgstr "SkinLF options"
+
+msgid "lookandfeel.Configure"
+msgstr "Configure"
+
+#, java-format
+msgid "lookandfeel.{0}_Could_not_be_loaded"
+msgstr "{0} Could not be loaded"
+
+msgid "lookandfeel.Look_and_feel_error"
+msgstr "Look and feel error"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\titlescroller\Plugin.java:48
+msgid "titlescroller.Scrolls_the_window_title_of_chat_windows_on_new_messages"
+msgstr "Scrolls the window title of chat windows on new messages"
+
+msgid "titlescroller.Scrolling_speed"
+msgstr "Scrolling speed:"
+
+msgid "titlescroller.ms"
+msgstr "ms"
+
+msgid "titlescroller.Time_to_scroll_(0_for_no_time_limit)"
+msgstr "Time to scroll (0 for no time limit):"
+
+msgid "titlescroller.s"
+msgstr "s"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\titleflash\Plugin.java:46
+msgid "titleflash.Flashes_the_titlebar_when_a_message_arrives"
+msgstr "Flashes the titlebar when a message arrives"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\links\Plugin.java:33
+msgid "links.Make_hyperlinks_clickable"
+msgstr "Make hyperlinks clickable"
+
+msgid "windowsutils.Sorry_transparency_not_supported_by_your_OS"
+msgstr "Sorry transparency not supported by your OS"
+
+msgid "windowsutils.Transparancy,_100%_is_opaque"
+msgstr "Transparancy, 100% is opaque:"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\plugins\windowsutils\Plugin.java:25
+msgid "windowsutils.Provides_always_on_top,_transparency_and_flashing_windows"
+msgstr "Provides always on top, transparency and flashing windows"
+
+msgid "windowsutils.Set_Always_On_Top"
+msgstr "Set Always On Top"
+
+msgid "windowsutils.Not_Always_On_Top"
+msgstr "Not Always On Top"
+
+msgid "windowsutils.Make_transparent"
+msgstr "Make transparent"
+
+msgid "windowsutils.Make_opaque"
+msgstr "Make opaque"
+

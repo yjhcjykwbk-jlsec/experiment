@@ -1,0 +1,61 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.5.9\n"
+"POT-Creation-Date: 2004-07-13 09:33-0500\n"
+"PO-Revision-Date: 2004-07-13 09:36-0600\n"
+"Last-Translator: Rodolfo Gonzalez Gonzalez <rodolfo@equinoxe.g-networks.net>\n"
+"Language-Team: ESPAÑOL <rodolfo@equinoxe.g-networks.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: BuildDictionaryFile.java:36
+msgid ""
+"Usage:\n"
+" BuildDictionaryFile [phonetfile] [wordfile] [outputfile]\n"
+"Or\n"
+" BuildDictionaryFile [wordfile] [outputfile]"
+msgstr ""
+"Uso:\n"
+" BuildDictionaryFile [phonetfile] [wordfile] [outputfile]\n"
+"o\n"
+" BuildDictionaryFile [wordfile] [outputfile]"
+
+#: BuildDictionaryFile.java:37
+msgid ""
+"Example:\n"
+" java -Xms64m -Xmx128m -classpath jazzy.jar:. BuildDictionaryFile fr_phonet.dat french.words francais.dico"
+msgstr ""
+"Ejemplo:\n"
+" java -Xms64m -Xmx128m -classpath jazzy.jar:. BuildDictionaryFile fr_phonet.dat french.words francais.dico"
+
+#: BuildDictionaryFile.java:55
+msgid "WARNING: collision!"
+msgstr "ADVERTENCIA: ¡colisión!"
+
+#: BuildDictionaryFile.java:57
+msgid "reading..."
+msgstr "leyendo..."
+
+#: BuildDictionaryFile.java:67
+msgid "Words: "
+msgstr "Palabras:"
+
+#: BuildDictionaryFile.java:68
+msgid "sorting..."
+msgstr " Ordenando..."
+
+#: Plugin.java:53
+#: Plugin.java:54
+msgid "Dictionary not found"
+msgstr "No se ha encontrado el archivo"
+
+#: Plugin.java:119
+msgid "Ignore"
+msgstr "Ignorar"
+

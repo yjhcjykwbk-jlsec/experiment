@@ -1,0 +1,1673 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: JETI\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2004-12-15 10:20-0600\n"
+"Last-Translator: Rodolfo Gonzalez Gonzalez <rodolfo@equinoxe.g-networks.net>\n"
+"Language-Team: ESPAÃ‘OL <rodolfo@equinoxe.g-networks.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Abort"
+msgstr "Abortar"
+
+msgid "Apply"
+msgstr "Aplicar"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Close"
+msgstr "Cerrar"
+
+msgid "Loading"
+msgstr "Cargando"
+
+msgid "OK"
+msgstr "Aceptar"
+
+msgid "Remove"
+msgstr "Eliminar"
+
+msgid "Retry"
+msgstr "Reintentar"
+
+msgid "Save"
+msgstr "Guardar"
+
+msgid "Send"
+msgstr "Enviar"
+
+msgid "alertwindow.Alpha_is_{0},_Time_is_{1}"
+msgstr "Alfa es {0}, Tiempo es {1}"
+
+msgid "alertwindow.Background_color"
+msgstr "Color de fondo"
+
+msgid "alertwindow.Color"
+msgstr "Color"
+
+msgid "alertwindow.Demonstration"
+msgstr "Demostración"
+
+msgid "alertwindow.Foreground_color"
+msgstr "Color de primer plano"
+
+msgid "alertwindow.Shows_an_alert_window_when_a_message_arrives"
+msgstr "Muestra una ventana de alerta cuando un mensaje es recibido"
+
+msgid "alertwindow.This_is_a_Demonstration_PopupWindow"
+msgstr "Esta es una ventana de demostración"
+
+msgid "alertwindow.Time_to_show_alert"
+msgstr "Tiempo para mostrar la alerta:"
+
+msgid "alertwindow.Transparancy,_100%_is_opaque"
+msgstr "Transparencia, 100% es opaco"
+
+msgid "alertwindow.sec"
+msgstr "seg."
+
+msgid "autoloadgroupchat.Loads_a_groupchat_on_login"
+msgstr "Loads a groupchat on login"
+
+msgid "cam.Description"
+msgstr "Descripción:"
+
+msgid "cam.Refresh_time_in_seconds"
+msgstr "Tiempo entre actualizaciones, en segundos"
+
+msgid "cam.Send_Webcam"
+msgstr "Enviar cámara"
+
+msgid "cam.Show_Webcam"
+msgstr "Mostrar cámara"
+
+msgid "cam.Shows_an_image_from_a_website_and_refreshes_every_x_times"
+msgstr "Muestra una imagen desde un sitio web y la refresca periódicamente"
+
+msgid "cam.Webcam_URL"
+msgstr "URL de la cámara:"
+
+msgid "cam.Wrong_URL"
+msgstr "URL no válida"
+
+msgid "emoticons.Change_Set"
+msgstr "Cambiar juego de fichas"
+
+msgid "emoticons.Description"
+msgstr "Descripción"
+
+msgid "emoticons.Enabled"
+msgstr "Habilitado"
+
+msgid "emoticons.Name"
+msgstr "Nombre"
+
+msgid "emoticons.No_Emoticons"
+msgstr "Sin emoticonos"
+
+msgid "emoticons.Scan_Emoticons"
+msgstr "&Buscar emoticonos"
+
+msgid "emoticons.Select_Icon"
+msgstr "Seleccionar Icono"
+
+msgid "emoticons.Shows_graphical_emoticons"
+msgstr "Muestra emoticonos gráficos"
+
+msgid "emoticons.Version"
+msgstr "Versión"
+
+msgid "filetransfer.Abort"
+msgstr "&Abortar"
+
+msgid "filetransfer.Can_not_transfer_directories"
+msgstr "No se pueden transferir directorios"
+
+msgid "filetransfer.Close"
+msgstr "Cerrar"
+
+msgid "filetransfer.Description"
+msgstr "Descripción"
+
+msgid "filetransfer.Download"
+msgstr "Descargar"
+
+msgid "filetransfer.File_Error"
+msgstr "Error de archivos"
+
+msgid "filetransfer.File_Name"
+msgstr "Nombre del archivo"
+
+msgid "filetransfer.File_Size"
+msgstr "Tamaño del archivo"
+
+msgid "filetransfer.File_Transfer"
+msgstr "Transferencia de Archivos"
+
+msgid "filetransfer.From"
+msgstr "De"
+
+msgid "filetransfer.GetSize"
+msgstr "Obtener tamaño"
+
+msgid "filetransfer.No_compatible_transfer_protocols_found"
+msgstr "No se encontraron protocolos de transferencia compatibles"
+
+msgid "filetransfer.No_recipient_specified"
+msgstr "No especificó destinatarios."
+
+msgid "filetransfer.Opening_connection"
+msgstr "Abriendo conexión"
+
+msgid "filetransfer.Problem_during_file_transfer,_transfer_aborted"
+msgstr "Ocurrió un problema durante la transferencia del archivo, transferencia abortada"
+
+msgid "filetransfer.Progress"
+msgstr "Progreso"
+
+msgid "filetransfer.Recipient?"
+msgstr "¿Destinatario?"
+
+msgid "filetransfer.Send"
+msgstr "&Enviar"
+
+msgid "filetransfer.Send_file_to"
+msgstr "Enviar el archivo a"
+
+msgid "filetransfer.To"
+msgstr "Para"
+
+msgid "filetransfer.Transfer_File"
+msgstr "Transferir archivo"
+
+msgid "filetransfer.Transfer_complete"
+msgstr "Transferencia completa"
+
+msgid "filetransfer.Transferring"
+msgstr "Transfiriendo"
+
+msgid "filetransfer.URL"
+msgstr "URL"
+
+msgid "filetransfer.behind_firewall_or_NAT"
+msgstr "detras de un cortafuegos o NAT"
+
+msgid "filetransfer.ip"
+msgstr "ip"
+
+msgid "filetransfer.port"
+msgstr "port"
+
+msgid "filetransfer.{0}_could_not_be_openend_in_write_mode"
+msgstr "{0} no pudo ser abierto en modo de escritura"
+
+msgid "filetransfer.{0}_did_not_accept_the_file"
+msgstr "{0} no aceptó el archivo."
+
+msgid "filetransfer.{0}_does_not_exist"
+msgstr "{0} no existe"
+
+msgid "filetransfer.{0}_does_not_support_file_transfer_or_is_offline"
+msgstr "{0} no soporta transferencias o está desconectado"
+
+msgid "filetransfer.{0}_is_not_online"
+msgstr "{0} no está conectado"
+
+msgid "filetransfer.{0}_is_not_readable"
+msgstr "{0} es ilegible"
+
+msgid "filetransfer.{0}_occured_while_transferring_{1}"
+msgstr "{0} ocurrió mientras se transmitia {1}"
+
+msgid "fontsize.Font_Size"
+msgstr "Tamaño de letra"
+
+msgid "fontsize.The_default_font_size_in_the_windows"
+msgstr "El tamaño de las letras en las ventanas"
+
+msgid "fontsize.change_the_fontsize_of_the_chatwindows"
+msgstr "Cambiar el tamaño de las letras en las ventanas de conversación"
+
+msgid "groupchat"
+msgstr "Servidor de Charla Grupal"
+
+msgid "groupchat.Accept"
+msgstr "Aceptar"
+
+msgid "groupchat.Add_JID"
+msgstr "Agregar JID"
+
+msgid "groupchat.Add_Nickname_to_Output"
+msgstr "Agregar @Nickname"
+
+msgid "groupchat.Admin"
+msgstr "Admin"
+
+msgid "groupchat.Affiliation"
+msgstr "Afiliación"
+
+msgid "groupchat.Auto_open"
+msgstr "Autoapertura"
+
+msgid "groupchat.Automatically_start_groupchat_on_startup?"
+msgstr "¿Iniciar automáticamente la charla grupal al inicio?"
+
+msgid "groupchat.Available_rooms"
+msgstr "&Cuartos disponibles"
+
+msgid "groupchat.Ban_User"
+msgstr "Bloquear al usuario"
+
+msgid "groupchat.Banned_from_room"
+msgstr "Expulsado de la sala"
+
+msgid "groupchat.Bookmark_name"
+msgstr "Nombre del marcador"
+
+msgid "groupchat.Bookmark_room"
+msgstr "Marcar sala"
+
+msgid "groupchat.Change_Subject"
+msgstr "&Cambiar el asunto a"
+
+msgid "groupchat.Change_nickname"
+msgstr "&Cambiar el apodo"
+
+msgid "groupchat.Change_nickname_to"
+msgstr "Apodo a usar:"
+
+msgid "groupchat.Change_room_subject_to"
+msgstr "Cambiar el asunto del cuarto a"
+
+msgid "groupchat.Change_subject_to"
+msgstr "Cambiar el asunto a"
+
+msgid "groupchat.Chat_Server"
+msgstr "Servidor de charla grupal"
+
+msgid "groupchat.Choose_groupchat_room"
+msgstr "Seleccionar un cuarto de charla"
+
+msgid "groupchat.Configure_Room"
+msgstr "&Configurar el cuarto"
+
+msgid "groupchat.Decline"
+msgstr "Declinar"
+
+msgid "groupchat.Destroy_Room"
+msgstr "Destruir el cuarto"
+
+msgid "groupchat.Destroy_{0}"
+msgstr "Destruir {0}"
+
+msgid "groupchat.Exit_Room"
+msgstr "&Salir del cuarto"
+
+msgid "groupchat.Forbidden"
+msgstr "Prohibido"
+
+msgid "groupchat.Grant_Admin"
+msgstr "Otorgar Administración"
+
+msgid "groupchat.Grant_Moderator"
+msgstr "Otorgar Moderación"
+
+msgid "groupchat.Grant_Owner"
+msgstr "Otorgar Propiedad"
+
+msgid "groupchat.Grant_Voice"
+msgstr "Otorgar Voz"
+
+msgid "groupchat.Groupchat_Invitation"
+msgstr "Invitación a charla grupal"
+
+msgid "groupchat.Illegal_group_name"
+msgstr "Nombre de grupo ilegal"
+
+msgid "groupchat.Invite_for_groupchat"
+msgstr "Invitar a charla grupal"
+
+msgid "groupchat.Invite_user"
+msgstr "Invitar al usuario"
+
+msgid "groupchat.Invite_{0}_to_room"
+msgstr "Invitar a {0} al cuarto"
+
+msgid "groupchat.JID"
+msgstr "JID"
+
+msgid "groupchat.Join/Create"
+msgstr "&Unirse/Crear"
+
+msgid "groupchat.Kick_User"
+msgstr "Patear al usuario"
+
+msgid "groupchat.Manage_Bookmarks"
+msgstr "Administrar Marcadores"
+
+msgid "groupchat.Manage_Members"
+msgstr "Administrar Miembros"
+
+msgid "groupchat.Members"
+msgstr "Miembros"
+
+msgid "groupchat.Moderator"
+msgstr "Moderador"
+
+msgid "groupchat.Myself"
+msgstr "Yo"
+
+msgid "groupchat.Nickname"
+msgstr "Apodo"
+
+msgid "groupchat.No_Actions"
+msgstr "No hay acciones disponibles"
+
+msgid "groupchat.None"
+msgstr "Ninguno"
+
+msgid "groupchat.Owner"
+msgstr "Dueño"
+
+msgid "groupchat.Password"
+msgstr "Contraseña"
+
+msgid "groupchat.Password_required_to_join_this_room"
+msgstr "Se requiere una contraseña para unirse a esta sala"
+
+msgid "groupchat.Private_chat"
+msgstr "Charla Privada"
+
+msgid "groupchat.Private_message"
+msgstr "Mensaje Privado"
+
+msgid "groupchat.Reason"
+msgstr "Motivo"
+
+msgid "groupchat.Reason_(optional)"
+msgstr "Motivo (opcional)"
+
+msgid "groupchat.Reason_{0}"
+msgstr "Motivo: {0}"
+
+msgid "groupchat.Revoke_Admin"
+msgstr "Quitar Administración"
+
+msgid "groupchat.Revoke_Membership"
+msgstr "Quitar Pertenencia"
+
+msgid "groupchat.Revoke_Moderator"
+msgstr "Quitar Moderación"
+
+msgid "groupchat.Revoke_Owner"
+msgstr "Quitar Propiedad"
+
+msgid "groupchat.Revoke_Voice"
+msgstr "Quitar Voz"
+
+msgid "groupchat.Role"
+msgstr "Rol"
+
+msgid "groupchat.Room"
+msgstr "Sala"
+
+msgid "groupchat.Send"
+msgstr "Enviar"
+
+msgid "groupchat.Server"
+msgstr "Servidor"
+
+msgid "groupchat.Subject"
+msgstr "Asunto:"
+
+msgid "groupchat.Subject {0}"
+msgstr "Asunto: {0}"
+
+msgid "groupchat.The_name_of_the_bookmark"
+msgstr "El nombre del marcador"
+
+msgid "groupchat.Thrown_out_from_room"
+msgstr "Sacar del cuarto"
+
+msgid "groupchat.User"
+msgstr "Usuario"
+
+msgid "groupchat.You_are_not_in_any_rooms"
+msgstr "No se encuentra en ningún cuarto"
+
+msgid "groupchat.affiliation.admin"
+msgstr "Admin"
+
+msgid "groupchat.affiliation.member"
+msgstr "Miembro"
+
+msgid "groupchat.affiliation.none"
+msgstr "Ninguno"
+
+msgid "groupchat.affiliation.outcast"
+msgstr "Vetado"
+
+msgid "groupchat.affiliation.owner"
+msgstr "Dueño"
+
+msgid "groupchat.bookmarks"
+msgstr "Marcadores"
+
+msgid "groupchat.delete_bookmark"
+msgstr "Borrar marcador"
+
+msgid "groupchat.groupchat"
+msgstr "Charla grupal"
+
+msgid "groupchat.invalid_room_name"
+msgstr "Nombre de sala no válido"
+
+msgid "groupchat.invalid_user_name"
+msgstr "Nombre de usuario no válido"
+
+msgid "groupchat.new_groupchat"
+msgstr "&Nueva charla grupal"
+
+msgid "groupchat.options.Link_Status_Buttons"
+msgstr "Enlazar botones de estado"
+
+msgid "groupchat.options.Show_presence_messages_in_chat_window"
+msgstr "Mostrar el estado en la ventana de charla"
+
+msgid "groupchat.options.tooltip.Changing_status_in_one_window_affects_all_windows"
+msgstr "El cambio de estado en una ventana afecta a todas las ventanas"
+
+msgid "groupchat.options.tooltip.Insert_a_message_in_the_chat_window_each_time_a_participant_changes_availability"
+msgstr "Notificar en la ventana de charla cada vez que un participante cambie su estado"
+
+msgid "groupchat.role.moderator"
+msgstr "Moderador"
+
+msgid "groupchat.role.none"
+msgstr "Ninguno"
+
+msgid "groupchat.role.participant"
+msgstr "Participante"
+
+msgid "groupchat.role.visitor"
+msgstr "Visitante"
+
+msgid "groupchat.with_status_message_{0}"
+msgstr "con mensaje de estado {0}"
+
+msgid "groupchat.{0}_changed_state_to_{1}"
+msgstr "{0} cambió su estado a {1}"
+
+msgid "groupchat.{0}_changed_status_message_to_{1}"
+msgstr "{0} cambió su mensaje de estado a {1}"
+
+msgid "groupchat.{0}_has_entered_the_room"
+msgstr "{0} ha entrado al cuarto"
+
+msgid "groupchat.{0}_has_left"
+msgstr "{0} ha salido"
+
+msgid "groupchat.{0}_invites_you_to_{1}"
+msgstr "{0} te invita a {1}"
+
+msgid "groupchat.{0}_is_an_invalid_room_name"
+msgstr "{0} no es un nombre sala válido."
+
+msgid "groupchat.{0}_is_an_invalid_user_name"
+msgstr "{0} no es un nombre sala válido."
+
+msgid "idle.Auto_Away_Message"
+msgstr "Mensaje automático de ausencia"
+
+msgid "idle.Auto_Extended_Away_Message"
+msgstr "Mensaje automático de ausencia prolongada"
+
+msgid "idle.Minutes_of_no_activity_before_auto_Away"
+msgstr "Minutos de inactividad antes de cambiar estado a Ausente"
+
+msgid "idle.Minutes_of_no_activity_before_auto_Extended_Away"
+msgstr "Minutos de inactividad antes de cambiar estado a Ausencia Extendida"
+
+msgid "idle.Sets_status_to_away_when_no_activity"
+msgstr "Cambia el estado a Ausente cuando no hay actividad"
+
+msgid "keyboardflash.Flashes_the_scrollock_led_on_new_message"
+msgstr "Hace parpadear el led de ScrollLock al llegar un nuevo mensaje"
+
+msgid "links.Choose_a_Browser_to_display_links_in"
+msgstr "Seleccionar el browser en el que desea desplegar las ligas"
+
+msgid "links.Make_hyperlinks_clickable"
+msgstr "Los hipervínculos se pueden seguir"
+
+msgid "lookandfeel.Changes_Look_and_Feel"
+msgstr "Cambia la Apariencia"
+
+msgid "lookandfeel.Configure"
+msgstr "Configurar"
+
+msgid "lookandfeel.File_not_Found"
+msgstr "Archivo no encontrado."
+
+msgid "lookandfeel.Look_and_feel_error"
+msgstr "Error de Apariencia"
+
+msgid "lookandfeel.Oyoaha_options"
+msgstr "Opciones de Oyoaha"
+
+msgid "lookandfeel.Set_Metal_Theme"
+msgstr "Configurar el tema Metal"
+
+msgid "lookandfeel.Set_Oyoaha_Theme"
+msgstr "Configurar el tema Oyoaha"
+
+msgid "lookandfeel.Set_Theme"
+msgstr "Configurar el tema"
+
+msgid "lookandfeel.Show_Look_and_Feels"
+msgstr "Mostrar Apariencias"
+
+msgid "lookandfeel.SkinLF_options"
+msgstr "Opciones de SkinLF"
+
+msgid "lookandfeel.lookandfeel_cfg_not_found"
+msgstr "lookandfeel.cfg no encontrada"
+
+msgid "lookandfeel.lookandfeel_could_not_be_loaded"
+msgstr "lookandfeel.cfg no pudo ser cargada"
+
+msgid "lookandfeel.{0}_Could_not_be_loaded"
+msgstr "{0} no se pudo cargar"
+
+msgid "main.AddContact.Add_Contact"
+msgstr "Agregar contacto"
+
+msgid "main.AddContact.Address"
+msgstr "Dirección"
+
+msgid "main.AddContact.Contactname@Transport:"
+msgstr "Contactname@Transport:"
+
+msgid "main.AddContact.Group"
+msgstr "Grupo"
+
+msgid "main.AddContact.Nickname"
+msgstr "Apodo"
+
+msgid "main.AddContact.Other"
+msgstr "Otro"
+
+msgid "main.AddContact.Screen Name"
+msgstr "Nombre de pantalla"
+
+msgid "main.AddContact.Select_Service"
+msgstr "Seleccione el servicio:"
+
+msgid "main.EditProfile.Advanced"
+msgstr "Avanzado"
+
+msgid "main.EditProfile.Connect_to"
+msgstr "Conectar a"
+
+msgid "main.EditProfile.Create_New_Account"
+msgstr "Crear una nueva cuenta"
+
+msgid "main.EditProfile.Edit_Profile_Info"
+msgstr "Editar la información del perfil"
+
+msgid "main.EditProfile.Hide_Status_Window"
+msgstr "Ocultar la ventana de estado"
+
+msgid "main.EditProfile.Hide_the_login_status_window"
+msgstr "Ocultar la ventana de estado de conexión"
+
+msgid "main.EditProfile.Jabber_Server"
+msgstr "Servidor Jabber"
+
+msgid "main.EditProfile.New_Profile_Info"
+msgstr "Nueva información del perfil"
+
+msgid "main.EditProfile.Only_fill_in_password_on_private_computers,_to_prevent_theft_of_password"
+msgstr "Guarde la contraseña solo en computadoras privadas, para prevenir su robo"
+
+msgid "main.EditProfile.Password"
+msgstr "Contraseña"
+
+msgid "main.EditProfile.Password_(leave_blank_to_ask)"
+msgstr "Contraseña (deje en blanco para ser cuestionado)"
+
+msgid "main.EditProfile.Please_enter_a_username_first"
+msgstr "Por favor escriba un nombre de usuario primero"
+
+msgid "main.EditProfile.Please_select_a_server_first"
+msgstr "Por favor seleccione un servidor primero"
+
+msgid "main.EditProfile.Port"
+msgstr "Puerto"
+
+msgid "main.EditProfile.Priority"
+msgstr "Prioridad"
+
+msgid "main.EditProfile.Profile_name"
+msgstr "Nombre del perfil"
+
+msgid "main.EditProfile.Proxy"
+msgstr "Proxy"
+
+msgid "main.EditProfile.Proxy_Host"
+msgstr "Host del Proxy"
+
+msgid "main.EditProfile.Proxy_Port"
+msgstr "Puerto del Proxy"
+
+msgid "main.EditProfile.Really_remove_{0}?"
+msgstr "¿Realmente desea eliminar a {0}?"
+
+msgid "main.EditProfile.Register"
+msgstr "Registrar"
+
+msgid "main.EditProfile.Remove"
+msgstr "Eliminar"
+
+msgid "main.EditProfile.Remove_this_ profile"
+msgstr "Eliminar este perfil"
+
+msgid "main.EditProfile.Request_new_account"
+msgstr "Solicitar una nueva cuenta"
+
+msgid "main.EditProfile.Resource"
+msgstr "Recurso"
+
+msgid "main.EditProfile.Save_profile"
+msgstr "Salvar perfil"
+
+msgid "main.EditProfile.Use_Once"
+msgstr "Usar solo una vez"
+
+msgid "main.EditProfile.Use_SSL"
+msgstr "Usar SSL"
+
+msgid "main.EditProfile.Use_Socks_Proxy"
+msgstr "Usar Socks Proxy"
+
+msgid "main.EditProfile.Use_this_profile_only_for_this_session"
+msgstr "Usar este perfil solo durante la sesión actual"
+
+msgid "main.EditProfile.Use_this_profile_only_to_login_this_time"
+msgstr "Usar este perfil solo para conectarme"
+
+msgid "main.EditProfile.Username"
+msgstr "Nombre de usuario"
+
+msgid "main.about.About JETI"
+msgstr "Acerca de JETI"
+
+msgid "main.about.About_the_Plugins"
+msgstr "Acerca de los Plugins"
+
+msgid "main.about.Designed_by"
+msgstr "Diseñado por"
+
+msgid "main.about.Internationalized_by"
+msgstr "Traducido por"
+
+msgid "main.about.Special_thanks_to:"
+msgstr "Agradecimientos especiales para:"
+
+msgid "main.about.Translated_by_(PUT_YOUR_NAME_HERE)"
+msgstr "Traducido por Rodolfo González González"
+
+msgid "main.about.Version"
+msgstr "Versión"
+
+msgid "main.about.and"
+msgstr "y"
+
+msgid "main.about.before_I_thought_it_was_useful"
+msgstr "antes de que fuera útil."
+
+msgid "main.about.for_their_support_and_use_of_Jeti_even "
+msgstr "por su apoyo y uso de Jeti, aún "
+
+msgid "main.chat.Chat_started_on:"
+msgstr "Conversación iniciada el: "
+
+msgid "main.chat.Send"
+msgstr "Enviar"
+
+msgid "main.chat.changed_status_to:"
+msgstr "cambió su estado a:"
+
+msgid "main.chat.is_currently_offline"
+msgstr " esta actualmente desconectado"
+
+msgid "main.chat.with_status_message:"
+msgstr "con mensaje de estado:"
+
+msgid "main.chat.{0}_(offline)"
+msgstr "{0} (desconectado)"
+
+msgid "main.chat.{0}_says:_{1}"
+msgstr "{0} dice: {1}"
+
+msgid "main.comment.Architecture:"
+msgstr "Arquitectura: "
+
+msgid "main.comment.Bug"
+msgstr "Error"
+
+msgid "main.comment.Comment/Bug"
+msgstr "Comentario/Error"
+
+msgid "main.comment.Comment/Request"
+msgstr "Comentario/Petición"
+
+msgid "main.comment.Include"
+msgstr "Incluir:"
+
+msgid "main.comment.JETI_Version:"
+msgstr "JETI versión: "
+
+msgid "main.comment.Java_Vendor:"
+msgstr "Java: "
+
+msgid "main.comment.Java_Version:"
+msgstr "Versión de Java : "
+
+msgid "main.comment.OS:"
+msgstr "SO:"
+
+msgid "main.comment.Send"
+msgstr "Enviar"
+
+msgid "main.error.Error"
+msgstr "Error"
+
+msgid "main.error.Error_in_chat:"
+msgstr "Error en el chat:"
+
+msgid "main.error.Illegal_errorcode"
+msgstr "Código de error ilegal "
+
+msgid "main.error.Last_Seen_Error"
+msgstr "Último error"
+
+msgid "main.error.No_JID_found"
+msgstr "No se encontró ningún JID"
+
+msgid "main.error.No_services"
+msgstr "No hay servicios"
+
+msgid "main.error.No_type"
+msgstr "No hay tipos"
+
+msgid "main.error.Preferences_load_Error"
+msgstr "Error al cargar las preferencias"
+
+msgid "main.error.Register_Error"
+msgstr "Error de registro"
+
+msgid "main.error.Register_Services"
+msgstr "Registrar servicios"
+
+msgid "main.error.Server_doesn't_support_browse"
+msgstr "El servidor no soporta exámen"
+
+msgid "main.error.Server_has_no_value"
+msgstr "El nombre del servidor no fue configurado"
+
+msgid "main.error.Server_must_start_with_a_letter_(see english translation)"
+msgstr "El nombre del servidor debe comenzar con una letra y contener solamente [A-Z], [a-z], [0-9], '.' ó '-'"
+
+msgid "main.error.Server_or_Username_contains_a_'@'"
+msgstr "El servidor o nombre de usuario contienen una '@'"
+
+msgid "main.error.Service_error"
+msgstr "Error de servicio"
+
+msgid "main.error.Subscription_error"
+msgstr "Error de subscripción"
+
+msgid "main.error.Time_Error"
+msgstr "Error de fecha"
+
+msgid "main.error.Unknown_Extension"
+msgstr "Extensión desconocida"
+
+msgid "main.error.Unknown_Packet"
+msgstr "Paquete desconocido"
+
+msgid "main.error.Unknown_error"
+msgstr "Error desconocido"
+
+msgid "main.error.User_{0}_could_not_be_found"
+msgstr "El usuario {0} no pudo ser encontrado"
+
+msgid "main.error.Username_>_255_Characters"
+msgstr "Nomrbe de usuario de más de 255 caracteres"
+
+msgid "main.error.Username_contains_illegal_chars_(see_english_translation)"
+msgstr "El nombre de usuario contiene alguno de estos caracteres ilegales ' ', ':', '@', '\"', '<', '>', '/', '\\' or '&'"
+
+msgid "main.error.Version_Error"
+msgstr "Error de versiones"
+
+msgid "main.error.Wrong_Jabber_Identifier"
+msgstr "Identificador Jabber incorrecto"
+
+msgid "main.error.Wrong_contact_name"
+msgstr "Nombre de contacto erroneo"
+
+msgid "main.error.invalid_server"
+msgstr "servidor no válido"
+
+msgid "main.error.invalid_url_in_OOB_packet"
+msgstr "url no válido en el paquete OOB"
+
+msgid "main.error.registration_aborted,_code_{0}"
+msgstr "registro abortado, código {0}."
+
+msgid "main.error.statusicons_dir_not_found"
+msgstr "directorio statusicons no encontrado"
+
+msgid "main.error.type_must_be_specified"
+msgstr "el tipo debe ser especificado"
+
+msgid "main.error.wrong_type"
+msgstr "tipo incorrecto"
+
+msgid "main.error.xmpp.forbidden"
+msgstr "Prohibido"
+
+msgid "main.error.{0}_contains_no_plugins"
+msgstr "{0} no contiene plugins"
+
+msgid "main.error.{0}_is_not_valid"
+msgstr "{0} no es válido"
+
+msgid "main.error.{0}_plugin_failed_to_load"
+msgstr "El plugin {0} no pudo ser cargado"
+
+msgid "main.error.{0}_plugin_not_found"
+msgstr "El plugin {0} no pudo ser encontrado"
+
+msgid "main.log.Clear_Log"
+msgstr "Borrar los contenidos del log"
+
+msgid "main.log.Errors"
+msgstr "Errores"
+
+msgid "main.log.JETI_Log"
+msgstr "Registro de errores"
+
+msgid "main.log.Refresh"
+msgstr "Refrescar"
+
+msgid "main.log.Send_XML"
+msgstr "Enviar XML"
+
+msgid "main.log.Send_XML_to_the_Jabber_server,_use_this_at_your_own_risk"
+msgstr "Enviar XML al servidor Jabber, úsese bajo su propio riesgo"
+
+msgid "main.log.XML"
+msgstr "XML"
+
+msgid "main.log.XML_Errors"
+msgstr "Errores XML"
+
+msgid "main.login.Edit"
+msgstr "Editar"
+
+msgid "main.login.Login"
+msgstr "Nombre de usuario"
+
+msgid "main.login.New"
+msgstr "Nuevo"
+
+msgid "main.login.Password"
+msgstr "Contraseña"
+
+msgid "main.login.Profile"
+msgstr "Perfil"
+
+msgid "main.login.Wrong_Password_Try_again"
+msgstr "Password incorrecto, inténtelo nuevamente."
+
+msgid "main.loginstatus.An_error_has_occured,_trying_again_{0}_X"
+msgstr "Ha ocurrido un error, intente nuevamente {0} X"
+
+msgid "main.loginstatus.An_error_has_occured_while_logging_in"
+msgstr "Ha ocurrido un error de conexión"
+
+msgid "main.loginstatus.Authenticated"
+msgstr "Autenticado"
+
+msgid "main.loginstatus.Authenticating"
+msgstr "Autenticando"
+
+msgid "main.loginstatus.Connected"
+msgstr "Conectado"
+
+msgid "main.loginstatus.Could_not_login_with_SHA"
+msgstr "No se pudo establecer conexión usando SHA"
+
+msgid "main.loginstatus.Could_not_open_input_because"
+msgstr "No se pudo abrir la entrada debido a"
+
+msgid "main.loginstatus.Could_not_open_output_because"
+msgstr "No se pudo abrir la salida debido a"
+
+msgid "main.loginstatus.Getting_available_login_methods"
+msgstr "Obteniendo los métodos de conexión disponibles"
+
+msgid "main.loginstatus.Loading_roster"
+msgstr "Cargando la lista de contactos"
+
+msgid "main.loginstatus.Logged_in"
+msgstr "Conectado"
+
+msgid "main.loginstatus.Logging_in"
+msgstr "Conectándose"
+
+msgid "main.loginstatus.Logging_in_on_your_jabber_account"
+msgstr "Conectándose a su cuenta"
+
+msgid "main.loginstatus.Lost_Input"
+msgstr "Entrada perdida"
+
+msgid "main.loginstatus.Not_logged_in_because "
+msgstr "no conectado debido a "
+
+msgid "main.loginstatus.Opening_Input"
+msgstr "Abriendo Entrada"
+
+msgid "main.loginstatus.Opening_Output"
+msgstr "Abriendo Salida"
+
+msgid "main.loginstatus.Opening_socket"
+msgstr "Abriendo Socket"
+
+msgid "main.loginstatus.Server_{0}_could_not_be_found"
+msgstr "El servidor {0} no pudo ser encontrado."
+
+msgid "main.loginstatus.XML_stream_error,_lost_input"
+msgstr "Error en flujo XML, entrada perdida"
+
+msgid "main.main.Offline"
+msgstr "Desconectado"
+
+msgid "main.main.Online"
+msgstr "Conectado"
+
+msgid "main.main.jetimenu.About"
+msgstr "Acerca de"
+
+msgid "main.main.jetimenu.About_this_Account"
+msgstr "Acerca de esta cuenta"
+
+msgid "main.main.jetimenu.Account"
+msgstr "Cuenta"
+
+msgid "main.main.jetimenu.Add_Contact"
+msgstr "Agregar contacto"
+
+msgid "main.main.jetimenu.Chat"
+msgstr "Charlar"
+
+msgid "main.main.jetimenu.Comment/Bug"
+msgstr "Comentario/Error"
+
+msgid "main.main.jetimenu.Exit"
+msgstr "Salir"
+
+msgid "main.main.jetimenu.Login"
+msgstr "Conectar"
+
+msgid "main.main.jetimenu.Manage_Services"
+msgstr "Administrar Servicios"
+
+msgid "main.main.jetimenu.Message"
+msgstr "Mensaje"
+
+msgid "main.main.jetimenu.Options"
+msgstr "Opciones"
+
+msgid "main.main.jetimenu.Show_Log"
+msgstr "Mostrar Registro"
+
+msgid "main.main.presencebutton.Available"
+msgstr "Disponible"
+
+msgid "main.main.presencebutton.Away"
+msgstr "Lejos"
+
+msgid "main.main.presencebutton.DND"
+msgstr "No molestar"
+
+msgid "main.main.presencebutton.FreeforChat"
+msgstr "Disponible para charlar"
+
+msgid "main.main.presencebutton.Offline"
+msgstr "Desconectado"
+
+msgid "main.main.presencebutton.XA"
+msgstr "Ausente"
+
+msgid "main.main.roster.Friends"
+msgstr "Amigos"
+
+msgid "main.main.roster.Servers"
+msgstr "Servidores"
+
+msgid "main.main.roster.Status:"
+msgstr "Estado:"
+
+msgid "main.main.roster.Subscription:"
+msgstr "Subscripción:"
+
+msgid "main.main.roster.Unfiled"
+msgstr "Desagrupado"
+
+msgid "main.main.roster.Waiting_Status:"
+msgstr "Esperando estado:"
+
+msgid "main.main.rostermenu.Add_to_Group"
+msgstr "Agregar al grupo"
+
+msgid "main.main.rostermenu.Change_Group"
+msgstr "Cambiar de grupo"
+
+msgid "main.main.rostermenu.Chat"
+msgstr "Charlar"
+
+msgid "main.main.rostermenu.Edit_Registration"
+msgstr "Editar registro"
+
+msgid "main.main.rostermenu.Group"
+msgstr "Grupo"
+
+msgid "main.main.rostermenu.Invisible"
+msgstr "Invisible"
+
+msgid "main.main.rostermenu.Last_Seen"
+msgstr "Visto por última vez"
+
+msgid "main.main.rostermenu.Local_Time"
+msgstr "Hora local"
+
+msgid "main.main.rostermenu.Local_Version"
+msgstr "Versión local"
+
+msgid "main.main.rostermenu.Log_Off"
+msgstr "Desconectar"
+
+msgid "main.main.rostermenu.Log_On"
+msgstr "Conectar"
+
+msgid "main.main.rostermenu.Message"
+msgstr "Mensaje"
+
+msgid "main.main.rostermenu.Remove"
+msgstr "Eliminar"
+
+msgid "main.main.rostermenu.Remove_from_group"
+msgstr "Eliminar del grupo"
+
+msgid "main.main.rostermenu.Rename"
+msgstr "Renombrar"
+
+msgid "main.main.rostermenu.Subscribe_from"
+msgstr "Subscribir de"
+
+msgid "main.main.rostermenu.Unsubscribe_from"
+msgstr "Desubscribir de"
+
+msgid "main.main.statusmenu.Change_message"
+msgstr "Cambiar mensaje"
+
+msgid "main.main.statusmenu.Invisible"
+msgstr "Invisible"
+
+msgid "main.main.statusmenu.Manage_messages"
+msgstr "Administrar mensajes"
+
+msgid "main.main.statusmenu.Offline"
+msgstr "Desconectado"
+
+msgid "main.main.statusmenu.Status_message:"
+msgstr "Mensaje de estado:"
+
+msgid "main.manageservices.Change_Server"
+msgstr "Cambiar servidor"
+
+msgid "main.manageservices.Manage_Services"
+msgstr "Administrar servicios"
+
+msgid "main.manageservices.Register"
+msgstr "Registrar"
+
+msgid "main.manageservices.Server"
+msgstr "Servidor"
+
+msgid "main.options.Description"
+msgstr "Descripción"
+
+msgid "main.options.Enabled"
+msgstr "Habilitado"
+
+msgid "main.options.Jeti vers"
+msgstr "Jeti versión"
+
+msgid "main.options.Name"
+msgstr "Nombre"
+
+msgid "main.options.Options"
+msgstr "Opciones"
+
+msgid "main.options.Plugins"
+msgstr "Plugins"
+
+msgid "main.options.Scan_plugins"
+msgstr "Buscar plugins"
+
+msgid "main.options.Standard"
+msgstr "Estandar"
+
+msgid "main.options.Version"
+msgstr "Versión"
+
+msgid "main.options.Version_{0}_(Jeti_{1})"
+msgstr "Versión {0} (Jeti {1})"
+
+msgid "main.options.standard.Beep_on_new_message"
+msgstr "Pitar al arrivo de un nuevo mensaje"
+
+msgid "main.options.standard.Country"
+msgstr "País"
+
+msgid "main.options.standard.Don't_show_the_mainscreen_in_the_taskbar"
+msgstr "No mostrar la pantalla principal en la barra de tareas"
+
+msgid "main.options.standard.Enter_key_sends_messages"
+msgstr "La tecla Enter envia el mensaje"
+
+msgid "main.options.standard.Java_window_decorations"
+msgstr "Decoraciones de ventana Java"
+
+msgid "main.options.standard.Language"
+msgstr "Idioma"
+
+msgid "main.options.standard.Loading_Languages,_please_wait"
+msgstr "Cargando los idiomas, espere por favor"
+
+msgid "main.options.standard.Other"
+msgstr "Otro"
+
+msgid "main.options.standard.Show_Offline_contacts"
+msgstr "Mostar usuarios desconectados"
+
+msgid "main.options.standard.Show_remote_msn_nicknames"
+msgstr "Mostrar apodos de MSN"
+
+msgid "main.options.standard.Show_timestamps"
+msgstr "Mostrar fechas de entrega de mensajes"
+
+msgid "main.options.standard.White_background_main_window"
+msgstr "Ventana principal con fondo blanco"
+
+msgid "main.options.standard.tooltip.Beep_on_new_message_arrival"
+msgstr "Pitar a la llegada de un nuevo mensaje"
+
+msgid "main.options.standard.tooltip.Makes_the_main_window_white_(restart_required)"
+msgstr "Vuelve blanca la ventana principal (reinici requerido)"
+
+msgid "main.options.standard.tooltip.Restart_required"
+msgstr "Reinicio requerido"
+
+msgid "main.options.standard.tooltip.Send_message_with_enter_key_instead_of_ctrl_or_shift_and_enter"
+msgstr "Enviar mensajes con la tecla Enter en lugar de con CTRL o SHIFT y ENTER"
+
+msgid "main.options.standard.tooltip.Set_java_look_and_feel_decorations_for_windows_(restart_required)"
+msgstr "Colocar las decoraciones java para las ventanas (se requiere reiniciar)"
+
+msgid "main.options.standard.tooltip.Show_Offline_contacts"
+msgstr "Mostrar contactos desconectados"
+
+msgid "main.options.standard.tooltip.Show_remote_nicknames_instead_of_the_local_ones"
+msgstr "Mostrar apodos remotos en lugar de los locales"
+
+msgid "main.options.standard.tooltip.Show_timestamps_on_all_messages"
+msgstr "Mostrar fechas de llegada en todos los mensajes"
+
+msgid "main.popup.Add_to_roster"
+msgstr "Agregar a la lista de contactos"
+
+msgid "main.popup.Add_{0}_to:"
+msgstr "Agregar {0} a:"
+
+msgid "main.popup.Change_{0}_from_{1}_to:"
+msgstr "Cambiar {0} de {1} a:"
+
+msgid "main.popup.Chat_with"
+msgstr "Charlar con"
+
+msgid "main.popup.Chat_with_who?"
+msgstr "¿Charlar con quién?"
+
+msgid "main.popup.Deny_subscription"
+msgstr "Negar subscripción"
+
+msgid "main.popup.Enter_the_text_to_search_for"
+msgstr "Escribir el texto a buscar"
+
+msgid "main.popup.Find"
+msgstr "Encontrar"
+
+msgid "main.popup.Jeti"
+msgstr "&Jeti"
+
+msgid "main.popup.Last_Seen"
+msgstr "Visto por última vez"
+
+msgid "main.popup.Local_time_for_{0}_is"
+msgstr "La hora local para {0} es"
+
+msgid "main.popup.Message"
+msgstr "Mensaje"
+
+msgid "main.popup.Really_remove_{0}?_All_JIDs_in_this_group_will_be_removed!"
+msgstr "¿Realmente desea eliminar a {0}? ¡Todos los JID's en este grupo serán eliminados!"
+
+msgid "main.popup.Really_remove_{0}_from_all_groups_?"
+msgstr "¿Realmente desea eliminar a {0} de todos los grupos?"
+
+msgid "main.popup.Remove_Group"
+msgstr "Eliminar Grupo"
+
+msgid "main.popup.Rename_{0}_to:"
+msgstr "Renombrar {0} como:"
+
+msgid "main.popup.Reply"
+msgstr "Responder"
+
+msgid "main.popup.Subject"
+msgstr "Asunto"
+
+msgid "main.popup.Subscription_request"
+msgstr "Petición de subscripción"
+
+msgid "main.popup.Time"
+msgstr "Fecha"
+
+msgid "main.popup.Version"
+msgstr "Versión"
+
+msgid ""
+"main.popup.logged_in_as:_{0}_\n"
+"_on_server:_{1}_\n"
+"_with resource:_{2}"
+msgstr ""
+"conectado como: {0} \n"
+" en el servidor: {1} \n"
+" con el recurso: {2}"
+
+msgid "main.popup.{0}_is_in_the_last_group,_remove_completely?"
+msgstr "{0} es en el último grupo, ¿eliminar completamente?"
+
+msgid "main.popup.{0}_is_in_timezone_{1}"
+msgstr "{0} esta en la zona horaria {1}"
+
+msgid "main.popup.{0}_not_found"
+msgstr "{0} no encontrado"
+
+msgid "main.popup.{0}_not_found_until_the_end_of_this_file,_start_again_from_the_beginning?"
+msgstr "{0} no encontrado, ¿desea que se empiece a buscar desde el inicio?"
+
+msgid "main.popup.{0}_uses:_{1},_version:_{2},_On:_{3}"
+msgstr "{0} usa: {1}, versión: {2}, en: {3}"
+
+msgid "main.popup.{0}_wants_to_subscribe_to_your_presence"
+msgstr "{0} desea subscribirse a su presencia"
+
+msgid "main.popup.{0}_was_last_seen_on_{1}"
+msgstr "{0} fue visto por última vez en {1}"
+
+msgid "main.popup.{0}_was_last_seen_{1}_seconds_ago"
+msgstr "{0} fue visto por última vez hace {1} segundos."
+
+msgid "main.presence.Available"
+msgstr "Disponible"
+
+msgid "main.presence.Away"
+msgstr "Lejos"
+
+msgid "main.presence.Do_not_Disturb"
+msgstr "No molestar"
+
+msgid "main.presence.Extended_Away"
+msgstr "Ausente"
+
+msgid "main.presence.Free_for_Chat"
+msgstr "Disponible para charlar"
+
+msgid "main.presence.Invisible"
+msgstr "Invisible"
+
+msgid "main.presence.Unavailable"
+msgstr "No disponible"
+
+msgid "main.presence.Unknown"
+msgstr "Desconocido"
+
+msgid "main.register.Instructions"
+msgstr "Instrucciones "
+
+msgid "main.register.Password"
+msgstr "Contraseña"
+
+msgid "main.register.Register"
+msgstr "Registro"
+
+msgid "main.register.Username"
+msgstr "Nombre de usuario"
+
+msgid "main.register.registration_succeded"
+msgstr "registro exitoso."
+
+msgid "main.statusmessages.Add"
+msgstr "Agregar"
+
+msgid "main.statusmessages.Manage_Status_Messages"
+msgstr "Administrar mensajes de estado"
+
+msgid "main.statusmessages.Remove"
+msgstr "Eliminar"
+
+msgid "messagelog.I_ say:"
+msgstr "Yo digo:"
+
+msgid "messagelog.Logfile_Error"
+msgstr "Error en archivo de registro"
+
+msgid "messagelog.Search"
+msgstr "Buscar"
+
+msgid "messagelog.Search_Next"
+msgstr "Buscar el siguiente"
+
+msgid "messagelog.Show_MessageLog"
+msgstr "Mostrar registro de mensajes"
+
+msgid "messagelog.message_logger"
+msgstr "registro de mensajes"
+
+msgid "messagelog.says:"
+msgstr "dice:"
+
+msgid "messagelog.{0}_could_not_be_opened_in_write_mode"
+msgstr "{0} no pudo ser abierto en modo de escritura"
+
+msgid "sound.Block_repeats_of_sound_within"
+msgstr "Bloquear la repetición de sonido"
+
+msgid "sound.Choose"
+msgstr "Elegir"
+
+msgid "sound.Enable"
+msgstr "Habilitar"
+
+msgid "sound.Format_not_supported"
+msgstr "Formato no soportado"
+
+msgid "sound.Max"
+msgstr "Máx.:"
+
+msgid "sound.Min"
+msgstr "Min.:"
+
+msgid "sound.Path_to_sound"
+msgstr "Ruta del archivo de sonido"
+
+msgid "sound.Plays_a_sound_on_new_message_or_person_available"
+msgstr "Toca un sonido al llegar un nuevo mensaje o ponerse disponible una persona"
+
+msgid "sound.Problem_playing_sound_check_your_sound_system"
+msgstr "Problema al reproducir el archivo de sonido, verifique su sistema"
+
+msgid "sound.Sound_not_found"
+msgstr "Sonido no encontrado"
+
+msgid "sound.Test"
+msgstr "Probar"
+
+msgid "sound.Volume"
+msgstr "Volumen"
+
+msgid "sound.message"
+msgstr "Mensaje"
+
+msgid "sound.offline"
+msgstr "Desconectado"
+
+msgid "sound.online"
+msgstr "Conectado"
+
+msgid "sound.own_offline"
+msgstr "Conexión propia"
+
+msgid "sound.own_online"
+msgstr "Desconexión propia"
+
+msgid "sound.seconds"
+msgstr "segundos"
+
+msgid "sound.{0}_is_an_unsupported_format"
+msgstr "{0} es un formato no soportado"
+
+msgid "sound.{0}_not_found"
+msgstr "{0} no encontrado"
+
+msgid "systemtray.Status"
+msgstr "Estado"
+
+msgid "systemtray.shows_system_tray_icon"
+msgstr "muestra un icono en la bandeja del sistema"
+
+msgid "titleflash.Flashes_the_titlebar_when_a_message_arrives"
+msgstr "Hace parpadear la barra de titulo cuando arriva un nuevo mensaje"
+
+msgid "titlescroller.Scrolling_speed"
+msgstr "Velocidad de desplazamiento"
+
+msgid "titlescroller.Scrolls_the_window_title_of_chat_windows_on_new_messages"
+msgstr "Desplaza la ventana de titulo del chat al arrivo de nuevos mensajes"
+
+msgid "titlescroller.Time_to_scroll_(0_for_no_time_limit)"
+msgstr "Tiempo antes de desplazar (0=sin límite):"
+
+msgid "titlescroller.ms"
+msgstr " ms"
+
+msgid "titlescroller.s"
+msgstr "s"
+
+msgid "vcard.BDAY"
+msgstr "Cumpleaños"
+
+msgid "vcard.Business"
+msgstr "Negocio"
+
+msgid "vcard.CTRY"
+msgstr "País"
+
+msgid "vcard.DESC"
+msgstr "Descripción"
+
+msgid "vcard.Details_for_{0}"
+msgstr "Detalles de {0}"
+
+msgid "vcard.EMAIL"
+msgstr "EMail"
+
+msgid "vcard.EXTADR"
+msgstr "Oficina/Departamento"
+
+msgid "vcard.Edit_Details"
+msgstr "Editar detalles"
+
+msgid "vcard.FAMILY"
+msgstr "Último"
+
+msgid "vcard.FN"
+msgstr "Nombre completo"
+
+msgid "vcard.GIVEN"
+msgstr "Primero"
+
+msgid "vcard.Image_may_not_be_larger_then_50kB"
+msgstr "La imagen no debe ser mayor a 50kB"
+
+msgid "vcard.Image_to_large"
+msgstr "Imagen demasiado grande"
+
+msgid "vcard.JABBERID"
+msgstr "Jabber ID"
+
+msgid "vcard.LOCALITY"
+msgstr "Ciudad"
+
+msgid "vcard.MIDDLE"
+msgstr "Medio"
+
+msgid "vcard.NICKNAME"
+msgstr "Apodo"
+
+msgid "vcard.ORGNAME"
+msgstr "Organización"
+
+msgid "vcard.ORGUNIT"
+msgstr "Unidad"
+
+msgid "vcard.PCODE"
+msgstr "Código postal"
+
+msgid "vcard.PHOTO"
+msgstr "Foto"
+
+msgid "vcard.POBOX"
+msgstr "Apartado postal"
+
+msgid "vcard.Personal"
+msgstr "Personal"
+
+msgid "vcard.REGION"
+msgstr "Estado"
+
+msgid "vcard.ROLE"
+msgstr "Rol"
+
+msgid "vcard.STREET"
+msgstr "Calle"
+
+msgid "vcard.Show_Details"
+msgstr "Mostrar detalles"
+
+msgid "vcard.Submit"
+msgstr "Enviar"
+
+msgid "vcard.TITLE"
+msgstr "Título"
+
+msgid "vcard.URL"
+msgstr "Sitio web"
+
+msgid "vcard.change_logo"
+msgstr "Cambiar el logotipo"
+
+msgid "vcard.change_photo"
+msgstr "Cambiar la fotografía"
+
+msgid "vcard.shows_contact_details"
+msgstr "Mostrar detalles del contacto"
+
+msgid "windowsutils.Make_opaque"
+msgstr "Hacer opaco"
+
+msgid "windowsutils.Make_transparent"
+msgstr "Hacer transparente"
+
+msgid "windowsutils.Not_Always_On_Top"
+msgstr "No siempre encima"
+
+msgid "windowsutils.Provides_always_on_top,_transparency_and_flashing_windows"
+msgstr "Provee Siempre encima, Transparencia y Ventanas Parpadeantes"
+
+msgid "windowsutils.Set_Always_On_Top"
+msgstr "Configurar Siempre Encima"
+
+msgid "windowsutils.Sorry_transparency_not_supported_by_your_OS"
+msgstr "Lo sentimos, su SO no soporta transparencia"
+
+msgid "windowsutils.Transparancy,_100%_is_opaque"
+msgstr "Transparencia, 100% es opaco"
+
+msgid "xhtml.Bold"
+msgstr "Negrita"
+
+msgid "xhtml.BoldItalic"
+msgstr "Negrita itálica"
+
+msgid "xhtml.Choose_Font"
+msgstr "Elegir la tipografía"
+
+msgid "xhtml.Color"
+msgstr "Seleccionar Color"
+
+msgid "xhtml.Font"
+msgstr "Tipografía"
+
+msgid "xhtml.Font_Family"
+msgstr "Familia de tipografía"
+
+msgid "xhtml.Formats_messages"
+msgstr "Da formato a los mensajes"
+
+msgid "xhtml.Italic"
+msgstr "Itálica"
+
+msgid "xhtml.Plain"
+msgstr "Texto plano"
+
+msgid "xhtml.Preview"
+msgstr "Previsualización"
+
+msgid "xhtml.Select_Color"
+msgstr "Seleccionar Color"
+
+msgid "xhtml.Size"
+msgstr "Tamaño"
+
+msgid "xhtml.Style"
+msgstr "Estilo"
+
+msgid "xhtml.The_font_used_when_sending_messages"
+msgstr "La tipografía usada al enviar mensajes"
+
+msgid "xhtml.The_quick_brown_fox_jumped_over_the_lazy_dogs"
+msgstr "El rabe pesca con la caña de bambú en el río húmedo."
+
+msgid "xhtml.Underline"
+msgstr "Subrayado"
+
+msgid "xhtml.background"
+msgstr "Fondo"
+
+msgid "xhtml.foreground"
+msgstr "Frente"
+
+msgid "xhtml.{0}_does_not_support_formatted_messages"
+msgstr "{0} no soporta mensajes con formato"
+

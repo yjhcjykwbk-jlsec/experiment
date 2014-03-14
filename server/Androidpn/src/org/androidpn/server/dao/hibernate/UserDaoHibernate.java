@@ -80,7 +80,7 @@ public class UserDaoHibernate extends HibernateDaoSupport implements UserDao {
     
     //����û�������û�
     @SuppressWarnings("unchecked")
-    public User getUserByUsername(String username) throws UserNotFoundException {
+    public User getUserByUsername(String username) throws UserNotFoundException{
         List users = getHibernateTemplate().find("from User where username=?",
                 username);
         if (users == null || users.isEmpty()) {
@@ -91,7 +91,7 @@ public class UserDaoHibernate extends HibernateDaoSupport implements UserDao {
     }
     
     @SuppressWarnings("unchecked")
-	public List<User> getFriends(int id) {
+	public List<User> getFriends(long id) {
 		// TODO Auto-generated method stub
         List<User> list=getHibernateTemplate().find(
                 "select u from User u,Friend f where u.id=f.pk.id2 and f.pk.id1="+id+" order by u.id desc");

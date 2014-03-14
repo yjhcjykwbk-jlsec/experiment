@@ -32,7 +32,9 @@ public interface UserService {
 
     public List<User> getUsers();
     
-    public List<User> getFriends(int id);
+    public List<User> getFriends(long id);
+    
+    public List<User> getFriends(String name);
     
     public boolean addFriend(int id1,int id2);
     

@@ -3,6 +3,7 @@ server/.metadata
 server/Androidpn/work
 server/Androidpn/.metadata
 client/.metadata
-client/androidpn-client-xiaobing/.metadata
-client/androidpn-client-xiaobing/gen
-client/androidpn-client-xiaobing/bin
+client/Androidpn-client/.metadata
+client/Androidpn-client/gen
+client/Androidpn-client/bin
+ocropus

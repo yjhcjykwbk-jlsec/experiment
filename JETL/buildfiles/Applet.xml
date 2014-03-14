@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<project name="Jeti" default="dist" basedir="../..">
+	<description>
+        simple example build file
+    </description>
+	<!-- set global properties for this build -->
+	<property name="src" location="src"/>
+	<property name="build" location="build"/>
+	<property name="dist"  location="dist"/>
+
+	<target name="compile" description="compile the source " >
+		<ant antfile="src/buildfiles/Compile.xml" target="compile"/>
+	</target>
+
+	<target name="dist" depends="compile"
+        description="generate the distribution" >
+		<!-- Create the distribution directory -->
+		<mkdir dir="${dist}"/>
+
+		<!-- Put everything in jeti.jar file -->
+		<jar jarfile="${dist}/applet.jar">
+			<fileset dir="${build}" 
+				includes="nu/fw/jeti/**" 
+				excludes="nu/fw/jeti/plugins/**" />
+			<fileset dir="${build}" includes="nu/fw/jeti/plugins/**">
+				<depth max="4" />
+			</fileset>
+			<fileset dir="${src}" 
+				includes="nu/fw/jeti/**/*.png nu/fw/jeti/**/*.cfg nu/fw/jeti/**/*.gif servers.xml" 
+				excludes="nu/fw/jeti/plugins/**" />
+			<manifest>
+					<attribute name="Main-Class" value="nu.fw.jeti.backend.Start"/>
+			 </manifest>
+		</jar>
+	</target>
+	
+</project>

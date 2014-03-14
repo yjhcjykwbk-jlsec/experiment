@@ -1,0 +1,40 @@
+Jeti supports I18N using the native Java classes for this. The translations are stored in standard "properties" resources bundles. You can either convert this .properties files to .po (POT format) files and work with a GNU Gettext toolchain or work directly with the .properties files.
+
+If you decide to work directly with the .properties file, just open the base translation file (jeti.properties) with your favorite text editor (Ultraedit or Bluefish are my personal favorites), or a specialized tool, and translate the strings wich appear after the = sign. You must be careful: Java's resources bundles requires all the Unicode stuff to be coded, so you'll need to use some tool to work with the resuorce bundle format (there are some tools for this, see below) or code the strings by hand! Shocked
+
+On the other hand, if you prefer to work with POT files (.po), then convert the .properties to .mo and then to .po; then you can use a tool to edit the file (see below for tools), then make the .mo file and convert the .mo back to .properties. Maybe this sounds too complicated, but GNU Gettext suite provides useful tools for this task (man msgfmt and man msgunfmt).
+
+Please note that the keys of the resources have a format. This is, the window.string with spaces replaced by underscores. All shourtcut keys are indicated by the "standard" ampersand & symbol before the key. The I18N classes take care of managing this internally.
+
+The translations files should be named as:
+
+jeti_XX.properties for the main Jeti translation.
+plugins_XX.properties for the plugins translations.
+
+where XX is the two character code for your language, following the ISO standard (please see http://lcweb.loc.gov/standards/iso639-2/langcodes.html).
+
+Then, please submit your translation to Eric or to Equinoxe (see profiles) so it can be commited to CVS (you should always try to translate the CVS version of the properties files Smile ). Of course, if you plan to use the jar distribution from Jeti's site, then you should translate the .properties which come with that distribution.
+
+Tools:
+
+- Resource Bundle Editor https://resourcebundleeditor.dev.java.net/, a free editor for Java's resource bundles. Highly recommended for the Java approach.
+- Eclipse with some plugin for resource bundles edition.
+
+- poEdit http://poedit.sourceforge.net/ is a very good POT editor with the nice feature of remembering previous translations. Highly recommended for the GNU approach.
+- GNU Gettext http://www.gnu.org/software/gettext/ is the GNU's software for I18N.
+- Bluefish http://bluefish.openoffice.nl/ is a nice free programing editor.
+
+Here are some more programs to translate Jeti
+
+http://ostermiller.org/attesoro/similar.html
+
+I use the second one on that site:
+http://www.solyp.com/binaries/2975/babelfish.zip
+
+Please don't use the zaval resource editor, it can't handle the : that are in some keys leading to untranslated entries. further it doesn't warn you when there are untranslated entries, it just fills them in with the default text on save.
+
+
+Just open the jeti.properties or the plugins.properties,(you find them in the language directory of jeti) add a language (in the file menu) and start translating. It is not very difficult this way, just typing the right translation Smile
+
+Finally, this is a good start for I18N in Java: http://www.joconner.com/javai18n/
+

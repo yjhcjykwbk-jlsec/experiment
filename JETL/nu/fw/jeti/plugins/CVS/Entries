@@ -1,0 +1,46 @@
+/Emoticons.java/1.5/Sat Jan  1 17:29:05 2005//
+/FormattedMessage.java/1.3/Wed Oct 27 14:56:53 2004//
+/NativeUtils.java/1.2/Wed Oct 27 14:56:53 2004//
+/Notifiers.java/1.2/Wed Oct 27 14:56:53 2004//
+/OpenPGP.java/1.3/Thu Nov 11 19:13:32 2004//
+/PluginData.java/1.14/Sat Jan  1 16:45:21 2005//
+/Plugins.java/1.4/Wed Oct 27 14:56:53 2004//
+/PluginsHandler.java/1.5/Sat Jan  1 16:45:21 2005//
+/PluginsInfo.java/1.20/Wed Dec  1 17:05:09 2004//
+/PreferencesPanel.java/1.3/Fri Nov 26 08:10:38 2004//
+/RosterMenuListener.java/1.3/Wed Oct 27 14:56:53 2004//
+/Spell.java/1.3/Tue Jan  4 19:47:56 2005//
+/Translator.java/1.3/Wed Oct 27 14:56:53 2004//
+/Word.java/1.5/Fri Nov 19 20:32:34 2004//
+D/alertwindow////
+D/appletloadgroupchat////
+D/autoloadgroupchat////
+D/cam////
+D/compiere////
+D/emoticons////
+D/filetransfer////
+D/fontsize////
+D/groupchat////
+D/ibb////
+D/idle////
+D/keyboardflash////
+D/lf////
+D/links////
+D/logtoserver////
+D/lookandfeel////
+D/messagelog////
+D/noTranslate////
+D/openpgp////
+D/pubsub////
+D/searchlogs////
+D/servertolog////
+D/sound////
+D/spell////
+D/systemtray////
+D/titleflash////
+D/titlescroller////
+D/tts////
+D/vcard////
+D/windowsutils////
+D/wordfilter////
+D/xhtml////

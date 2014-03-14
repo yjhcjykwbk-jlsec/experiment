@@ -43,6 +43,6 @@ public interface UserDao {
     
     public User getUserByUsername(String username) throws UserNotFoundException;
 
-	public List<User> getFriends(int id);
+	public List<User> getFriends(long id);
 
 }

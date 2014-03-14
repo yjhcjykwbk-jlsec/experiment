@@ -1,0 +1,1053 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: JETI 0.5.3\n"
+"POT-Creation-Date: 2004-07-07 13:14-0500\n"
+"PO-Revision-Date: 2004-08-02 11:06+0100\n"
+"Last-Translator: E.S. de Boer <eric@jeti.tk>\n"
+"Language-Team: ENGLUSH <rodolfo@equinoxe.g-networks.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "popup.Deny_subscription"
+msgstr "Deny subscription"
+
+msgid "OK"
+msgstr "OK"
+
+#, java-format
+msgid "popup.{0}_wants_to_subscribe_to_your_presence"
+msgstr "{0} wants to subscribe to your presence"
+
+msgid "popup.Subscription_request"
+msgstr "Subscription request"
+
+msgid "popup.Add_to_roster"
+msgstr "Add to roster"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:154
+msgid "main.roster.Unfiled"
+msgstr "Unfiled"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:317
+msgid "main.roster.Friends"
+msgstr "Friends"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:317
+msgid "main.roster.Servers"
+msgstr "Servers"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:72
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:74
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:111
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:176
+msgid "loginstatus.Opening_socket"
+msgstr "Opening Socket"
+
+#, java-format
+msgid "loginstatus.Server_{0}_could_not_be_found"
+msgstr "Server {0} could not be found."
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:72
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:74
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:111
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:176
+msgid "loginstatus.Opening_Input"
+msgstr "Opening Input"
+
+msgid "loginstatus.Could_not_open_input_because"
+msgstr "Could not open input because"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:72
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:74
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:111
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:176
+msgid "loginstatus.Opening_Output"
+msgstr "Opening Output"
+
+msgid "loginstatus.Could_not_open_output_because"
+msgstr "Could not open output because"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:72
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:74
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:111
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:176
+msgid "loginstatus.Connected"
+msgstr "Connected"
+
+msgid "loginstatus.Getting_available_login_methods"
+msgstr "Getting available login methods"
+
+msgid "loginstatus.Authenticating"
+msgstr "Authenticating"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:72
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:74
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:111
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:176
+msgid "loginstatus.Could_not_login_with_SHA"
+msgstr "Could not login with SHA"
+
+msgid "loginstatus.Authenticated"
+msgstr "Authenticated"
+
+msgid "loginstatus.Not_logged_in_because "
+msgstr "not logged in because "
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:72
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:74
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:111
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:176
+msgid "loginstatus.Loading_roster"
+msgstr "Loading Contactlist"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:72
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:74
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:111
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:176
+msgid "loginstatus.Logged_in"
+msgstr "Logged in"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:72
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:74
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:111
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:176
+msgid "loginstatus.Lost_Input"
+msgstr "Lost Input"
+
+msgid "loginstatus.XML_stream_error,_lost_input"
+msgstr "XML stream error, Lost input"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\backend\Connect.java:546
+#, java-format
+msgid ""
+"popup.logged_in_as:_{0}_\n"
+"_on_server:_{1}_\n"
+"_with resource:_{2}"
+msgstr ""
+"logged in as: {0} \n"
+" on server: {1} \n"
+" with resource: {2}"
+
+msgid "Loading"
+msgstr "Loading "
+
+msgid "error.statusicons_dir_not_found"
+msgstr "statusicons dir not found"
+
+msgid "error.No_type"
+msgstr "No type"
+
+msgid "error.Preferences_load_Error"
+msgstr "Preferences load Error"
+
+msgid "error.Version_Error"
+msgstr "Version Error"
+
+#, java-format
+msgid "popup.{0}_uses:_{1},_version:_{2},_On:_{3}"
+msgstr "{0} uses: {1}, version: {2}, On: {3}"
+
+msgid "popup.Version"
+msgstr "Version"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\jabber\elements\RosterItemBuilder.java:46
+msgid "error.No_JID_found"
+msgstr "No JID found"
+
+msgid "error.Last_Seen_Error"
+msgstr "Last Seen Error"
+
+#, java-format
+msgid "popup.{0}_was_last_seen_{1}_seconds_ago"
+msgstr "{0} was last seen {1} seconds ago."
+
+#, java-format
+msgid "popup.{0}_was_last_seen_on_{1}"
+msgstr "{0} was last seen on {1}"
+
+msgid "popup.Last_Seen"
+msgstr "Last Seen"
+
+msgid "error.type_must_be_specified"
+msgstr "type must be specified"
+
+msgid "error.wrong_type"
+msgstr "wrong type"
+
+msgid "error.Register_Error"
+msgstr "Register Error"
+
+msgid "error.Time_Error"
+msgstr "Time Error"
+
+#, java-format
+msgid ""
+"popup.{0}_\n"
+"_Time:_{1}_\n"
+"_Timezone:_{2}"
+msgstr ""
+"{0}_\n"
+"_Time:_{1}_\n"
+"_Timezone:_{2}"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\jabber\elements\IQTime.java:61
+msgid "popup.Time"
+msgstr "Time"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:491
+msgid "presence.Free_for_Chat"
+msgstr "Chat"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:925
+msgid "presence.Away"
+msgstr "Away"
+
+msgid "presence.Extended_Away"
+msgstr "Extended Away"
+
+msgid "presence.Do_not_Disturb"
+msgstr "Do not Disturb"
+
+msgid "presence.Unknown"
+msgstr "Unknown"
+
+msgid "presence.Unavailable"
+msgstr "Unavailable"
+
+msgid "presence.Invisible"
+msgstr "Invisible"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:154
+msgid "presence.Available"
+msgstr "Available"
+
+msgid "error.Unknown_Packet"
+msgstr "Unknown Packet"
+
+msgid "error.Unknown_Extension"
+msgstr "Unknown Extension"
+
+msgid "error.Illegal_errorcode"
+msgstr "Illegal errorcode "
+
+msgid "error.invalid_url_in_OOB_packet"
+msgstr "invalid url in OOB packet"
+
+msgid "Send"
+msgstr "Send"
+
+msgid "Cancel"
+msgstr "Cancel"
+
+msgid "error.Server_has_no_value"
+msgstr "Server has no value"
+
+msgid "error.Username_>_255_Characters"
+msgstr "Username > 255 Characters"
+
+msgid "error.Server_or_Username_contains_a_'@'"
+msgstr "Server or Username contains a '@'"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\jabber\JID.java:75
+msgid "error.Username_contains_illegal_chars_(see_english_translation)"
+msgstr "Username contains ' ', ':', '@', '\"', '<', '/', ''' or '&'"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\jabber\JID.java:76
+msgid "error.Server_must_start_with_a_letter_(see english translation)"
+msgstr "Server must start with a letter and may only contain [A-Z], [a-z], [0-9], '.' or '-'"
+
+msgid "comment.Comment/Bug"
+msgstr "Comment/Bug"
+
+msgid "comment.Comment/Request"
+msgstr "Comment/Request"
+
+msgid "comment.Bug"
+msgstr "Bug"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\CommentWindow.java:134
+msgid "comment.Send"
+msgstr "Send"
+
+msgid "comment.Include"
+msgstr "Include:"
+
+msgid "comment.JETI_Version:"
+msgstr "JETI Version: "
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\CommentWindow.java:134
+msgid "comment.OS:"
+msgstr "OS:"
+
+msgid "comment.Architecture:"
+msgstr "Architecture: "
+
+msgid "comment.Java_Vendor:"
+msgstr "Java Vendor: "
+
+msgid "comment.Java_Version:"
+msgstr "Java Version: "
+
+msgid "EditProfile.New_Profile_Info"
+msgstr "New Profile Info"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\EditProfileWindow.java:371
+msgid "EditProfile.Register"
+msgstr "Register"
+
+msgid "EditProfile.Request_new_account"
+msgstr "Request new account"
+
+msgid "EditProfile.Edit_Profile_Info"
+msgstr "Edit Profile Info"
+
+msgid "EditProfile.Remove"
+msgstr "Remove"
+
+msgid "EditProfile.Remove_this_ profile"
+msgstr "Remove this profile"
+
+msgid "EditProfile.Profile_name"
+msgstr "Profile name"
+
+msgid "EditProfile.Jabber_Server"
+msgstr "Jabber server"
+
+msgid "EditProfile.Username"
+msgstr "Username"
+
+msgid "EditProfile.Password_(leave_blank_to_ask)"
+msgstr "Password (leave blank to ask)"
+
+msgid "EditProfile.Only_fill_in_password_on_private_computers,_to_prevent_theft_of_password"
+msgstr "Only fill in password on private computers, to prevent theft of password"
+
+msgid "EditProfile.Resource"
+msgstr "Resource"
+
+msgid "EditProfile.Use_SSL"
+msgstr "Use SSL"
+
+msgid "EditProfile.Hide_Status_Window"
+msgstr "Hide Status Window"
+
+msgid "EditProfile.Hide_the_login_status_window"
+msgstr "Hide the login status window"
+
+msgid "EditProfile.Port"
+msgstr "Port"
+
+msgid "EditProfile.Proxy"
+msgstr "Proxy"
+
+msgid "EditProfile.Use_Socks_Proxy"
+msgstr "Use Socks Proxy"
+
+msgid "EditProfile.Proxy_Host"
+msgstr "Proxy Host"
+
+msgid "EditProfile.Proxy_Port"
+msgstr "Proxy Port"
+
+msgid "EditProfile.Password"
+msgstr "Password"
+
+msgid "EditProfile.Use_Once"
+msgstr "Use once"
+
+msgid "EditProfile.Use_this_profile_only_to_login_this_time"
+msgstr "Use this profile only to login"
+
+msgid "EditProfile.Save"
+msgstr "Save"
+
+msgid "EditProfile.Save_profile"
+msgstr "Save profile"
+
+msgid "EditProfile.Create_New_Account"
+msgstr "Create New Account"
+
+#, java-format
+msgid "EditProfile.Really_remove_{0}?"
+msgstr "Really remove {0}?"
+
+msgid "Remove"
+msgstr "Remove"
+
+msgid "chat.Send"
+msgstr "Send"
+
+msgid "chat.is_currently_offline"
+msgstr " is currently offline"
+
+#, java-format
+msgid "chat.{0}_(offline)"
+msgstr "{0} (offline)"
+
+msgid "chat.changed_status_to:"
+msgstr " changed status to:"
+
+msgid "chat.with_status_message:"
+msgstr "with status message:"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:154
+msgid "main.statusmenu.Offline"
+msgstr "Offline"
+
+msgid "main.Online"
+msgstr "Online"
+
+msgid "main.Offline"
+msgstr "Offline"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:256
+msgid "popup.Chat_with"
+msgstr "Chat with"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:397
+msgid "popup.Chat_with_who?"
+msgstr "Chat with who?"
+
+msgid "error.Wrong_Jabber_Identifier"
+msgstr "Wrong Jabber Identifier"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:317
+msgid "main.jetimenu.Message"
+msgstr "Message"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:491
+msgid "main.jetimenu.Chat"
+msgstr "Chat"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:339
+msgid "main.jetimenu.Add_Contact"
+msgstr "Add Contact"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:397
+msgid "main.jetimenu.Show_Log"
+msgstr "Show Log"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:154
+msgid "main.jetimenu.Options"
+msgstr "Options"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:421
+msgid "main.jetimenu.Account"
+msgstr "Account"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:154
+msgid "main.jetimenu.Login"
+msgstr "Login"
+
+msgid "main.jetimenu.Manage_Services"
+msgstr "Manage Services"
+
+msgid "main.jetimenu.About_this_Account"
+msgstr "About this Account"
+
+msgid "main.jetimenu.Comment/Bug"
+msgstr "Comment/Bug"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:481
+msgid "main.jetimenu.About"
+msgstr "About"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:491
+msgid "main.jetimenu.Exit"
+msgstr "Exit"
+
+msgid "main.statusmenu.Status_message:"
+msgstr "Status Message:"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:154
+msgid "main.statusmenu.Change_message"
+msgstr "Change Messages"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:154
+msgid "main.statusmenu.Manage_messages"
+msgstr "Manage Messages"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:154
+msgid "main.statusmenu.Invisible"
+msgstr "Invisible"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:154
+msgid "main.presencebutton.Available"
+msgstr "Online"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:491
+msgid "main.presencebutton.FreeforChat"
+msgstr "Chat"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:925
+msgid "main.presencebutton.Away"
+msgstr "Away"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:926
+msgid "main.presencebutton.XA"
+msgstr "XA"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:927
+msgid "main.presencebutton.DND"
+msgstr "DND"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:317
+msgid "main.rostermenu.Message"
+msgstr "Message"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:491
+msgid "main.rostermenu.Chat"
+msgstr "Chat"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:317
+msgid "main.rostermenu.Remove"
+msgstr "Remove"
+
+#, java-format
+msgid "popup.Really_remove_{0}_from_all_groups_?"
+msgstr "Really remove {0} from all groups ?"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:317
+msgid "main.rostermenu.Rename"
+msgstr "Rename"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\RosterTree.java:277
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\RosterTree.java:414
+#, java-format
+msgid "popup.Rename_{0}_to:"
+msgstr "Rename {0} to:"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:154
+msgid "main.rostermenu.Local_Time"
+msgstr "Local Time"
+
+msgid "main.rostermenu.Last_Seen"
+msgstr "Last Seen"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:154
+msgid "main.rostermenu.Local_Version"
+msgstr "Local Version"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:154
+msgid "main.rostermenu.Invisible"
+msgstr "Invisible"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:154
+msgid "main.rostermenu.Edit_Registration"
+msgstr "Edit Registration"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:317
+msgid "main.roster.Status:"
+msgstr "Status"
+
+msgid "main.roster.Subscription:"
+msgstr "Subsription"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:317
+msgid "main.roster.Waiting_Status:"
+msgstr "Waiting status"
+
+msgid "options.Name"
+msgstr "Name"
+
+msgid "options.Enabled"
+msgstr "Enabled"
+
+msgid "options.Description"
+msgstr "Description"
+
+msgid "options.Version"
+msgstr "Version"
+
+msgid "options.Jeti vers"
+msgstr "Jeti vers"
+
+msgid "options.Scan_plugins"
+msgstr "Scan plugins"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\RegisterServices.java:76
+msgid "register.Register"
+msgstr "Register"
+
+msgid "register.Instructions"
+msgstr "Instructions "
+
+msgid "register.Username"
+msgstr "Username"
+
+msgid "register.Password"
+msgstr "Password"
+
+msgid "register.registration_succeded"
+msgstr "registration succeded."
+
+#, java-format
+msgid "error.registration_aborted,_code_{0}"
+msgstr "registration aborted, code {0}."
+
+#, java-format
+msgid "popup.Really_remove_{0}?_All_JIDs_in_this_group_will_be_removed!"
+msgstr "Really remove {0}? All JIDs in this group will be removed!"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\RosterTree.java:233
+msgid "popup.Remove_Group"
+msgstr "remove Group"
+
+#, java-format
+msgid "popup.{0}_is_in_the_last_group,_remove_completely?"
+msgstr "{0} is in the last group, remove completely?"
+
+msgid "main.rostermenu.Subscribe_from"
+msgstr "Subscribe from"
+
+msgid "main.rostermenu.Unsubscribe_from"
+msgstr "Unsubscribe from"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:481
+msgid "main.rostermenu.Group"
+msgstr "Group"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:154
+msgid "main.rostermenu.Change_Group"
+msgstr "Change Group"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\Jeti.java:339
+msgid "main.rostermenu.Add_to_Group"
+msgstr "Add to Group"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\RosterTree.java:455
+msgid "main.rostermenu.Remove_from_group"
+msgstr "Remove from group"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\RosterTree.java:277
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\RosterTree.java:414
+#, java-format
+msgid "popup.Add_{0}_to:"
+msgstr "Rename {0} to:"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\RosterTree.java:277
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\RosterTree.java:414
+#, java-format
+msgid "popup.Change_{0}_from_{1}_to:"
+msgstr "Change_{0}_from_{1}_to:"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:72
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:74
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:111
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:176
+msgid "login.Login"
+msgstr "Login"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginWindow.java:123
+msgid "login.Edit"
+msgstr "Edit"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginWindow.java:154
+msgid "login.New"
+msgstr "New"
+
+msgid "login.Profile"
+msgstr "Profile"
+
+msgid "login.Password"
+msgstr "Password"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\RegisterServices.java:76
+msgid "manageservices.Register"
+msgstr "Register"
+
+msgid "manageservices.Manage_Services"
+msgstr "Manage Services"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\RegisterServices.java:122
+msgid "manageservices.Change_Server"
+msgstr "Change Server"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\RegisterServices.java:133
+msgid "manageservices.Server"
+msgstr "Server"
+
+msgid "error.invalid_server"
+msgstr "invalid server"
+
+msgid "error.Server_doesn't_support_browse"
+msgstr "Server doesn't support browse"
+
+msgid "error.Service_error"
+msgstr "Service error"
+
+msgid "error.No_services"
+msgstr "No services"
+
+msgid "error.Register_Services"
+msgstr "Register Services"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\jabber\elements\IQTime.java:61
+msgid "popup.Reply"
+msgstr "ReplyTime"
+
+msgid "popup.Subject"
+msgstr "Subject"
+
+msgid "popup.Message"
+msgstr "Message"
+
+msgid "statusmessages.Manage_Status_Messages"
+msgstr "Manage Status Messages"
+
+msgid "statusmessages.Add"
+msgstr "Add"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\StatusMessagesWindow.java:209
+msgid "statusmessages.Remove"
+msgstr "Remove"
+
+msgid "about.About JETI"
+msgstr "About JETI"
+
+msgid "about.Version"
+msgstr "Version"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\AboutWindow.java:51
+msgid "about.Designed_by"
+msgstr "Designed by"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\AboutWindow.java:54
+msgid "about.Internationalized_by"
+msgstr "Internationalized by"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\AboutWindow.java:59
+msgid "about.Translated_by_(PUT_YOUR_NAME_HERE)"
+msgstr " "
+
+msgid "about.Special_thanks_to:"
+msgstr "Special thanks to:"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\AboutWindow.java:63
+msgid "about.and"
+msgstr "and"
+
+msgid "about.for_their_support_and_use_of_Jeti_even "
+msgstr "for their support and use of Jeti even "
+
+msgid "about.before_I_thought_it_was_useful"
+msgstr "before I thought it was useful."
+
+msgid "about.About_the_Plugins"
+msgstr "About the Plugins"
+
+msgid "Close"
+msgstr "Close"
+
+msgid "AddContact.Add_Contact"
+msgstr "Add Contact"
+
+msgid "AddContact.Select_Service"
+msgstr "Select Service:"
+
+msgid "AddContact.Nickname"
+msgstr "Nickname"
+
+msgid "AddContact.Group"
+msgstr "Group"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\AddContact.java:224
+#, java-format
+msgid "error.{0}_is_not_valid"
+msgstr "{0}_is_not_valid"
+
+msgid "error.Wrong_contact_name"
+msgstr "Wrong contact name"
+
+msgid "AddContact.Address"
+msgstr "Address"
+
+msgid "AddContact.Screen Name"
+msgstr "Screen Name"
+
+msgid "AddContact.Other"
+msgstr "Other"
+
+msgid "AddContact.Contactname@Transport:"
+msgstr "Contactname@Transport:"
+
+msgid "log.JETI_Log"
+msgstr "JETI Log"
+
+msgid "log.Refresh"
+msgstr "Refresh"
+
+msgid "log.Send_XML"
+msgstr "Send XML"
+
+msgid "log.Send_XML_to_the_Jabber_server,_use_this_at_your_own_risk"
+msgstr "Send XML to the Jabber server, use this at your own risk"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LogWindow.java:148
+msgid "log.XML"
+msgstr "XML"
+
+msgid "log.XML_Errors"
+msgstr "XML Errors"
+
+msgid "log.Errors"
+msgstr "Errors"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:72
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:74
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:111
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:176
+msgid "loginstatus.Logging_in"
+msgstr "Logging in"
+
+msgid "Abort"
+msgstr "Abort"
+
+msgid "loginstatus.Logging_in_on_your_jabber_account"
+msgstr "Logging in on your jabber account"
+
+msgid "Retry"
+msgstr "Retry"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:194
+#, java-format
+msgid "loginstatus.An_error_has_occured,_trying_again_{0}_X"
+msgstr "An error has occured, trying again {0} X"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\LoginStatusWindow.java:197
+msgid "loginstatus.An_error_has_occured_while_logging_in"
+msgstr "An error has occured while logging in"
+
+msgid "login.Wrong_Password_Try_again"
+msgstr "Wrong Password, Try again."
+
+msgid "chat.Chat_started_on:"
+msgstr "Chat started on: "
+
+#, java-format
+msgid "chat.{0}_says:_{1}"
+msgstr "{0} says: {1}"
+
+msgid "error.Error_in_chat: "
+msgstr "Error in chat: "
+
+msgid "options.Options"
+msgstr "Options"
+
+msgid "Apply"
+msgstr "Apply"
+
+msgid "options.Plugins"
+msgstr "Plugins"
+
+msgid "options.Standard"
+msgstr "Standard"
+
+msgid "options.standard.Enter_key_sends_messages"
+msgstr "Enter key sends messages"
+
+msgid "options.standard.tooltip.Send_message_with_enter_key_instead_of_ctrl_or_shift_and_enter"
+msgstr "Send message with enter key instead of ctrl or shift and enter"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\StdPreferencesPanel.java:50
+msgid "options.standard.Beep_on_new_message"
+msgstr "Beep on new message"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\StdPreferencesPanel.java:51
+msgid "options.standard.tooltip.Beep_on_new_message_arrival"
+msgstr "Beep on new message arrival"
+
+msgid "options.standard.Show_remote_msn_nicknames"
+msgstr "Show remote msn nicknames"
+
+msgid "options.standard.tooltip.Show_remote_nicknames_instead_of_the_local_ones"
+msgstr "Show remote nicknames instead of the local ones"
+
+msgid "options.standard.Show_Offline_contacts"
+msgstr "Show Offline contacts"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\StdPreferencesPanel.java:63
+msgid "options.standard.tooltip.Show_Offline_contacts"
+msgstr "Show Offline Contacts"
+
+msgid "options.standard.Don't_show_the_mainscreen_in_the_taskbar"
+msgstr "Don't show the mainscreen in the taskbar"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\StdPreferencesPanel.java:69
+msgid "options.standard.tooltip.Restart_required"
+msgstr "Restart required"
+
+msgid "options.standard.White_background_main_window"
+msgstr "White background main window"
+
+msgid "options.standard.tooltip.Makes_the_main_window_white_(restart_required)"
+msgstr "Makes the main window white (restart required)"
+
+msgid "options.standard.Java_window_decorations"
+msgstr "Java window decorations"
+
+msgid "options.standard.tooltip.Set_java_look_and_feel_decorations_for_windows_(restart_required)"
+msgstr "Set java look and feel decorations for windows (restart required)"
+
+msgid "options.standard.Language"
+msgstr "Language"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\ui\StdPreferencesPanel.java:92
+msgid "options.standard.Loading_Languages,_please_wait"
+msgstr "Loading Languages, please wait"
+
+msgid "options.standard.Country"
+msgstr "Country"
+
+msgid "error.Error"
+msgstr "Error"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\jabber\elements\IQTime.java:61
+msgid "popup.Find"
+msgstr "Find"
+
+msgid "popup.Enter_the_text_to_search_for"
+msgstr "Enter the text to search for"
+
+# e:\data\java\jeti\src\n
+# fw\jeti\util\FindAction.java:112
+msgid "popup.'{0}'_not_found_until_the_end_of_this_file,_start_again_from_the_beginning?"
+msgstr "'{0}' not found until the end of this file, start again from the beginning?"
+
+msgid "Popup.'{0}'_not_found"
+msgstr "{0} not found"
+
+msgid "options.standard.Other"
+msgstr "Other"
+
+#, java-format
+msgid "error.{0}_plugin_not_found"
+msgstr "{0} plugin not found"
+
+#, java-format
+msgid "error.{0}_contains_no_plugins"
+msgstr "{0} contains no plugins"
+

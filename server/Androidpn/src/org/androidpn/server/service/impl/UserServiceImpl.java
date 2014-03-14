@@ -58,10 +58,9 @@ public class UserServiceImpl implements UserService {
         return userDao.getUsers();
     }
     
-    public List<User> getFriends(int id){
+    public List<User> getFriends(long id){
     	return userDao.getFriends(id);
     }
-    //��ݶ��Ļ�ȡ�û�
     public List<User> getUsersBySubscriptions(String subscription) throws UserNotFoundException {
     	 return (List<User>) userDao.getUsersBySubscriptions(subscription);
     }
@@ -94,5 +93,16 @@ public class UserServiceImpl implements UserService {
 	public boolean addFriend(int id1,int id2) {
 		// TODO Auto-generated method stub
 		return friendDao.addFriend(id1,id2);
+	}
+	public List<User> getFriends(String name) {
+		// TODO Auto-generated method stub
+		try {
+			User u=getUserByUsername(name);
+			return getFriends(u.getId());
+		} catch (UserNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

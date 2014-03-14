@@ -135,6 +135,7 @@ public class StanzaHandler {
         }
         //@TODO:here we need to implement our ... of message
         else if ("message".equals(tag)) {
+        	log.debug("message");
             processMessage(doc);
         } else if ("presence".equals(tag)) {
             log.debug("presence...");
@@ -155,9 +156,11 @@ public class StanzaHandler {
         Message packet;
         try {
             packet = new Message(doc, false);
+            log.debug(""+packet.toXML());
         } catch (IllegalArgumentException e) {
             log.debug("Rejecting packet. JID malformed", e);
             Message reply = new Message();
+            //message reply indict former error
             reply.setID(doc.attributeValue("id"));
             reply.setTo(session.getAddress());
             reply.getElement().addAttribute("from", doc.attributeValue("to"));

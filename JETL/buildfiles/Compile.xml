@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<project name="Jeti" default="compile" basedir="../..">
+	<description>
+        simple example build file
+    </description>
+	<!-- set global properties for this build -->
+	<property name="src" location="src"/>
+	<property name="build" location="build"/>
+	<property name="dist"  location="dist"/>
+
+	<target name="init">
+		<!-- Create the time stamp -->
+		<tstamp/>
+		<!-- Create the build directory structure used by compile -->
+		<mkdir dir="${build}"/>
+	</target>
+
+	<target name="compile" depends="init"
+        description="compile the source " >
+		<!-- Compile the java code from ${src} into ${build} -->
+		<javac srcdir="${src}" destdir="${build}"
+		debug="on"
+		debuglevel="lines,source"
+		source="1.4"
+    	includes="nu/fw/jeti/**"
+    	excludes="	nu/fw/jeti/plugins/spell/** 
+    				nu/fw/jeti/plugins/tts/**
+					nu/fw/jeti/plugins/searchlogs/**
+					nu/fw/jeti/plugins/ants/**
+					nu/fw/jeti/plugins/openpgp/**
+    				nu/fw/jeti/plugins/systemtray/**
+    				nu/fw/jeti/util/DNS.java"/>
+	</target>
+	
+	<target name="clean" description="clean up">
+		<!-- Delete the ${build} and ${dist} directory trees -->
+		<delete dir="${build}"/>
+		<delete dir="${dist}"/>
+	</target>
+</project>

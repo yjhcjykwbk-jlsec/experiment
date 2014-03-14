@@ -17,25 +17,31 @@
  */
 package org.androidpn.server.xmpp.router;
 
+import org.androidpn.server.service.ServiceLocator;
+import org.androidpn.server.service.UserNotFoundException;
+import org.androidpn.server.service.UserService;
 import org.androidpn.server.xmpp.session.ClientSession;
 import org.androidpn.server.xmpp.session.Session;
 import org.androidpn.server.xmpp.session.SessionManager;
 import org.xmpp.packet.JID;
 import org.xmpp.packet.Message;
-import org.xmpp.packet.PacketError;
-import org.xmpp.packet.Presence;
-
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 /** 
  * This class is to route Message packets to their corresponding handler.
  *
  * @author Sehwan Noh (devnoh@gmail.com)
  */
 public class MessageRouter {
+	private final Log log = LogFactory.getLog(getClass());
+	private SessionManager sessionManager = SessionManager.getInstance();
+	private UserService userService;
 
     /**
      * Constucts a packet router.
      */
     public MessageRouter() {
+    	userService=ServiceLocator.getUserService();
     }
 
     /**
@@ -47,38 +53,49 @@ public class MessageRouter {
     public void route(Message packet) {
     	//@TODO  we must implements this...
     	//below is copied from presenseRouter
-    	SessionManager sessionManager = SessionManager.getInstance();
+    	
+    	log.info("route packet");
     	if (packet == null) {
             throw new NullPointerException();
         }
         ClientSession session = sessionManager.getSession(packet.getFrom());
-
-        if (session == null || session.getStatus() != Session.STATUS_CONNECTED) {
-            handle(packet);
+        if (!isOL(packet.getFrom())) {
+        	log.info("session not on line");
+        	return;
         } else {
-            packet.setTo(session.getAddress());
-            packet.setFrom((JID) null);
+        	if(isOL(packet.getTo())){
+        		log.info("forward a packet:"+packet.toXML());
+				session.process(packet);
+        	}
+        	else{
+        		if(isValid(packet.getTo().toString())){
+        			log.info("store a packet for future delivery to "+packet.getTo());
+        			//@todo
+        		}
+        		else
+        			log.info("packet to User "+packet.getTo()+" is invalid");
+        	}
+        }
+            //packet.setTo(session.getAddress()); //
+           /* packet.setFrom((JID) null);
             packet.setError(PacketError.Condition.not_authorized);
-            session.process(packet);
-        }
+            session.process(packet);*/
     }
-    private void handle(Presence packet) {
-        try {
-            Presence.Type type = packet.getType();
-            // Presence updates (null == 'available')
-            if (type == null || Presence.Type.unavailable == type) {
-                presenceUpdateHandler.process(packet);
-            } else {
-                log.warn("Unknown presence type");
-            }
-
-        } catch (Exception e) {
-            log.error("Could not route packet", e);
-            Session session = sessionManager.getSession(packet.getFrom());
-            if (session != null) {
-                session.close();
-            }
-        }
+    private boolean isValid(String username){
+    	if(username==null) return false;
+    	try{
+    		userService.getUserByUsername(username);
+    		return true;
+    	}catch(UserNotFoundException e){
+    		return false;
+    	}
+    }
+    /*
+     * judge if the id is valid and online
+     */
+    private boolean isOL(JID id){
+    	 ClientSession session = sessionManager.getSession(id);
+    	 return (session != null && session.getStatus() == Session.STATUS_AUTHENTICATED);
     }
 
 }

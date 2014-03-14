@@ -131,7 +131,6 @@ public class XmppIoHandler implements IoHandler {
 
     /**
      * Invoked when a message is received.
-     * ���յ���Ϣ���?�������Ӷ�����Ϣ
      */
     public void messageReceived(IoSession session, Object message)
             throws Exception {
@@ -153,9 +152,11 @@ public class XmppIoHandler implements IoHandler {
 
         // The stanza handler processes the message
         try {
-        	log.info("processing the message");
+        	log.info("stanzahandler process the message");
             handler.process((String) message, parser);
         } catch (Exception e) {
+        	//when the server received some strange packet from some session
+        	//it will close this session
             log.error(
                     "Closing connection due to error while processing message: "
                             + message, e);

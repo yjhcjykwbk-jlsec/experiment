@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<project name="Jeti" default="dist" basedir="../..">
+	<description>
+        simple example build file
+    </description>
+	<!-- set global properties for this build -->
+	<property name="src" location="src" />
+	<property name="build" location="build" />
+	<property name="dist" location="dist" />
+
+	<target name="dist" description="generate the distribution">
+		<!-- Create Jeti -->
+		<ant antfile="src/buildfiles/Jeti.xml" target="dist" />
+		<!-- Create Plugins -->
+		<ant antfile="src/buildfiles/alertwindow.xml" target="dist" />
+		<ant antfile="src/buildfiles/autoloadgroupchat.xml" target="dist" />
+		<ant antfile="src/buildfiles/cam.xml" target="dist" />
+		<ant antfile="src/buildfiles/emoticons.xml" target="dist" />
+		<ant antfile="src/buildfiles/fileTransfer.xml" target="dist" />
+		<ant antfile="src/buildfiles/fontsize.xml" target="dist" />
+		<ant antfile="src/buildfiles/groupchat.xml" target="dist" />
+		<ant antfile="src/buildfiles/idle.xml" target="dist" />
+		<ant antfile="src/buildfiles/keyboardflash.xml" target="dist" />
+		<ant antfile="src/buildfiles/links.xml" target="dist" />
+		<ant antfile="src/buildfiles/lookandfeel.xml" target="dist" />
+		<ant antfile="src/buildfiles/messagelog.xml" target="dist" />
+		<ant antfile="src/buildfiles/sound.xml" target="dist" />
+		<ant antfile="src/buildfiles/titleflash.xml" target="dist" />
+		<ant antfile="src/buildfiles/titlescroller.xml" target="dist" />
+		<ant antfile="src/buildfiles/windowsutils.xml" target="dist" />
+		<ant antfile="src/buildfiles/xhtml.xml" target="dist" />
+		<ant antfile="src/buildfiles/vcard.xml" target="dist" />
+	</target>
+
+</project>

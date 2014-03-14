@@ -1,0 +1,1239 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: JETI 0.5.3\n"
+"POT-Creation-Date: 2004-07-07 13:14-0500\n"
+"PO-Revision-Date: 2004-07-08 13:23-0600\n"
+"Last-Translator: Rodolfo Gonzalez Gonzalez <rodolfo@equinoxe.g-networks.net>\n"
+"Language-Team: FRENCH <rodolfo@equinoxe.g-networks.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: nu/fw/jeti/applet/Jeti.java:89
+#: nu/fw/jeti/plugins/PluginsInfo.java:176
+msgid " plugin not found"
+msgstr " fichier non trouvé"
+
+#: nu/fw/jeti/applet/Jeti.java:106
+msgid "no preferences panel"
+msgstr "aucun panneau de préférences"
+
+#: nu/fw/jeti/applet/LoginWindow.java:63
+#: nu/fw/jeti/ui/LoginStatusWindow.java:208
+msgid "Wrong Password, Try again."
+msgstr "Mot de passe incorrect ! Veuillez réessayer."
+
+#: nu/fw/jeti/applet/LoginWindow.java:82
+#: nu/fw/jeti/applet/LoginWindow.java:163
+#: nu/fw/jeti/ui/LoginWindow.java:89
+#: nu/fw/jeti/ui/LoginWindow.java:131
+msgid "Login"
+msgstr "Identifiant"
+
+#: nu/fw/jeti/applet/LoginWindow.java:100
+#: nu/fw/jeti/ui/EditProfileWindow.java:78
+#: nu/fw/jeti/ui/EditProfileWindow.java:292
+#: nu/fw/jeti/ui/RegisterServices.java:75
+#: nu/fw/jeti/ui/RegisterWindow.java:74
+#: nu/fw/jeti/ui/RegisterWindow.java:161
+#: nu/fw/jeti/ui/RegisterWindow.java:184
+#: nu/fw/jeti/ui/RegisterWindow.java:380
+#: nu/fw/jeti/ui/RegisterWindow.java:389
+msgid "Register"
+msgstr "S'enregistrer"
+
+#: nu/fw/jeti/applet/LoginWindow.java:101
+#: nu/fw/jeti/ui/EditProfileWindow.java:79
+msgid "Request new account"
+msgstr "Créer un nouveau compte"
+
+#: nu/fw/jeti/applet/LoginWindow.java:102
+msgid "JetiApplet"
+msgstr "JetiApplet"
+
+#: nu/fw/jeti/applet/LoginWindow.java:111
+#: nu/fw/jeti/ui/EditProfileWindow.java:140
+msgid "Jabber server"
+msgstr "Jabber serveur"
+
+#: nu/fw/jeti/applet/LoginWindow.java:135
+#: nu/fw/jeti/ui/EditProfileWindow.java:164
+#: nu/fw/jeti/ui/EditProfileWindow.java:194
+#: nu/fw/jeti/ui/RegisterWindow.java:295
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+#: nu/fw/jeti/applet/LoginWindow.java:137
+#: nu/fw/jeti/ui/EditProfileWindow.java:196
+#: nu/fw/jeti/ui/LoginWindow.java:161
+#: nu/fw/jeti/ui/RegisterWindow.java:305
+msgid "Password"
+msgstr "Mot de passe"
+
+#: nu/fw/jeti/applet/LoginWindow.java:140
+#: nu/fw/jeti/ui/EditProfileWindow.java:170
+msgid "Resource"
+msgstr "Ressource"
+
+#: nu/fw/jeti/applet/LoginWindow.java:143
+#: nu/fw/jeti/ui/EditProfileWindow.java:173
+msgid "Use SSL"
+msgstr "Utilisation du cryptage SSL"
+
+#: nu/fw/jeti/applet/LoginWindow.java:146
+#: nu/fw/jeti/ui/EditProfileWindow.java:176
+msgid "Port"
+msgstr "Port"
+
+#: nu/fw/jeti/applet/LoginWindow.java:201
+#: nu/fw/jeti/ui/EditProfileWindow.java:294
+msgid "Server: "
+msgstr "Serveur : "
+
+#: nu/fw/jeti/applet/LoginWindow.java:201
+#: nu/fw/jeti/ui/EditProfileWindow.java:294
+msgid "Create New Account"
+msgstr "Créer un nouveau compte"
+
+#: nu/fw/jeti/backend/Connect.java:185
+msgid "Opening socket..."
+msgstr "Opening socket..."
+
+#: nu/fw/jeti/backend/Connect.java:192
+#, java-format
+msgid "Server {0} could not be found."
+msgstr "Serveur {0} n'a pas pu étre trouvé"
+
+#: nu/fw/jeti/backend/Connect.java:202
+msgid "Opening inputstream..."
+msgstr "Ouverture du inputstream"
+
+#: nu/fw/jeti/backend/Connect.java:207
+msgid "Could get inputStream because "
+msgstr "Could get inputStream because "
+
+#: nu/fw/jeti/backend/Connect.java:211
+msgid "Opening outputstream..."
+msgstr "Ouverture du output stream"
+
+#: nu/fw/jeti/backend/Connect.java:216
+msgid "Could not open output because "
+msgstr "Could not open output because "
+
+#: nu/fw/jeti/backend/Connect.java:220
+msgid "Connected..."
+msgstr "Connecté..."
+
+#: nu/fw/jeti/backend/Connect.java:271
+msgid "Getting available login methods ..."
+msgstr ""
+
+#: nu/fw/jeti/backend/Connect.java:281
+msgid "Authenticating ..."
+msgstr "Authentification..."
+
+#: nu/fw/jeti/backend/Connect.java:289
+msgid "Could not create SHA MessageDigest"
+msgstr ""
+
+#: nu/fw/jeti/backend/Connect.java:330
+msgid "Authenticated..."
+msgstr ""
+
+#: nu/fw/jeti/backend/Connect.java:339
+msgid "not logged in because "
+msgstr ""
+
+#: nu/fw/jeti/backend/Connect.java:353
+msgid "Loading roster..."
+msgstr ""
+
+#: nu/fw/jeti/backend/Connect.java:358
+msgid "Logged in"
+msgstr ""
+
+#: nu/fw/jeti/backend/Connect.java:400
+msgid "Lost input"
+msgstr ""
+
+#: nu/fw/jeti/backend/Connect.java:417
+msgid "XML stream error, Lost input"
+msgstr ""
+
+#: nu/fw/jeti/backend/Connect.java:425
+msgid "output death"
+msgstr ""
+
+#: nu/fw/jeti/backend/Connect.java:544
+msgid "logged in as: "
+msgstr ""
+
+#: nu/fw/jeti/backend/Connect.java:544
+msgid "on server: "
+msgstr ""
+
+#: nu/fw/jeti/backend/Connect.java:544
+msgid "with resource: "
+msgstr ""
+
+#: nu/fw/jeti/backend/Jabber.java:388
+#: nu/fw/jeti/backend/Jabber.java:425
+msgid "Deny subscription"
+msgstr ""
+
+#: nu/fw/jeti/backend/Jabber.java:388
+#: nu/fw/jeti/ui/AddContact.java:142
+#: nu/fw/jeti/ui/EditProfileWindow.java:228
+#: nu/fw/jeti/ui/GroupDialog.java:130
+#: nu/fw/jeti/ui/MessageOptions.java:175
+#: nu/fw/jeti/ui/OptionsWindow.java:94
+#: nu/fw/jeti/ui/RegisterWindow.java:268
+msgid "OK"
+msgstr ""
+
+#: nu/fw/jeti/backend/Jabber.java:390
+#: nu/fw/jeti/backend/Jabber.java:427
+msgid " wants to subscribe to your presence."
+msgstr ""
+
+#: nu/fw/jeti/backend/Jabber.java:391
+#: nu/fw/jeti/backend/Jabber.java:428
+msgid "Subscription request"
+msgstr ""
+
+#: nu/fw/jeti/backend/Jabber.java:425
+msgid "Add to roster"
+msgstr ""
+
+#: nu/fw/jeti/backend/Start.java:168
+msgid "Loading "
+msgstr ""
+
+#: nu/fw/jeti/backend/Start.java:393
+msgid "Jeti is Loading..."
+msgstr ""
+
+#: nu/fw/jeti/backend/Start.java:399
+msgid "(c) 2001-2004 by E.S. de Boer"
+msgstr ""
+
+#: nu/fw/jeti/backend/Start.java:402
+msgid "Version: "
+msgstr ""
+
+#: nu/fw/jeti/backend/roster/NormalJIDStatus.java:59
+#: nu/fw/jeti/backend/roster/NormalJIDStatus.java:200
+#: nu/fw/jeti/backend/roster/Roster.java:104
+#: nu/fw/jeti/backend/roster/Roster.java:138
+#: nu/fw/jeti/backend/roster/Roster.java:174
+#: nu/fw/jeti/backend/roster/Roster.java:206
+#: nu/fw/jeti/backend/roster/Roster.java:214
+#: nu/fw/jeti/backend/roster/Roster.java:244
+#: nu/fw/jeti/backend/roster/Roster.java:259
+msgid "Unfiled"
+msgstr ""
+
+#: nu/fw/jeti/backend/roster/Roster.java:519
+#: nu/fw/jeti/backend/roster/Server.java:218
+msgid " is unknown jidstatus"
+msgstr ""
+
+#: nu/fw/jeti/backend/roster/Roster.java:555
+msgid "status updated"
+msgstr ""
+
+#: nu/fw/jeti/backend/roster/Roster.java:618
+#: nu/fw/jeti/ui/AddContact.java:112
+msgid "Friends"
+msgstr ""
+
+#: nu/fw/jeti/backend/roster/Server.java:52
+#: nu/fw/jeti/backend/roster/Server.java:54
+#: nu/fw/jeti/backend/roster/Server.java:70
+#: nu/fw/jeti/backend/roster/Server.java:85
+#: nu/fw/jeti/backend/roster/Server.java:126
+#: nu/fw/jeti/backend/roster/Server.java:162
+#: nu/fw/jeti/backend/roster/Server.java:199
+#: nu/fw/jeti/ui/ServerTree.java:363
+msgid "Servers"
+msgstr ""
+
+#: nu/fw/jeti/images/StatusIcons.java:240
+msgid " statusicons dir not found"
+msgstr ""
+
+#: nu/fw/jeti/jabber/JID.java:19
+msgid "Server has no value"
+msgstr ""
+
+#: nu/fw/jeti/jabber/JID.java:73
+msgid "Username > 255 Characters"
+msgstr ""
+
+#: nu/fw/jeti/jabber/JID.java:74
+msgid "Server or Username contains a '@'"
+msgstr ""
+
+#: nu/fw/jeti/jabber/JID.java:75
+msgid "Username contains ' ', ':', '@', '\"', '<', '/', ''' or '&'"
+msgstr ""
+
+#: nu/fw/jeti/jabber/JID.java:76
+msgid "Server must start with a letter and may only contain [A-Z], [a-z], [0-9], '.' or '-'"
+msgstr ""
+
+#: nu/fw/jeti/jabber/RosterTreeModel.java:262
+#: nu/fw/jeti/jabber/RosterTreeModel.java:266
+#: nu/fw/jeti/jabber/RosterTreeModel.java:288
+#: nu/fw/jeti/jabber/RosterTreeModel.java:290
+msgid "Error"
+msgstr ""
+
+#: nu/fw/jeti/jabber/RosterTreeModel.java:317
+msgid "geen parent"
+msgstr ""
+
+#: nu/fw/jeti/jabber/RosterTreeModel.java:332
+msgid "Method valueForPathChanged() not yet implemented."
+msgstr ""
+
+#: nu/fw/jeti/jabber/XDataPanel.java:63
+#: nu/fw/jeti/ui/AddContact.java:133
+#: nu/fw/jeti/ui/CommentWindow.java:107
+#: nu/fw/jeti/ui/EditProfileWindow.java:208
+#: nu/fw/jeti/ui/GroupDialog.java:122
+#: nu/fw/jeti/ui/MessageOptions.java:186
+#: nu/fw/jeti/ui/OptionsWindow.java:86
+#: nu/fw/jeti/ui/RegisterServices.java:85
+#: nu/fw/jeti/ui/RegisterWindow.java:277
+msgid "Cancel"
+msgstr ""
+
+#: nu/fw/jeti/jabber/XDataPanel.java:72
+#: nu/fw/jeti/ui/ChatWindow.java:104
+#: nu/fw/jeti/ui/CommentWindow.java:98
+#: nu/fw/jeti/ui/SendMessage.java:71
+#: nu/fw/jeti/ui/SendMessage.java:163
+msgid "Send"
+msgstr ""
+
+#: nu/fw/jeti/jabber/elements/IQLast.java:38
+msgid "Last Seen Error"
+msgstr ""
+
+#: nu/fw/jeti/jabber/elements/IQRegister.java:58
+msgid "Register Error"
+msgstr ""
+
+#: nu/fw/jeti/jabber/elements/IQTime.java:52
+msgid "Time Error"
+msgstr ""
+
+#: nu/fw/jeti/jabber/elements/IQVersion.java:52
+msgid "Version Error"
+msgstr ""
+
+#: nu/fw/jeti/jabber/elements/InfoQueryBuilder.java:31
+msgid "type must be specified"
+msgstr ""
+
+#: nu/fw/jeti/jabber/elements/InfoQueryBuilder.java:34
+msgid "wrong type"
+msgstr ""
+
+#: nu/fw/jeti/jabber/elements/JetiPrivateExtension.java:73
+msgid "Preferences load Error"
+msgstr ""
+
+#: nu/fw/jeti/jabber/elements/Presence.java:84
+msgid "Free For Chat"
+msgstr ""
+
+#: nu/fw/jeti/jabber/elements/Presence.java:85
+#: nu/fw/jeti/ui/MessageOptions.java:156
+#: nu/fw/jeti/ui/MessageOptions.java:265
+#: nu/fw/jeti/ui/Jeti.java:903
+msgid "Away"
+msgstr ""
+
+#: nu/fw/jeti/jabber/elements/Presence.java:86
+#: nu/fw/jeti/ui/MessageOptions.java:164
+msgid "Extended Away"
+msgstr ""
+
+#: nu/fw/jeti/jabber/elements/Presence.java:87
+#: nu/fw/jeti/ui/MessageOptions.java:146
+#: nu/fw/jeti/ui/MessageOptions.java:264
+msgid "Do not Disturb"
+msgstr ""
+
+#: nu/fw/jeti/jabber/elements/Presence.java:88
+msgid "Unknown"
+msgstr ""
+
+#: nu/fw/jeti/jabber/elements/Presence.java:89
+msgid "Unavailable"
+msgstr ""
+
+#: nu/fw/jeti/jabber/elements/Presence.java:90
+#: nu/fw/jeti/ui/Jeti.java:558
+msgid "Invisible"
+msgstr ""
+
+#: nu/fw/jeti/jabber/elements/Presence.java:91
+#: nu/fw/jeti/ui/MessageOptions.java:136
+#: nu/fw/jeti/ui/MessageOptions.java:263
+#: nu/fw/jeti/util/Preferences.java:124
+msgid "Available"
+msgstr ""
+
+#: nu/fw/jeti/jabber/elements/RosterItemBuilder.java:46
+msgid "jid may not be null"
+msgstr ""
+
+#: nu/fw/jeti/jabber/elements/XDataBuilder.java:59
+msgid "No type"
+msgstr ""
+
+#: nu/fw/jeti/jabber/handlers/IQXOOBHandler.java:47
+msgid "invalid url in OOB packet"
+msgstr ""
+
+#: nu/fw/jeti/jabber/handlers/PacketHandler.java:41
+msgid "Illegal errorcode "
+msgstr ""
+
+#: nu/fw/jeti/jabber/handlers/UnknownExtensionHandler.java:69
+msgid "Unknown Extension"
+msgstr ""
+
+#: nu/fw/jeti/jabber/handlers/UnknownPacketHandler.java:34
+msgid "Unknown Packet"
+msgstr ""
+
+#: nu/fw/jeti/plugins/PluginData.java:129
+msgid " no plugins"
+msgstr ""
+
+#: nu/fw/jeti/plugins/PluginsInfo.java:224
+msgid "no preferences"
+msgstr ""
+
+#: nu/fw/jeti/plugins/PluginsInfo.java:241
+msgid " has no remove"
+msgstr ""
+
+#: nu/fw/jeti/plugins/PluginsInfo.java:253
+msgid " removed"
+msgstr ""
+
+#: nu/fw/jeti/ui/AboutWindow.java:33
+msgid "About JETI"
+msgstr ""
+
+#: nu/fw/jeti/ui/AboutWindow.java:36
+#: nu/fw/jeti/ui/EditProfileWindow.java:75
+#: nu/fw/jeti/ui/Jeti.java:173
+#: nu/fw/jeti/ui/Jeti.java:924
+#: nu/fw/jeti/ui/Jeti.java:999
+#: nu/fw/jeti/ui/Jeti.java:1036
+#: nu/fw/jeti/ui/Jeti.java:925
+#: nu/fw/jeti/ui/Jeti.java:1000
+#: nu/fw/jeti/ui/Jeti.java:1037
+msgid "JETI"
+msgstr ""
+
+#: nu/fw/jeti/ui/AboutWindow.java:40
+msgid "Version "
+msgstr ""
+
+#: nu/fw/jeti/ui/AboutWindow.java:45
+msgid "copyright (c) 2001-2004"
+msgstr ""
+
+#: nu/fw/jeti/ui/AboutWindow.java:48
+msgid "Designed by E.S. de Boer (eric@jeti.tk)"
+msgstr ""
+
+#: nu/fw/jeti/ui/AboutWindow.java:54
+msgid "Special thanks to:"
+msgstr ""
+
+#: nu/fw/jeti/ui/AboutWindow.java:57
+msgid "T. J. Verweij and P. P. M. Snijders Blok,"
+msgstr ""
+
+#: nu/fw/jeti/ui/AboutWindow.java:60
+msgid "for their support and use of Jeti even "
+msgstr ""
+
+#: nu/fw/jeti/ui/AboutWindow.java:63
+msgid "before I thought it was useful."
+msgstr ""
+
+#: nu/fw/jeti/ui/AboutWindow.java:69
+msgid "About the Plugins: "
+msgstr ""
+
+#: nu/fw/jeti/ui/AboutWindow.java:88
+#: nu/fw/jeti/ui/LogWindow.java:96
+msgid "Close"
+msgstr ""
+
+#: nu/fw/jeti/ui/AddContact.java:56
+#: nu/fw/jeti/ui/AddContact.java:81
+msgid "Add Contact"
+msgstr ""
+
+#: nu/fw/jeti/ui/AddContact.java:71
+msgid "Select Service:"
+msgstr ""
+
+#: nu/fw/jeti/ui/AddContact.java:127
+msgid "Nickname:"
+msgstr ""
+
+#: nu/fw/jeti/ui/AddContact.java:129
+msgid "Group:"
+msgstr ""
+
+#: nu/fw/jeti/ui/AddContact.java:204
+msgid "Wrong Jabber Identifier"
+msgstr ""
+
+#: nu/fw/jeti/ui/AddContact.java:223
+msgid " is not valid"
+msgstr ""
+
+#: nu/fw/jeti/ui/AddContact.java:223
+msgid "Wrong contact name"
+msgstr ""
+
+#: nu/fw/jeti/ui/AddContact.java:236
+msgid "Address:"
+msgstr ""
+
+#: nu/fw/jeti/ui/AddContact.java:238
+msgid "Screen Name:"
+msgstr ""
+
+#: nu/fw/jeti/ui/AddContact.java:241
+msgid "Other"
+msgstr ""
+
+#: nu/fw/jeti/ui/AddContact.java:241
+msgid "Contactname@Transport:"
+msgstr ""
+
+#: nu/fw/jeti/ui/ChatSplitPane.java:190
+msgid "Chat started: "
+msgstr ""
+
+#: nu/fw/jeti/ui/ChatSplitPane.java:247
+#, java-format
+msgid "{0} says: {1}"
+msgstr ""
+
+#: nu/fw/jeti/ui/ChatSplitPane.java:301
+msgid "Error in chat: "
+msgstr ""
+
+#: nu/fw/jeti/ui/ChatWindow.java:251
+msgid " is currently offline"
+msgstr ""
+
+#: nu/fw/jeti/ui/ChatWindow.java:252
+msgid " (offline)"
+msgstr ""
+
+#: nu/fw/jeti/ui/ChatWindow.java:257
+msgid " changed status to: "
+msgstr ""
+
+#: nu/fw/jeti/ui/ChatWindow.java:259
+msgid "with status message: "
+msgstr ""
+
+#: nu/fw/jeti/ui/CommentWindow.java:70
+msgid "Comments/Bugs"
+msgstr ""
+
+#: nu/fw/jeti/ui/CommentWindow.java:73
+msgid "Comment/Request"
+msgstr ""
+
+#: nu/fw/jeti/ui/CommentWindow.java:81
+msgid "Bug"
+msgstr ""
+
+#: nu/fw/jeti/ui/CommentWindow.java:93
+msgid "Don't reply to this request"
+msgstr ""
+
+#: nu/fw/jeti/ui/CommentWindow.java:94
+msgid "I want to stay anonymous"
+msgstr ""
+
+#: nu/fw/jeti/ui/CommentWindow.java:115
+msgid "Include:"
+msgstr ""
+
+#: nu/fw/jeti/ui/CommentWindow.java:117
+msgid "Send Options:"
+msgstr ""
+
+#: nu/fw/jeti/ui/CommentWindow.java:124
+msgid "JETI Version: "
+msgstr ""
+
+#: nu/fw/jeti/ui/CommentWindow.java:130
+msgid "OS: "
+msgstr ""
+
+#: nu/fw/jeti/ui/CommentWindow.java:136
+msgid "Architecture: "
+msgstr ""
+
+#: nu/fw/jeti/ui/CommentWindow.java:142
+msgid "Java Vendor: "
+msgstr ""
+
+#: nu/fw/jeti/ui/CommentWindow.java:148
+msgid "Java Version: "
+msgstr ""
+
+#: nu/fw/jeti/ui/EditProfileWindow.java:76
+msgid "New Profile Info"
+msgstr ""
+
+#: nu/fw/jeti/ui/EditProfileWindow.java:96
+msgid "Edit Profile Info"
+msgstr ""
+
+#: nu/fw/jeti/ui/EditProfileWindow.java:98
+#: nu/fw/jeti/ui/MessageOptions.java:205
+#: nu/fw/jeti/ui/RegisterWindow.java:64
+#: nu/fw/jeti/ui/RosterTree.java:225
+#: nu/fw/jeti/ui/RosterTree.java:253
+#: nu/fw/jeti/ui/RosterTree.java:381
+#: nu/fw/jeti/ui/RosterTree.java:444
+#: nu/fw/jeti/ui/ServerTree.java:216
+#: nu/fw/jeti/ui/ServerTree.java:222
+msgid "Remove"
+msgstr ""
+
+#: nu/fw/jeti/ui/EditProfileWindow.java:99
+msgid "Remove this profile"
+msgstr ""
+
+#: nu/fw/jeti/ui/EditProfileWindow.java:138
+msgid "Profile name"
+msgstr ""
+
+#: nu/fw/jeti/ui/EditProfileWindow.java:166
+msgid "Password (leave blank to ask)"
+msgstr ""
+
+#: nu/fw/jeti/ui/EditProfileWindow.java:167
+msgid "Only fill in password on private computers, to prevent theft of password"
+msgstr ""
+
+#: nu/fw/jeti/ui/EditProfileWindow.java:174
+msgid "Hide Status Window"
+msgstr ""
+
+#: nu/fw/jeti/ui/EditProfileWindow.java:175
+msgid "Hide the login status window"
+msgstr ""
+
+#: nu/fw/jeti/ui/EditProfileWindow.java:188
+msgid "Use Socks Proxy"
+msgstr ""
+
+#: nu/fw/jeti/ui/EditProfileWindow.java:190
+msgid "Proxy Host"
+msgstr ""
+
+#: nu/fw/jeti/ui/EditProfileWindow.java:192
+msgid "Proxy Port"
+msgstr ""
+
+#: nu/fw/jeti/ui/EditProfileWindow.java:217
+msgid "Don't save"
+msgstr ""
+
+#: nu/fw/jeti/ui/EditProfileWindow.java:218
+msgid "Use this profile only to login"
+msgstr ""
+
+#: nu/fw/jeti/ui/EditProfileWindow.java:229
+msgid "Save profile"
+msgstr ""
+
+#: nu/fw/jeti/ui/EditProfileWindow.java:301
+msgid "Really remove "
+msgstr ""
+
+#: nu/fw/jeti/ui/GroupDialog.java:52
+msgid "Add to Group"
+msgstr ""
+
+#: nu/fw/jeti/ui/GroupDialog.java:67
+#, java-format
+msgid "Add {0} to:"
+msgstr ""
+
+#: nu/fw/jeti/ui/GroupDialog.java:87
+msgid "Change Group"
+msgstr ""
+
+#: nu/fw/jeti/ui/GroupDialog.java:104
+#, java-format
+msgid "Change {0} from {1} to:"
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:153
+#: nu/fw/jeti/ui/Jeti.java:199
+#: nu/fw/jeti/ui/Jeti.java:573
+msgid "Offline"
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:198
+#: nu/fw/jeti/ui/Jeti.java:901
+msgid "Online"
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:246
+msgid "Exiting, closing connection please wait...."
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:254
+msgid "Chat with "
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:254
+msgid "Chat with who?"
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:264
+msgid "Wrong JID"
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:315
+msgid "Message..."
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:326
+msgid "Chat..."
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:336
+msgid "Add Contact..."
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:394
+msgid "Show Log"
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:405
+msgid "Options..."
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:418
+msgid "Account"
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:420
+msgid "Login..."
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:445
+msgid "Manage Services..."
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:455
+msgid "About this Account"
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:461
+msgid "About account"
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:468
+msgid "Comment/Bug"
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:477
+msgid "About"
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:486
+msgid "Exit"
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:518
+msgid "Status message:"
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:528
+msgid "Change message"
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:533
+msgid "Status message: "
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:541
+msgid "Manage messages"
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:718
+msgid "new chat window"
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:937
+#: nu/fw/jeti/ui/Jeti.java:938
+msgid "JETI offline"
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:940
+#: nu/fw/jeti/ui/Jeti.java:941
+msgid "offline"
+msgstr ""
+
+#: nu/fw/jeti/ui/LogWindow.java:94
+msgid "JETI Log"
+msgstr ""
+
+#: nu/fw/jeti/ui/LogWindow.java:104
+msgid "Refresh"
+msgstr ""
+
+#: nu/fw/jeti/ui/LogWindow.java:113
+#: nu/fw/jeti/ui/LogWindow.java:148
+msgid "Send XML"
+msgstr ""
+
+#: nu/fw/jeti/ui/LogWindow.java:122
+msgid "Send XML to the Jabber server, use this at your own risk"
+msgstr ""
+
+#: nu/fw/jeti/ui/LogWindow.java:145
+msgid "XML"
+msgstr ""
+
+#: nu/fw/jeti/ui/LogWindow.java:146
+msgid "XML Errors"
+msgstr ""
+
+#: nu/fw/jeti/ui/LogWindow.java:147
+msgid "Errors"
+msgstr ""
+
+#: nu/fw/jeti/ui/LoginStatusWindow.java:71
+msgid "Logging in"
+msgstr ""
+
+#: nu/fw/jeti/ui/LoginStatusWindow.java:73
+#: nu/fw/jeti/ui/LoginStatusWindow.java:111
+msgid "Logging in..."
+msgstr ""
+
+#: nu/fw/jeti/ui/LoginStatusWindow.java:82
+#: nu/fw/jeti/ui/LoginStatusWindow.java:102
+#: nu/fw/jeti/ui/LoginStatusWindow.java:110
+msgid "Abort"
+msgstr ""
+
+#: nu/fw/jeti/ui/LoginStatusWindow.java:117
+msgid "Logging in on your jabber account.........."
+msgstr ""
+
+#: nu/fw/jeti/ui/LoginStatusWindow.java:143
+msgid "Retry"
+msgstr ""
+
+#: nu/fw/jeti/ui/LoginWindow.java:97
+#: nu/fw/jeti/util/I18N.java:37
+#: nu/fw/jeti/util/I18N.java:38
+msgid "jeti"
+msgstr ""
+
+#: nu/fw/jeti/ui/LoginWindow.java:122
+msgid "Edit"
+msgstr ""
+
+#: nu/fw/jeti/ui/LoginWindow.java:151
+msgid "New"
+msgstr ""
+
+#: nu/fw/jeti/ui/LoginWindow.java:159
+msgid "Profile"
+msgstr ""
+
+#: nu/fw/jeti/ui/MessageOptions.java:120
+msgid "Manage Status Messages"
+msgstr ""
+
+#: nu/fw/jeti/ui/MessageOptions.java:125
+#: nu/fw/jeti/ui/MessageOptions.java:262
+#: nu/fw/jeti/util/Preferences.java:125
+msgid "Free for Chat"
+msgstr ""
+
+#: nu/fw/jeti/ui/MessageOptions.java:196
+msgid "Add"
+msgstr ""
+
+#: nu/fw/jeti/ui/MessageOptions.java:274
+msgid "bla bla"
+msgstr ""
+
+#: nu/fw/jeti/ui/OptionsWindow.java:77
+msgid "Options"
+msgstr ""
+
+#: nu/fw/jeti/ui/OptionsWindow.java:78
+msgid "Apply"
+msgstr ""
+
+#: nu/fw/jeti/ui/OptionsWindow.java:109
+#: nu/fw/jeti/ui/OptionsWindow.java:110
+#: nu/fw/jeti/ui/OptionsWindow.java:112
+msgid "Plugins"
+msgstr ""
+
+#: nu/fw/jeti/ui/OptionsWindow.java:114
+#: nu/fw/jeti/ui/OptionsWindow.java:115
+msgid "Standard"
+msgstr ""
+
+#: nu/fw/jeti/ui/PluginsPanel.java:70
+msgid "Name"
+msgstr ""
+
+#: nu/fw/jeti/ui/PluginsPanel.java:70
+msgid "Enabled"
+msgstr ""
+
+#: nu/fw/jeti/ui/PluginsPanel.java:70
+msgid "Description"
+msgstr ""
+
+#: nu/fw/jeti/ui/PluginsPanel.java:70
+#: nu/fw/jeti/util/Popups.java:64
+msgid "Version"
+msgstr ""
+
+#: nu/fw/jeti/ui/PluginsPanel.java:70
+msgid "Jeti vers"
+msgstr ""
+
+#: nu/fw/jeti/ui/PluginsPanel.java:77
+msgid "Scan plugins"
+msgstr ""
+
+#: nu/fw/jeti/ui/RegisterServices.java:102
+msgid "Register Services"
+msgstr ""
+
+#: nu/fw/jeti/ui/RegisterServices.java:121
+msgid "Change Server"
+msgstr ""
+
+#: nu/fw/jeti/ui/RegisterServices.java:130
+msgid "Server"
+msgstr ""
+
+#: nu/fw/jeti/ui/RegisterServices.java:187
+msgid "unvalid server"
+msgstr ""
+
+#: nu/fw/jeti/ui/RegisterServices.java:197
+msgid "Server doesn't support browse"
+msgstr ""
+
+#: nu/fw/jeti/ui/RegisterServices.java:197
+msgid "Service error"
+msgstr ""
+
+#: nu/fw/jeti/ui/RegisterServices.java:205
+msgid "No services"
+msgstr ""
+
+#: nu/fw/jeti/ui/RegisterServices.java:205
+msgid "Register services"
+msgstr ""
+
+#: nu/fw/jeti/ui/RegisterWindow.java:85
+#: nu/fw/jeti/ui/RegisterWindow.java:196
+msgid "Instructions "
+msgstr ""
+
+#: nu/fw/jeti/ui/RegisterWindow.java:380
+msgid "registration succeded."
+msgstr ""
+
+#: nu/fw/jeti/ui/RegisterWindow.java:389
+#, java-format
+msgid "registration aborted, {0}."
+msgstr ""
+
+#: nu/fw/jeti/ui/RosterTree.java:230
+#, java-format
+msgid "Really remove {0}? All JIDs in this group will be removed!"
+msgstr ""
+
+#: nu/fw/jeti/ui/RosterTree.java:231
+msgid "Remove Group"
+msgstr ""
+
+#: nu/fw/jeti/ui/RosterTree.java:253
+#: nu/fw/jeti/ui/RosterTree.java:444
+#, java-format
+msgid "{0} is in the last group, remove completely?"
+msgstr ""
+
+#: nu/fw/jeti/ui/RosterTree.java:269
+#: nu/fw/jeti/ui/RosterTree.java:396
+#: nu/fw/jeti/ui/ServerTree.java:231
+msgid "Rename..."
+msgstr ""
+
+#: nu/fw/jeti/ui/RosterTree.java:274
+#: nu/fw/jeti/ui/RosterTree.java:401
+#: nu/fw/jeti/ui/ServerTree.java:236
+#, java-format
+msgid "Rename {0} to:"
+msgstr ""
+
+#: nu/fw/jeti/ui/RosterTree.java:344
+#: nu/fw/jeti/ui/ServerTree.java:177
+msgid "Message"
+msgstr ""
+
+#: nu/fw/jeti/ui/RosterTree.java:353
+#: nu/fw/jeti/ui/ServerTree.java:186
+#: nu/fw/jeti/ui/Jeti.java:902
+msgid "Chat"
+msgstr ""
+
+#: nu/fw/jeti/ui/RosterTree.java:363
+msgid "Subscribe from"
+msgstr ""
+
+#: nu/fw/jeti/ui/RosterTree.java:372
+msgid "Unsubscribe from"
+msgstr ""
+
+#: nu/fw/jeti/ui/RosterTree.java:387
+#: nu/fw/jeti/ui/ServerTree.java:222
+#, java-format
+msgid "Really remove {0} from all groups ?"
+msgstr ""
+
+#: nu/fw/jeti/ui/RosterTree.java:409
+msgid "Group"
+msgstr ""
+
+#: nu/fw/jeti/ui/RosterTree.java:410
+msgid "Change group..."
+msgstr ""
+
+#: nu/fw/jeti/ui/RosterTree.java:423
+msgid "Add to group..."
+msgstr ""
+
+#: nu/fw/jeti/ui/RosterTree.java:436
+msgid "Remove from group"
+msgstr ""
+
+#: nu/fw/jeti/ui/RosterTree.java:463
+#: nu/fw/jeti/ui/ServerTree.java:298
+msgid "Local Time"
+msgstr ""
+
+#: nu/fw/jeti/ui/RosterTree.java:475
+#: nu/fw/jeti/util/Popups.java:57
+msgid "Last Seen"
+msgstr ""
+
+#: nu/fw/jeti/ui/RosterTree.java:487
+#: nu/fw/jeti/ui/ServerTree.java:311
+msgid "Local Version"
+msgstr ""
+
+#: nu/fw/jeti/ui/RosterTree.java:497
+#: nu/fw/jeti/ui/ServerTree.java:321
+msgid "invisible"
+msgstr ""
+
+#: nu/fw/jeti/ui/SendMessage.java:103
+msgid "Reply"
+msgstr ""
+
+#: nu/fw/jeti/ui/SendMessage.java:154
+msgid "Subject:"
+msgstr ""
+
+#: nu/fw/jeti/ui/SendMessage.java:156
+msgid "Message:"
+msgstr ""
+
+#: nu/fw/jeti/ui/ServerTree.java:331
+msgid "Edit Registration"
+msgstr ""
+
+#: nu/fw/jeti/ui/StdPreferencesPanel.java:39
+msgid "Enter key sends messages"
+msgstr ""
+
+#: nu/fw/jeti/ui/StdPreferencesPanel.java:40
+msgid "Send message with enter key instead of ctrl or shift and enter"
+msgstr ""
+
+#: nu/fw/jeti/ui/StdPreferencesPanel.java:45
+msgid "Beep on new message"
+msgstr ""
+
+#: nu/fw/jeti/ui/StdPreferencesPanel.java:46
+msgid "Beep on new message arrival"
+msgstr ""
+
+#: nu/fw/jeti/ui/StdPreferencesPanel.java:51
+msgid "Show remote msn nicknames"
+msgstr ""
+
+#: nu/fw/jeti/ui/StdPreferencesPanel.java:52
+msgid "Show remote nicknames instead of the local ones"
+msgstr ""
+
+#: nu/fw/jeti/ui/StdPreferencesPanel.java:57
+#: nu/fw/jeti/ui/StdPreferencesPanel.java:58
+msgid "Show Offline contacts"
+msgstr ""
+
+#: nu/fw/jeti/ui/StdPreferencesPanel.java:63
+msgid "Don't show the mainscreen in the taskbar"
+msgstr ""
+
+#: nu/fw/jeti/ui/StdPreferencesPanel.java:64
+msgid "Restart required"
+msgstr ""
+
+#: nu/fw/jeti/ui/StdPreferencesPanel.java:69
+msgid "White background main window"
+msgstr ""
+
+#: nu/fw/jeti/ui/StdPreferencesPanel.java:70
+msgid "Makes the main window white (restart required)"
+msgstr ""
+
+#: nu/fw/jeti/ui/StdPreferencesPanel.java:75
+msgid "Java window decorations"
+msgstr ""
+
+#: nu/fw/jeti/ui/StdPreferencesPanel.java:76
+msgid "Set java look and feel decorations for windows (restart required)"
+msgstr ""
+
+#: nu/fw/jeti/util/FindAction.java:47
+msgid "Find"
+msgstr ""
+
+#: nu/fw/jeti/util/FindAction.java:76
+msgid "Enter the text to search for"
+msgstr ""
+
+#: nu/fw/jeti/util/Popups.java:36
+msgid "Time: "
+msgstr ""
+
+#: nu/fw/jeti/util/Popups.java:36
+msgid "Timezone: "
+msgstr ""
+
+#: nu/fw/jeti/util/Popups.java:36
+msgid "Time"
+msgstr ""
+
+#: nu/fw/jeti/util/Popups.java:49
+#, java-format
+msgid "{0} was last seen {1} seconds ago."
+msgstr ""
+
+#: nu/fw/jeti/util/Popups.java:57
+#, java-format
+msgid "{0} was last seen on {1}"
+msgstr ""
+
+#: nu/fw/jeti/util/Popups.java:64
+#, java-format
+msgid "{0} uses: {1}, version: {2}, On: {3}"
+msgstr ""
+
+#: nu/fw/jeti/util/Preferences.java:129
+msgid "In a Meeting"
+msgstr ""
+
+#: nu/fw/jeti/util/Preferences.java:130
+msgid "Busy"
+msgstr ""
+
+#: nu/fw/jeti/util/Preferences.java:131
+msgid "Working"
+msgstr ""
+
+#: nu/fw/jeti/util/Preferences.java:134
+msgid "On the Phone"
+msgstr ""
+
+#: nu/fw/jeti/util/Preferences.java:135
+msgid "Be Right Back"
+msgstr ""
+
+#: nu/fw/jeti/util/Preferences.java:138
+msgid "Out to Dinner"
+msgstr ""
+
+#: nu/fw/jeti/util/Preferences.java:139
+msgid "Out to Lunch"
+msgstr ""
+
+#: nu/fw/jeti/util/Preferences.java:140
+msgid "On Vacation"
+msgstr ""
+
+#: nu/fw/jeti/util/Preferences.java:141
+msgid "Gone Home"
+msgstr ""
+
+#: nu/fw/jeti/util/Preferences.java:142
+msgid "Sleeping"
+msgstr ""
+
+#: nu/fw/jeti/util/Preferences.java:143
+msgid "Extend Away"
+msgstr ""
+
+#: nu/fw/jeti/util/SpringUtilities.java:47
+msgid "The first argument to makeGrid must use SpringLayout."
+msgstr ""
+
+#: nu/fw/jeti/util/SpringUtilities.java:150
+msgid "The first argument to makeCompactGrid must use SpringLayout."
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:904
+msgid "XA"
+msgstr ""
+
+#: nu/fw/jeti/ui/Jeti.java:905
+msgid "DND"
+msgstr ""
+

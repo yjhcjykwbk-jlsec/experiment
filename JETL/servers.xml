@@ -1,0 +1,109 @@
+<query xmlns='http://jabber.org/protocol/disco#items'>
+  <item jid='jabber.org' name='Jabber server hosted by the Jabber Software Foundation'/>
+  <item jid='12jabber.com' name='Jabber server hosted by Anywise.com'/>
+  <item jid='akl.lt' name='Jabber server in Lietuva (Lithuania)'/>
+  <item jid='amessage.at' name='Austrian Jabber server'/>
+  <item jid='amessage.be' name='Belgian Jabber server'/>
+  <item jid='amessage.ch' name='Swiss Jabber server'/>
+  <item jid='amessage.de' name='German Jabber server'/>
+  <item jid='amessage.info' name='Jabber server from amessage'/>
+  <item jid='amessage.li' name='Jabber server in Liechtenstein'/>
+  <item jid='aszlig.net' name=''/>
+  <item jid='bloodyxml.com' name='Hosted by Chote Networks (http://www.chote.com)'/>
+  <item jid='borderlinenormal.com' name='Hosted by Chote Networks (http://www.chote.com)'/>
+  <item jid='bulmalug.net' name='Server hosted by the Linux Users Group of the Balearic Islands'/>
+  <item jid='default.co.yu' name='Server in Yugoslavia'/>
+  <item jid='develog.com' name=''/>
+  <item jid='dhbit.ca' name='Visit http://dhbit.ca/article.php?sid=318 for more information'/>
+  <item jid='dotgeek.org' name='Jabber server in Switzerland'/>
+  <item jid='es.tipic.com' name='Spanish Jabber server hosted by Tipic'/>
+  <item jid='here.dk' name='Jabber server in Denmark'/>
+  <item jid='illx.org' name='Jabber server hosted by illx.org'/>
+  <item jid='im.flosoft.biz' name=''/>
+  <item jid='ims.kelkoo.net' name='Server hosted by Kelkoo (France)'/>
+  <item jid='jabber-fr.net' name='French Jabber server'/>
+  <item jid='jabber-hispano.org' name='Servidor Jabber de la comunidad hispana'/>
+  <item jid='jabber.anywise.com' name='Jabber server hosted by Anywise.com'/>
+  <item jid='jabber.aster.pl' name='Server in Poland'/>
+  <item jid='jabber.at' name='Austrian Jabber server'/>
+  <item jid='jabber.atman.pl' name='Another server in Poland'/>
+  <item jid='jabber.autocom.pl' name='Server associated with jabberpl.org'/>
+  <item jid='jabber.bettercom.de' name='Public server hosted by BetterCom'/>
+  <item jid='jabber.cc' name=''/>
+  <item jid='jabber.ccc.de' name='Service of the Chaos Computer Club'/>
+  <item jid='jabber.cn' name='Jabber server for all of China! :-)'/>
+  <item jid='jabber.com' name='Jabber server offered by Jabber, Inc.'/>
+  <item jid='jabber.com.cn' name='Jabber server in China'/>
+  <item jid='jabber.cz' name='Czech Jabber server'/>
+  <item jid='jabber.dk' name='Jabber server in Denmark'/>
+  <item jid='jabber.earth.li' name='Jabber server hosted by earth.li'/>
+  <item jid='jabber.evilrealms.net' name=''/>
+  <item jid='jabber.felisberto.net' name='Server in Portugal'/>
+  <item jid='jabber.fr' name=''/>
+  <item jid='jabber.freenet.de' name='Server in Germany'/>
+  <item jid='jabber.hu' name='Jabber server in Hungary'/>
+  <item jid='jabber.i-pobox.net' name='Server in Germany'/>
+  <item jid='jabber.killerbees.org.uk' name=''/>
+  <item jid='jabber.linux.it' name='Jabber server in Italy'/>
+  <item jid='jabber.meta.net.nz' name='Jabber server in New Zealand'/>
+  <item jid='jabber.mulasystems.com' name=''/>
+  <item jid='jabber.netsample.com' name='A Jabber server in Paris'/>
+  <item jid='jabber.ngnet.it' name='Server in Italy'/>
+  <item jid='jabber.noxa.de' name='Server in Germany'/>
+  <item jid='jabber.obsidian.co.za' name='Server in South Africa'/>
+  <item jid='jabber.or.id' name='Indonesian Jabber server'/>
+  <item jid='jabber.org' name='Server hosted by the Jabber Software Foundation'/>
+  <item jid='jabber.org.au' name='Server in Australia'/>
+  <item jid='jabber.org.nz' name=''/>
+  <item jid='jabber.org.uk' name='Server in England'/>
+  <item jid='jabber.palomine.net' name='Server located in Delray Beach, Florida'/>
+  <item jid='jabber.pilgerer.de' name=''/>
+  <item jid='jabber.probonic.com' name=''/>
+  <item jid='jabber.projecto-oasis.cx' name='Server in Portugal'/>
+  <item jid='jabber.ro' name='Romanian Jabber server'/>
+  <item jid='jabber.ru' name='Russian Jabber server'/>
+  <item jid='jabber.sk' name='Slovak Jabber server'/>
+  <item jid='jabber.skynet.be' name='Jabber server in Belgium'/>
+  <item jid='jabber.snc.ru' name='Jabber server in Russia'/>
+  <item jid='jabber.te.ua' name='Server in Ukraine'/>
+  <item jid='jabber.ttn.ru' name=''/>
+  <item jid='jabber.turk-php.com' name=''/>
+  <item jid='jabber.typhon.net' name=''/>
+  <item jid='jabber.unesco.kz' name='First public server in Kazakhstan'/>
+  <item jid='jabber.unixfreunde.net' name=''/>
+  <item jid='jabber.unoc.net' name=''/>
+  <item jid='jabber.wiretrip.org' name='Jabber server from wiretrip.org'/>
+  <item jid='jabber.wp.pl' name='Large Jabber server in Poland'/>
+  <item jid='jabber.xs4all.nl' name=''/>
+  <item jid='jabber.zim.net.au' name='Jabber server down under!'/>
+  <item jid='jabber80.com' name='Jabber server over port 80 (SSL over port 443)'/>
+  <item jid='jabberafrica.org' name='Jabber server in Africa'/>
+  <item jid='jabberes.org' name='Servidor Jabber de la comunidad hispana'/>
+  <item jid='jabberlombia.ccasoft.org' name=''/>
+  <item jid='jabbernet.dk' name='Jabber server in Denmark'/>
+  <item jid='jabbernuke.com' name=''/>
+  <item jid='jabberpl.org' name='Jabber server in Poland'/>
+  <item jid='jabberplaza.com' name='Server hosted by Dutch Jabber portal jabberplaza.com'/>
+  <item jid='mimconnect.com' name='Server in Thailand'/>
+  <item jid='myjabber.net' name='The public Jabber server hosted by MyJabber'/>
+  <item jid='nedbsd.nl' name='Jabber server in the Netherlands'/>
+  <item jid='nedlinux.nl' name='Jabber server in the Netherlands'/>
+  <item jid='njs.netlab.cz' name='Czech Jabber server'/>
+  <item jid='om.beeonline.ru' name=''/>
+  <item jid='oracle.sweeney.ath.cx' name='Jabber server in Texas'/>
+  <item jid='pan.ubishops.ca' name='Server run by the computer science club at Bishops University in Quebec.'/>
+  <item jid='pandion.be' name=''/>
+  <item jid='penwritten.com' name=''/>
+  <item jid='pointblue.com.pl' name=''/>
+  <item jid='sparetimegroup.net' name='Server in Romania'/>
+  <item jid='swissjabber.ch' name='Swiss Jabber server'/>
+  <item jid='swissjabber.de' name='Jabber server in Switzerland'/>
+  <item jid='swissjabber.li' name='Jabber server in Liechtenstein'/>
+  <item jid='swissjabber.org' name='Jabber server in Switzerland'/>
+  <item jid='syndicon.de' name='Server in Germany'/>
+  <item jid='tipic.com' name='Public server hosted by Tipic'/>
+  <item jid='transactim.net' name='Server hosted by TransactIM'/>
+  <item jid='unstable.nl' name='Server in the Netherlands'/>
+  <item jid='xmpp.ru' name=''/>
+</query>
+
