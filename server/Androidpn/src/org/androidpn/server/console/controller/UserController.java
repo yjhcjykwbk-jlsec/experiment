@@ -63,7 +63,7 @@ public class UserController extends MultiActionController {
     }
     private ModelAndView strView(String name,String value){
     	 ModelAndView mav = new ModelAndView();
-         mav.addObject(name, value);
+         mav.addObject(name, "<xml>"+value+"</xml>");
          mav.setViewName("xml");
          return mav;
     }
@@ -72,36 +72,53 @@ public class UserController extends MultiActionController {
     	String idStr=request.getParameter("id");
     	
     	if(idStr==null||userService.getUser(idStr)==null) 
-    		return strView("result","<xml><result>failed</result>" +
+    		return strView("result",
+				"<result>failed</result>" +
     			"<errno>1</errno><reason>id not valid</reason>");
     	int id=Integer.parseInt(idStr);
-		 List<User> userList = userService.getFriends(id);
-		 return strView("result","<xml>"+Xmler.getInstance().getXml(userList)+"</xml>");
+		 	List<User> userList = userService.getFriends(id);
+		 	Xmler.getInstance().alias("user",User.class);
+		 	return strView("result",
+	 			"<result>succeed</result>"+
+				""+Xmler.getInstance().toXML(userList)+"");
     }
+    
+    public ModelAndView getUser(HttpServletRequest request,
+    		HttpServletResponse response) {
+		String username=request.getParameter("username");
+		try{
+			User u=userService.getUserByUsername(username);
+		 	Xmler.getInstance().alias("user",User.class);
+			return strView("result",
+				"<result>succeed</result>"+Xmler.getInstance().toXML(u)+"");
+		}catch(Exception e){
+			return strView("result",
+				"<result>failed</result>");
+			}
+		}
     
     public ModelAndView addFriend(HttpServletRequest request,
     		HttpServletResponse response) throws Exception {
-		PresenceManager presenceManager = new PresenceManager();
 		String idStr1=request.getParameter("id1"), //id1 is yourself
 			idStr2=request.getParameter("id2");
 		
 		if(idStr1==null||idStr2==null) 
 			return strView("result",
-				"<xml><result>failed</result>"+
+				"<result>failed</result>"+
 				"<errno>1</errno><reason>id1:"+idStr1+" or id2:"+idStr2+" not set</reason>");
 		if(userService.getUser(idStr2)==null) 
 			return strView("result",
-				"<xml><result>failed</result>"+
-				"<errno>2</errno><reason>the target friend:"+idStr2+" not valid</reason></xml>");
+				"<result>failed</result>"+
+				"<errno>2</errno><reason>the target friend:"+idStr2+" not valid</reason>");
 		Integer id1=Integer.parseInt(idStr1);
 		Integer id2=Integer.parseInt(idStr2);
 		if(id1==null||id2==null) 
 			return strView("result",
-				"<xml><result>failed</result>"+
-				"<errno>3</errno><reason>id1:"+idStr1+" or id2:"+idStr2+" not valid</reason></xml>");
-		boolean result=userService.addFriend(id1,id2);
+				"<result>failed</result>"+
+				"<errno>3</errno><reason>id1:"+idStr1+" or id2:"+idStr2+" not valid</reason>");
+		userService.addFriend(id1,id2);
 		return strView("result",
-				"<xml>"+result+"</xml>");
+				"<result>succeed</result>");
     }
     
     

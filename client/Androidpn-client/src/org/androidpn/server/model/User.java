@@ -19,12 +19,15 @@ package org.androidpn.server.model;
 
 import java.io.Serializable;
 import java.util.Date;
+
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 /** 
  * This class represents the basic user object.
  *
  * @author Sehwan Noh (devnoh@gmail.com)
  */
-public class User {//implements Serializable {
+public class User implements Serializable {
 
     private static final long serialVersionUID = 4733464888738356502L;
 
@@ -146,10 +149,10 @@ public class User {//implements Serializable {
         return result;
     }
 
-//    @Override
-//    public String toString() {
-//        return ToStringBuilder.reflectionToString(this,
-//                ToStringStyle.MULTI_LINE_STYLE);
-//    }
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this,
+                ToStringStyle.MULTI_LINE_STYLE);
+    }
 
 }

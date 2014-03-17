@@ -207,10 +207,12 @@ public class SessionManager {
         public void onConnectionClose(Object handback) {
             try {
                 ClientSession session = (ClientSession) handback;
-                //ÕâÀïÐÞ¸ÄÏÂ£¬ÅÐ¶Ï¶Ï¿ªÖØÁ¬µÄÁ½¸ösessionÊÇ²»ÊÇÍ¬Ò»¸ö£¬ÊÇÍ¬Ò»¸öµÄ»°¾Íremoveµô£¬²»Í¬µÄsession¾Í±£Áô
-                Session s = getSession(session.getUsername());
+                //ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½ï¿½Â£ï¿½ï¿½Ð¶Ï¶Ï¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sessionï¿½Ç²ï¿½ï¿½ï¿½Í¬Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬Ò»ï¿½ï¿½ï¿½Ä»ï¿½ï¿½ï¿½removeï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½sessionï¿½Í±ï¿½ï¿½ï¿½
+                String username=session.getUsername();
+                if(username==null) return;
+                Session s = getSession(username);
                 if (s != session) {
-                	//±£Áô
+                	//ï¿½ï¿½ï¿½ï¿½
                 	return;
                 }
                 else{

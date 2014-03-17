@@ -13,8 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.androidpn.demoapp;
-
+package org.androidpn.demoapp; 
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.androidpn.client.Constants;
@@ -90,7 +89,6 @@ public class DemoAppActivity extends Activity {
         super.onCreate(savedInstanceState); 
         setContentView(R.layout.main);
         ActivityUtil.getInstance().addActivity(this);
-        
         welcomeUser = (TextView)findViewById(R.id.user);		
 		itemUri = (TextView)findViewById(R.id.ItemUri);
         listView = (ListView)findViewById(R.id.myList); 

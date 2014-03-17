@@ -12,6 +12,9 @@
   <drawable name="magenta">#ff6699ff</drawable>
   <drawable name="cyan">#66ffffff</drawable>
   <color name="bg_color">#EDEDED</color>
+  <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+        <color name="blue">#00ff00</color>
   <color name="contents_text">#ff000000</color>
   <color name="encode_view">#ffffffff</color>
   <color name="help_button_view">#ffcccccc</color>

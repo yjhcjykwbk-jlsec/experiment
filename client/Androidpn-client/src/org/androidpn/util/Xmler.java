@@ -1,6 +1,4 @@
-package org.androidpn.server.util;
-import java.util.List;
-
+package org.androidpn.util;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 public class Xmler{
@@ -8,7 +6,7 @@ public class Xmler{
 	public static XStream getInstance(){
 		if(instance==null){
 			synchronized(Xmler.class){
-				instance=new XStream();
+				instance=new XStream(new DomDriver());
 			}
 		}
 		return instance;
