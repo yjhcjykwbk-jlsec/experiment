@@ -1,7 +1,0 @@
-package org.androidpn.demoapp;
-
-import android.app.Activity;
-
-public class ContactActivity extends Activity {
-
-}
