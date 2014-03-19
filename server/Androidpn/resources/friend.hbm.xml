@@ -7,5 +7,6 @@
 			<key-property name="id1"></key-property>
 			<key-property name="id2"></key-property>
 		</composite-id>
+		<property name="flag"></property>
 	</class>
 </hibernate-mapping>

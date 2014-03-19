@@ -21,6 +21,7 @@ import java.util.List;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.androidpn.server.model.User;
 import org.androidpn.server.service.ServiceLocator;
@@ -70,7 +71,11 @@ public class UserController extends MultiActionController {
     public ModelAndView listFriend(HttpServletRequest request,
         HttpServletResponse response) throws Exception {
     	String idStr=request.getParameter("id");
-    	
+    	String username=request.getParameter("username");
+    	if(idStr==null&&username!=null){
+    		User u=userService.getUserByUsername(username);
+    		if(u!=null) idStr=u.getId()+"";
+    	}
     	if(idStr==null||userService.getUser(idStr)==null) 
     		return strView("result",
 				"<result>failed</result>" +
@@ -101,7 +106,11 @@ public class UserController extends MultiActionController {
     		HttpServletResponse response) throws Exception {
 		String idStr1=request.getParameter("id1"), //id1 is yourself
 			idStr2=request.getParameter("id2");
-		
+		String username1=request.getParameter("username1");
+		if(idStr1==null&& username1!=null){
+			User u=userService.getUserByUsername(username1);
+			if(u!=null) idStr1=u.getId()+"";
+		}
 		if(idStr1==null||idStr2==null) 
 			return strView("result",
 				"<result>failed</result>"+
@@ -116,9 +125,11 @@ public class UserController extends MultiActionController {
 			return strView("result",
 				"<result>failed</result>"+
 				"<errno>3</errno><reason>id1:"+idStr1+" or id2:"+idStr2+" not valid</reason>");
-		userService.addFriend(id1,id2);
+		boolean res=userService.addFriend(id1,id2);
+		//status indicates if you are friends, 2 is ..
+		String status=res?"<status>2</status>":"<status>1</status>";
 		return strView("result",
-				"<result>succeed</result>");
+				status);
     }
     
     
@@ -161,6 +172,9 @@ public class UserController extends MultiActionController {
     	try{
     		User us = userService.getUserByUsername(androidName);
     		if(us.getPassword().equalsIgnoreCase(androidPwd)){
+    			HttpSession session=request.getSession();
+    			//store user into session
+    			session.setAttribute("user", us);
     			response.setContentType("text/plain");
     			out.print("check:success");
     			out.flush();

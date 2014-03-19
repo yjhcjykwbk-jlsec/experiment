@@ -146,7 +146,17 @@ public abstract class Session {
     public int getStatus() {
         return status;
     }
-
+    
+    /*
+     * Returns the current status of session
+     * 
+     * @return status of this session 
+     */
+    public String getStrStatus(){
+    	if(status==0) return "closed";
+    	else if(status==1) return "connected";
+    	else return "authenticated";
+    }
     /**
      *  Set the new status of this session.
      * 

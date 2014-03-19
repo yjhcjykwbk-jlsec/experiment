@@ -35,27 +35,42 @@ import org.apache.commons.lang.builder.ToStringStyle;
 @Entity
 @Table(name = "apn_friend")
 public class Friend implements Serializable {
-	
+
 	@Id
 	private FriendPK pk; //this must match the friend.hbm.xml's composite-id
+	@Column(name = "flag", nullable = false)
+	private boolean flag;
+
+	public boolean getFlag() {
+		return flag;
+	}
+
+	public void setFlag(boolean f) {
+		this.flag = f;
+	}
+
 	@Id
-	public FriendPK getPk() {  
-        return pk;  
-    }  
-    public void setPk(FriendPK id) {  
-        this.pk = id;  
-    }  
-    
-    public Friend(FriendPK pk){
-    	this.pk=pk;
-    }
-    public Friend(){
-    	
-    }
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this,
-                ToStringStyle.MULTI_LINE_STYLE);
-    }
+	public FriendPK getPk() {
+		return pk;
+	}
+
+	public void setPk(FriendPK id) {
+		this.pk = id;
+	}
+
+	public Friend(FriendPK pk,boolean flag) {
+		this.pk = pk;
+		this.flag=flag;
+	}
+
+	public Friend() {
+
+	}
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this,
+				ToStringStyle.MULTI_LINE_STYLE);
+	}
 
 }

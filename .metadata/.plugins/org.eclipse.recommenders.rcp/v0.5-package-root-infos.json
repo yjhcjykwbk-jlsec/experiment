@@ -1,0 +1,93 @@
+[
+  {
+    "symbolicName": "android-support-v4",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "307c1cc532eabbf1d135b43e5c983c9da700449d",
+    "jarFileModificationDate": "2013-08-05T20:57:10+08:00",
+    "location": "/home/x/Experiment/client/Androidpn-client/libs/android-support-v4.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "com.thoughtworks.xstream.xstream",
+    "version": {
+      "major": 1,
+      "minor": 3,
+      "micro": 1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "c23741bfc42efa760c6acdb90a131814c70aeb8d",
+    "jarFileModificationDate": "2014-03-17T11:07:40+08:00",
+    "location": "/home/x/Experiment/client/Androidpn-client/lib/xstream-1.3.1.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.apache.httpcomponents.httpcore",
+    "version": {
+      "major": 4,
+      "minor": 0,
+      "micro": 1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "e813b8722c387b22e1adccf7914729db09bcb4a9",
+    "jarFileModificationDate": "2013-08-05T20:57:10+08:00",
+    "location": "/home/x/Experiment/client/Androidpn-client/lib/httpcore-4.0.1.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "android",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "5ad8ede41493307ce2991a10abfe5350a5f57b7f",
+    "jarFileModificationDate": "2014-03-16T21:41:15+08:00",
+    "location": "/host/ubuntu/android-sdk-linux/platforms/android-14/android.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "juv-rtmp-client-1.5.10",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "d846be9ee61f2d083d5dbcb8831febb5bb41c813",
+    "jarFileModificationDate": "2013-08-05T20:57:10+08:00",
+    "location": "/home/x/Experiment/client/Androidpn-client/lib/juv-rtmp-client-1.5.10.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "annotations",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "376123c0be2ad5456060e556b21fd4a117e3f075",
+    "jarFileModificationDate": "2013-04-21T22:30:17+08:00",
+    "location": "/host/ubuntu/android-sdk-linux/tools/support/annotations.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.apache.commons.lang",
+    "version": {
+      "major": 2,
+      "minor": 4,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "16313e02a793435009f1e458fa4af5d879f6fb11",
+    "jarFileModificationDate": "2014-03-11T20:29:54+08:00",
+    "location": "/home/x/Experiment/client/Androidpn-client/lib/commons-lang-2.4.jar",
+    "javaRuntime": false
+  }
+]

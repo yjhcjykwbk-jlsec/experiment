@@ -1,0 +1,21 @@
+package org.androidpn.data;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.androidpn.client.Constants;
+
+public class SessionManager {
+	private static Map<String,List> sessions=Constants.sessions;
+	public static void addMsg(String recipient,org.androidpn.data.ChatInfo ci){
+		if(sessions.get(recipient)==null) {
+			sessions.put(recipient, new ArrayList<org.androidpn.data.ChatInfo>());
+		}
+		sessions.get(recipient).add(ci);
+	}
+	public static void recvMsg(String recipient,int packetID){
+		List<ChatInfo> list=sessions.get(recipient);
+		if(list==null)	return;
+	}
+}

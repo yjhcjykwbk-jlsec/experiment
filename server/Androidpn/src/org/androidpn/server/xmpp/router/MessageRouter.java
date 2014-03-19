@@ -63,24 +63,22 @@ public class MessageRouter {
         	log.info("session not on line");
         	return;
         } else {
-        	if(isOL(packet.getTo())){
-        		log.info("forward a packet:"+packet.toXML());
-				session.process(packet);
-        	}
-        	else{
+//        	if(isOL(packet.getTo())){
+//        		log.info("forward a packet:"+packet.toXML());
+//				session.process(packet);
+//        	}
+//        	else{
         		if(isValid(packet.getTo().toString())){
         			log.info("store a packet for future delivery to "+packet.getTo());
         			//@todo
+        			session.process(packet);
         		}
         		else
         			log.info("packet to User "+packet.getTo()+" is invalid");
         	}
-        }
-            //packet.setTo(session.getAddress()); //
-           /* packet.setFrom((JID) null);
-            packet.setError(PacketError.Condition.not_authorized);
-            session.process(packet);*/
+//        }
     }
+    
     private boolean isValid(String username){
     	if(username==null) return false;
     	try{
@@ -95,6 +93,7 @@ public class MessageRouter {
      */
     private boolean isOL(JID id){
     	 ClientSession session = sessionManager.getSession(id);
+    	 log.debug("session:"+(session==null?"null":session.getStrStatus()));
     	 return (session != null && session.getStatus() == Session.STATUS_AUTHENTICATED);
     }
 

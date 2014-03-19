@@ -1,0 +1,16 @@
+package org.androidpn.demoapp;
+
+import android.app.Activity;
+import android.os.Bundle;
+
+public class ContactActivity extends Activity {
+	private String USERNAME;
+	private String PASSWORD;
+	public void onCreate(Bundle savedInstanceState){
+		super.onCreate(savedInstanceState);
+		USERNAME = getIntent().getStringExtra("userID");
+		PASSWORD = getIntent().getStringExtra("Pwd");//
+		setContentView(R.layout.activity_contact);
+	}
+	
+}

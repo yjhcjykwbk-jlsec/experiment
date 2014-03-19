@@ -1,0 +1,15 @@
+package org.androidpn.util;
+
+import org.androidpn.demoapp.R;
+
+public class CacheUtil {
+	public static int getPhoto(String username){
+		int s=username==null?0:username.hashCode()%4;
+		switch(s){
+			case 1: return R.drawable.photo_1; 
+			case 2: return R.drawable.photo_2; 
+			case 3: return R.drawable.photo_3; 
+			default: return R.drawable.photo_4; 
+		}
+	}
+}

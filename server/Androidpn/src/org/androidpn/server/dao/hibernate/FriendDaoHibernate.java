@@ -35,15 +35,21 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 public class FriendDaoHibernate extends HibernateDaoSupport implements FriendDao {
 	 
 //	private JdbcTemplate template;// Impl层需要操作数据库，依赖JdbcTemplate的支持  
-    
+    //id1 关注 id2
 	public boolean addFriend(int id1, int id2) {
 		
 //		 String sql = "insert into apn_friend(id1,id2) values(?,?)";  
 //	     template.update(sql, new Object[]{id1, id2});  
 //	     template.update(sql, new Object[]{id2, id1});  
-//		// TODO Auto-generated method stub
-		getHibernateTemplate().saveOrUpdate(new Friend(new FriendPK(id1,id2)));
-		getHibernateTemplate().saveOrUpdate(new Friend(new FriendPK(id2,id1)));
-		return true;
+	    @SuppressWarnings("unchecked")
+		List<Friend> f=getHibernateTemplate().find("from Friend f where f.pk.id1="+id2+" and f.pk.id2="+ id1);
+		if(f.size()>0) {
+			getHibernateTemplate().saveOrUpdate(new Friend(new FriendPK(id1,id2),true));
+			getHibernateTemplate().saveOrUpdate(new Friend(new FriendPK(id2,id1),true));
+			return true;
+		}
+		else getHibernateTemplate().saveOrUpdate(new Friend(new FriendPK(id1,id2),false));
+		//getHibernateTemplate().saveOrUpdate(new Friend(new FriendPK(id2,id1)));
+		return false;
 	}
 }

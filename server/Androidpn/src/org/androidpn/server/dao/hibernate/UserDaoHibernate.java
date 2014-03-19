@@ -94,7 +94,10 @@ public class UserDaoHibernate extends HibernateDaoSupport implements UserDao {
 	public List<User> getFriends(long id) {
 		// TODO Auto-generated method stub
         List<User> list=getHibernateTemplate().find(
-                "select u from User u,Friend f where u.id=f.pk.id2 and f.pk.id1="+id+" order by u.id desc");
+               "select u from User u,Friend f where u.id=f.pk.id2 and f.pk.id1="+id+" and f.flag=true order by u.id desc");
+          //     "select u from User u where u.id in (select f.pk.id2 from  Friend f where f.pk.id1="+id+" and f.pk.id2 in ( select f.pk.id1 from apn_friend where f.pk.id2="+id+"))");
+          //	"select f1 from Friend f1 where f1.pk.id1="+id+" left join Friend f2  on f1.pk.id1=f2.pk.id2 and f1.pk.id2=f2.pk.id1 and f1.pk.id1="+id+" ");
+//        		"select f1 from Friend f1 where f1.pk.id1="+id+" and f1.pk.id2 in ( select f2.pk.id1 from friend f2 where f2.pk.id1="+id+")");
 //        List<User> userList=new ArrayList();
 //        for(Array a : list){
 //        	userList.add((User)(a[0]));

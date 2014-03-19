@@ -1,0 +1,18 @@
+package org.androidpn.demoapp;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import org.androidpn.client.Constants;
+import org.androidpn.demoapp.ChatActivity.ChatInfo;
+
+public class SessionManager {
+	private static Map<String,List> sessions=Constants.sessions;
+	public static void addMsg(String recipient,org.androidpn.data.ChatInfo ci){
+		if(sessions.get(recipient)==null) {
+			sessions.put(recipient, new ArrayList<ChatInfo>());
+		}
+		sessions.get(recipient).add(ci);
+	}
+}

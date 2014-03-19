@@ -1,0 +1,36 @@
+package org.androidpn.data;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import org.androidpn.client.Constants;
+
+public class SessionManager {
+	private final static Map<String,List> sessions= new Map<String,List>();
+	private final static Map<String,String> packetMap=new HashMap<String,String>();//packetID to recipient name
+	public static void addMsg(String recipient,org.androidpn.data.ChatInfo ci){
+		if(sessions.get(recipient)==null) {
+			sessions.put(recipient, new ArrayList<org.androidpn.data.ChatInfo>());
+		}
+		sessions.get(recipient).add(ci);
+		packetMap.put(recipient,ci.getPacketID());
+	}
+	public static List<?> getMsgList(String recipient){
+		if(recipient==null) return null;
+		if(sessions.get(recipient)==null) sessions.put(recipient, new ArrayList<Object>());
+		return sessions.get(recipient);
+	}
+	public static void msgSent(String packetID){
+		String recipient=packetMap.get(packetID);
+		if(recipient==null||sessions.get(recipient)==null) return ;
+		List list=sessions.get(recipient);
+		Iterator it=list.iterator();
+		while(it.hasNext()){
+			ChatInfo ci=(ChatInfo) it.next();
+			ci.setSent();
+		}
+	}
+}
