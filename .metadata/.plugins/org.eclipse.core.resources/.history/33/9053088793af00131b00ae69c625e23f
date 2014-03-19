@@ -76,7 +76,7 @@
          <service
             android:name="org.androidpn.client.SessionService"
             android:enabled="true"
-            android:label="SessionService" >
+            android:label="NotificationService" >
             <intent-filter android:priority="500" >
                 <action android:name="org.androidpn.client.SessionService" />
             </intent-filter>

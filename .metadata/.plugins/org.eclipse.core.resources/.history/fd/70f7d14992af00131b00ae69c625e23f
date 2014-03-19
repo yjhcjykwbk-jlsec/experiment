@@ -128,9 +128,6 @@ public class ChatActivity extends Activity {
 		startService(intent);
 		bindService(intent, myConnection, Context.BIND_AUTO_CREATE);
 	}
-	
-	
-	
 	private boolean mBound=false;
 	private ServiceConnection myConnection = new ServiceConnection() {
 
@@ -139,6 +136,7 @@ public class ChatActivity extends Activity {
                 IBinder service) {
             // We've bound to LocalService, cast the IBinder and get LocalService instance
         	Log.i(LOGTAG,"service is disconnected");
+            LocalBinder binder = (LocalBinder) service;
             mBound = true;
         }
 
@@ -433,17 +431,18 @@ public class ChatActivity extends Activity {
 					continue;
 				}
 				synchronized (packetList) {
-					if(packetList.isEmpty()) continue;
 					packet = (Packet) packetList.get(0).first;
-					// packetList.remove(0);¡¡//we may not need to remove it now, we
-					// can remove when it's sent
-					Log.i(LOGTAG, "XmppManager#sendMsgTask packet in sending:"
-							+ packet.toXML());
-					xmppManager.sendMsg(packet);
-					
-					Log.i(LOGTAG,
-							"XmppManager#sendMsgTask waiting for packet to be sent");
-					Log.i(LOGTAG, "XmppManager#sendMsgTask !!!!packet sent");
+				}
+				// packetList.remove(0);¡¡//we may not need to remove it now, we
+				// can remove when it's sent
+				Log.i(LOGTAG, "XmppManager#sendMsgTask packet in sending:"
+						+ packet.toXML());
+				xmppManager.sendMsg(packet);
+
+				Log.i(LOGTAG,
+						"XmppManager#sendMsgTask waiting for packet to be sent");
+				Log.i(LOGTAG, "XmppManager#sendMsgTask !!!!packet sent");
+				synchronized (packetList) {
 					packetList.remove(0);
 				}
 			}

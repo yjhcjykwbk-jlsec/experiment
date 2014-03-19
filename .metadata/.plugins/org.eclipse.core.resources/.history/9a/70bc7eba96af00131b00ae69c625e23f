@@ -18,9 +18,9 @@ public class SessionManager {
 	private static String LOGTAG="SessionManager";
 	public static void addMsg(String recipient,ChatInfo ci){
 		if(recipient==null||ci==null) return;
-		Log.i(LOGTAG,"sessionManager.addMsg:"+ci.getPacketID()+"#"+ci.getContent());
+		Log.i(LOGTAG,"sessionManager.addMsg:"+recipient+"#"+ci.getPacketID());
 		getMsgList(recipient).add(ci);
-		packetMap.put(ci.getPacketID(),recipient);
+		packetMap.put(recipient,ci.getPacketID());
 		
 		updateView(recipient);
 	}
@@ -33,6 +33,7 @@ public class SessionManager {
 	
 	@SuppressWarnings("unchecked")
 	public static List<ChatInfo> getMsgList(String recipient){
+		Log.i(LOGTAG,"sessionManager.getMsgList:"+recipient);
 		if(recipient==null) return null;
 		if(sessions.get(recipient)==null) sessions.put(recipient, new ArrayList<ChatInfo>());
 		return sessions.get(recipient);
@@ -61,8 +62,8 @@ public class SessionManager {
 					ChatInfo ci=(ChatInfo) it.next();
 					if(ci.getPacketID().equals(packetID)){
 						ci.setSent();
-						Log.i(LOGTAG,"update view:"+ci.getContent());
 						updateView(recipient);
+						return;
 					}
 				}
 			}

@@ -48,17 +48,14 @@ public class SessionService extends Service {
 					
 				} else if (packet instanceof IQ) {
 					if (((IQ) packet).getType() == IQ.Type.RESULT) {
-						Log.i(LOGTAG, "recv a result IQ whose id is :"
-								+ packet.getPacketID());
 						if (((IQ) packet).getError() == null) {
 							// 发送的消息成功被服务器接收
 							SessionManager.msgSent(packet.getPacketID());
-						
+							Log.i(LOGTAG, "recv a result IQ whose id is :"
+									+ packet.getPacketID());
 							Intent intent = new Intent(
 									Constants.ACTION_CHAT_SENT);
 							intent.putExtra("packetid", packet.getPacketID());
-						}else{
-							Log.i(LOGTAG,"iq error is:"+((IQ)packet).getError());
 						}
 					}
 				}

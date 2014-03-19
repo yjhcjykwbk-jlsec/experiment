@@ -57,8 +57,6 @@ public class SessionService extends Service {
 							Intent intent = new Intent(
 									Constants.ACTION_CHAT_SENT);
 							intent.putExtra("packetid", packet.getPacketID());
-						}else{
-							Log.i(LOGTAG,"iq error is:"+((IQ)packet).getError());
 						}
 					}
 				}

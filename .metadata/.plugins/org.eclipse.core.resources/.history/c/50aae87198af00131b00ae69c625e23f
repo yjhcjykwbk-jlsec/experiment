@@ -79,11 +79,9 @@ public class ChatInfoAdapter extends BaseAdapter {
 		if(ci.isSelf())
 		if(!ci.isSent()){
 			tv.setTextColor(Color.RED);
-		} else{
+			Log.i("myadapter.getview","textview for "+ci.getPacketID()+" sent and it turn red");
+		} else
 			tv.setTextColor(Color.GREEN);
-			Log.i("myadapter.getview","textview for "+ci.getPacketID()+" sent and it turn green");
-		}
-
 		return v;
 	}
 }

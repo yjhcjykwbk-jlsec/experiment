@@ -124,8 +124,8 @@ public class XmppManager {
         PacketListener notificationPacketListener = this.getNotificationPacketListener(),
                 msgPacketListener=this.getMsgPacketListener();
         listenerList.add(new Pair<PacketListener, PacketFilter>(notificationPacketListener, notificationPacketFilter));
-//        listenerList.add(new Pair<PacketListener, PacketFilter>(msgPacketListener,msgPacketFilter));
-//        listenerList.add(new Pair<PacketListener, PacketFilter>(msgPacketListener, testPacketFilter));
+        listenerList.add(new Pair<PacketListener, PacketFilter>(msgPacketListener,msgPacketFilter));
+        listenerList.add(new Pair<PacketListener, PacketFilter>(msgPacketListener, testPacketFilter));
     }
 
     public Context getContext() {

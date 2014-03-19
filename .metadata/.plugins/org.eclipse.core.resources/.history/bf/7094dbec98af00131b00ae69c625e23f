@@ -18,7 +18,7 @@ public class SessionManager {
 	private static String LOGTAG="SessionManager";
 	public static void addMsg(String recipient,ChatInfo ci){
 		if(recipient==null||ci==null) return;
-		Log.i(LOGTAG,"sessionManager.addMsg:"+ci.getPacketID()+"#"+ci.getContent());
+		Log.i(LOGTAG,"sessionManager.addMsg:"+ci.getPacketID());
 		getMsgList(recipient).add(ci);
 		packetMap.put(ci.getPacketID(),recipient);
 		

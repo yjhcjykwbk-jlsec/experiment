@@ -73,14 +73,6 @@
                 <action android:name="org.androidpn.client.NotificationService" />
             </intent-filter>
         </service>
-         <service
-            android:name="org.androidpn.client.SessionService"
-            android:enabled="true"
-            android:label="SessionService" >
-            <intent-filter android:priority="500" >
-                <action android:name="org.androidpn.client.SessionService" />
-            </intent-filter>
-        </service>
         <!--
 			<meta-data android:name="ANDROIDPN_API_KEY"
 			android:value="1234567890" />

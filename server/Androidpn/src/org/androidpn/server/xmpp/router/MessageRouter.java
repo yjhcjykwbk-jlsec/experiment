@@ -24,9 +24,12 @@ import org.androidpn.server.xmpp.session.ClientSession;
 import org.androidpn.server.xmpp.session.Session;
 import org.androidpn.server.xmpp.session.SessionManager;
 import org.xmpp.packet.JID;
+import org.xmpp.packet.IQ;
+import org.xmpp.packet.Packet;
 import org.xmpp.packet.Message;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 /** 
  * This class is to route Message packets to their corresponding handler.
  *
@@ -37,64 +40,75 @@ public class MessageRouter {
 	private SessionManager sessionManager = SessionManager.getInstance();
 	private UserService userService;
 
-    /**
-     * Constucts a packet router.
-     */
-    public MessageRouter() {
-    	userService=ServiceLocator.getUserService();
-    }
+	/**
+	 * Constucts a packet router.
+	 */
+	public MessageRouter() {
+		userService = ServiceLocator.getUserService();
+	}
 
-    /**
-     * Routes the Message packet.
-     * many times the Router will give the packet to handlers, such as persenseUpdateHandler
-     * 
-     * @param packet the packet to route
-     */
-    public void route(Message packet) {
-    	//@TODO  we must implements this...
-    	//below is copied from presenseRouter
-    	
-    	log.info("route packet");
-    	if (packet == null) {
-            throw new NullPointerException();
-        }
-        ClientSession session = sessionManager.getSession(packet.getFrom());
-        if (!isOL(packet.getFrom())) {
-        	log.info("session not on line");
-        	return;
-        } else {
-//        	if(isOL(packet.getTo())){
-//        		log.info("forward a packet:"+packet.toXML());
-//				session.process(packet);
-//        	}
-//        	else{
-        		if(isValid(packet.getTo().toString())){
-        			log.info("store a packet for future delivery to "+packet.getTo());
-        			//@todo
-        			session.process(packet);
-        		}
-        		else
-        			log.info("packet to User "+packet.getTo()+" is invalid");
-        	}
-//        }
-    }
-    
-    private boolean isValid(String username){
-    	if(username==null) return false;
-    	try{
-    		userService.getUserByUsername(username);
-    		return true;
-    	}catch(UserNotFoundException e){
-    		return false;
-    	}
-    }
-    /*
-     * judge if the id is valid and online
-     */
-    private boolean isOL(JID id){
-    	 ClientSession session = sessionManager.getSession(id);
-    	 log.debug("session:"+(session==null?"null":session.getStrStatus()));
-    	 return (session != null && session.getStatus() == Session.STATUS_AUTHENTICATED);
-    }
+	/**
+	 * Routes the Message packet.
+	 * many times the Router will give the packet to handlers, such as persenseUpdateHandler
+	 * 
+	 * @param packet the packet to route
+	 */
+	public void route(Message packet) {
+		//@TODO  we must implements this...
+		//below is copied from presenseRouter
+
+		log.info("route packet");
+		if (packet == null) {
+			throw new NullPointerException();
+		}
+		ClientSession session = sessionManager.getSession(packet.getFrom());
+		if (!isOL(packet.getFrom())) {
+			log.info("session not on line or invalid");
+			return;
+		} else {
+			//        	if(isOL(packet.getTo())){
+			//        		log.info("forward a packet:"+packet.toXML());
+			//				session.process(packet);
+			//        	}
+			//        	else{
+			
+			//confirm you have received
+			log.info("create a reply iq to"+packet.getID());
+			IQ iq=new IQ();
+			iq.setID(packet.getID());
+			iq.setType(IQ.Type.result);
+			session.process(iq);
+			
+			if (isValid(packet.getTo().toString())) {
+//				log.info("store a packet for future delivery to "
+//						+ packet.getTo());
+				//@todo
+				session.process(packet);
+			} else
+				log.info("packet to User " + packet.getTo() + " is invalid");
+		}
+		//        }
+	}
+
+	private boolean isValid(String username) {
+		if (username == null)
+			return false;
+		try {
+			userService.getUserByUsername(username);
+			return true;
+		} catch (UserNotFoundException e) {
+			return false;
+		}
+	}
+
+	/*
+	 * judge if the id is valid and online
+	 */
+	private boolean isOL(JID id) {
+		ClientSession session = sessionManager.getSession(id);
+		log.debug("session:"
+				+ (session == null ? "null" : session.getStrStatus()));
+		return (session != null && session.getStatus() == Session.STATUS_AUTHENTICATED);
+	}
 
 }

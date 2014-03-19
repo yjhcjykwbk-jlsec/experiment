@@ -8,7 +8,6 @@ import java.util.Map;
 
 import org.androidpn.client.Constants;
 import org.androidpn.client.NotificationService;
-import org.androidpn.client.SessionService;
 import org.androidpn.client.XmppManager;
 import org.androidpn.client.NotificationService.LocalBinder;
 import org.androidpn.data.ChatInfo;
@@ -124,32 +123,35 @@ public class ChatActivity extends Activity {
 		smThread = new SendMsgThread(xmppManager);
 		smThread.start();
 		
-		Intent intent = new Intent(this,SessionService.class);
+		Intent intent = new Intent(this,NotificationService.class);
 		startService(intent);
 		bindService(intent, myConnection, Context.BIND_AUTO_CREATE);
 	}
-	
-	
-	
-	private boolean mBound=false;
 	private ServiceConnection myConnection = new ServiceConnection() {
 
         @Override
         public void onServiceConnected(ComponentName className,
                 IBinder service) {
             // We've bound to LocalService, cast the IBinder and get LocalService instance
-        	Log.i(LOGTAG,"service is disconnected");
+        	Log.i("loginactivity#serviceconnection#onservicedisconnected","service is disconnected");
+            LocalBinder binder = (LocalBinder) service;
+            Constants.notificationService=mService = binder.getService();
             mBound = true;
         }
 
         @Override
         public void onServiceDisconnected(ComponentName arg0) {
             mBound = false;
-        	Log.i(LOGTAG,"service is disconnected");
+            Constants.notificationService=mService=null;
+        	Log.i("loginactivity#serviceconnection#onservicedisconnected","service is disconnected");
         }
     };
     
-    
+    @Override
+    public void onDestroy(){
+    	super.onDestroy();
+    	unbindService(myConnection);
+    }
 	/*
 	 * init the page's chat-message-list
 	 */
@@ -213,8 +215,6 @@ public class ChatActivity extends Activity {
 			}
 		});
 	}
-	
-	
 	
 	
 	/*
@@ -388,10 +388,6 @@ public class ChatActivity extends Activity {
 		}.run();
 	}
 	
-	
-	
-	
-	
 	/**
 	 * related to send message thread always try to send packets to server if
 	 * packet in packetList
@@ -433,17 +429,18 @@ public class ChatActivity extends Activity {
 					continue;
 				}
 				synchronized (packetList) {
-					if(packetList.isEmpty()) continue;
 					packet = (Packet) packetList.get(0).first;
-					// packetList.remove(0);¡¡//we may not need to remove it now, we
-					// can remove when it's sent
-					Log.i(LOGTAG, "XmppManager#sendMsgTask packet in sending:"
-							+ packet.toXML());
-					xmppManager.sendMsg(packet);
-					
-					Log.i(LOGTAG,
-							"XmppManager#sendMsgTask waiting for packet to be sent");
-					Log.i(LOGTAG, "XmppManager#sendMsgTask !!!!packet sent");
+				}
+				// packetList.remove(0);¡¡//we may not need to remove it now, we
+				// can remove when it's sent
+				Log.i(LOGTAG, "XmppManager#sendMsgTask packet in sending:"
+						+ packet.toXML());
+				xmppManager.sendMsg(packet);
+
+				Log.i(LOGTAG,
+						"XmppManager#sendMsgTask waiting for packet to be sent");
+				Log.i(LOGTAG, "XmppManager#sendMsgTask !!!!packet sent");
+				synchronized (packetList) {
 					packetList.remove(0);
 				}
 			}
@@ -483,11 +480,8 @@ public class ChatActivity extends Activity {
 		getMenuInflater().inflate(R.menu.chat, menu);
 		return true;
 	}
-	
-	@Override
-    public void onDestroy(){
-    	super.onDestroy();
-    	SessionManager.removeListener(recipient);
-    	unbindService(myConnection);
+	public void onDestroy(){
+		super.onDestroy();
+		SessionManager.removeListener(recipient);
 	}
 }

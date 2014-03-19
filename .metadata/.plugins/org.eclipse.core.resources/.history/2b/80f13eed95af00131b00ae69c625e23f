@@ -433,7 +433,6 @@ public class ChatActivity extends Activity {
 					continue;
 				}
 				synchronized (packetList) {
-					if(packetList.isEmpty()) continue;
 					packet = (Packet) packetList.get(0).first;
 					// packetList.remove(0);¡¡//we may not need to remove it now, we
 					// can remove when it's sent
