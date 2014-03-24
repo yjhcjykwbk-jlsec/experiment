@@ -59,10 +59,10 @@ public class ChatActivity extends Activity {
 	private String USERNAME;
 	private String PASSWORD;
 	private String recipient = null;// who you are talking with
-	private Handler mHandler = new Handler();
 	private EditText mTextMessage;
 	private ListView mListView;
 	private List<User> friendList;
+	private List<ChatInfo> messageList;
 	private XmppManager xmppManager;
 	private ChatInfoAdapter mAdapter;
 	@Override
@@ -90,7 +90,7 @@ public class ChatActivity extends Activity {
 		initHeaderView();
 		
 		TextView tv=(TextView)this.findViewById(R.id.ChatTitleLabel);
-		tv.setText("与"+recipient+"会话中");
+		tv.setText(USERNAME+"与"+recipient+"会话中");
 		
 		initMsgListView();
 		
@@ -104,7 +104,7 @@ public class ChatActivity extends Activity {
 				Log.i(LOGTAG,
 						"XMPPChatActivity#send.onclicklistener Sending text "
 								+ text + " to " + to);
-				Message msg = new Message("abc", Message.Type.chat);
+				Message msg = new Message(to, Message.Type.chat);
 				msg.setBody(text);
 				if (xmppManager == null) {
 					Log.i(LOGTAG,
@@ -112,9 +112,11 @@ public class ChatActivity extends Activity {
 					return;
 				} else {
 					//send msg
-					ChatActivity.this.addMsgView(new ChatInfo(USERNAME, msg.getBody(),
-						new Date(System.currentTimeMillis()),msg.getPacketID(),true));
+					ChatInfo ci=new ChatInfo(USERNAME, msg.getBody(),
+							new Date(System.currentTimeMillis()),msg.getPacketID(),true);
+					addMsgView(ci);
 					addMsg(msg);
+					SessionManager.addMsg(recipient, ci, true);
 				}
 				mTextMessage.setText("");
 			}
@@ -125,6 +127,7 @@ public class ChatActivity extends Activity {
 		smThread.start();
 		
 		Intent intent = new Intent(this,SessionService.class);
+		intent.putExtra("userID",USERNAME);
 		startService(intent);
 		bindService(intent, myConnection, Context.BIND_AUTO_CREATE);
 	}
@@ -148,37 +151,66 @@ public class ChatActivity extends Activity {
         	Log.i(LOGTAG,"service is disconnected");
         }
     };
-    
-    
+    /*
+	 * add a message to the list view
+	 */
+    private void addMsgView(ChatInfo ci){
+    	Log.i(LOGTAG,"addMsgView "+ci.getContent());
+    	messageList.add(ci);
+    	mAdapter.notifyDataSetChanged();
+    }
+    private void setMsgView(String packetID){
+    	Log.i(LOGTAG,"setMsgView "+packetID);
+    	for(ChatInfo ci : messageList){
+    		if(ci.getPacketID().equals(packetID)){
+    			Log.i(LOGTAG,"setMsgView "+" update view");
+    			ci.setSent();
+    		}
+    	}
+    	mAdapter.notifyDataSetChanged();
+    }
 	/*
 	 * init the page's chat-message-list
 	 */
 	@SuppressWarnings("unchecked")
+	private MyHandler uiHandler=new MyHandler();
+	class MyHandler extends Handler {
+         public MyHandler() {
+         }
+         // 子类必须重写此方法,接受数据
+         @Override
+         public void handleMessage(android.os.Message msg) {
+             Log.d("MyHandler", "handleMessage......");
+             Bundle b = msg.getData();
+             switch(msg.what){
+             case 1://recv
+              /*String username;//the man you're talking with
+        		String chatXml;
+        		Date time;
+        		String packetID;*/
+            	ChatInfo ci=new ChatInfo(b.getString("username"),b.getString("chatXml"),b.getString("id"),false);
+            	addMsgView(ci);
+            	return;
+             case 2://sent
+            	setMsgView(b.getString("id"));
+             }
+         }
+     }
 	private void initMsgListView(){
 		// messages stores the talk contents with friends
-//		messages = (List<ChatInfo>) SessionManager.getMsgList(recipient);
-		// ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,messages);
-		mAdapter = new ChatInfoAdapter(this,SessionManager.getMsgList(recipient));
+		// messages = (List<ChatInfo>) SessionManager.getMsgList(recipient);
+		messageList=SessionManager.cloneMsgList(recipient);
+		mAdapter = new ChatInfoAdapter(this,messageList);
 		mListView = (ListView) this.findViewById(R.id.MessageListView);
 		mListView.setAdapter(mAdapter);
-		SessionManager.addListener(recipient, mAdapter);
-		
-		addMsgView(new ChatInfo("test", "helloworld", new Date(), "1", true));
-	}
-	/*
-	 * add a message to the list view
-	 */
-	private void addMsgView(ChatInfo ci){
-		Log.i(LOGTAG,"add Msg view "+ci.getContent());
-//		messages.add(ci);
-//		mAdapter.notifyDataSetChanged(); 
 		try {
-			SessionManager.addMsg(recipient, ci);
+			SessionManager.addListener(recipient, uiHandler);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
 	
 	/*
 	 * init the page's header with three buttons
@@ -212,8 +244,17 @@ public class ChatActivity extends Activity {
 				startActivity(intent);
 			}
 		});
+		Button chatsButton=(Button) this.findViewById(R.id.ChatListBtn);
+		chatsButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent intent=new Intent(ChatActivity.this,ChatsActivity.class);
+				intent.putExtras(ChatActivity.this.getIntent().getExtras());
+				startActivity(intent);
+			}
+		});
 	}
-	
 	
 	
 	
@@ -341,7 +382,7 @@ public class ChatActivity extends Activity {
 				String reason=getXmlElement(res,"reason");
 				if(status==null){
 					UIUtil.alert(ChatActivity.this,"添加失败:"+(reason==null?"":reason));
-				}else if(status=="1"){
+				}else if(status.equals("1")){
 					UIUtil.alert(ChatActivity.this,"添加关注成功");
 				}else{
 					UIUtil.alert(ChatActivity.this,"你们现在已经是好友了");
@@ -360,7 +401,6 @@ public class ChatActivity extends Activity {
 				String resp=GetPostUtil.sendPost(androidpnURL+
 						"user.xml",params);
 				if("succeed".equals(getXmlElement(resp,"result"))){
-					UIUtil.alert(ChatActivity.this,resp);
 					int i = resp.indexOf("<list>"), j;
 					if (i < 0 || (j = resp.indexOf("</list>")) < 0) {
 						UIUtil.alert(ChatActivity.this,"未找到相应用户");

@@ -6,10 +6,11 @@ import java.util.Date;
  * related to chat message list
  */
 public class ChatInfo {
-	String username;
+	String username;//the man you're talking with
 	String chatXml;
 	Date time;
 	String packetID;
+	//发出
 	boolean isSelf;
 	//自己发送的，是否发送成功
 	boolean sent;
@@ -27,6 +28,18 @@ public class ChatInfo {
 		}else{
 			this.isSelf=false;
 		}
+	}
+	public ChatInfo(String u, String chat , String pid,boolean isSelf) {
+		this.username = u;
+		this.chatXml = chat;
+		this.packetID=pid;
+		if(isSelf){
+			this.isSelf=true;
+			this.sent=false;
+		}else{
+			this.isSelf=false;
+		}
+		this.time=new Date(System.currentTimeMillis());
 	}
 	public boolean isSent(){
 		return sent;
@@ -49,5 +62,9 @@ public class ChatInfo {
 	}
 	public boolean isSelf(){
 		return isSelf;
+	}
+	public String getRecipient() {
+		// TODO Auto-generated method stub
+		return username;
 	}
 }

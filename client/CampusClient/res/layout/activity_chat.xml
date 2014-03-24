@@ -107,7 +107,7 @@
 
         <Button
             android:id="@+id/HomeBtn"
-            android:layout_width="70dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:background="@color/transparent"
@@ -123,14 +123,6 @@
 <!--         android:layout_height="wrap_content" -->
 <!--         android:layout_centerInParent="true" -->
 <!--         android:text="聊天" /> style="@style/my_txt" -->
-  		<Button
-	        android:id="@+id/FriendListBtn"
-	        android:layout_width="80dp"
-	        android:layout_height="wrap_content"
-	        android:layout_alignParentTop="true"
-	        android:layout_centerHorizontal="true"
-	        android:background="@color/transparent"
-	        android:text="通讯录" />
   		
         <Button
             android:id="@+id/FindUserBtn"
@@ -141,6 +133,24 @@
             android:layout_centerHorizontal="true"
             android:background="@color/transparent"
             android:text="查找" />
+
+        <Button
+            android:id="@+id/FriendListBtn"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/FindUserBtn"
+            android:background="@color/transparent"
+            android:text="通讯录" />
+
+        <Button
+            android:id="@+id/ChatListBtn"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/FriendListBtn"
+            android:background="@color/transparent"
+            android:text="会话列表" />
 
     </RelativeLayout>
     

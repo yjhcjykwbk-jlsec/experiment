@@ -48,13 +48,15 @@ public class ChatInfoAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View v = null;
+		ChatInfo ci=(ChatInfo)al.get(position);
+		if(ci==null) return null;
+		
 		LayoutInflater li = LayoutInflater.from(c); 
 		//li=(LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);  li.inflate(itemLayout, layout, true); 
 		if(((ChatInfo)al.get(position)).isSelf()){
 			v = li.inflate(R.layout.list_left_chat, null);
 		} else 
 			v= li.inflate(R.layout.list_right_chat, null);
-		ChatInfo ci=(ChatInfo)al.get(position);
 		Date dt=ci.getTime();
 		if(ci==null||li==null||v==null||dt==null){
 			Log.i(LOGTAG,"null exception");
