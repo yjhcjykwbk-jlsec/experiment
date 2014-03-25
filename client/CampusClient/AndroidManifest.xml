@@ -52,18 +52,13 @@
         </activity>
           <activity
             android:name="org.androidpn.demoapp.ChatsActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="org.androidpn.demoapp.SubmitActivity"
             android:screenOrientation="portrait" >
         </activity>
-        
-        <activity
-            android:name="org.androidpn.demoapp.ChatActivity"
-            android:screenOrientation="portrait" >
-        </activity>
-        
         <activity
             android:name="org.androidpn.demoapp.MyVideoActivity"
             android:screenOrientation="landscape" >
@@ -78,7 +73,7 @@
             </intent-filter>
         </service>
          <service
-            android:name="org.androidpn.client.SessionService"
+            android:name="org.androidpn.data.PacketListenerManager"
             android:enabled="true"
             android:label="SessionService" >
             <intent-filter android:priority="500" >

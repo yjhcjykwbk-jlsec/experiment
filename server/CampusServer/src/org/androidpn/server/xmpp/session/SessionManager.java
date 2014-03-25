@@ -207,12 +207,10 @@ public class SessionManager {
         public void onConnectionClose(Object handback) {
             try {
                 ClientSession session = (ClientSession) handback;
-                //�����޸��£��ж϶Ͽ�����������session�ǲ���ͬһ������ͬһ���Ļ���remove������ͬ��session�ͱ���
                 String username=session.getUsername();
                 if(username==null) return;
                 Session s = getSession(username);
                 if (s != session) {
-                	//����
                 	return;
                 }
                 else{

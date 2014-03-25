@@ -10,7 +10,6 @@ import org.xmpp.packet.IQ;
 
 /**
  * @author chengqiang.liu
- *	将生成的通知ID给notificationMO对象入库 ，方便根据此ID修改回执状态。
  */
 public class CopyMessageUtil {
 	

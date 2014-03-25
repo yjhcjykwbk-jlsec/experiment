@@ -49,20 +49,19 @@ public class SubscriptionsController extends MultiActionController {
     @SuppressWarnings("unchecked")
 	public ModelAndView list(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
-//    	int count_all=0;                  //�����0��
-//        int count_news_yaowen=0;			 //�����1��
-//        int count_pkusz_notification=0;   //�����2��
-//        int count_video_schoolvideo=0;    //�����3��
-//        int count_video_cievideo=0;       //�����4��
-//        int count_video_hsbcvideo=0;      //�����5��
-//        int count_video_stlvideo=0;       //�����6��
-//        int count_video_renwenvideo=0;    //�����7��
-//        int count_video_leisurevideo=0;   //�����8��
+//    	int count_all=0;                 
+//        int count_news_yaowen=0;			 
+//        int count_pkusz_notification=0;    
+//        int count_video_schoolvideo=0;    
+//        int count_video_cievideo=0;   
+//        int count_video_hsbcvideo=0;      
+//        int count_video_stlvideo=0;      
+//        int count_video_renwenvideo=0;     
+//        int count_video_leisurevideo=0;    
     	Map<String,Integer> subCnt=new HashMap<String,Integer>();
         List<User> userList = userService.getUsers();
         for (User user : userList) {        	
         	String subscriptions = user.getSubscriptions();
-        	//System.out.println("���û���subscriptions�ǣ�"+subscriptions);
         	if(subscriptions!=null){
 	        	String[] userSub = subscriptions.split(";");
 	        	for(int i=0;i<userSub.length;i++) {
@@ -76,15 +75,6 @@ public class SubscriptionsController extends MultiActionController {
         	}
         	
         }
-//        System.out.println("����������Ŀ�Ĺ��У�"+count_all+" ��");
-//        System.out.println("��������Ҫ����Ŀ�Ĺ��У�"+count_news_yaowen+" ��");
-//        System.out.println("����֪ͨ������Ŀ�Ĺ��У�"+count_pkusz_notification+" ��");
-//        System.out.println("����У԰��Ƶ��Ŀ�Ĺ��У�"+count_video_schoolvideo+" ��");
-//        System.out.println("������ϢѧԺ��Ƶ��Ŀ�Ĺ��У�"+count_video_cievideo+" ��");
-//        System.out.println("���Ļ����ѧԺ��Ƶ��Ŀ�Ĺ��У�"+count_video_hsbcvideo+" ��");
-//        System.out.println("���Ĺ�ʷ�ѧԺ��Ƶ��Ŀ�Ĺ��У�"+count_video_stlvideo+" ��");
-//        System.out.println("��������ѧԺ��Ƶ��Ŀ�Ĺ��У�"+count_video_renwenvideo+" ��");
-//        System.out.println("����������Ƶ��Ŀ�Ĺ��У�"+count_video_leisurevideo+" ��");
 
         List<SubscriptionsVO> subscriptionsList = new ArrayList<SubscriptionsVO>();
         for(Map.Entry<String, Integer>entry:subCnt.entrySet()){

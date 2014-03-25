@@ -22,14 +22,12 @@ public class NotificationDaoHibernate extends HibernateDaoSupport implements
 	}
 
 	
-	//根据Id查询notification
 	public NotificationMO queryNotificationById(Long id) {
 		NotificationMO notificationMO = (NotificationMO) getHibernateTemplate()
 				.get(NotificationMO.class, id);
 		return notificationMO;
 	}
 
-	//保存notification
 	public void saveNotification(NotificationMO notificationMO) {
 		getHibernateTemplate().saveOrUpdate(notificationMO);
 		getHibernateTemplate().flush();
@@ -40,7 +38,6 @@ public class NotificationDaoHibernate extends HibernateDaoSupport implements
 		getHibernateTemplate().flush();
 	}
 
-	//根据用户名查询notification
 	@SuppressWarnings("unchecked")
 	public List<NotificationMO> queryNotificationByUserName(String userName,
 			String messageId) {
@@ -51,23 +48,20 @@ public class NotificationDaoHibernate extends HibernateDaoSupport implements
 						params);
 	}
 
-	//查询所有notification记录
 	@SuppressWarnings("unchecked")
 	public List<NotificationMO> getNotifications() {
 		return getHibernateTemplate().find(
 						"from NotificationMO n order by n.createTime desc");
 	}
 	
-	//根据messageId和status计数
 	@SuppressWarnings("unchecked")
 	public int queryCountByStatus(String status, String messageId) {
 		Object[] params = new Object[] {status, messageId};
 		List<NotificationMO> findList = getHibernateTemplate().find("from NotificationMO n where n.status=? and n.messageId=? order by n.messageId desc",params);
 		int findResult=findList.size();
-		return findResult; //返回查找到得相应messageId和相应status的消息数
+		return findResult;  
 	}
 
-	//根据notification查询notification
 	@SuppressWarnings("unchecked")
 	public List<NotificationMO> queryNotification(NotificationMO mo) {
 		return getHibernateTemplate().findByExample(mo);

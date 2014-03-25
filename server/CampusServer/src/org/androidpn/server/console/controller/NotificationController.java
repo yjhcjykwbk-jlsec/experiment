@@ -58,30 +58,28 @@ public class NotificationController extends MultiActionController {
     
     
     public ModelAndView get(HttpServletRequest request, HttpServletResponse response) throws Exception{
-    	// ��ȡandroid�ͻ��˷����Ķ��Ļ�ȡ��������
     	System.out.println("notification get====");
-    	String subscriber = ServletRequestUtils.getStringParameter(request, "subscriber"); //������
-    	String subscriptions = ServletRequestUtils.getStringParameter(request, "subscriptions"); //Ҫ���Ļ�ȡ���ĵ�topic
+    	String subscriber = ServletRequestUtils.getStringParameter(request, "subscriber");  
+    	String subscriptions = ServletRequestUtils.getStringParameter(request, "subscriptions");  
     	String apiKey = Config.getString("apiKey", "");
     	
     	ServletOutputStream out = response.getOutputStream();
     	
-    	//������ݿ�
         userService = ServiceLocator.getUserService();
         try{
 	        User us = userService.getUserByUsername(subscriber);
 	        us.setSubscriptions(subscriptions);
 	        userService.saveUser(us);
 	        response.setContentType("text/plain");
-			out.print("subscribe:success"); //���ĳɹ�
+			out.print("subscribe:success");  
 			out.flush();
         }catch(UserNotFoundException e){
         	response.setContentType("text/plain");
-			out.print("subscribe:failure"); // ����ʧ��
+			out.print("subscribe:failure");  
 			out.flush();
         }catch(UserExistsException e){
         	response.setContentType("text/plain");
-			out.print("subscribe:failure"); //����ʧ��
+			out.print("subscribe:failure"); 
 			out.flush();
         }
     	
@@ -100,10 +98,8 @@ public class NotificationController extends MultiActionController {
         String apiKey = Config.getString("apiKey", "");
 
 	        /**
-	         * Ϊ��������������Ժ��ҳ��push��վ����Ƶ��ص�ƽ̨������Ϣ
 	         */
 	        System.out.println("NotificationController.send#"+request.getCharacterEncoding());  // UTF-8
-	        //��ȡPuSH subcriber post������feed��Ϣ
 	        if(request.getParameter("chat")!=null){
 	        	//handle with a chat request
 	        	String fromUsername="",
@@ -125,44 +121,41 @@ public class NotificationController extends MultiActionController {
 	        System.out.println("---------------------feedLink------------------:"+feedLink);
 	     
 	        
-	        //�����Ӧ���ĵ��û�
-	        //��������ͷ��� http://xx.xx.xx.xx/videoMonitor/monitor_laboratory/xxxx
+	        // http://xx.xx.xx.xx/videoMonitor/monitor_laboratory/xxxx
 	        if(feedLink.contains("videoMonitor")){
 	        	//timeStart = System.currentTimeMillis();
         		notificationManager.sendMyNotifications(apiKey, feedTitle, feedContent, feedLink, "monitor_all"); 
         		response.setContentType("text/plain");
         		ServletOutputStream out = response.getOutputStream();
-        		out.print("getNotice:success"); //���ĳɹ�
+        		out.print("getNotice:success");  
     			out.flush();
 	        }
 	       
-	        //����������Ƶ��վ
 	        else if(feedLink.contains("push.pkusz.edu.cn")){
-	        	/*if(feedLink.contains("videocourseware")){ //������Ƶ�μ�
+	        	/*if(feedLink.contains("videocourseware")){  
 	        		notificationManager.sendMyNotifications(apiKey, feedTitle, feedContent, feedLink, "video_videocourseware"); 
 	        	}
 	        	else
-	        	*/ if(feedLink.contains("leisurevideo")){ //����������Ƶ
+	        	*/ if(feedLink.contains("leisurevideo")){  
 	        		notificationManager.sendMyNotifications(apiKey, feedTitle, feedContent, feedLink, "video_leisurevideo"); 
 	        	}
-	        	else if(feedLink.contains("schoolvideo")){ //����У԰��Ƶ
+	        	else if(feedLink.contains("schoolvideo")){  
 	        		notificationManager.sendMyNotifications(apiKey, feedTitle, feedContent, feedLink, "video_schoolvideo"); 
 	        	}
-	        	else if(feedLink.contains("cievideo")){ //��ϢѧԺ��Ƶ�μ�
+	        	else if(feedLink.contains("cievideo")){ 
 	        		notificationManager.sendMyNotifications(apiKey, feedTitle, feedContent, feedLink, "video_cievideo"); 
 	        	}
-	        	else if(feedLink.contains("hsbcvideo")){ //�����ѧԺ��Ƶ�μ�
+	        	else if(feedLink.contains("hsbcvideo")){  
 	        		notificationManager.sendMyNotifications(apiKey, feedTitle, feedContent, feedLink, "video_hsbcvideo"); 
 	        	}
-	        	else if(feedLink.contains("stlvideo")){ //��ʷ�ѧԺ��Ƶ�μ�
+	        	else if(feedLink.contains("stlvideo")){  
 	        		notificationManager.sendMyNotifications(apiKey, feedTitle, feedContent, feedLink, "video_stlvideo"); 
 	        	}
-	        	else if(feedLink.contains("renwenvideo")){ //����ѧԺ��Ƶ�μ�
+	        	else if(feedLink.contains("renwenvideo")){  
 	        		notificationManager.sendMyNotifications(apiKey, feedTitle, feedContent, feedLink, "video_renwenvideo"); 
 	        	}
 	        }
 	              
-	        //����Ӣ����վ
 	        /*
 	    	else if(feedLink.contains("english.pkusz.edu.cn")){
 	    			if(feedLink.contains("News&Bulletin")){ // News&Bulletin
@@ -171,31 +164,28 @@ public class NotificationController extends MultiActionController {
 	    	}
 	    	*/
 	    	
-	        //��������������
 	    	else if(feedLink.contains("news.pkusz.edu.cn")){
-	    			if(feedLink.contains("����Ҫ��")){ //����Ҫ��
+	    			if(feedLink.contains("news")){  
 	    				notificationManager.sendMyNotifications(apiKey, feedTitle, feedContent, feedLink, "news_yaowen");
 	    			}
 	    			/*
-	    			else if(feedLink.contains("ר�ⱨ��")){ //ר�ⱨ��
+	    			else if(feedLink.contains("ר 
 	    	    		notificationManager.sendMyNotifications(apiKey, feedTitle, feedContent, feedLink, "news_zhuanti");
 	    	    	}
-	    			else if(feedLink.contains("��������")){ //��������
+	    			else if(feedLink.contains(" 
 	    	    		notificationManager.sendMyNotifications(apiKey, feedTitle, feedContent, feedLink, "news_renwu");
 	    	    	}
-	    			else if(feedLink.contains("�������")){ //�������
+	    			else if(feedLink.contains(" 
 	    	    		notificationManager.sendMyNotifications(apiKey, feedTitle, feedContent, feedLink, "news_dianshi");
 	    	    	}
 	    	    	*/
 	    	}
 	    	
-	        //���Ա�������Ժ������֪ͨ����
 	    	else if(feedLink.contains("www.pkusz.edu.cn")){
-	    		if(feedLink.contains("֪ͨ����")){ //֪ͨ����
+	    		if(feedLink.contains("֪ͨnoti")){  
 	    			notificationManager.sendMyNotifications(apiKey, feedTitle, feedContent, feedLink, "pkusz_notification");
 	    		}
 	    	}            
-	        //���Ա����վƽ̨��ͳͳ����
 	    	else {
 	    		String feedSection = ServletRequestUtils.getStringParameter(request, "feedSection");
 	    		if(feedSection!=null&&feedSection!="")
@@ -207,31 +197,26 @@ public class NotificationController extends MultiActionController {
     	return null;
     }
 
-    //�ں�̨���淢����Ϣ
     public ModelAndView admin_send(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         String apiKey = Config.getString("apiKey", "");
 
     	String broadcast = ServletRequestUtils.getStringParameter(request,"broadcast");
     	/**
-    	 * �ӱ�������ֱ��������Ϣ
     	 */
-    	System.out.println("�յ���broadcast�ǣ�"+broadcast);
+    	System.out.println(" broadcast "+broadcast);
     	if(broadcast!=null){
 	        String username = ServletRequestUtils.getStringParameter(request,"username");
 	        String title = ServletRequestUtils.getStringParameter(request, "title");
 	        String message = ServletRequestUtils.getStringParameter(request, "message");
 	        String uri = ServletRequestUtils.getStringParameter(request, "uri");
 	        
-	        //���������û�
 	        if (broadcast.equalsIgnoreCase("Y")) {	        	
 	        	timeStart = System.currentTimeMillis();
 	        	
 	            notificationManager.sendBroadcast(apiKey, title, message, uri);
-	        //���������û�
 	        }else if (broadcast.equalsIgnoreCase("A")) {
 	            notificationManager.sendAllBroadcast(apiKey, title, message, uri);
-	        //����ָ���û�
 	        }else if (broadcast.equalsIgnoreCase("N")){	        	
 	            notificationManager.sendNotifications(apiKey, username, title, message, uri);
 	        }

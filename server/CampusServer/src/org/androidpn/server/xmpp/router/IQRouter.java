@@ -115,7 +115,7 @@ public class IQRouter {
                 	String id = packet.getID();
                 	JID from  = packet.getFrom();
                 	String userName = from.getNode();
-                	 //TODO FIXME 接收回执之后做处理
+                	 //TODO FIXME  
                 	updateNotification(id,userName);
                 }
             } else {
@@ -203,32 +203,25 @@ public class IQRouter {
     }
     
     /**
-     * 此方法可能不够严谨，因为可能查询到多条记录，那样就会导致修改到错误的记录。
-     * 比如说a,b 2条记录，碰巧ID和用户名都一样 ，此时我查看的是a记录，但是查询出来的是b记录，那么通知状态就修改错了。
      * @param id
      * @param userName
      */
     private void updateNotification(String id,String userName){
-    	//根据用户名和通知ID查询该用户最新的通知
     	NotificationMO notificationMO = notificationService.queryNotificationByUserName(userName, id);
     	if(notificationMO != null){
-    		//如果之前的通知状态为已接收，收到回执后改称已查看，否则改称已接收。    		
         	if(NotificationMO.STATUS_RECEIVE.equals(notificationMO.getStatus())){
-        		//设置状态为已查看
             	notificationMO.setStatus(NotificationMO.STATUS_READ);
         	}else{
-        		//这里设置一个接收时间点
         		timeEnd = System.currentTimeMillis();
         		long timeStart = NotificationController.timeStart;
         		long delay = (timeEnd-timeStart)/2;
-        		System.out.println("-----服务器发送通知的时间点是："+timeStart+"------");
-        		System.out.println("-----接收到回执通知时间点是："+timeEnd+"-------");
-        		System.out.println("-----共计延迟："+delay+"------");
+        		System.out.println("----- "+timeStart+"------");
+        		System.out.println("----- "+timeEnd+"-------");
+        		System.out.println("---- "+delay+"------");
             	notificationMO.setStatus(NotificationMO.STATUS_RECEIVE);            	
             	
         	}
 
-        	//设置更新时间
         	notificationMO.setUpdateTime(new Timestamp(System.currentTimeMillis()));
         	notificationService.updateNotification(notificationMO);
     	}

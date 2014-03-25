@@ -21,12 +21,11 @@ public class ReplyController extends MultiActionController {
     public ReplyController() {
     }
     
-    //自定义,从android获取用户的留言 
     public ModelAndView list(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
     	String userName = ServletRequestUtils.getStringParameter(request, "androidName");
     	String userReply = ServletRequestUtils.getStringParameter(request, "reply");
-    	String displayReply = userName+" 的留言："+userReply;
+    	String displayReply = userName+" 锟斤拷锟斤拷锟皆ｏ拷"+userReply;
     	System.out.println(displayReply);
     	List<UserReplyVO> replyList = new ArrayList<UserReplyVO> ();
     	UserReplyVO ur = new UserReplyVO();

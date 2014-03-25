@@ -133,7 +133,6 @@ public class UserController extends MultiActionController {
     }
     
     
-  //�Զ���,��http://push.pkusz.edu.cn��ȡ���û�������룬�����浽��ݿ�    
     public ModelAndView saveUser(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
     	String userName = ServletRequestUtils.getStringParameter(request, "userName");

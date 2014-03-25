@@ -16,10 +16,10 @@
     <string name="descriptionKey">descriptionKey</string>
     <string name="title_activity_web_view">Recent posts</string>
     <!-- <string name="upload_uri">http://219.223.195.133:8080/upload.do</string> -->
-    <string name="upload_uri">http://219.223.195.57/pic/upload.php</string>
-    <string name="list_uri">http://219.223.195.57:8080/upload.do</string>
-    <string name="xmppserver">http://219.223.195.57</string>
-    <string name="androidpnserver">http://219.223.195.57:8080/</string>
+    <string name="upload_uri">http://219.223.194.207/pic/upload.php</string>
+    <string name="list_uri">http://219.223.194.207:8080/upload.do</string>
+    <string name="xmppserver">http://219.223.194.207</string>
+    <string name="androidpnserver">http://219.223.194.207:8080/</string>
     <string name="sending_ok">SendingOk</string>
     <string name="title_activity_barcode_capture">BarcodeCaptureActivity</string>
     <string name="action_settings">Settings</string>

@@ -19,6 +19,7 @@ import java.util.HashMap;
 import org.androidpn.client.Constants;
 import org.androidpn.client.NotificationDetailsActivity;
 import org.androidpn.client.ServiceManager;
+import org.androidpn.data.PacketListenerManager;
 import org.androidpn.util.ActivityUtil;
 import org.androidpn.util.GetPostUtil;
 import org.androidpn.util.IsNetworkConn;
@@ -45,6 +46,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener; 
+import android.widget.Toast;
 
 /**
  * This is an androidpn client demo application.
@@ -165,7 +167,7 @@ public class DemoAppActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent subIntent = new Intent(DemoAppActivity.this, ChatActivity.class);
+				Intent subIntent = new Intent(DemoAppActivity.this, ChatsActivity.class);
 				Bundle bd = new Bundle();
 				bd.putString("userID", originSharedPrefs.getString(Constants.XMPP_USERNAME, " "));
 				bd.putString("Pwd", originSharedPrefs.getString(Constants.XMPP_PASSWORD, " "));

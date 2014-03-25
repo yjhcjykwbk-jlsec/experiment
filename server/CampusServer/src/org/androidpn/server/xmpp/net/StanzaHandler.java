@@ -199,23 +199,17 @@ public class StanzaHandler {
         router.route(packet);
         session.incrementClientPacketCount();
         
-        //�û����ߣ���ѯ���û���δ������Ϣ�����·��͡�
         if(session.getStatus() == Session.STATUS_AUTHENTICATED && packet.isAvailable()){
-        	//��ȡ�û���
         	String userName = session.getAddress().getNode();
         	if(null != userName && !"".equals(userName)){
-        		//��ѯ���û�δ���͵�֪ͨ
         		NotificationMO mo = new NotificationMO();
         		mo.setUsername(userName);
         		mo.setStatus(NotificationMO.STATUS_NOT_SEND);
         		List<NotificationMO> list = notificationService.queryNotification(mo);
         		
-        		// ע�͵����Ͳ�����������Ϣ!!!
         		/*        		
         		if(!list.isEmpty()){
-        			//ѭ�����͸��û�������������Ϣ
         			for (NotificationMO notificationMO : list) {
-        				//����֪ͨ
         				notificationManager.sendOfflineNotification(notificationMO);
 					}
         		}else{

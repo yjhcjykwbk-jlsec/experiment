@@ -151,7 +151,7 @@ public class XmppServer {
 /*    private void locateServer() throws FileNotFoundException {
     	Context context = new WebAppContext(contexts, homeDir + File.separator
                 + );
-        String baseDir = "F:/Java软件/应用软件/Tomcat 6.0/webapps/ROOT";
+        String baseDir = "F:/Java Tomcat 6.0/webapps/ROOT";
         log.debug("base.dir=" + baseDir);
 
         if (serverHomeDir == null) {

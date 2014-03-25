@@ -78,7 +78,6 @@ public class XmppIoHandler implements IoHandler {
      */
     public void sessionCreated(IoSession session) throws Exception {
         log.debug("sessionCreated()...");
-        // 100��û�յ��ͻ�����������Ϊ�ͻ��˵���
         session.getConfig().setIdleTime(IdleStatus.BOTH_IDLE,100);
     }
 
@@ -167,8 +166,8 @@ public class XmppIoHandler implements IoHandler {
         
         
       
-        System.out.println("\n\n\nIOHandler��NotificationManager�ۻ�"+NotificationManager.sessionCounter+"����Ϣ����ƽ���ӳ٣�"+NotificationManager.difTime+"����\n\n");
-        //System.out.println("\n\n\n\n\nIOHandler IQRouter�ۼƹ�"+IQRouter.counter+"����Ϣ����ƽ���ӳ٣�"+IQRouter.thisdifTime+"����\n\n\n\n\n");
+        System.out.println("\n\n\nIOHandler NotificationManager "+NotificationManager.sessionCounter+" "+NotificationManager.difTime+" \n\n");
+        //System.out.println("\n\n\n\n\nIOHandler IQRoute "+IQRouter.counter+" "+IQRouter.thisdifTime+" \n\n\n\n\n");
         
     }
 

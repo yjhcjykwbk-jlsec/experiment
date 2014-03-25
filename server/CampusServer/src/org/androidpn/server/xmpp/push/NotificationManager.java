@@ -84,7 +84,6 @@ public class NotificationManager {
 		log.debug("sendMSG()...");
 		IQ notificationIQ = createNotificationIM(apiKey, fromUsername, message,time);
 		ClientSession session = sessionManager.getSession(toUsername);
-		// ����֪ͨ����
 		NotificationMO notificationMO = new NotificationMO(apiKey, "",
 				message, "chat");
 		try {
@@ -95,20 +94,17 @@ public class NotificationManager {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-				// ����Ϣ��ID��ӵ�֪ͨ����
 		CopyMessageUtil.IQ2Message(notificationIQ, notificationMO);
 	
-		//���Ự���ߣ�����״̬
 		if (session.getPresence().isAvailable()) {
 			notificationMO.setStatus(NotificationMO.STATUS_SEND);
 			notificationIQ.setTo(session.getAddress());
 			session.deliver(notificationIQ);
-		} else { //���Ự�����ߣ�δ����״̬
+		} else { 
 			notificationMO.setStatus(NotificationMO.STATUS_NOT_SEND);
 		}
 	
 		try{
-			//�������
 			notificationService.saveNotification(notificationMO);
 		}catch(Exception e){
 			log.warn(" notifications insert to database failure!!");
@@ -135,7 +131,6 @@ public class NotificationManager {
 		IQ notificationIQ = createNotificationIQ(apiKey, title, message, uri);
 
 			for (ClientSession session : sessionManager.getSessions()) {
-				// ����֪ͨ����
 				NotificationMO notificationMO = new NotificationMO(apiKey, title,
 						message, uri);
 				try {
@@ -146,24 +141,20 @@ public class NotificationManager {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				// ����Ϣ��ID��ӵ�֪ͨ����
 				CopyMessageUtil.IQ2Message(notificationIQ, notificationMO);
 	
-				//���Ự���ߣ�����״̬
 				if (session.getPresence().isAvailable()) {
 					notificationMO.setStatus(NotificationMO.STATUS_SEND);
 					notificationIQ.setTo(session.getAddress());
 					session.deliver(notificationIQ);
-				} else { //���Ự�����ߣ�δ����״̬
+				} else { 
 					notificationMO.setStatus(NotificationMO.STATUS_NOT_SEND);
 				}
-				//��ÿ��֪ͨ���뼯����
 				notificationMOs.add(notificationMO);
-			} // for session����
+			} // for session 
 
 	
 			try{
-				//�������
 				notificationService.createNotifications(notificationMOs);
 			}catch(Exception e){
 				log.warn(" notifications insert to database failure!!");
@@ -172,10 +163,8 @@ public class NotificationManager {
 		
 	}
 	
-	//�������û�����֪ͨ
 	public void sendAllBroadcast(String apiKey, String title, String message,
 			String uri) {
-		//�������֪ͨ����֮�����Ƶ�����������Ϊ�˱�֤ͬһ������͵�֪ͨID��һ��ġ�ûʲô����
 		IQ notificationIQ = createNotificationIQ(apiKey, title, message, uri);
 		List<User> list = userService.getUsers();
 		for (User user : list) {
@@ -184,7 +173,6 @@ public class NotificationManager {
 		
 	}
 	
-	//�Զ��壬��ݶ���������֪ͨ
 	public void sendMyNotifications(String apiKey, String title, String message, String uri, String subscription){
 		IQ notificationIQ = createNotificationIQ(apiKey, title, message, uri);
 		try {
@@ -201,7 +189,7 @@ public class NotificationManager {
 
 	/**
 	 * Sends a newly created notification message to the specific user.
-	 *  ����֪ͨ���ض�client
+	 *   client
 	 * @param apiKey
 	 *            the API key
 	 * @param title
@@ -215,18 +203,13 @@ public class NotificationManager {
 			String title, String message, String uri, IQ notificationIQ) {
 		log.debug("sendNotifcationToUser()...");
 		ClientSession session = sessionManager.getSession(username);
-		// ����֪ͨ����
 		NotificationMO notificationMO = new NotificationMO(apiKey, title,
 				message, uri);
-		//������
 		notificationMO.setUsername(username);
-		// ����Ϣ��ID��ӵ�֪ͨ����
 		CopyMessageUtil.IQ2Message(notificationIQ, notificationMO);
 		if (session != null && session.getPresence().isAvailable()) {
 			notificationIQ.setTo(session.getAddress());
-			//������Ϣ�������ʱ
 			session.deliver(notificationIQ);
-			//�ѷ���״̬
 			notificationMO.setStatus(NotificationMO.STATUS_SEND);
 			try {
 				notificationMO.setClientIp(session.getHostAddress());
@@ -235,11 +218,9 @@ public class NotificationManager {
 				e.printStackTrace();
 			}
 		}else{
-			//δ����
 			notificationMO.setStatus(NotificationMO.STATUS_NOT_SEND);
 		}
 		try{
-			//������ݿ�
 			notificationService.saveNotification(notificationMO);
 		}catch(Exception e){
 			log.warn(" notifications insert to database failure!!");
@@ -296,9 +277,7 @@ public class NotificationManager {
 	
 	public void sendNotifications(String apiKey, String username,
 			String title, String message, String uri){
-		//�������֪ͨ����֮�����Ƶ�����������Ϊ�˱�֤ͬһ������͵�֪ͨID��һ��ġ�ûʲô����
 		IQ notificationIQ = createNotificationIQ(apiKey, title, message, uri);
-		//����Ƕ���û�����ݡ�;���ָ� ��ѭ������                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
 		if(username.indexOf(";")!=-1){
 			String[] users = username.split(";");
 			for (String user : users) {
@@ -309,22 +288,18 @@ public class NotificationManager {
 		}
 	}
 	
-	//����������Ϣ�����ͳɹ��󣬸�Ϊ�ѷ���״̬
 	public void sendOfflineNotification(NotificationMO notificationMO ) {
 		log.debug("sendOfflineNotifcation()...");
 		IQ notificationIQ = createNotificationIQ(notificationMO.getApiKey(), notificationMO.getTitle(), notificationMO.getMessage(), notificationMO.getUri());
-		//�����֪ͨID�滻��ԭ����ID
 		notificationIQ.setID(notificationMO.getMessageId());
 		ClientSession session = sessionManager.getSession(notificationMO.getUsername());
 		if (session != null && session.getPresence().isAvailable()) {
 			notificationIQ.setTo(session.getAddress());
 			session.deliver(notificationIQ);
 			try{
-				//�޸�֪ͨ״̬Ϊ�ѷ���
 				notificationMO.setStatus(NotificationMO.STATUS_SEND);
 				//IP
 				notificationMO.setClientIp(session.getHostAddress());
-				//��Դ
 				notificationMO.setResource(session.getAddress().getResource());
 				notificationService.updateNotification(notificationMO);
 			}catch (Exception e) {

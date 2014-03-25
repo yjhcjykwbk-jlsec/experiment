@@ -26,18 +26,15 @@ public class AdminLoginController  extends MultiActionController  {
     	 String adminPwd = request.getParameter("adminpwd");
     	 String encryptedPW = null;
     	 HttpSession session = request.getSession();
-    	 //�ǹ���Ա��½
     	 if(adminName!=null&&adminPwd!=null&&adminName.equals("pushadmin")){
-    		 	//������м���
 				try {
 					encryptedPW = toMD5((adminPwd).getBytes("GBK"));
 				} catch (UnsupportedEncodingException e) {
 					e.printStackTrace();
 				}
-			System.out.println("MD5���ܺ�����룺"+encryptedPW);
-			//����ƥ��ɹ�
+			System.out.println("MD5"+encryptedPW);
 			if(encryptedPW.equals(admin.getPassword())){
-				System.out.println("admin��֤�ɹ�!");				
+				System.out.println("admin !");				
 				session.setAttribute("Login", "OK");
 			}
 			else{

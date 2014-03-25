@@ -97,62 +97,7 @@
     android:layout_height="fill_parent"
     android:background="@drawable/bg" >
 
-    <RelativeLayout
-        android:id="@+id/rl_layout"
-        android:layout_width="fill_parent"
-        android:layout_height="30dp"
-        android:background="@color/transparent" >
-
-        <!-- android:background="@drawable/title" -->
-
-        <Button
-            android:id="@+id/HomeBtn"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:background="@color/transparent"
-            android:gravity="center_vertical"
-            android:paddingLeft="18dp"
-            android:text="返回" />
-
-<!--         android:background="@drawable/selector_btn_back" -->
-
-<!--         <TextView -->
-<!--         android:id="@+id/textView1" -->
-<!--         android:layout_width="wrap_content" -->
-<!--         android:layout_height="wrap_content" -->
-<!--         android:layout_centerInParent="true" -->
-<!--         android:text="聊天" /> style="@style/my_txt" -->
-  		
-        <Button
-            android:id="@+id/FindUserBtn"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:background="@color/transparent"
-            android:text="查找" />
-
-        <Button
-            android:id="@+id/FriendListBtn"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/FindUserBtn"
-            android:background="@color/transparent"
-            android:text="通讯录" />
-
-        <Button
-            android:id="@+id/ChatListBtn"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/FriendListBtn"
-            android:background="@color/transparent"
-            android:text="会话列表" />
-
-    </RelativeLayout>
+    
     
 	<ListView
 	    android:id="@+id/MessageListView"

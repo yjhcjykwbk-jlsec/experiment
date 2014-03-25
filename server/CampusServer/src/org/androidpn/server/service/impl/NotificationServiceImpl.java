@@ -18,7 +18,6 @@ import org.apache.commons.logging.LogFactory;
 public class NotificationServiceImpl implements NotificationService {
 	protected final Log log = LogFactory.getLog(getClass());
 
-	//统计各消息的各种状态的计数
 	public int queryCountByStatus(String status, String messageId) {
 		log.info(" list messageid:"+messageId+" &status="+status);
 		int countResult = notificationDao.queryCountByStatus(status, messageId);

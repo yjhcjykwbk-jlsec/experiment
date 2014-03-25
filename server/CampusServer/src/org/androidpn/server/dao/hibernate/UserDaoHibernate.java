@@ -45,18 +45,15 @@ public class UserDaoHibernate extends HibernateDaoSupport implements UserDao {
     }
 
     
-    //ɾ���û�
     public void removeUser(Long id) {
         getHibernateTemplate().delete(getUser(id));
     }
 
-    //�ж��Ƿ�����û�
     public boolean exists(Long id) {
         User user = (User) getHibernateTemplate().get(User.class, id);
         return user != null;
     }
 
-    //���������û�
     @SuppressWarnings("unchecked")
     public List<User> getUsers() {
         return getHibernateTemplate().find(
@@ -64,7 +61,6 @@ public class UserDaoHibernate extends HibernateDaoSupport implements UserDao {
     }
     
    
-    //��ݶ������������û�
     @SuppressWarnings("unchecked")
     public List<User> getUsersBySubscriptions(String subscription) throws UserNotFoundException{
     	System.out.println("find subscriptions:"+subscription);
@@ -78,7 +74,6 @@ public class UserDaoHibernate extends HibernateDaoSupport implements UserDao {
 		}    	    	
     }
     
-    //����û�������û�
     @SuppressWarnings("unchecked")
     public User getUserByUsername(String username) throws UserNotFoundException{
         List users = getHibernateTemplate().find("from User where username=?",

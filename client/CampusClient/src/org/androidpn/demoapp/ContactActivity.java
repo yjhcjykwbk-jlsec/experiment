@@ -49,7 +49,7 @@ public class ContactActivity extends Activity {
 				Log.i(LOGTAG,"item "+arg2+" clicked");
 				User u=(User)arg0.getAdapter().getItem(arg2);
 				if(u!=null&&u.getName()!=null){
-					Intent intent=new Intent(ContactActivity.this,ChatActivity.class);
+					Intent intent=new Intent(ContactActivity.this,ChatsActivity.class);
 					Bundle bundle=ContactActivity.this.getIntent().getExtras();
 					bundle.putString("recipient", u.getName());
 					intent.putExtras(bundle);

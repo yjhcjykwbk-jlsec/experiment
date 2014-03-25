@@ -10,6 +10,61 @@
         android:gravity="fill_vertical|top"
         android:orientation="vertical" >
 
+        <RelativeLayout
+            android:id="@+id/rl_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="30dp"
+            android:background="@color/transparent" >
+
+            <!-- android:background="@drawable/title" -->
+
+            <Button
+                android:id="@+id/HomeBtn"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:background="@color/transparent"
+                android:gravity="center_vertical"
+                android:paddingLeft="18dp"
+                android:text="返回" />
+
+            <!-- android:background="@drawable/selector_btn_back" -->
+
+
+            <!-- <TextView -->
+            <!-- android:id="@+id/textView1" -->
+            <!-- android:layout_width="wrap_content" -->
+            <!-- android:layout_height="wrap_content" -->
+            <!-- android:layout_centerInParent="true" -->
+            <!-- android:text="聊天" /> style="@style/my_txt" -->
+
+            <Button
+                android:id="@+id/FindUserBtn"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@color/transparent"
+                android:text="查找" />
+
+            <Button
+                android:id="@+id/FriendListBtn"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:background="@color/transparent"
+                android:text="通讯录" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@+id/FriendListBtn"
+                android:layout_below="@+id/FriendListBtn"
+                android:text="会话列表"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </RelativeLayout>
     </LinearLayout>
 
     <ListView
@@ -18,17 +73,9 @@
         android:layout_height="458dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/ChatTitleLabel"
-        android:dividerHeight="5dp" >
-
+        android:layout_below="@+id/linearLayout1"
+      	android:divider="@null"
+	    android:dividerHeight="5dp" >
     </ListView>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:text="会话列表"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

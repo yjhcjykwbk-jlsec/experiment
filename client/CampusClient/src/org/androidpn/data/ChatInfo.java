@@ -6,14 +6,14 @@ import java.util.Date;
  * related to chat message list
  */
 public class ChatInfo {
-	String username;//the man you're talking with
-	String chatXml;
-	Date time;
-	String packetID;
+	private String username;//the man you're talking with
+	private String chatXml;
+	private Date time;
+	private String packetID;
 	//发出
-	boolean isSelf;
+	private boolean isSelf;
 	//自己发送的，是否发送成功
-	boolean sent;
+	private boolean sent;
 	/*
 	 * constructor of a message record
 	 */
