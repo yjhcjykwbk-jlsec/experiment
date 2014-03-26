@@ -60,22 +60,24 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignRight="@+id/FriendListBtn"
-                android:layout_below="@+id/FriendListBtn"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
                 android:text="会话列表"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textSize="13dp" />
+
         </RelativeLayout>
     </LinearLayout>
 
     <ListView
         android:id="@+id/ChatListView"
         android:layout_width="wrap_content"
-        android:layout_height="458dp"
+        android:layout_height="450dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/linearLayout1"
-      	android:divider="@null"
-	    android:dividerHeight="5dp" >
+        android:divider="@null"
+        android:dividerHeight="5dp" >
+
     </ListView>
 
 </RelativeLayout>

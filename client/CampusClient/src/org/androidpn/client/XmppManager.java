@@ -209,6 +209,7 @@ public class XmppManager {
             if (!reconnection.isAlive()) {
                 reconnection.setName("Xmpp Reconnection Thread");
                 reconnection.start();
+                Log.i(LOGTAG,"startReconnectionThread");
             }
         }
     }
@@ -217,6 +218,7 @@ public class XmppManager {
             if (reconnection.isAlive()) {
                 reconnection.setName("Xmpp Reconnection Thread");
                 reconnection.interrupt();
+                Log.i(LOGTAG,"pauseReconnectionThread");
             }
         }
     }
@@ -290,7 +292,7 @@ public class XmppManager {
      * notice connecttask may renew a connection
      */
     private void submitConnectTask() {
-        Log.d(LOGTAG, "submitConnectTask()...");
+       // Log.d(LOGTAG, "submitConnectTask()...");
         addTask(new ConnectTask());
     }
     
@@ -298,7 +300,7 @@ public class XmppManager {
      * notice: submitConnectTask -> connecttask may renew a connection
      */
     private void submitRegisterTask() {
-        Log.d(LOGTAG, "submitRegisterTask()...");
+      //  Log.d(LOGTAG, "submitRegisterTask()...");
         submitConnectTask();
         addTask(new RegisterTask());
     }
@@ -310,7 +312,7 @@ public class XmppManager {
      * then run a login in task  
      */
     private void submitLoginTask() {
-        Log.d(LOGTAG, "submitLoginTask()...");
+       // Log.d(LOGTAG, "submitLoginTask()...");
         submitRegisterTask();
         addTask(new LoginTask());
     }

@@ -56,6 +56,7 @@ import android.view.inputmethod.InputMethodManager;
 
 @SuppressLint("NewApi")
 public class LoginActivity extends Activity {
+	private static String LOGTAG="LoginActivity";
 	private SharedPreferences originSharedPrefs;
 	private TextView txt_info = null;
 	private Button btn_login = null;
@@ -106,7 +107,7 @@ public class LoginActivity extends Activity {
 			startConnect(); // 开始连接androidpn server
 			Intent intent = new Intent(LoginActivity.this,
 					DemoAppActivity.class);
-			LoginActivity.this.startActivity(intent);
+			LoginActivity.this.startActivityForResult(intent,1);
 //			LoginActivity.this.finish();
 		}
 
@@ -215,6 +216,12 @@ public class LoginActivity extends Activity {
 				passWord.setText("");
 			}
 		});
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data){
+		Log.i(LOGTAG,"onActivityResult");
+		LoginActivity.this.finish();
 	}
 
 	/*
@@ -333,11 +340,12 @@ public class LoginActivity extends Activity {
         	Log.i("loginactivity#serviceconnection#onservicedisconnected","service is disconnected");
         }
     };
-    
     @Override
     public void onDestroy(){
     	super.onDestroy();
     	unbindService(myConnection);
+    	stopService(new Intent(LoginActivity.this,NotificationService.class));
+    	Toast.makeText(this, "loginActivity has destroyed",Toast.LENGTH_SHORT).show();
     }
 
 }

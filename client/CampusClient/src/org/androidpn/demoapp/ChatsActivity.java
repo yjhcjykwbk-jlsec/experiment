@@ -24,6 +24,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -48,7 +49,6 @@ public class ChatsActivity extends Activity{
 	private String PASSWORD;
 	private List<User> friendList;
 	private Map<String,ChatInfo> latestChats;
-	private MyHandler handler=new MyHandler();
     private MessagePacketListener plManager;
 	private ChatViewController chatAct=null;
 	private Integer viewState=1;//indicate which view activity currently is in
@@ -56,8 +56,8 @@ public class ChatsActivity extends Activity{
 	boolean inited=false;
 	
 	View chatsView=null;
-	Map <String,View> chatViews=null;
-	Map <String,List> messageLists=null;
+	Map <String,View> chatViews=new HashMap();
+	Map <String,List> messageLists=new HashMap();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -71,9 +71,6 @@ public class ChatsActivity extends Activity{
 		
 		latestChats=SessionManager.cloneLatestChats();
 		assert(latestChats!=null);
-		
-		chatViews=new HashMap();
-		messageLists=new HashMap();
 		
 		chatAct=new ChatViewController();//handle chat view page
 		
@@ -144,6 +141,7 @@ public class ChatsActivity extends Activity{
 		if(chatsAdapter==null)  chatsAdapter=new ChatsAdapter(this,latestChats);
 		lv.setAdapter(chatsAdapter);
 		
+		//点击会话列表进入会话
 		lv.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
@@ -154,14 +152,17 @@ public class ChatsActivity extends Activity{
 				ChatInfo ci=(ChatInfo) adapter.getItem(arg2);
 				
 				String recipient=ci.getRecipient();
-				assert(recipient!=null);
+				if(recipient==null){
+					Log.e(LOGTAG,"assert lv.setOnclickLIstener failed");
+					return;
+				}
 				setChatView(recipient);
 			}
 		});
 		
 		Log.i(LOGTAG,"setChatsView set chats listener");
-		SessionManager.setChatsUiListener(handler);
-		
+		SessionManager.setChatsUiListener(chatsHandler);
+		 
 		Log.i(LOGTAG,"setChatsView finished");
 		//UIUtil.alert(this,"异常:SessionManager already have an chats-ui listener");
 	}
@@ -208,12 +209,28 @@ public class ChatsActivity extends Activity{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				if(friendList==null) {
+					UIUtil.alert(ChatsActivity.this, "通讯录拉取失败，请检查网络状况");
+					return;
+				}
 				Intent intent=new Intent(ChatsActivity.this,ContactActivity.class);
 				intent.putExtras(ChatsActivity.this.getIntent().getExtras());
-				startActivity(intent);
+				startActivityForResult(intent,0);
 			}
 		});
 	}
+	 protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
+	        // TODO Auto-generated method stub  
+	        super.onActivityResult(requestCode, resultCode, data);  
+	        //requestCode标示请求的标示   resultCode表示有数据  
+	        if (resultCode == RESULT_OK) {  
+	            String recipient=data.getStringExtra("recipient") ;
+	            if(recipient==null){
+	            	Log.e(LOGTAG,"onActivityResult: contactActivity return null");
+	            }
+	            setChatView(recipient);
+	        }  
+	    }  
 	@Override
 	protected void onStop(){
 		 Toast.makeText(this, "chatsActivity has stopped",Toast.LENGTH_SHORT).show();
@@ -227,17 +244,29 @@ public class ChatsActivity extends Activity{
 		super.onDestroy();
 	}
 	
-	class MyHandler extends Handler{
-		public void dispatchMessage(Message msg){
+	private ChatsHandler chatsHandler=new ChatsHandler();
+	class ChatsHandler extends Handler{
+		@Override
+		public void handleMessage(Message msg){
 			//更新
+			Log.i(LOGTAG,"chatsUIHandler.handleMessage");
 			Bundle b=msg.getData();
 			String recipient=b.getString("recipient");
 			ChatInfo ci=new ChatInfo(b.getString("username"),b.getString("chatXml"),b.getString("id"),b.getBoolean("isSelf"));
-			assert(latestChats!=null);
-			assert(recipient!=null);
-			assert(ci!=null);
+			if(!(latestChats!=null&&recipient!=null&&ci!=null&&ci.isComplete())){
+				if(latestChats==null){
+					Log.e(LOGTAG,"latestchats null");
+				}else if(recipient==null){
+					Log.e(LOGTAG,"recipient null");
+				}else if(!ci.isComplete()){
+					Log.e(LOGTAG,"ci not complete");
+				}
+				Log.e(LOGTAG,"assert ChatsHandler.handleMessage failed");
+				return;
+			}
 			latestChats.put(recipient, ci);
-			chatsAdapter.notifyDataSetChanged();
+			if(viewState==1)
+				chatsAdapter.notifyDataSetChanged();
 		}
 	}
 	
@@ -263,99 +292,118 @@ public class ChatsActivity extends Activity{
 	/*
 	 * related to find and add friend
 	 */
+	@SuppressWarnings("unchecked")
 	private void findUser(String s) {
-		String androidpnURL = getString(R.string.androidpnserver);
 		StringBuilder parameter = new StringBuilder();
 		parameter.append("action=getUser"); //
 		parameter.append("&username=" + s);
-		/*--End--*/
-		String resp = GetPostUtil.send("POST", androidpnURL + "user.xml",
-				parameter);
-		if (resp != null) {
-			resp = resp.substring(resp.indexOf("\n") + 1);
-			resp = resp.replaceAll("\n", "");
-			int i = resp.indexOf("<user>"), j;
-			if (i < 0 || (j = resp.indexOf("</user>")) < 0) {
-				UIUtil.alert(ChatsActivity.this,"未找到相应用户");
-				Log.i(LOGTAG, "USER NOT FOUND");
-				return;
-			} else {
-				String str = resp.substring(i, j + 7);
-				Log.i(LOGTAG, "user :" + str);
-				Xmler.getInstance().alias("user", User.class);
-				User u = (User) Xmler.getInstance().fromXML(str);
-
-				if (u == null) {
-					Log.i(LOGTAG, "user not valid");
-					UIUtil.alert(ChatsActivity.this,"用户无效");
-					return;
-				}
-				Log.i(LOGTAG, "USER FOUND:" + u.getName());
-				displayUser(u);
+		new AsyncTask<StringBuilder,Integer,String>(){
+			@Override
+			protected String doInBackground(StringBuilder...  parameter) {
+				/*--End--*/
+				String resp = GetPostUtil.send("POST", 
+						getString(R.string.androidpnserver) + "user.xml",
+							parameter[0]);
+				return resp;
 			}
-		}
+			@Override
+			protected void onPostExecute(String resp){
+				if (resp != null) {
+					resp = resp.substring(resp.indexOf("\n") + 1);
+					resp = resp.replaceAll("\n", "");
+					int i = resp.indexOf("<user>"), j;
+					if (i < 0 || (j = resp.indexOf("</user>")) < 0) {
+						UIUtil.alert(ChatsActivity.this,"未找到相应用户");
+						Log.i(LOGTAG, "USER NOT FOUND");
+					} else {
+						String str = resp.substring(i, j + 7);
+						Log.i(LOGTAG, "user :" + str);
+						Xmler.getInstance().alias("user", User.class);
+						User u = (User) Xmler.getInstance().fromXML(str);
+		
+						if (u == null) {
+							Log.i(LOGTAG, "user not valid");
+							UIUtil.alert(ChatsActivity.this,"用户无效");
+						}
+						Log.i(LOGTAG, "USER FOUND:" + u.getName());
+						displayUser(u);
+					}
+				}
+			}
+		}.execute(parameter);
 	}
 	
 	/*
 	 * add friend
 	 * send a add-friend request to server in a asynchronous way
 	 */
-	private void addFriend(final String userId){
-		new Runnable(){
-			public void run(){
+	@SuppressWarnings("unchecked")
+	private void addFriend(String userId){
+		new AsyncTask<String,Integer,String>(){
+			@Override
+			protected String doInBackground(String... userId) {
 				String androidpnURL = getString(R.string.androidpnserver);
-				String params="action=addFriend&id2="+userId+"&username1="+USERNAME;
-				String res=GetPostUtil.sendPost(androidpnURL+
+				String params="action=addFriend&id2="+userId[0]+"&username1="+USERNAME;
+				String resp=GetPostUtil.sendPost(androidpnURL+
 						"user.xml",params);
-				Log.i(LOGTAG,"addfriend.onclick:"+res);
-				String status=getXmlElement(res,"status");
-				String reason=getXmlElement(res,"reason");
+				return resp;
+			}
+			@Override
+			protected void onPostExecute(String resp){
+				Log.i(LOGTAG,"addfriend.onclick:"+resp);
+				String status=getXmlElement(resp,"status");
+				String reason=getXmlElement(resp,"reason");
 				if(status==null){
 					UIUtil.alert(ChatsActivity.this,"添加失败:"+(reason==null?"":reason));
 				}else if(status.equals("1")){
 					UIUtil.alert(ChatsActivity.this,"添加关注成功");
 				}else{
 					UIUtil.alert(ChatsActivity.this,"你们现在已经是好友了");
+					getFriend();
 				}
 			}
-		}.run();
+		}.execute(userId);
 	}
 	/*
-	 * 
+	 * do pull friend List asynchronously
 	 */
+	@SuppressWarnings("unchecked")
 	private void getFriend(){
-		new Runnable(){
-			public void run(){
+		new AsyncTask<Object,Integer,String>(){
+			@Override
+			protected String doInBackground(Object... arg0) {
+				// TODO Auto-generated method stub
 				String androidpnURL = getString(R.string.androidpnserver);
 				String params="action=listFriend&username="+USERNAME;
 				String resp=GetPostUtil.sendPost(androidpnURL+
 						"user.xml",params);
-				if("succeed".equals(getXmlElement(resp,"result"))){
-					int i = resp.indexOf("<list>"), j;
-					if (i < 0 || (j = resp.indexOf("</list>")) < 0) {
-						UIUtil.alert(ChatsActivity.this,"未找到相应用户");
-						Log.i(LOGTAG, "USER NOT FOUND");
-						return;
-					} else {
-						String str = resp.substring(i, j + 7);
-						Log.i(LOGTAG, "list :" + str);
-						Xmler.getInstance().alias("user", User.class);
-						List<User> list = (List) Xmler.getInstance().fromXML(str);
-
-						if (list == null) {
-							Log.i(LOGTAG, "friendlist invalid");
-							UIUtil.alert(ChatsActivity.this,"没有找到好友");
-							return;
-						}
-						friendList=Constants.friendList=list;
-						UIUtil.alert(ChatsActivity.this,"通讯录已经同步");
-					}
-				}else{
+				return resp;
+			}
+			@Override
+			protected void onPostExecute(String resp){
+				if(!"succeed".equals(getXmlElement(resp,"result"))){
 					String reason=getXmlElement(resp,"reason");
-					UIUtil.alert(ChatsActivity.this,"拉取好友列表失败:"+(reason==null?"":reason));
+					UIUtil.alert(ChatsActivity.this,"拉取通讯录失败:"+(reason==null?"":reason));
+					return;
+				}
+				
+				int i = resp.indexOf("<list>"), j;
+				if (i < 0 || (j = resp.indexOf("</list>")) < 0) {
+					//UIUtil.alert(ChatsActivity.this,"您还没有好友");//"</list>"
+					friendList=Constants.friendList=new ArrayList();
+				} else {
+					String str = resp.substring(i, j + 7);
+					Xmler.getInstance().alias("user", User.class);
+					List<User> list = (List) Xmler.getInstance().fromXML(str);
+
+					if (list == null) {
+						UIUtil.alert(ChatsActivity.this,"没有找到好友");
+					}
+					friendList=Constants.friendList=list;
+					//UIUtil.alert(ChatsActivity.this,"通讯录已经同步");
 				}
 			}
-		}.run();
+		}.execute();
 	}
 	/*
 	 * display a user in a alert window
@@ -423,13 +471,14 @@ public class ChatsActivity extends Activity{
 		private ChatViewController(){
 			recipient=USERNAME;
 			initSendThread();
-			SessionManager.setChatUiListener(uiHandler);
+			SessionManager.setChatUiListener(chatHandler);
 		}
 		private void initSendThread(){
 			packetList=Constants.packetList;
 			if(packetList==null)
 				packetList = Constants.packetList=new ArrayList<Pair>();
 			if(smThread==null||!smThread.isAlive()){
+				Log.i(LOGTAG,"smThread (re)start");
 				smThread = new SendMsgThread(xmppManager);
 				smThread.start();
 			}
@@ -470,7 +519,7 @@ public class ChatsActivity extends Activity{
 			mListView.setAdapter(chatAdapter);
 			chatAdapter.notifyDataSetInvalidated();
 						
-			// send message button and edit
+			//发送消息
 			sendBtn.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View view) {
 					EditText  mTextMessage = (EditText) (ChatsActivity.this).findViewById(R.id.MessageEdit);
@@ -490,7 +539,9 @@ public class ChatsActivity extends Activity{
 						//send msg
 						ChatInfo ci=new ChatInfo(ChatViewController.this.recipient, msg.getBody(),
 								new Date(System.currentTimeMillis()),msg.getPacketID(),true);
+						//聊天消息添加到发送队列
 						addMsg(msg);
+						//同步到SessionManager
 						SessionManager.addMsg(ChatViewController.this.recipient, ci);
 					}
 					mTextMessage.setText("");
@@ -502,49 +553,72 @@ public class ChatsActivity extends Activity{
 		 * handle with new message or sent
 		 */
 		@SuppressWarnings("unchecked")
-		private MyHandler uiHandler=new MyHandler();
-		class MyHandler extends Handler {
-	         public MyHandler() {
-	         }
-	         // 子类必须重写此方法,接受数据
+		private ChatHandler chatHandler=new ChatHandler();
+		class ChatHandler extends Handler {
+	         //收到消息或者消息发送成功消息或者发送消息
+			 //同步当前保存的各个聊天view中的数据，必要时更新当前view的ui
 	         @Override
 	         public void handleMessage(android.os.Message msg) {
-	             Log.d("MyHandler", "handleMessage......");
+	             Log.d("chatHandler", "handleMessage......");
 	             if(!messageLists.containsKey(recipient)||!chatViews.containsKey(recipient)){
             		Log.e(LOGTAG,"handleMessage:messageList or chatView not found");
             		return;
 	             }
-          		 List<ChatInfo> messageList=messageLists.get(recipient);
+          	
             	 ChatInfoAdapter chatAdapter=(ChatInfoAdapter) ((ListView)(chatViews.get(recipient).findViewById(R.id.MessageListView))).getAdapter();
             	 Bundle b = msg.getData();
+            	 String theRecipient=b.getString("recipient");
+            	 List<ChatInfo> messageList=messageLists.get(recipient);
             	 
+            	 if(theRecipient==null){
+            		 UIUtil.alert(ChatsActivity.this,"处理到无效消息，会话方为空");
+            		 return;
+            	 }
 	             switch(msg.what){
-	             case 1://recv or send
-	            	if(!b.getString("username").equals(recipient)) return;
+	             case 1://msg recv or send
 	            	ChatInfo ci=new ChatInfo(b.getString("username"),b.getString("chatXml"),
-	            			b.getString("id"),b.getBoolean("isSelf"));
-	            	
-	           
-	            	messageList.add(ci);
-	            	chatAdapter.notifyDataSetChanged();
-	            	UIUtil.alert(ChatsActivity.this,"new msg recved or send");
+	        	             b.getString("id"),b.getBoolean("isSelf"));
+	            	if(!ci.isComplete()){
+	            		 UIUtil.alert(ChatsActivity.this,"处理到不完整消息");
+	            		 return;
+	            	}
+            		if(!ci.isSelf()&&!theRecipient.equals(recipient)){
+            			//以广播方式通知用户有新的聊天消息到来
+            			Intent intent = new Intent(Constants.ACTION_SHOW_CHAT);
+            			intent.putExtra("recipient", b.getString("username"));
+            			sendBroadcast(intent);
+            		}
+            		
+        			//该会话已经有聊天消息队列，将消息添加到聊天队列
+        			if(messageList!=null){
+        				messageList.add(ci);
+        			}
+
+            		//该会话在当前ui上
+	            	if(theRecipient.equals(recipient)){
+		            	chatAdapter.notifyDataSetChanged();
+		            	UIUtil.alert(ChatsActivity.this,"new msg recved or send");
+	            	}
 	            	return;
+	            	
 	             case 2://sent
-					String r=b.getString("recipient");
-					if(r==null||!r.equals(recipient)) return;
-	            	String packetID=b.getString("id");
-	            	for(ChatInfo ci_1 : messageList){
-	    	    		if(ci_1.getPacketID().equals(packetID)){
-	    	    			Log.i(LOGTAG,"setMsgView "+" update view");
-	    	    			ci_1.setSent();
-	    	    			chatAdapter.notifyDataSetChanged();
-	    	    			UIUtil.alert(ChatsActivity.this,"new msg sent");
-	    	    			return;
-	    	    		}
-	    	    	}
+					String packetID=b.getString("id");
+        			//该会话已经有聊天消息队列，更新该消息状态为已发送
+        			if(messageList!=null){
+        				for(ChatInfo ci_1 : messageList){
+        					if(ci_1.getPacketID().equals(packetID)){
+        						ci_1.setSent();
+        						if(theRecipient.equals(recipient)){
+        							chatAdapter.notifyDataSetChanged();
+    		    	    			UIUtil.alert(ChatsActivity.this,"new msg sent");
+        						}
+        						return;
+        					}
+        				}
+        			}
 	             }
-	         }
-	     }
+             }
+         }
 		
 		/**
 		 * related to send message thread always try to send packets to server if

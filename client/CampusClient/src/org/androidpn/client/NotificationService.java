@@ -112,7 +112,7 @@ public class NotificationService extends Service {
         // Get deviceId
         deviceId = telephonyManager.getDeviceId();
        // deviceId = telephonyManager.getSubscriberId();
-        Log.d("xiaobingo", "deviceID:"+deviceId);
+        Log.d(LOGTAG, "deviceID:"+deviceId);
         // Log.d(LOGTAG, "deviceId=" + deviceId);
         Editor editor = sharedPrefs.edit();
         editor.putString(Constants.DEVICE_ID, deviceId);
@@ -144,39 +144,39 @@ public class NotificationService extends Service {
                 NotificationService.this.start();
             }
         });
-        Toast.makeText(getApplicationContext(),"notificationService created",Toast.LENGTH_SHORT);
+        Toast.makeText(getApplicationContext(),"notificationService created",Toast.LENGTH_LONG);
     }
 
     @Override
     public void onStart(Intent intent, int startId) {
         Log.d(LOGTAG, "onStart()...");
-        Toast.makeText(getApplicationContext(),"notificationService start",Toast.LENGTH_SHORT);
+        Toast.makeText(getApplicationContext(),"notificationService start",Toast.LENGTH_LONG);
     }
 
     @Override
     public void onDestroy() {
         Log.d(LOGTAG, "onDestroy()...");
-        Toast.makeText(getApplicationContext(),"notificationService destroyed",Toast.LENGTH_SHORT);
+        Toast.makeText(getApplicationContext(),"notificationService destroyed",Toast.LENGTH_LONG);
         stop();
     }
 
     @Override
     public IBinder onBind(Intent intent) {
         Log.d(LOGTAG, "onBind()...");
-        Toast.makeText(getApplicationContext(),"notificationService bind",Toast.LENGTH_SHORT);
+        Toast.makeText(getApplicationContext(),"notificationService bind",Toast.LENGTH_LONG);
         return myBinder;
     }
 
     @Override
     public void onRebind(Intent intent) {
         Log.d(LOGTAG, "onRebind()...");
-        Toast.makeText(getApplicationContext(),"notificationService rebind",Toast.LENGTH_SHORT);
+        Toast.makeText(getApplicationContext(),"notificationService rebind",Toast.LENGTH_LONG);
     }
 
     @Override
     public boolean onUnbind(Intent intent) {
         Log.d(LOGTAG, "onUnbind()...");
-        Toast.makeText(getApplicationContext(),"notificationService unbind",Toast.LENGTH_SHORT);
+        Toast.makeText(getApplicationContext(),"notificationService unbind",Toast.LENGTH_LONG);
         return true;
     }
 

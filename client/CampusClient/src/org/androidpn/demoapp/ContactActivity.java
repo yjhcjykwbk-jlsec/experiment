@@ -53,7 +53,10 @@ public class ContactActivity extends Activity {
 					Bundle bundle=ContactActivity.this.getIntent().getExtras();
 					bundle.putString("recipient", u.getName());
 					intent.putExtras(bundle);
-					startActivity(intent);
+//					startActivity(intent);
+					//返回聊天
+					setResult(RESULT_OK,intent);
+					ContactActivity.this.finish();
 				}else{
 					UIUtil.alert(ContactActivity.this, "该用户无效，或无法启动会话");
 				}

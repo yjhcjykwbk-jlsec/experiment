@@ -19,7 +19,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/ChatTitleLabel"
-        android:dividerHeight="5dp" >
+        android:dividerHeight="5dp" 
+        android:divider="@null">
 
     </ListView>
 

@@ -16,8 +16,10 @@
 package org.androidpn.demoapp; 
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import org.androidpn.client.Constants;
 import org.androidpn.client.NotificationDetailsActivity;
+import org.androidpn.client.NotificationService;
 import org.androidpn.client.ServiceManager;
 import org.androidpn.data.MessagePacketListener;
 import org.androidpn.util.ActivityUtil;
@@ -223,7 +225,24 @@ public class DemoAppActivity extends Activity {
 				subIntent.putExtras(bd);
 				DemoAppActivity.this.startActivity(subIntent);
 			}
-		});     
+		});    
+        
+        TextView btn_logOut=(TextView)findViewById(R.id.LogoutBtn);
+        btn_logOut.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Editor editor = originSharedPrefs.edit();
+				editor.remove(Constants.XMPP_USERNAME);
+				editor.remove(Constants.XMPP_PASSWORD);
+				editor.commit();
+				NotificationService service=Constants.notificationService;
+				stopService(new Intent(DemoAppActivity.this,NotificationService.class));
+				service.stopSelf();
+				DemoAppActivity.this.setResult(RESULT_OK,DemoAppActivity.this.getIntent());
+				DemoAppActivity.this.finish();
+			}
+		});
     }
 	
 	@Override
@@ -297,7 +316,12 @@ public class DemoAppActivity extends Activity {
   	 @Override
   	 public void onStop(){
   		 Log.d("demoappactivity", "this activity is stopped");
-  		 Toast.makeText(this, "demoactivity has stopped",Toast.LENGTH_SHORT).show();
+  		 super.onStop();
+  	 }
+	 @Override
+  	 public void onDestroy(){
+  		 Log.d("demoappactivity", "this activity is destroyed");
+  		 Toast.makeText(this, "demoactivity has destroyed",Toast.LENGTH_SHORT).show();
   		 super.onStop();
   	 }
   	 

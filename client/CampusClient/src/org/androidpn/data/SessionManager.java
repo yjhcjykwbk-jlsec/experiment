@@ -50,6 +50,7 @@ public class SessionManager {
 		if(chatsUiHandler!=null){
 			Message msg=new Message();
 			msg.setData(b);
+			Log.i(LOGTAG,"dispatchMessager: latestchats changed "+ ci.getName());
 			chatsUiHandler.dispatchMessage(msg);
 		}
 		
@@ -66,14 +67,6 @@ public class SessionManager {
 			if(ci.isSelf()) Log.i(LOGTAG,"dispatchMessager: packet send to "+ ci.getName());
 			else Log.i(LOGTAG,"dispatchMessager: packet recved from "+ci.getName());
 			handler.dispatchMessage(msg);
-			if(ci.isSelf()) return;
-			
-			Intent intent = new Intent(Constants.ACTION_SHOW_CHAT);
-			intent.putExtra("recipient", ci.getName());
-			intent.putExtra("chatXml",ci.getContent());
-			intent.putExtra("packetId", ci.getPacketID());
-			XmppManager xmppManager=Constants.xmppManager;
-			xmppManager.getContext().sendBroadcast(intent);
 		}
 	}
 	
