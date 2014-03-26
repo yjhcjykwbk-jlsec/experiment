@@ -26,24 +26,30 @@ import org.androidpn.util.ActivityUtil;
 import org.androidpn.util.GetPostUtil;
 import org.androidpn.util.IsNetworkConn;
 import org.androidpn.util.RTMPConnectionUtil;
+import org.androidpn.util.UIUtil;
 
 import android.R.integer;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -243,7 +249,56 @@ public class DemoAppActivity extends Activity {
 				DemoAppActivity.this.finish();
 			}
 		});
+        
+        Button btn_push=(Button)findViewById(R.id.btn_push);
+        btn_push.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				alertPushForm();
+			}
+        });
     }
+	
+	private void alertPushForm(){
+		LayoutInflater inflater = (LayoutInflater) this
+				.getSystemService(LAYOUT_INFLATER_SERVICE);
+		final View layout = inflater.inflate(R.layout.alert_push, null);
+		AlertDialog dlg = new AlertDialog.Builder(DemoAppActivity.this).setView(layout)
+				.setPositiveButton("推送",new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface arg0, int arg1) {
+				// TODO Auto-generated method stub
+				EditText title=(EditText)layout.findViewById(R.id.PushTitleEdit);
+				EditText message=(EditText)layout.findViewById(R.id.PushMessageEdit);
+				EditText uri=(EditText)layout.findViewById(R.id.PushUriEdit);
+				push(title.getText().toString(),message.getText().toString(),uri.getText().toString(),'A');
+			}
+		}).setNegativeButton("取消",new DialogInterface.OnClickListener(){
+			public void onClick(DialogInterface arg0, int arg1){
+			}
+		}).show();
+	}
+	private void push(String title,String message,String uri,char broadcast){
+		new AsyncTask<String,Integer,String>(){
+
+			@Override
+			protected String doInBackground(String...args) {
+				// TODO Auto-generated method stub
+				String androidpnURL = getString(R.string.androidpnserver);
+				String title=args[0],message=args[1],uri=args[2], broadcast=args[3];
+				String params="action=admin_send&username=pushadmin&password=pushadmin&title="+title+"&message="+message+"&uri="+uri+"&broadcast=A";
+				String resp=GetPostUtil.sendPost(androidpnURL+
+						"notification.do",params);
+				return resp;
+			}
+			@Override
+			protected void onPostExecute(String resp){
+				UIUtil.alert(DemoAppActivity.this, "推送结果:"+resp);
+			}
+		}.execute(title,message,uri,broadcast+"");
+	}
+	
+	
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

@@ -49,6 +49,15 @@
         android:orientation="horizontal"
         android:background="#00000000">
         
+	    <Button
+            android:id="@+id/btn_push"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.89"
+            android:background="@drawable/button3"
+            android:text="推送"
+            android:textColor="@drawable/magenta" />
+	    
         <Button
             android:id="@+id/btn_subscribe"
             android:layout_width="0dip"
@@ -67,7 +76,7 @@
             android:background="@drawable/button3"/>
         
         <Button android:id="@+id/btn_center" 
-        	android:text="资源中心"
+        	android:text="资源"
         	android:textColor="@drawable/magenta"
             android:layout_width="0dip" 
             android:layout_height="wrap_content"
@@ -76,7 +85,7 @@
         
         
         <Button android:id="@+id/btn_myUpload" 
-        	android:text="我要上传"
+        	android:text="上传"
         	android:textColor="@drawable/magenta"
             android:layout_width="0dip" 
             android:layout_height="wrap_content"
