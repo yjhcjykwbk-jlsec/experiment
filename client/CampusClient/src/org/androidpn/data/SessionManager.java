@@ -24,7 +24,7 @@ public class SessionManager {
 	private static String LOGTAG="SessionManager";
 	//now this data is isolate from ui-thread's data
 	public static void addMsg(String recipient,ChatInfo ci){
-		if(recipient==null||ci==null) return;
+		if(recipient==null||ci==null||!ci.isComplete()) return;
 		Log.i(LOGTAG,"sessionManager.addMsg:"+ci.getPacketID()+"#"+ci.getContent());
 		
 		synchronized(packetMap){

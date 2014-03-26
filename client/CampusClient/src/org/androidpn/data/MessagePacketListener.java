@@ -23,20 +23,20 @@ import android.os.IBinder;
 import android.util.Log;
 import android.widget.BaseAdapter;
 
-public class PacketListenerManager{
+public class MessagePacketListener{
 	private static String LOGTAG = "PacketListenerManager";
 //	private SessionServiceBinder myBinder = new SessionServiceBinder();
 	private XmppManager manager = null; 
-	private static PacketListenerManager instance=null;
+	private static MessagePacketListener instance=null;
 	private static Object lock=new Object();
 	public static void listen(){
 		getInstance();
 	}
-	private static PacketListenerManager getInstance(){
+	private static MessagePacketListener getInstance(){
 		synchronized(lock){
 			if(instance==null){
 				try {
-					instance=new PacketListenerManager();
+					instance=new MessagePacketListener();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -46,7 +46,7 @@ public class PacketListenerManager{
 		}
 		return instance;
 	}
-	private PacketListenerManager() throws Exception {
+	public MessagePacketListener() throws Exception {
 		Log.i(LOGTAG,"onconstruct");
 		manager=Constants.xmppManager;
 		if(manager==null) {
@@ -66,7 +66,7 @@ public class PacketListenerManager{
 						username,new ChatInfo(username, 
 							((Message) packet).getBody(), new Date(System
 							.currentTimeMillis()), packet
-							.getPacketID(), false));//false means is not ui thread
+							.getPacketID(), false));
 
 //					Intent intent = new Intent(Constants.ACTION_SHOW_CHAT);
 //					intent.putExtra("recipient", username);

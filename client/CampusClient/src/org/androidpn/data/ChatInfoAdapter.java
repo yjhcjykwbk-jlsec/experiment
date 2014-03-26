@@ -70,12 +70,19 @@ public class ChatInfoAdapter extends BaseAdapter {
 		TextView tv= (TextView) v.findViewById(R.id.tvcontent);
 		if(tt==null||iv==null||tn==null||tv==null) {
 			Log.i(LOGTAG,"null exception 2");
+			return null;
 		}
 		tt.setText(DateFormat.format("MM-dd hh:mm:ss",dt.getTime()));//%Y-%m-%d %H:%M:%S %W-%A    %A %H:%M:%S
-		iv.setBackgroundDrawable(
+		if(ci.isSelf()){
+			iv.setBackgroundDrawable(
+					c.getResources().getDrawable(R.drawable.photo_3));
+			tn.setText("");
+		}
+		else {
+			iv.setBackgroundDrawable(
 			c.getResources().getDrawable(UIUtil.getPhoto(ci.getName())));
-		tn.setText(ci.getName());
-		
+			tn.setText(ci.getName());
+		}
 		
 		tv.setText(ci.getContent());
 		if(ci.isSelf())

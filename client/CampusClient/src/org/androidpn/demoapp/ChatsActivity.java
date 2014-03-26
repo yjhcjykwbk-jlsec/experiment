@@ -2,6 +2,7 @@ package org.androidpn.demoapp;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +11,7 @@ import org.androidpn.client.XmppManager;
 import org.androidpn.data.ChatInfoAdapter;
 import org.androidpn.data.ChatsAdapter;
 import org.androidpn.data.ChatInfo;
-import org.androidpn.data.PacketListenerManager;
+import org.androidpn.data.MessagePacketListener;
 import org.androidpn.data.SessionManager;
 import org.androidpn.server.model.User;
 import org.androidpn.util.GetPostUtil;
@@ -32,6 +33,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -47,13 +49,15 @@ public class ChatsActivity extends Activity{
 	private List<User> friendList;
 	private Map<String,ChatInfo> latestChats;
 	private MyHandler handler=new MyHandler();
-    private PacketListenerManager plManager;
+    private MessagePacketListener plManager;
 	private ChatViewController chatAct=null;
 	private Integer viewState=1;//indicate which view activity currently is in
 	ChatsAdapter chatsAdapter;
 	boolean inited=false;
 	
-	View chatsView=null,chatView=null;
+	View chatsView=null;
+	Map <String,View> chatViews=null;
+	Map <String,List> messageLists=null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -67,6 +71,9 @@ public class ChatsActivity extends Activity{
 		
 		latestChats=SessionManager.cloneLatestChats();
 		assert(latestChats!=null);
+		
+		chatViews=new HashMap();
+		messageLists=new HashMap();
 		
 		chatAct=new ChatViewController();//handle chat view page
 		
@@ -111,12 +118,14 @@ public class ChatsActivity extends Activity{
 		Log.i(LOGTAG,"setChatsView setChatsView");
 		if(chatsView!=null) {
 			setContentView(chatsView);
+			viewState=1;
+			chatsAdapter.notifyDataSetChanged();
+			return;
 		}
-		else {	
-			chatsView=getLayoutInflater().inflate(R.layout.activity_chats, null);
-			setContentView(chatsView);
-		}
+		chatsView=getLayoutInflater().inflate(R.layout.activity_chats, null);
+		setContentView(chatsView);
 		viewState=1;
+		
 		
 		//init views
 		initHeaderView();
@@ -151,8 +160,21 @@ public class ChatsActivity extends Activity{
 	
 	//go to chat view page
 	private void setChatView(String recipient){
-		chatAct.initView();
-		chatAct.setRecipient(recipient);
+		if(recipient==null) return;
+		View chatView=null;List<ChatInfo> messageList=null;
+		if(chatViews.containsKey(recipient)){
+			chatView=chatViews.get(recipient);
+		}
+		if(messageLists.containsKey(recipient)){
+			messageList=messageLists.get(recipient);
+		}
+		try {
+			chatAct.initView(recipient,messageList,chatView);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return;
+		}
 	}
 	/*
 	 * init the page's header with three buttons
@@ -377,17 +399,9 @@ public class ChatsActivity extends Activity{
 	 */
 	class ChatViewController {
 		private String LOGTAG = "chatActivity";
-	//	private String USERNAME;
-	//	private String PASSWORD;
 		private String recipient = null;// who you are talking with
-		private EditText mTextMessage;
-		private ListView mListView;
-		private Button sendBtn;
-		private TextView tv;
-		private List<ChatInfo> messageList;
+//		private List<ChatInfo> messageList;
 		private XmppManager xmppManager= Constants.xmppManager;
-		private ChatInfoAdapter chatAdapter;
-		private boolean inited=false;
 		/*
 		 * should start smThread only for once;
 		 */
@@ -405,28 +419,46 @@ public class ChatsActivity extends Activity{
 				smThread.start();
 			}
 		}
+		
 		/*
-		 * when recipient change 
-		 * the data and view will change
+		 * page jumped 
 		 */
-		void setRecipient(String recipient) {
-			Log.i(LOGTAG,"chatactivity.setrecipient:"+recipient);
-			this.recipient=recipient;
-			if(recipient==null) recipient=USERNAME;
+		public void initView(String recipient, List messageList , View chatView) throws Exception{
+			Log.i(LOGTAG,"chatviewController.initview");
 			
+			this.recipient=recipient;
+			if(chatView!=null) {
+				setContentView(chatView);
+				viewState=2;
+				return;
+			}
+			
+			chatView=getLayoutInflater().inflate(R.layout.activity_chat, null);
+			setContentView(chatView);
+			chatViews.put(recipient, chatView);
+			viewState=2;
+			
+			Button sendBtn = (Button) (ChatsActivity.this).findViewById(R.id.SendBtn);
+			TextView tv=(TextView)(ChatsActivity.this).findViewById(R.id.ChatTitleLabel);
 			tv.setText(USERNAME+"与"+recipient+"会话中");
 
 			// messages stores the talk contents with friends
-			messageList=SessionManager.cloneMsgList(recipient);
-			assert(messageList!=null);
-			chatAdapter=new ChatInfoAdapter((ChatsActivity.this),messageList);
-			mListView = (ListView) (ChatsActivity.this).findViewById(R.id.MessageListView);
+			if(messageList==null){
+				messageList=SessionManager.cloneMsgList(recipient);
+				if(messageList==null)
+					throw new Exception("initView:messageList null and creation failed");
+				messageLists.put(recipient, messageList);
+			}
+			
+			BaseAdapter chatAdapter=new ChatInfoAdapter((ChatsActivity.this),messageList);
+			ListView mListView = (ListView) (ChatsActivity.this).findViewById(R.id.MessageListView);
 			mListView.setAdapter(chatAdapter);
 			chatAdapter.notifyDataSetInvalidated();
 						
 			// send message button and edit
 			sendBtn.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View view) {
+					EditText  mTextMessage = (EditText) (ChatsActivity.this).findViewById(R.id.MessageEdit);
 					String to = ChatViewController.this.recipient;
 					String text = mTextMessage.getText().toString();
 					Log.i(LOGTAG,
@@ -449,29 +481,6 @@ public class ChatsActivity extends Activity{
 					mTextMessage.setText("");
 				}
 			});
-			
-			try {
-				
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		/*
-		 * page jumped 
-		 */
-		private void initView(){
-			Log.i(LOGTAG,"chatviewController.initview");
-			if(chatView!=null) {
-				setContentView(chatView);
-			}else{
-				chatView=getLayoutInflater().inflate(R.layout.activity_chat, null);
-				setContentView(chatView);
-			}
-			viewState=2;
-			mTextMessage = (EditText) (ChatsActivity.this).findViewById(R.id.MessageEdit);
-			sendBtn = (Button) (ChatsActivity.this).findViewById(R.id.SendBtn);
-			tv=(TextView)(ChatsActivity.this).findViewById(R.id.ChatTitleLabel);
 		}
  
 		/*
@@ -486,14 +495,24 @@ public class ChatsActivity extends Activity{
 	         @Override
 	         public void handleMessage(android.os.Message msg) {
 	             Log.d("MyHandler", "handleMessage......");
-	             Bundle b = msg.getData();
+	             if(!messageLists.containsKey(recipient)||!chatViews.containsKey(recipient)){
+            		Log.e(LOGTAG,"handleMessage:messageList or chatView not found");
+            		return;
+	             }
+          		 List<ChatInfo> messageList=messageLists.get(recipient);
+            	 ChatInfoAdapter chatAdapter=(ChatInfoAdapter) ((ListView)(chatViews.get(recipient).findViewById(R.id.MessageListView))).getAdapter();
+            	 Bundle b = msg.getData();
+            	 
 	             switch(msg.what){
 	             case 1://recv or send
 	            	if(!b.getString("username").equals(recipient)) return;
 	            	ChatInfo ci=new ChatInfo(b.getString("username"),b.getString("chatXml"),
 	            			b.getString("id"),b.getBoolean("isSelf"));
+	            	
+	           
 	            	messageList.add(ci);
 	            	chatAdapter.notifyDataSetChanged();
+	            	UIUtil.alert(ChatsActivity.this,"new msg recved or send");
 	            	return;
 	             case 2://sent
 					String r=b.getString("recipient");
@@ -504,6 +523,7 @@ public class ChatsActivity extends Activity{
 	    	    			Log.i(LOGTAG,"setMsgView "+" update view");
 	    	    			ci_1.setSent();
 	    	    			chatAdapter.notifyDataSetChanged();
+	    	    			UIUtil.alert(ChatsActivity.this,"new msg sent");
 	    	    			return;
 	    	    		}
 	    	    	}
@@ -516,14 +536,13 @@ public class ChatsActivity extends Activity{
 		 * packet in packetList
 		 */
 		private List<Pair> packetList;
-		private SendMsgThread smThread;
 		@SuppressWarnings("unchecked")
 		public void addMsg(Packet msg) {
 			synchronized (packetList) {
 				packetList.add(new Pair(msg,false));
 			}
 		}
-	
+		private SendMsgThread smThread;
 		@SuppressWarnings("unused")
 		private class SendMsgThread extends Thread {
 			final XmppManager xmppManager;

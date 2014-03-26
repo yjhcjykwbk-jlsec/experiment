@@ -73,7 +73,7 @@
             </intent-filter>
         </service>
          <service
-            android:name="org.androidpn.data.PacketListenerManager"
+            android:name="org.androidpn.data.MessagePacketListener"
             android:enabled="true"
             android:label="SessionService" >
             <intent-filter android:priority="500" >
@@ -110,7 +110,7 @@
      
     </application>
 
-    <uses-sdk android:minSdkVersion="6" android:targetSdkVersion="8"/>
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="8"/>
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

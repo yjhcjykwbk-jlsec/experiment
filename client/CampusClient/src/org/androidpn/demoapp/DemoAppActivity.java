@@ -19,7 +19,7 @@ import java.util.HashMap;
 import org.androidpn.client.Constants;
 import org.androidpn.client.NotificationDetailsActivity;
 import org.androidpn.client.ServiceManager;
-import org.androidpn.data.PacketListenerManager;
+import org.androidpn.data.MessagePacketListener;
 import org.androidpn.util.ActivityUtil;
 import org.androidpn.util.GetPostUtil;
 import org.androidpn.util.IsNetworkConn;

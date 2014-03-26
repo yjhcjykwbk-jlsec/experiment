@@ -41,6 +41,9 @@ public class ChatInfo {
 		}
 		this.time=new Date(System.currentTimeMillis());
 	}
+	public boolean isComplete(){
+		return this.packetID!=null&&this.chatXml!=null&&this.time!=null&&this.username!=null;
+	}
 	public boolean isSent(){
 		return sent;
 	}
