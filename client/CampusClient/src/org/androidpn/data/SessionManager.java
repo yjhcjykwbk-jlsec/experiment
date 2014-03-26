@@ -6,6 +6,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.androidpn.client.Constants;
+import org.androidpn.client.XmppManager;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -62,6 +66,14 @@ public class SessionManager {
 			if(ci.isSelf()) Log.i(LOGTAG,"dispatchMessager: packet send to "+ ci.getName());
 			else Log.i(LOGTAG,"dispatchMessager: packet recved from "+ci.getName());
 			handler.dispatchMessage(msg);
+			if(ci.isSelf()) return;
+			
+			Intent intent = new Intent(Constants.ACTION_SHOW_CHAT);
+			intent.putExtra("recipient", ci.getName());
+			intent.putExtra("chatXml",ci.getContent());
+			intent.putExtra("packetId", ci.getPacketID());
+			XmppManager xmppManager=Constants.xmppManager;
+			xmppManager.getContext().sendBroadcast(intent);
 		}
 	}
 	

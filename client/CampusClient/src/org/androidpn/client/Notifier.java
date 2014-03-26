@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+import org.androidpn.demoapp.ChatsActivity;
 import org.androidpn.demoapp.UserInfo;
 
 import android.app.Notification;
@@ -59,6 +60,36 @@ public class Notifier {
         return context;
     }
     
+    public void notify(String recipient,String chatXml,String packetId){
+    	if(isNotificationEnabled()){
+    		 if (isNotificationToastEnabled()) {
+                 Toast.makeText(context, "recved:"+chatXml, Toast.LENGTH_LONG).show();
+             }
+    		 // Notification
+             Notification notification = new Notification();
+             notification.icon = getNotificationIcon();
+             notification.defaults = Notification.DEFAULT_LIGHTS;
+             if (isNotificationSoundEnabled()) {
+                 notification.defaults |= Notification.DEFAULT_SOUND;
+             }
+             if (isNotificationVibrateEnabled()) {
+                 notification.defaults |= Notification.DEFAULT_VIBRATE;
+             }
+             notification.flags |= Notification.FLAG_AUTO_CANCEL;
+             notification.when = System.currentTimeMillis();
+             notification.tickerText = recipient+":"+chatXml.substring(0,20<chatXml.length()?20:chatXml.length())+"..."; //通知栏显示的文字，可以改为title
+             
+             Intent intent = new Intent(context,
+                     ChatsActivity.class);
+             intent.putExtra("recipient", recipient);
+             
+             PendingIntent contentIntent = PendingIntent.getActivity(context, random.nextInt(),
+                     intent, PendingIntent.FLAG_UPDATE_CURRENT);
+             notification.setLatestEventInfo(context, "您收到新消息", notification.tickerText,
+                     contentIntent);
+             notificationManager.notify(random.nextInt(), notification);
+    	}
+    }
     
     public void notify(String notificationId, String apiKey, String title,
             String message, String uri,String from,String packetId) {

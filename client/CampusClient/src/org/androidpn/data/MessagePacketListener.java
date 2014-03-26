@@ -22,6 +22,7 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.BaseAdapter;
+import android.widget.Toast;
 
 public class MessagePacketListener{
 	private static String LOGTAG = "PacketListenerManager";
@@ -35,23 +36,14 @@ public class MessagePacketListener{
 	private static MessagePacketListener getInstance(){
 		synchronized(lock){
 			if(instance==null){
-				try {
-					instance=new MessagePacketListener();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					return null;
-				}
+				instance=new MessagePacketListener();
 			}
 		}
 		return instance;
 	}
-	public MessagePacketListener() throws Exception {
-		Log.i(LOGTAG,"onconstruct");
+	public MessagePacketListener()  {
+		Log.i(LOGTAG,"MessagePacketListener: add packet listener to xmppmanager");
 		manager=Constants.xmppManager;
-		if(manager==null) {
-			throw new Exception("packetListenerManager:manager not initilized");
-		}
 		manager.addPacketListener(new PacketListener() {
 			@Override
 			public void processPacket(Packet packet) {
@@ -67,10 +59,6 @@ public class MessagePacketListener{
 							((Message) packet).getBody(), new Date(System
 							.currentTimeMillis()), packet
 							.getPacketID(), false));
-
-//					Intent intent = new Intent(Constants.ACTION_SHOW_CHAT);
-//					intent.putExtra("recipient", username);
-//					intent.putExtra("message",((Message)packet).getBody());
 					
 				} else if (packet instanceof IQ) {
 					if (((IQ) packet).getType() == IQ.Type.RESULT) {

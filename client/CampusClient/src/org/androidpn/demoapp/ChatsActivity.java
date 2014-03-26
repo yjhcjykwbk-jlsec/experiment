@@ -87,6 +87,8 @@ public class ChatsActivity extends Activity{
 		
 		//this add listener on XMPPManager for once
 		plManager.listen();
+		
+		Toast.makeText(this, "chatsActivity start",Toast.LENGTH_SHORT).show();
 	}
 	/*
 	 * if activity is called by intent
@@ -102,6 +104,12 @@ public class ChatsActivity extends Activity{
 			//chats list view ui
 			setChatsView();
 		}
+	}
+	
+	@Override
+	protected void onResume(){
+		Toast.makeText(this, "chatsActivity resume",Toast.LENGTH_SHORT).show();
+		super.onResume();
 	}
 	
 	@Override
@@ -206,9 +214,16 @@ public class ChatsActivity extends Activity{
 			}
 		});
 	}
-
-	protected void onDestory(){
+	@Override
+	protected void onStop(){
+		 Toast.makeText(this, "chatsActivity has stopped",Toast.LENGTH_SHORT).show();
+		super.onStop();
+	}
+	@Override
+	protected void onDestroy(){
 		SessionManager.removeChatsUiListener();
+		SessionManager.removeChatUiListener();
+		Toast.makeText(this, "chatsActivity has destroyed",Toast.LENGTH_SHORT).show();
 		super.onDestroy();
 	}
 	

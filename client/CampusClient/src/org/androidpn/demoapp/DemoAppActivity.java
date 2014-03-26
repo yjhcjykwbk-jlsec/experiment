@@ -297,6 +297,7 @@ public class DemoAppActivity extends Activity {
   	 @Override
   	 public void onStop(){
   		 Log.d("demoappactivity", "this activity is stopped");
+  		 Toast.makeText(this, "demoactivity has stopped",Toast.LENGTH_SHORT).show();
   		 super.onStop();
   	 }
   	 

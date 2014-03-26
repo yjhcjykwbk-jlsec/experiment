@@ -91,6 +91,8 @@ public class Constants {
     public static final String ACTION_SHOW_CHAT = "org.androidpn.client.SHOW_CHAT";
 
 	public static final String ACTION_CHAT_SENT = "org.androidpn.client.CHAT_SENT";
+	
+	  public static final String ACTION_CHAT_CLICKED = "org.androidpn.client.CHAT_CLICKED";
 
     public static final String ACTION_NOTIFICATION_CLICKED = "org.androidpn.client.NOTIFICATION_CLICKED";
 

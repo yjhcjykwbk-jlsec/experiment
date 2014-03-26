@@ -73,7 +73,14 @@ public final class NotificationReceiver extends BroadcastReceiver {
             notifier.notify(notificationId, notificationApiKey,
                     notificationTitle, notificationMessage, notificationUri,notificationFrom,packetId);
         }
-        
+        //新回复
+        else if(Constants.ACTION_SHOW_CHAT.equals(action)){
+        	String chatXml=intent.getStringExtra("chatXml"),
+        			recipient=intent.getStringExtra("recipient"),
+        				packetId=intent.getStringExtra("id");
+        	Notifier notifier=new Notifier(context);
+        	notifier.notify(recipient,chatXml,packetId);
+        }
         
         //点击通知
         if (Constants.ACTION_NOTIFICATION_CLICKED.equals(action)) {

@@ -80,6 +80,7 @@ public class IQRosterHandler extends IQHandler {
     		 log.info("getting roster");
              Roster rost=new Roster();
              rost.setID(packet.getID());
+             rost.setType(IQ.Type.result);
              String username=packet.getFrom()+"";
              username=username.substring(0,username.indexOf('@'));
              List<User> friends = userService.getFriends(username);

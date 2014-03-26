@@ -32,6 +32,7 @@ import android.os.IBinder;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.widget.Toast;
 
 /**
  * Service that continues to run in background and respond to the push 
@@ -143,33 +144,39 @@ public class NotificationService extends Service {
                 NotificationService.this.start();
             }
         });
+        Toast.makeText(getApplicationContext(),"notificationService created",Toast.LENGTH_SHORT);
     }
 
     @Override
     public void onStart(Intent intent, int startId) {
         Log.d(LOGTAG, "onStart()...");
+        Toast.makeText(getApplicationContext(),"notificationService start",Toast.LENGTH_SHORT);
     }
 
     @Override
     public void onDestroy() {
         Log.d(LOGTAG, "onDestroy()...");
+        Toast.makeText(getApplicationContext(),"notificationService destroyed",Toast.LENGTH_SHORT);
         stop();
     }
 
     @Override
     public IBinder onBind(Intent intent) {
         Log.d(LOGTAG, "onBind()...");
+        Toast.makeText(getApplicationContext(),"notificationService bind",Toast.LENGTH_SHORT);
         return myBinder;
     }
 
     @Override
     public void onRebind(Intent intent) {
         Log.d(LOGTAG, "onRebind()...");
+        Toast.makeText(getApplicationContext(),"notificationService rebind",Toast.LENGTH_SHORT);
     }
 
     @Override
     public boolean onUnbind(Intent intent) {
         Log.d(LOGTAG, "onUnbind()...");
+        Toast.makeText(getApplicationContext(),"notificationService unbind",Toast.LENGTH_SHORT);
         return true;
     }
 
@@ -242,6 +249,9 @@ public class NotificationService extends Service {
     private void registerNotificationReceiver() {
         IntentFilter filter = new IntentFilter();
         filter.addAction(Constants.ACTION_SHOW_NOTIFICATION);
+        filter.addAction(Constants.ACTION_SHOW_CHAT);
+        //@Todo
+        filter.addAction(Constants.ACTION_CHAT_CLICKED); 
         filter.addAction(Constants.ACTION_NOTIFICATION_CLICKED);
         filter.addAction(Constants.ACTION_NOTIFICATION_CLEARED);
         registerReceiver(notificationReceiver, filter);
