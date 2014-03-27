@@ -29,8 +29,7 @@ import android.util.Log;
  */
 public class ConnectivityReceiver extends BroadcastReceiver {
 
-    private static final String LOGTAG = LogUtil
-            .makeLogTag(ConnectivityReceiver.class);
+    private static final String LOGTAG = "ConnectivityReceiver";
 
     private NotificationService notificationService;
 

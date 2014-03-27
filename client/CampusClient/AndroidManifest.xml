@@ -73,7 +73,7 @@
             </intent-filter>
         </service>
          <service
-            android:name="org.androidpn.data.MessagePacketListener"
+            android:name="org.androidpn.client.ChatPacketListener"
             android:enabled="true"
             android:label="SessionService" >
             <intent-filter android:priority="500" >

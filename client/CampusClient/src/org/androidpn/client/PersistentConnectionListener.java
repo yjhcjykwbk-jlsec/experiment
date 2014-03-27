@@ -19,6 +19,7 @@ import org.androidpn.demoapp.UserInfo;
 import org.jivesoftware.smack.ConnectionListener;
 
 import android.app.Application;
+import android.content.Intent;
 import android.util.Log;
 
 /** 
@@ -28,8 +29,7 @@ import android.util.Log;
  */
 public class PersistentConnectionListener implements ConnectionListener {
 
-    private static final String LOGTAG = LogUtil
-            .makeLogTag(PersistentConnectionListener.class);
+    private static final String LOGTAG = "PersistentConnectionListener";
     private final XmppManager xmppManager;
 
 	public PersistentConnectionListener(XmppManager xmppManager) {
@@ -53,22 +53,32 @@ public class PersistentConnectionListener implements ConnectionListener {
             xmppManager.getConnection().disconnect();
         }
         Log.i(LOGTAG,"connection restart");
+        //broadcast connect-error-event to other threads
+        Intent intent=new Intent(Constants.XMPP_CONNECTION_ERROR);
+        xmppManager.getContext().sendBroadcast(intent); 
         xmppManager.startReconnectionThread();
     }
 
     @Override
     public void reconnectingIn(int seconds) {
         Log.d(LOGTAG, "reconnectingIn()...");
+        Intent intent=new Intent(Constants.XMPP_CONNECTING);
+        xmppManager.getContext().sendBroadcast(intent); 
     }
 
     @Override
     public void reconnectionFailed(Exception e) {
         Log.d(LOGTAG, "reconnectionFailed()!!!");
+        Intent intent=new Intent(Constants.XMPP_CONNECT_FAILED);
+        xmppManager.getContext().sendBroadcast(intent); 
     }
 
     @Override
     public void reconnectionSuccessful() {
         Log.d(LOGTAG, "reconnectionSuccessful()...");
+        //broadcast connected-event to other threads
+        Intent intent=new Intent(Constants.XMPP_CONNECTED);
+        xmppManager.getContext().sendBroadcast(intent); 
     }
 
 }

@@ -15,18 +15,30 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-//in fact most time, this object is run by only one thread : Session-service
-//but other times it is visited by other threads like chatactivity(like send msg)
-//so data change need synchronizing
+/*
+ * this class main manage static back-end data for chating
+ *   @function:
+ *   this back-end data is isolate from UI-thread's data
+ *   first update this data, then look for handlers, 
+ *   if any , dispatch message to ui-thread's handlers to update UI
+ *   
+ *   @attention:
+ *   this class is visited by a packet-listener of Notification-Service's xmpp-connection 
+ *   it is also visited by ChatsActivity when send chat msg
+ *   so it need synchronizing, and this may block xmpp-connection a little
+ *   
+ *   @author:xuzhigang
+ */
 public class SessionManager {
 	private final static Map<String,List> sessions= new HashMap<String,List>();//recipient to list of msgs
 	private final static Map<String,String> packetMap=new HashMap<String,String>();//packetID to recipient name
+	private final static Map<String,ChatInfo> latestChats=new HashMap<String,ChatInfo>();
 //	private final static Map<String,Handler> listeners=new HashMap<String,Handler>();
 	private static Handler chatUiHandler=null;
 	private static Handler chatsUiHandler=null;
-	private final static Map<String,ChatInfo> latestChats=new HashMap<String,ChatInfo>();
 	private static String LOGTAG="SessionManager";
-	//now this data is isolate from ui-thread's data
+	
+	
 	public static void addMsg(String recipient,ChatInfo ci){
 		if(recipient==null||ci==null||!ci.isComplete()) return;
 		Log.i(LOGTAG,"sessionManager.addMsg:"+ci.getPacketID()+"#"+ci.getContent());

@@ -43,6 +43,7 @@ import org.jivesoftware.smack.packet.Registration;
 import org.jivesoftware.smack.provider.ProviderManager;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Handler;
@@ -56,7 +57,7 @@ import android.util.Pair;
  */
 public class XmppManager {
 
-    private static final String LOGTAG = LogUtil.makeLogTag(XmppManager.class);
+    private static final String LOGTAG = "XmppManager";
 
     private static final String XMPP_RESOURCE_NAME = "AndroidpnClient";
 
@@ -82,7 +83,8 @@ public class XmppManager {
 
     private PacketListener notificationPacketListener;
     
-    private PacketListener msgPacketListener;
+    //private PacketListener msgPacketListener;
+    private PacketListener chatPacketListener;
 
     private Handler handler;
 
@@ -95,7 +97,7 @@ public class XmppManager {
     private Thread reconnection;
     
     
-    private List<Pair<PacketListener,PacketFilter>> listenerList=new LinkedList<Pair<PacketListener, PacketFilter>>();
+    private List<Pair<PacketListener,PacketFilter>> packetListenerList=new LinkedList<Pair<PacketListener, PacketFilter>>();
 
     public XmppManager(NotificationService notificationService) {
         context = notificationService;
@@ -110,22 +112,25 @@ public class XmppManager {
 
         connectionListener = new PersistentConnectionListener(this);
         notificationPacketListener = new NotificationPacketListener(this);
-        msgPacketListener = new MsgPacketListener(this);
-
+        chatPacketListener=new ChatPacketListener(this);
+        
         handler = new Handler();
         taskList = new ArrayList<Runnable>();
         reconnection = new ReconnectionThread(this);
        
         // packet filter
-        PacketFilter notificationPacketFilter = new PacketTypeFilter(NotificationIQ.class),
-        		msgPacketFilter = new PacketTypeFilter(Message.class),
-        		testPacketFilter = new PacketTypeFilter(Packet.class);
-        // packet listener
-        PacketListener notificationPacketListener = this.getNotificationPacketListener(),
-                msgPacketListener=this.getMsgPacketListener();
-        listenerList.add(new Pair<PacketListener, PacketFilter>(notificationPacketListener, notificationPacketFilter));
-//        listenerList.add(new Pair<PacketListener, PacketFilter>(msgPacketListener,msgPacketFilter));
-//        listenerList.add(new Pair<PacketListener, PacketFilter>(msgPacketListener, testPacketFilter));
+        PacketFilter chatPacketFilter=new PacketFilter() {
+			@Override
+			public boolean accept(Packet packet) {
+				// TODO Auto-generated method stub
+				return packet.getPacketID() != null;
+			}
+        };
+        PacketFilter notificationPacketFilter = new PacketTypeFilter(NotificationIQ.class);
+//        		msgPacketFilter = new PacketTypeFilter(Message.class),
+//        		testPacketFilter = new PacketTypeFilter(Packet.class);
+        packetListenerList.add(new Pair<PacketListener, PacketFilter>(notificationPacketListener, notificationPacketFilter));
+        packetListenerList.add(new Pair<PacketListener, PacketFilter>(chatPacketListener,chatPacketFilter));
     }
 
     public Context getContext() {
@@ -142,6 +147,10 @@ public class XmppManager {
         terminatePersistentConnection();
     }
 
+    /*
+     * stop connection 
+     * called by disconnect()
+     */
     public void terminatePersistentConnection() {
         Log.d(LOGTAG, "terminatePersistentConnection()!!!!");
         Runnable runnable = new Runnable() {
@@ -151,8 +160,11 @@ public class XmppManager {
             public void run() {
                 if (xmppManager.isConnected()) {
                     Log.d(LOGTAG, "terminatePersistentConnection()... run()");
+                    //remove connection's packet-listeners
                     xmppManager.getConnection().removePacketListener(
                             xmppManager.getNotificationPacketListener());
+                    xmppManager.getConnection().removePacketListener(
+                            xmppManager.getChatPacketListener());
                     xmppManager.getConnection().disconnect();
                 }
                 xmppManager.runTask();
@@ -195,8 +207,8 @@ public class XmppManager {
         return notificationPacketListener;
     }
     
-    public PacketListener getMsgPacketListener() {
-        return msgPacketListener;
+    public PacketListener getChatPacketListener() {
+        return chatPacketListener;
     }
 
     /*
@@ -274,7 +286,7 @@ public class XmppManager {
     /*
      * judge if the connection is usable ( can send and receive normal packet ) now
      */
-    private boolean isAuthenticated() {
+    public boolean isAuthenticated() {
         return connection != null && connection.isConnected()
                 && connection.isAuthenticated();
     }
@@ -343,14 +355,14 @@ public class XmppManager {
         editor.commit();
     }
     
-
-    public void addPacketListener(PacketListener listener,PacketFilter filter){
-    	 listenerList.add(new Pair<PacketListener, PacketFilter>(listener,filter));
-    	 if(connection!=null) connection.addPacketListener(listener, filter);
-    }
+    //no more used
+//    private void addPacketListener(PacketListener listener,PacketFilter filter){
+//    	 packetListenerList.add(new Pair<PacketListener, PacketFilter>(listener,filter));
+//    	 if(connection!=null) connection.addPacketListener(listener, filter);
+//    }
     
     private void bindPacketListeners(XMPPConnection con){
-    	for(Pair<PacketListener,PacketFilter> p : listenerList){
+    	for(Pair<PacketListener,PacketFilter> p : packetListenerList){
     		con.addPacketListener(p.first, p.second);
     	}
     }
@@ -533,8 +545,9 @@ public class XmppManager {
                                 xmppManager.getConnectionListener());
                     }
                     
-                    //bind the packet listeners
+                    //bind the packet listeners: include notificationpacketlistener and messagepacketlistener
                     bindPacketListeners(connection);
+                    
                     //once the connection has been built up, then 
                     //just run a thread inside the connection to keep it alive.
                     //question: when the old connection has already been destroyed,
@@ -543,6 +556,7 @@ public class XmppManager {
                     getConnection().startKeepAliveThread(xmppManager);
                     //pause reconnection since connected
                     pauseReconnectionThread();
+                    
                 } catch (XMPPException e) {
                     Log.e(LOGTAG, "Failed to login to xmpp server. Caused by: "
                             + e.getMessage());

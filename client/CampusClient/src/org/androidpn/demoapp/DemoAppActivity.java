@@ -17,11 +17,12 @@ package org.androidpn.demoapp;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.androidpn.client.ChatPacketListener;
 import org.androidpn.client.Constants;
 import org.androidpn.client.NotificationDetailsActivity;
 import org.androidpn.client.NotificationService;
 import org.androidpn.client.ServiceManager;
-import org.androidpn.data.MessagePacketListener;
+import org.androidpn.client.XmppManager;
 import org.androidpn.util.ActivityUtil;
 import org.androidpn.util.GetPostUtil;
 import org.androidpn.util.IsNetworkConn;
@@ -78,7 +79,7 @@ public class DemoAppActivity extends Activity {
 	ListView listView;
     UserInfo userInfo;
     WakeLock wakelock;
-
+    private XmppManager manager;
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
@@ -107,7 +108,12 @@ public class DemoAppActivity extends Activity {
         
         originSharedPrefs = this.getSharedPreferences(
                 Constants.SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE);
-        welcomeUser.setText("Welcome"+originSharedPrefs.getString(Constants.XMPP_USERNAME, "δ֪�û�"));
+        
+        manager=Constants.xmppManager;
+        if(manager!=null&&manager.isAuthenticated())
+        	welcomeUser.setText("Welcome"+originSharedPrefs.getString(Constants.XMPP_USERNAME, "未登录用户")+",xmpp连接在线");
+    	else
+           	welcomeUser.setText("Welcome"+originSharedPrefs.getString(Constants.XMPP_USERNAME, "未登录用户")+",xmpp正在连接");
         
 		userInfo=(UserInfo)getApplication();		
 		userInfo.initUserInfo();		
@@ -242,9 +248,9 @@ public class DemoAppActivity extends Activity {
 				editor.remove(Constants.XMPP_USERNAME);
 				editor.remove(Constants.XMPP_PASSWORD);
 				editor.commit();
-				NotificationService service=Constants.notificationService;
-				stopService(new Intent(DemoAppActivity.this,NotificationService.class));
-				service.stopSelf();
+//				NotificationService service=Constants.notificationService;
+//				stopService(new Intent(DemoAppActivity.this,NotificationService.class));
+//				service.stopSelf();
 				DemoAppActivity.this.setResult(RESULT_OK,DemoAppActivity.this.getIntent());
 				DemoAppActivity.this.finish();
 			}

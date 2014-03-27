@@ -29,8 +29,7 @@ import android.util.Log;
  */
 public class NotificationPacketListener implements PacketListener {
 
-    private static final String LOGTAG = LogUtil
-            .makeLogTag(NotificationPacketListener.class);
+    private static final String LOGTAG = "NotificationPacketListener";
 
     private final XmppManager xmppManager;
 

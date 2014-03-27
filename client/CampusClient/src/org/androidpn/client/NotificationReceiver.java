@@ -28,8 +28,7 @@ import android.util.Log;
  */
 public final class NotificationReceiver extends BroadcastReceiver {
 
-    private static final String LOGTAG = LogUtil
-            .makeLogTag(NotificationReceiver.class);
+    private static final String LOGTAG = "NotificationReceiver";
 
     //    private NotificationService notificationService;
 
@@ -42,9 +41,9 @@ public final class NotificationReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Log.d(LOGTAG, "NotificationReceiver.onReceive()...");
+
         String action = intent.getAction();
-        Log.d(LOGTAG, "action=" + action);
+        Log.d(LOGTAG, "NotificationReceiver.onReceive() action="+action);
  
         //通知到来 
         if (Constants.ACTION_SHOW_NOTIFICATION.equals(action)) {
@@ -82,14 +81,35 @@ public final class NotificationReceiver extends BroadcastReceiver {
         	notifier.notify(recipient,chatXml,packetId);
         }
         
+        else if(Constants.XMPP_CONNECTED.equals(action)){
+        	Notifier notifier=new Notifier(context);
+        	notifier.notifyXmppConnected();
+        }
+        
+        else if(Constants.XMPP_CONNECTING.equals(action)){
+        	Notifier notifier=new Notifier(context);
+        	notifier.notifyXmppConnecting();
+        }
+        
+        else if(Constants.XMPP_CONNECTION_CLOSED.equals(action)){
+        	Notifier notifier=new Notifier(context);
+        	notifier.notifyXmppConnectionClosed();
+        }
+        else if(Constants.XMPP_CONNECTION_ERROR.equals(action)){
+        	Notifier notifier=new Notifier(context);
+        	notifier.notifyXmppConnectionError();
+        }
+        else if(Constants.XMPP_CONNECT_FAILED.equals(action)){
+        	Notifier notifier=new Notifier(context);
+        	notifier.notifyXmppConnectFailed();
+        }
         //点击通知
-        if (Constants.ACTION_NOTIFICATION_CLICKED.equals(action)) {
+        else if (Constants.ACTION_NOTIFICATION_CLICKED.equals(action)) {
         	Log.i(LOGTAG, "点击通知");
         
         }
-        
         //清除通知
-        if (Constants.ACTION_NOTIFICATION_CLEARED.equals(action)) {
+        else if (Constants.ACTION_NOTIFICATION_CLEARED.equals(action)) {
 			Log.i(LOGTAG, "清除通知");
 		}
     }

@@ -329,14 +329,16 @@ public class LoginActivity extends Activity {
             // We've bound to LocalService, cast the IBinder and get LocalService instance
         	Log.i("loginactivity#serviceconnection#onservicedisconnected","service is disconnected");
             LocalBinder binder = (LocalBinder) service;
-            Constants.notificationService=mService = binder.getService();
+            //Constants.notificationService=
+            mService = binder.getService();
             mBound = true;
         }
 
         @Override
         public void onServiceDisconnected(ComponentName arg0) {
             mBound = false;
-            Constants.notificationService=mService=null;
+            //Constants.notificationService=
+            mService=null;
         	Log.i("loginactivity#serviceconnection#onservicedisconnected","service is disconnected");
         }
     };

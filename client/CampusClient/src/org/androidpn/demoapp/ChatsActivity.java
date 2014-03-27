@@ -6,12 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.androidpn.client.ChatPacketListener;
 import org.androidpn.client.Constants;
 import org.androidpn.client.XmppManager;
 import org.androidpn.data.ChatInfoAdapter;
 import org.androidpn.data.ChatsAdapter;
 import org.androidpn.data.ChatInfo;
-import org.androidpn.data.MessagePacketListener;
 import org.androidpn.data.SessionManager;
 import org.androidpn.server.model.User;
 import org.androidpn.util.GetPostUtil;
@@ -49,7 +49,7 @@ public class ChatsActivity extends Activity{
 	private String PASSWORD;
 	private List<User> friendList;
 	private Map<String,ChatInfo> latestChats;
-    private MessagePacketListener plManager;
+    private ChatPacketListener plManager;
 	private ChatViewController chatAct=null;
 	private Integer viewState=1;//indicate which view activity currently is in
 	ChatsAdapter chatsAdapter;
@@ -83,7 +83,8 @@ public class ChatsActivity extends Activity{
 		}
 		
 		//this add listener on XMPPManager for once
-		plManager.listen();
+		//no more need: it is done by xmpp-manager on its create
+		//plManager.listen();
 		
 		Toast.makeText(this, "chatsActivity start",Toast.LENGTH_SHORT).show();
 	}

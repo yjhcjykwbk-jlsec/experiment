@@ -104,11 +104,21 @@ public class Constants {
     
     public static List<Pair> packetList=null;
     
-    public static NotificationService notificationService=null;
+    //public static NotificationService notificationService=null;
     
     public static ServiceManager serviceManager = null;
     
     public static final String USER_SUBSCRIPTION = "USER_SUBSCRIPTION"; //用户的订阅栏目
+
+	public static final String XMPP_CONNECTED = "org.androidpn.client.XMPP_CONNECTED";
+
+	public static final String XMPP_CONNECTING ="org.androidpn.client.XMPP_CONNECTING";
+
+	public static final String XMPP_CONNECT_FAILED = "org.androidpn.client.XMPP_CONNECT_FAILED";
+
+	public static final String XMPP_CONNECTION_CLOSED = "org.androidpn.client.XMPP_CONNECTION_CLOSED";
+
+	public static final String XMPP_CONNECTION_ERROR = "org.androidpn.client.XMPP_CONNECTION_ERROR";
 
 
 }
