@@ -7,7 +7,7 @@ import java.util.Map;
 
 import org.androidpn.demoapp.R;
 import org.androidpn.server.model.User;
-import org.androidpn.util.UIUtil;
+import org.androidpn.util.Util;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -59,7 +59,7 @@ public class ChatsAdapter extends BaseAdapter {
 		View layout=li.inflate(R.layout.list_chats, null);
 		((TextView)layout.findViewById(R.id.RecipientNameLabel)).setText(u.getRecipient());
 		((ImageView)layout.findViewById(R.id.RecipientPhotoLabel)).
-			setBackgroundDrawable(c.getResources().getDrawable(UIUtil.getPhoto(u.getRecipient())));
+			setBackgroundDrawable(c.getResources().getDrawable(Util.getPhoto(u.getRecipient())));
 		((TextView)layout.findViewById(R.id.ChatDigestLabel)).setText(u.getContent());
 		return layout;
 	}

@@ -87,7 +87,7 @@ public class IQRosterHandler extends IQHandler {
              if(friends!=null){
 	             for (User u : friends){
 	            	 String s=u.getName();
-	            	 rost.addItem(s, null);
+	            	 rost.addItem(s, Subscription.from);
 	             }
              }
              return reply;

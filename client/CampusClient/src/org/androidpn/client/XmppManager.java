@@ -94,7 +94,7 @@ public class XmppManager {
 
     private Future<?> futureTask;
 
-    private Thread reconnection;
+    private ReconnectionThread reconnection;
     
     
     private List<Pair<PacketListener,PacketFilter>> packetListenerList=new LinkedList<Pair<PacketListener, PacketFilter>>();
@@ -223,6 +223,15 @@ public class XmppManager {
                 reconnection.start();
                 Log.i(LOGTAG,"startReconnectionThread");
             }
+//            else{
+//            	reconnection.handler.post(new Runnable(){
+//					@Override
+//					public void run() {
+//						// TODO Auto-generated method stub
+//						reconnection.setWait(6);
+//					}
+//            	});
+//            }
         }
     }
     public void pauseReconnectionThread() {
@@ -534,6 +543,10 @@ public class XmppManager {
                 Log.d(LOGTAG, "password=" + password);
 
                 try {//µÇÂ½ÑéÖ¤
+                	 getContext().sendBroadcast(new Intent(Constants.XMPP_CONNECTING).
+                     		putExtra("from", "XmppManager").
+                     			putExtra("type", "connecting"));
+//                	 
                     xmppManager.getConnection().login(
                             xmppManager.getUsername(),
                             xmppManager.getPassword(), XMPP_RESOURCE_NAME);
@@ -556,7 +569,11 @@ public class XmppManager {
                     getConnection().startKeepAliveThread(xmppManager);
                     //pause reconnection since connected
                     // this should not pause, since you can go offline at any time , and you need to reconnect. 
-                    // pauseReconnectionThread();
+                    //pauseReconnectionThread();
+                    //tell some one online now
+//                    getContext().sendBroadcast(new Intent(Constants.XMPP_CONNECTED).
+//                    		putExtra("from", "XmppManager").
+//                    			putExtra("type", "connected"));
                     
                 } catch (XMPPException e) {
                     Log.e(LOGTAG, "Failed to login to xmpp server. Caused by: "

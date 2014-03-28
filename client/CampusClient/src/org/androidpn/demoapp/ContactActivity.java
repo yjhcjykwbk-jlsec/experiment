@@ -6,7 +6,7 @@ import java.util.List;
 import org.androidpn.client.Constants;
 import org.androidpn.data.ContactAdapter;
 import org.androidpn.server.model.User;
-import org.androidpn.util.UIUtil;
+import org.androidpn.util.Util;
 
 import android.app.Activity;
 import android.content.Context;
@@ -58,7 +58,7 @@ public class ContactActivity extends Activity {
 					setResult(RESULT_OK,intent);
 					ContactActivity.this.finish();
 				}else{
-					UIUtil.alert(ContactActivity.this, "该用户无效，或无法启动会话");
+					Util.alert(ContactActivity.this, "该用户无效，或无法启动会话");
 				}
 			}
 		});

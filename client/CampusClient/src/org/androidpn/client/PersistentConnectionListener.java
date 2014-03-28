@@ -77,8 +77,10 @@ public class PersistentConnectionListener implements ConnectionListener {
     public void reconnectionSuccessful() {
         Log.d(LOGTAG, "reconnectionSuccessful()...");
         //broadcast connected-event to other threads
-        Intent intent=new Intent(Constants.XMPP_CONNECTED);
-        xmppManager.getContext().sendBroadcast(intent); 
+        xmppManager. getContext().sendBroadcast(
+        		new Intent(Constants.XMPP_CONNECTED).
+        			putExtra("from","PersisitentConnectinListener").
+        				putExtra("type", "connected"));
     }
 
 }

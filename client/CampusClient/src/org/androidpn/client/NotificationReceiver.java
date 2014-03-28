@@ -15,6 +15,8 @@
  */
 package org.androidpn.client;
 
+import org.androidpn.demoapp.DemoAppActivity;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -113,7 +115,9 @@ public final class NotificationReceiver extends BroadcastReceiver {
 		}
         
         else if(Constants.RECONNECTION_THREAD_START.equals(action)){
-        	int wait=intent.getIntExtra("waiting", 0);
+        	int wait=intent.getIntExtra("wait", 0);
+//        	Intent intent1=new Intent(NotificationReceiver.this,DemoAppActivity.class);
+//        	intent1.putExtra("action", "reconnection").putExtra("wait",wait);
         	new Notifier(context).notifyMsg("连接进程", "将会在"+wait+"秒后测试连接");
         }
         else if(Constants.SERVICE_CREATED.equals(action)){

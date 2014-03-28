@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.androidpn.demoapp.R;
-import org.androidpn.util.UIUtil;
+import org.androidpn.util.Util;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -80,7 +80,7 @@ public class ChatInfoAdapter extends BaseAdapter {
 		}
 		else {
 			iv.setBackgroundDrawable(
-			c.getResources().getDrawable(UIUtil.getPhoto(ci.getName())));
+			c.getResources().getDrawable(Util.getPhoto(ci.getName())));
 			tn.setText(ci.getName());
 		}
 		

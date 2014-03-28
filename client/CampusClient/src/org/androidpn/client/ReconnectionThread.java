@@ -16,6 +16,7 @@
 package org.androidpn.client;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.util.Log;
 
 /** 
@@ -43,13 +44,12 @@ public class ReconnectionThread extends Thread {
             while (!isInterrupted()) {
                 Log.d(LOGTAG, "Trying to reconnect in " + waiting()
                         + " seconds");
-            	Intent intent=new Intent(Constants.RECONNECTION_THREAD_START);
-            	intent.putExtra("waiting", waiting());
+            	Intent intent=new Intent(Constants.RECONNECTION_THREAD_START).
+            			putExtra("type", "reconnection").putExtra("wait", waiting());
             	xmppManager.getContext().sendBroadcast(intent);
                 Thread.sleep((long) waiting() * 1000L);//waiting() to waiting
                 xmppManager.connect();
                 waiting++;
-                if(waiting>15) waiting=15;
             }
             Log.d(LOGTAG,"reconnection interrupted and wait for next restart");
         } catch (final InterruptedException e) {
@@ -60,14 +60,17 @@ public class ReconnectionThread extends Thread {
             });
         }
     }
-
+    public Handler handler=new Handler();
+    public void setWait(int wait){
+    	this.waiting=wait;
+    }
     private int waiting() {
         if (waiting > 20) {
-            return 60;
+            return 25;
         }
         if (waiting > 13) {
-            return 30;
+            return 15;
         }
-        return waiting <= 7 ? 1 : 6;
+        return waiting <= 7 ? 2 : 6;
     }
 }

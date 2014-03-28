@@ -1,15 +1,18 @@
 package org.androidpn.util;
 
+import org.androidpn.client.Constants;
 import org.androidpn.demoapp.R;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 /*
  * some common function code related to ui
  */
-public class UIUtil {
+public class Util {
 	
 	public static int getPhoto(String username){
 		int s=username==null?0:username.hashCode()%4;
@@ -33,5 +36,18 @@ public class UIUtil {
 			   // TODO Auto-generated method stub
 			  }
 			  }).show();
+	}
+	/*
+	 * exit application
+	 * 
+	 */
+	public static void exit(Context c){
+		SharedPreferences originSharedPrefs = c.getSharedPreferences(Constants.SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE);
+		Editor editor = originSharedPrefs.edit();
+		editor.remove(Constants.XMPP_USERNAME);
+		editor.remove(Constants.XMPP_PASSWORD);
+		editor.commit(); 
+		Constants.serviceManager.stopService();
+		ActivityUtil.getInstance().exit();
 	}
 }

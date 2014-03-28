@@ -27,6 +27,7 @@ import android.app.Service;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -98,7 +99,7 @@ public class LoginActivity extends Activity {
 		}
 
 		userInfo = (UserInfo) getApplication();
-
+        
 		// 如果已保存用户名和密码，则直接开始连接
 		if (originSharedPrefs.contains(Constants.XMPP_USERNAME)
 				&& originSharedPrefs.contains(Constants.XMPP_PASSWORD)) {
@@ -343,11 +344,12 @@ public class LoginActivity extends Activity {
     };
     @Override
     public void onDestroy(){
-    	super.onDestroy();
     	unbindService(myConnection);
     	//stopService(new Intent(LoginActivity.this,NotificationService.class));
     	mService.stopSelf();
+    	mService=null;
     	Toast.makeText(this, "loginActivity has destroyed",Toast.LENGTH_SHORT).show();
+    	super.onDestroy();
     }
 
 }

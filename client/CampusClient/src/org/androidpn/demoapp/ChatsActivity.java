@@ -15,7 +15,7 @@ import org.androidpn.data.ChatInfo;
 import org.androidpn.data.SessionManager;
 import org.androidpn.server.model.User;
 import org.androidpn.util.GetPostUtil;
-import org.androidpn.util.UIUtil;
+import org.androidpn.util.Util;
 import org.androidpn.util.Xmler;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.packet.Packet;
@@ -210,7 +210,7 @@ public class ChatsActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if (friendList == null) {
-					UIUtil.alert(ChatsActivity.this, "通讯录拉取失败，请检查网络状况");
+					Util.alert(ChatsActivity.this, "通讯录拉取失败，请检查网络状况");
 					return;
 				}
 				Intent intent = new Intent(ChatsActivity.this,
@@ -332,7 +332,7 @@ public class ChatsActivity extends Activity {
 					resp = resp.replaceAll("\n", "");
 					int i = resp.indexOf("<user>"), j;
 					if (i < 0 || (j = resp.indexOf("</user>")) < 0) {
-						UIUtil.alert(ChatsActivity.this, "未找到相应用户");
+						Util.alert(ChatsActivity.this, "未找到相应用户");
 						Log.i(LOGTAG, "USER NOT FOUND");
 					} else {
 						String str = resp.substring(i, j + 7);
@@ -342,7 +342,7 @@ public class ChatsActivity extends Activity {
 
 						if (u == null) {
 							Log.i(LOGTAG, "user not valid");
-							UIUtil.alert(ChatsActivity.this, "用户无效");
+							Util.alert(ChatsActivity.this, "用户无效");
 						}
 						Log.i(LOGTAG, "USER FOUND:" + u.getName());
 						displayUser(u);
@@ -374,12 +374,12 @@ public class ChatsActivity extends Activity {
 				String status = getXmlElement(resp, "status");
 				String reason = getXmlElement(resp, "reason");
 				if (status == null) {
-					UIUtil.alert(ChatsActivity.this, "添加失败:"
+					Util.alert(ChatsActivity.this, "添加失败:"
 							+ (reason == null ? "" : reason));
 				} else if (status.equals("1")) {
-					UIUtil.alert(ChatsActivity.this, "添加关注成功");
+					Util.alert(ChatsActivity.this, "添加关注成功");
 				} else {
-					UIUtil.alert(ChatsActivity.this, "你们现在已经是好友了");
+					Util.alert(ChatsActivity.this, "你们现在已经是好友了");
 					getFriend();
 				}
 			}
@@ -406,7 +406,7 @@ public class ChatsActivity extends Activity {
 			protected void onPostExecute(String resp) {
 				if (!"succeed".equals(getXmlElement(resp, "result"))) {
 					String reason = getXmlElement(resp, "reason");
-					UIUtil.alert(ChatsActivity.this, "拉取通讯录失败:"
+					Util.alert(ChatsActivity.this, "拉取通讯录失败:"
 							+ (reason == null ? "" : reason));
 					return;
 				}
@@ -421,7 +421,7 @@ public class ChatsActivity extends Activity {
 					List<User> list = (List) Xmler.getInstance().fromXML(str);
 
 					if (list == null) {
-						UIUtil.alert(ChatsActivity.this, "没有找到好友");
+						Util.alert(ChatsActivity.this, "没有找到好友");
 					}
 					friendList = Constants.friendList = list;
 					// UIUtil.alert(ChatsActivity.this,"通讯录已经同步");
@@ -446,7 +446,7 @@ public class ChatsActivity extends Activity {
 				.getEmail());
 		((ImageView) layout.findViewById(R.id.UserPhotoLabel))
 				.setImageDrawable(getResources().getDrawable(
-						UIUtil.getPhoto(u.getName())));
+						Util.getPhoto(u.getName())));
 		TextView foLink = (TextView) layout.findViewById(R.id.ChatWithBtn);
 		foLink.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -514,9 +514,10 @@ public class ChatsActivity extends Activity {
 			packetList = Constants.packetList;
 			if (packetList == null)
 				packetList = Constants.packetList = new ArrayList<Pair>();
-			if (smThread == null || !smThread.isAlive()) {
-				Log.i(LOGTAG, "smThread (re)start");
+			if (smThread == null )
 				smThread = new SendMsgThread(xmppManager);
+			if(!smThread.isAlive()) {
+				Log.i(LOGTAG, "smThread (re)start");
 				smThread.start();
 			}
 		}
@@ -692,7 +693,7 @@ public class ChatsActivity extends Activity {
 			Bundle b = msg.getData();
 			final String theRecipient = b.getString("recipient");
 			if (theRecipient == null) {
-				UIUtil.alert(ChatsActivity.this, "处理到无效消息，会话方为空");
+				Util.alert(ChatsActivity.this, "处理到无效消息，会话方为空");
 				return;
 			}
 			if (!messageLists.containsKey(theRecipient)
@@ -712,7 +713,7 @@ public class ChatsActivity extends Activity {
 						b.getString("chatXml"), b.getString("id"),
 						b.getBoolean("isSelf"));
 				if (!ci.isComplete()) {
-					UIUtil.alert(ChatsActivity.this, "处理到不完整消息");
+					Util.alert(ChatsActivity.this, "处理到不完整消息");
 					return;
 				}
 				if (!ci.isSelf()) {// &&!theRecipient.equals(recipient)){
@@ -732,7 +733,7 @@ public class ChatsActivity extends Activity {
 								messageList.add(ci);
 								chatAdapter.notifyDataSetChanged();
 								if (!ci.isSelf()) {
-									UIUtil.alert(ChatsActivity.this, "new msg recved");
+									Util.alert(ChatsActivity.this, "new msg recved");
 								} 
 							}
 						});

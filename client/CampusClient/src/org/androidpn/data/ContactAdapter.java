@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.androidpn.demoapp.R;
 import org.androidpn.server.model.User;
-import org.androidpn.util.UIUtil;
+import org.androidpn.util.Util;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -49,7 +49,7 @@ public class ContactAdapter extends BaseAdapter {
 		View layout=li.inflate(R.layout.list_contact, null);
 		((TextView)layout.findViewById(R.id.UsernameLabel_1)).setText(u.getUsername());
 		((ImageView)layout.findViewById(R.id.UserPhotoLabel_1)).
-			setBackgroundDrawable(c.getResources().getDrawable(UIUtil.getPhoto(u.getUsername())));
+			setBackgroundDrawable(c.getResources().getDrawable(Util.getPhoto(u.getUsername())));
 		return layout;
 	}
 }

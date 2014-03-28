@@ -1,0 +1,198 @@
+
+{DEBUG} [2014-03-28 18:56:49,598] <org.apache.mina.filter.executor.OrderedThreadPoolExecutor> : Adding event MESSAGE_SENT to session 349
+Queue : [MESSAGE_SENT, ]
+
+{DEBUG} [2014-03-28 18:56:49,598] <org.androidpn.server.xmpp.net.Connection> : SENDING: <message id="4KLQY-8" to="eeee" type="chat" from="eeee@127.0.0.1/AndroidpnClient"><body>gwtamgj1tmgtgm</body></message>
+
+
+
+IOHandler NotificationManager 22 0 
+
+
+{DEBUG} [2014-03-28 18:56:49,598] <org.apache.mina.core.filterchain.IoFilterEvent> : Event MESSAGE_RECEIVED has been fired for session 349
+{DEBUG} [2014-03-28 18:56:49,598] <org.apache.mina.filter.executor.OrderedThreadPoolExecutor> : Adding event MESSAGE_SENT to session 349
+Queue : [MESSAGE_SENT, , MESSAGE_SENT, ]
+
+{DEBUG} [2014-03-28 18:56:49,598] <org.apache.mina.core.filterchain.IoFilterEvent> : Firing a MESSAGE_SENT event for session 349
+{DEBUG} [2014-03-28 18:56:49,599] <org.androidpn.server.xmpp.net.XmppIoHandler> : xiaobingooooooooooooooooo messageSent()...
+{DEBUG} [2014-03-28 18:56:49,599] <org.apache.mina.core.filterchain.IoFilterEvent> : Event MESSAGE_SENT has been fired for session 349
+{DEBUG} [2014-03-28 18:56:49,599] <org.apache.mina.core.filterchain.IoFilterEvent> : Firing a MESSAGE_SENT event for session 349
+{DEBUG} [2014-03-28 18:56:49,599] <org.androidpn.server.xmpp.net.XmppIoHandler> : xiaobingooooooooooooooooo messageSent()...
+{DEBUG} [2014-03-28 18:56:49,599] <org.apache.mina.core.filterchain.IoFilterEvent> : Event MESSAGE_SENT has been fired for session 349
+{DEBUG} [2014-03-28 18:57:29,891] <org.apache.mina.filter.executor.OrderedThreadPoolExecutor> : Adding event MESSAGE_RECEIVED to session 349
+Queue : [MESSAGE_RECEIVED, ]
+
+{DEBUG} [2014-03-28 18:57:29,892] <org.apache.mina.core.filterchain.IoFilterEvent> : Firing a MESSAGE_RECEIVED event for session 349
+{DEBUG} [2014-03-28 18:57:29,892] <org.apache.mina.filter.codec.ProtocolCodecFilter> : Processing a MESSAGE_RECEIVED for session 349
+{DEBUG} [2014-03-28 18:57:29,892] <org.apache.mina.core.filterchain.IoFilterEvent> : Event MESSAGE_RECEIVED has been fired for session 349
+{DEBUG} [2014-03-28 18:57:59,896] <org.apache.mina.filter.executor.OrderedThreadPoolExecutor> : Adding event MESSAGE_RECEIVED to session 349
+Queue : [MESSAGE_RECEIVED, ]
+
+{DEBUG} [2014-03-28 18:57:59,897] <org.apache.mina.core.filterchain.IoFilterEvent> : Firing a MESSAGE_RECEIVED event for session 349
+{DEBUG} [2014-03-28 18:57:59,897] <org.apache.mina.filter.codec.ProtocolCodecFilter> : Processing a MESSAGE_RECEIVED for session 349
+{DEBUG} [2014-03-28 18:57:59,898] <org.apache.mina.core.filterchain.IoFilterEvent> : Event MESSAGE_RECEIVED has been fired for session 349
+{DEBUG} [2014-03-28 18:58:29,893] <org.apache.mina.filter.executor.OrderedThreadPoolExecutor> : Adding event MESSAGE_RECEIVED to session 349
+Queue : [MESSAGE_RECEIVED, ]
+
+{DEBUG} [2014-03-28 18:58:29,893] <org.apache.mina.core.filterchain.IoFilterEvent> : Firing a MESSAGE_RECEIVED event for session 349
+{DEBUG} [2014-03-28 18:58:29,893] <org.apache.mina.filter.codec.ProtocolCodecFilter> : Processing a MESSAGE_RECEIVED for session 349
+{DEBUG} [2014-03-28 18:58:29,893] <org.apache.mina.core.filterchain.IoFilterEvent> : Event MESSAGE_RECEIVED has been fired for session 349
+{DEBUG} [2014-03-28 18:58:59,909] <org.apache.mina.filter.executor.OrderedThreadPoolExecutor> : Adding event MESSAGE_RECEIVED to session 349
+Queue : [MESSAGE_RECEIVED, ]
+
+{DEBUG} [2014-03-28 18:58:59,910] <org.apache.mina.core.filterchain.IoFilterEvent> : Firing a MESSAGE_RECEIVED event for session 349
+{DEBUG} [2014-03-28 18:58:59,910] <org.apache.mina.filter.codec.ProtocolCodecFilter> : Processing a MESSAGE_RECEIVED for session 349
+{DEBUG} [2014-03-28 18:58:59,910] <org.apache.mina.core.filterchain.IoFilterEvent> : Event MESSAGE_RECEIVED has been fired for session 349
+{DEBUG} [2014-03-28 18:59:29,907] <org.apache.mina.filter.executor.OrderedThreadPoolExecutor> : Adding event MESSAGE_RECEIVED to session 349
+Queue : [MESSAGE_RECEIVED, ]
+
+{DEBUG} [2014-03-28 18:59:29,908] <org.apache.mina.core.filterchain.IoFilterEvent> : Firing a MESSAGE_RECEIVED event for session 349
+{DEBUG} [2014-03-28 18:59:29,908] <org.apache.mina.filter.codec.ProtocolCodecFilter> : Processing a MESSAGE_RECEIVED for session 349
+{DEBUG} [2014-03-28 18:59:29,908] <org.apache.mina.core.filterchain.IoFilterEvent> : Event MESSAGE_RECEIVED has been fired for session 349
+{DEBUG} [2014-03-28 18:59:59,909] <org.apache.mina.filter.executor.OrderedThreadPoolExecutor> : Adding event MESSAGE_RECEIVED to session 349
+Queue : [MESSAGE_RECEIVED, ]
+
+{DEBUG} [2014-03-28 18:59:59,910] <org.apache.mina.core.filterchain.IoFilterEvent> : Firing a MESSAGE_RECEIVED event for session 349
+{DEBUG} [2014-03-28 18:59:59,910] <org.apache.mina.filter.codec.ProtocolCodecFilter> : Processing a MESSAGE_RECEIVED for session 349
+{DEBUG} [2014-03-28 18:59:59,910] <org.apache.mina.core.filterchain.IoFilterEvent> : Event MESSAGE_RECEIVED has been fired for session 349
+{DEBUG} [2014-03-28 19:00:01,827] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,827] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,827] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,827] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,827] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,829] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,829] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,829] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,829] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,830] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,830] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,830] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,830] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,830] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,830] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,830] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,830] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,830] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,830] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,830] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,830] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,830] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,830] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,830] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,830] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,830] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,830] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,830] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,830] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,830] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,830] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,830] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,830] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,831] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,831] <org.apache.mina.filter.executor.OrderedThreadPoolExecutor> : Adding event MESSAGE_SENT to session 349
+Queue : [MESSAGE_SENT, ]
+
+{DEBUG} [2014-03-28 19:00:01,831] <org.apache.mina.core.filterchain.IoFilterEvent> : Firing a MESSAGE_SENT event for session 349
+{DEBUG} [2014-03-28 19:00:01,831] <org.androidpn.server.xmpp.net.XmppIoHandler> : xiaobingooooooooooooooooo messageSent()...
+{DEBUG} [2014-03-28 19:00:01,831] <org.apache.mina.core.filterchain.IoFilterEvent> : Event MESSAGE_SENT has been fired for session 349
+{DEBUG} [2014-03-28 19:00:01,831] <org.androidpn.server.xmpp.net.Connection> : SENT: </stream:stream>
+{DEBUG} [2014-03-28 19:00:01,831] <org.apache.mina.filter.executor.OrderedThreadPoolExecutor> : Adding event MESSAGE_SENT to session 349
+Queue : [MESSAGE_SENT, ]
+
+{DEBUG} [2014-03-28 19:00:01,831] <org.apache.mina.core.filterchain.IoFilterEvent> : Firing a MESSAGE_SENT event for session 349
+{DEBUG} [2014-03-28 19:00:01,831] <org.androidpn.server.xmpp.net.XmppIoHandler> : xiaobingooooooooooooooooo messageSent()...
+{DEBUG} [2014-03-28 19:00:01,831] <org.apache.mina.core.filterchain.IoFilterEvent> : Event MESSAGE_SENT has been fired for session 349
+{DEBUG} [2014-03-28 19:00:01,832] <org.apache.mina.filter.executor.OrderedThreadPoolExecutor> : Adding event SESSION_CLOSED to session 349
+Queue : [SESSION_CLOSED, ]
+
+{DEBUG} [2014-03-28 19:00:01,832] <org.apache.mina.core.filterchain.IoFilterEvent> : Firing a SESSION_CLOSED event for session 349
+{DEBUG} [2014-03-28 19:00:01,832] <org.androidpn.server.xmpp.net.XmppIoHandler> : sessionClosed()...
+{DEBUG} [2014-03-28 19:00:01,835] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,835] <org.apache.mina.core.filterchain.IoFilterEvent> : Event SESSION_CLOSED has been fired for session 349
+{DEBUG} [2014-03-28 19:00:01,835] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,835] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,835] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,835] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,835] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,835] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,835] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,835] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,835] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,835] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,835] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,836] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,836] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,836] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,836] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,836] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,836] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,836] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,836] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,836] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,836] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,836] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,836] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,836] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{DEBUG} [2014-03-28 19:00:01,836] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:error><system-shutdown xmlns='urn:ietf:params:xml:ns:xmpp-streams'/></stream:error>
+{INFO } [2014-03-28 19:00:01,836] <org.androidpn.server.xmpp.XmppServer> : XmppServer stopped
+{INFO } [2014-03-28 19:00:01,837] <org.androidpn.server.xmpp.XmppServer> : Server halted
+Server halted
+{DEBUG} [2014-03-28 19:00:03,251] <org.androidpn.server.xmpp.net.XmppIoHandler> : sessionCreated()...
+{DEBUG} [2014-03-28 19:00:03,253] <org.apache.mina.filter.executor.OrderedThreadPoolExecutor> : Adding event SESSION_OPENED to session 350
+Queue : [SESSION_OPENED, ]
+
+{DEBUG} [2014-03-28 19:00:03,254] <org.apache.mina.core.filterchain.IoFilterEvent> : Firing a SESSION_OPENED event for session 350
+{DEBUG} [2014-03-28 19:00:03,254] <org.androidpn.server.xmpp.net.XmppIoHandler> : sessionOpened()...
+{DEBUG} [2014-03-28 19:00:03,254] <org.androidpn.server.xmpp.net.XmppIoHandler> : remoteAddress=/10.7.213.197:45005
+{DEBUG} [2014-03-28 19:00:03,254] <org.apache.mina.core.filterchain.IoFilterEvent> : Event SESSION_OPENED has been fired for session 350
+{DEBUG} [2014-03-28 19:00:03,331] <org.apache.mina.filter.executor.OrderedThreadPoolExecutor> : Adding event MESSAGE_RECEIVED to session 350
+Queue : [MESSAGE_RECEIVED, ]
+
+{DEBUG} [2014-03-28 19:00:03,332] <org.apache.mina.core.filterchain.IoFilterEvent> : Firing a MESSAGE_RECEIVED event for session 350
+{DEBUG} [2014-03-28 19:00:03,332] <org.apache.mina.filter.codec.ProtocolCodecFilter> : Processing a MESSAGE_RECEIVED for session 350
+{DEBUG} [2014-03-28 19:00:03,332] <org.androidpn.server.xmpp.net.XmppIoHandler> : messageReceived()...
+{DEBUG} [2014-03-28 19:00:03,332] <org.androidpn.server.xmpp.net.XmppIoHandler> : RCVD: <stream:stream to="219.223.194.207" xmlns="jabber:client" xmlns:stream="http://etherx.jabber.org/streams" version="1.0">
+{INFO } [2014-03-28 19:00:03,332] <org.androidpn.server.xmpp.net.XmppIoHandler> : stanzahandler process the message
+{DEBUG} [2014-03-28 19:00:03,332] <org.androidpn.server.xmpp.session.ClientSession> : createSession()...
+{DEBUG} [2014-03-28 19:00:03,332] <org.androidpn.server.xmpp.session.SessionManager> : ClientSession created.
+{DEBUG} [2014-03-28 19:00:03,332] <org.androidpn.server.xmpp.net.Connection> : SENT: <?xml version='1.0' encoding='UTF-8'?><stream:stream xmlns:stream="http://etherx.jabber.org/streams" xmlns="jabber:client" from="127.0.0.1" id="f356590" xml:lang="en" version="1.0">
+{DEBUG} [2014-03-28 19:00:03,333] <org.androidpn.server.xmpp.net.Connection> : SENT: <stream:features><starttls xmlns="urn:ietf:params:xml:ns:xmpp-tls"></starttls><auth xmlns="http://jabber.org/features/iq-auth"/><register xmlns="http://jabber.org/features/iq-register"/></stream:features>
+{DEBUG} [2014-03-28 19:00:03,333] <org.apache.mina.filter.executor.OrderedThreadPoolExecutor> : Adding event MESSAGE_SENT to session 350
+Queue : [MESSAGE_SENT, ]
+
+
+
+
+IOHandler NotificationManager 22 0 
+
+
+{DEBUG} [2014-03-28 19:00:03,333] <org.apache.mina.core.filterchain.IoFilterEvent> : Event MESSAGE_RECEIVED has been fired for session 350
+{DEBUG} [2014-03-28 19:00:03,333] <org.apache.mina.core.filterchain.IoFilterEvent> : Firing a MESSAGE_SENT event for session 350
+{DEBUG} [2014-03-28 19:00:03,333] <org.androidpn.server.xmpp.net.XmppIoHandler> : xiaobingooooooooooooooooo messageSent()...
+{DEBUG} [2014-03-28 19:00:03,333] <org.apache.mina.core.filterchain.IoFilterEvent> : Event MESSAGE_SENT has been fired for session 350
+{DEBUG} [2014-03-28 19:00:03,334] <org.apache.mina.filter.executor.OrderedThreadPoolExecutor> : Adding event MESSAGE_SENT to session 350
+Queue : [MESSAGE_SENT, ]
+
+{DEBUG} [2014-03-28 19:00:03,334] <org.apache.mina.core.filterchain.IoFilterEvent> : Firing a MESSAGE_SENT event for session 350
+{DEBUG} [2014-03-28 19:00:03,334] <org.androidpn.server.xmpp.net.XmppIoHandler> : xiaobingooooooooooooooooo messageSent()...
+{DEBUG} [2014-03-28 19:00:03,334] <org.apache.mina.core.filterchain.IoFilterEvent> : Event MESSAGE_SENT has been fired for session 350
+{DEBUG} [2014-03-28 19:00:03,340] <org.apache.mina.filter.executor.OrderedThreadPoolExecutor> : Adding event MESSAGE_RECEIVED to session 350
+Queue : [MESSAGE_RECEIVED, ]
+
+{DEBUG} [2014-03-28 19:00:03,341] <org.apache.mina.core.filterchain.IoFilterEvent> : Firing a MESSAGE_RECEIVED event for session 350
+{DEBUG} [2014-03-28 19:00:03,341] <org.apache.mina.filter.codec.ProtocolCodecFilter> : Processing a MESSAGE_RECEIVED for session 350
+{DEBUG} [2014-03-28 19:00:03,341] <org.androidpn.server.xmpp.net.XmppIoHandler> : messageReceived()...
+{DEBUG} [2014-03-28 19:00:03,341] <org.androidpn.server.xmpp.net.XmppIoHandler> : RCVD: <starttls xmlns="urn:ietf:params:xml:ns:xmpp-tls"/>
+{INFO } [2014-03-28 19:00:03,341] <org.androidpn.server.xmpp.net.XmppIoHandler> : stanzahandler process the message
+{DEBUG} [2014-03-28 19:00:03,341] <org.androidpn.server.xmpp.net.Connection> : startTLS()...
+{DEBUG} [2014-03-28 19:00:03,342] <org.apache.mina.filter.executor.OrderedThreadPoolExecutor> : Adding event EXCEPTION_CAUGHT to session 350
+Queue : [EXCEPTION_CAUGHT, ]
+
+{DEBUG} [2014-03-28 19:00:03,342] <org.apache.mina.core.filterchain.IoFilterEvent> : Event MESSAGE_RECEIVED has been fired for session 350
+{DEBUG} [2014-03-28 19:00:03,342] <org.apache.mina.core.filterchain.IoFilterEvent> : Firing a EXCEPTION_CAUGHT event for session 350
+{DEBUG} [2014-03-28 19:00:03,342] <org.androidpn.server.xmpp.net.XmppIoHandler> : exceptionCaught()...
+{ERROR} [2014-03-28 19:00:03,342] <org.androidpn.server.xmpp.net.XmppIoHandler> : java.lang.NoClassDefFoundError: Could not initialize class org.androidpn.server.xmpp.ssl.SSLConfig
+{DEBUG} [2014-03-28 19:00:03,342] <org.apache.mina.core.filterchain.IoFilterEvent> : Event EXCEPTION_CAUGHT has been fired for session 350
+{INFO } [2014-03-28 19:00:03,739] <org.springframework.web.context.support.XmlWebApplicationContext> : Closing org.springframework.web.context.support.XmlWebApplicationContext@133d8b: display name [WebApplicationContext for namespace 'dispatcher-servlet']; startup date [Tue Mar 25 16:35:37 CST 2014]; root of context hierarchy
+{INFO } [2014-03-28 19:00:03,740] <org.springframework.beans.factory.support.DefaultListableBeanFactory> : Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@978954: defining beans [urlMapping,filenameController,userController,sessionController,replyController,uploadController,notificationController,pushstaticsController,subscriptionsController,adminLoginController,viewResolver,paramResolver,messageSource]; root of factory hierarchy
+

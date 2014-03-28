@@ -27,14 +27,16 @@ import org.androidpn.util.ActivityUtil;
 import org.androidpn.util.GetPostUtil;
 import org.androidpn.util.IsNetworkConn;
 import org.androidpn.util.RTMPConnectionUtil;
-import org.androidpn.util.UIUtil;
+import org.androidpn.util.Util;
 
 import android.R.integer;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.net.Uri;
@@ -99,6 +101,38 @@ public class DemoAppActivity extends Activity {
     	else
            	welcomeUser.setText("Welcome"+originSharedPrefs.getString(Constants.XMPP_USERNAME, "未登录用户")+",xmpp正在连接");
 	}
+	
+//	@Override
+//	protected void onNewIntent(Intent intent){
+//		String action=intent.getStringExtra("action");
+//		if(action==null) return;
+//		if(action=="reconnection"){
+//			int wait=intent.getIntExtra("wait", 0);
+//			
+//		}
+//	}
+	class DataReceiver extends BroadcastReceiver {
+		@Override
+		public void onReceive(Context arg0, Intent intent) {
+			// TODO Auto-generated method stub
+			final String type=intent.getStringExtra("type");
+			final int wait=intent.getIntExtra("wait", 0);
+			final String from=intent.getStringExtra("from");
+			runOnUiThread(new Runnable(){
+				public void run(){
+					if(type==null) return;
+					TextView tv=(TextView) DemoAppActivity.this.findViewById(R.id.view_status);
+					if(type.equals("reconnection")){
+						tv.setText("离线状态，将在"+wait+"秒内重连");
+					}else if(type.equals("connected")){
+						tv.setText(from+":连接成功");
+					}else if(type.equals("connecting")){
+						tv.setText(from+":连接中");
+					}
+				}
+			});
+		}
+	}
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         Log.d("xiaobingo", "onCreate()...");
@@ -109,6 +143,14 @@ public class DemoAppActivity extends Activity {
 		itemUri = (TextView)findViewById(R.id.ItemUri);
         listView = (ListView)findViewById(R.id.myList); 
         info = (TextView)findViewById(R.id.info);
+        
+        //监听连接状态变化
+        DataReceiver dr=new DataReceiver();
+        IntentFilter filter=new IntentFilter();
+        filter.addAction(Constants.XMPP_CONNECTING);
+        filter.addAction(Constants.XMPP_CONNECTED);
+        filter.addAction(Constants.RECONNECTION_THREAD_START);
+        registerReceiver(dr,filter);
         
         originSharedPrefs = this.getSharedPreferences(
                 Constants.SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE);
@@ -281,7 +323,7 @@ public class DemoAppActivity extends Activity {
 				EditText title=(EditText)layout.findViewById(R.id.PushTitleEdit);
 				EditText message=(EditText)layout.findViewById(R.id.PushMessageEdit);
 				EditText uri=(EditText)layout.findViewById(R.id.PushUriEdit);
-				push(title.getText().toString(),message.getText().toString(),uri.getText().toString(),'A');
+				push(title.getText().toString(),message.getText().toString(),uri.getText().toString(),'Y');
 			}
 		}).setNegativeButton("取消",new DialogInterface.OnClickListener(){
 			public void onClick(DialogInterface arg0, int arg1){
@@ -303,7 +345,7 @@ public class DemoAppActivity extends Activity {
 			}
 			@Override
 			protected void onPostExecute(String resp){
-				UIUtil.alert(DemoAppActivity.this, "推送结果:"+resp);
+				Util.alert(DemoAppActivity.this, "推送结果:"+resp);
 			}
 		}.execute(title,message,uri,broadcast+"");
 	}
@@ -313,7 +355,7 @@ public class DemoAppActivity extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
-		menu.add(0, MENU_ITEM0, 0, " 1");
+		menu.add(0, MENU_ITEM0, 0, " 退出");
 		menu.add(0, MENU_ITEM1, 0, " 2");
 		return true;
 	}
@@ -323,14 +365,7 @@ public class DemoAppActivity extends Activity {
 		switch (item.getItemId()) {
 		case MENU_ITEM0:
 		{	 
-			originSharedPrefs = this.getSharedPreferences(Constants.SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE);
-			Editor editor = originSharedPrefs.edit();
-			editor.remove(Constants.XMPP_USERNAME);
-			editor.remove(Constants.XMPP_PASSWORD);
-			editor.commit(); 
-			Constants.serviceManager.stopService();
-			ActivityUtil.getInstance().exit();
-			break;
+			Util.exit(this);
 		}
 		case MENU_ITEM1:
 		{	 
