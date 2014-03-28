@@ -91,7 +91,30 @@ public class Notifier {
              notificationManager.notify(random.nextInt(), notification);
     	}
     }
-    
+    public void notifyMsg(String title,String msg) {
+		Log.i(LOGTAG,"xmppconnected");
+	   Intent intent = new Intent(context,
+               DemoAppActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(context, random.nextInt(),
+                intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        
+   	 // Notification
+        Notification notification = new Notification();
+        notification.icon = getNotificationIcon();
+        notification.defaults = Notification.DEFAULT_LIGHTS;
+        if (isNotificationSoundEnabled()) {
+            notification.defaults |= Notification.DEFAULT_SOUND;
+        }
+        if (isNotificationVibrateEnabled()) {
+            notification.defaults |= Notification.DEFAULT_VIBRATE;
+        }
+        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+        notification.when = System.currentTimeMillis();
+        notification.tickerText =msg;
+        notification.setLatestEventInfo(context,title, notification.tickerText,
+                contentIntent);
+        notificationManager.notify(random.nextInt(), notification);
+	}
     public void notify(String notificationId, String apiKey, String title,
             String message, String uri,String from,String packetId) {
         Log.d(LOGTAG, "notify()...");
@@ -202,156 +225,132 @@ public class Notifier {
         return sharedPrefs.getBoolean(Constants.SETTINGS_TOAST_ENABLED, false);
     }
 
-	public void notifyXmppConnected() {
-		Log.i(LOGTAG,"xmppconnected");
-	   Intent intent = new Intent(context,
-               DemoAppActivity.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(context, random.nextInt(),
-                intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        
-   	 // Notification
-        Notification notification = new Notification();
-        notification.icon = getNotificationIcon();
-        notification.defaults = Notification.DEFAULT_LIGHTS;
-        if (isNotificationSoundEnabled()) {
-            notification.defaults |= Notification.DEFAULT_SOUND;
-        }
-        if (isNotificationVibrateEnabled()) {
-            notification.defaults |= Notification.DEFAULT_VIBRATE;
-        }
-        notification.flags |= Notification.FLAG_AUTO_CANCEL;
-        notification.when = System.currentTimeMillis();
-        notification.tickerText ="xmpp连接上了";
-        notification.setLatestEventInfo(context, "连接消息", notification.tickerText,
-                contentIntent);
-        notificationManager.notify(random.nextInt(), notification);
-		
-	}
-
-	public void notifyXmppConnecting() {
-		Log.i(LOGTAG,"xmppconnecting");
-	  Intent intent = new Intent(context,
-               DemoAppActivity.class);
-        PendingIntent contentIntent = PendingIntent.getActivity(context, random.nextInt(),
-                intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        
-   	 // Notification
-        Notification notification = new Notification();
-        notification.icon = getNotificationIcon();
-        notification.defaults = Notification.DEFAULT_LIGHTS;
-        if (isNotificationSoundEnabled()) {
-            notification.defaults |= Notification.DEFAULT_SOUND;
-        }
-        if (isNotificationVibrateEnabled()) {
-            notification.defaults |= Notification.DEFAULT_VIBRATE;
-        }
-        notification.flags |= Notification.FLAG_AUTO_CANCEL;
-        notification.when = System.currentTimeMillis();
-        notification.tickerText ="xmpp连接中";
-        notification.setLatestEventInfo(context, "连接消息", notification.tickerText,
-                contentIntent);
-        notificationManager.notify(random.nextInt(), notification);
-			
-	}
-
-	public void notifyXmppConnectionClosed() {
-		 Log.i(LOGTAG,"xmppconnectClosed");
-		// TODO Auto-generated method stub
-		 Intent intent = new Intent(context,
-	               DemoAppActivity.class);
-	        PendingIntent contentIntent = PendingIntent.getActivity(context, random.nextInt(),
-	                intent, PendingIntent.FLAG_UPDATE_CURRENT);
-	        
-	   	 // Notification
-	        Notification notification = new Notification();
-	        notification.icon = getNotificationIcon();
-	        notification.defaults = Notification.DEFAULT_LIGHTS;
-	        if (isNotificationSoundEnabled()) {
-	            notification.defaults |= Notification.DEFAULT_SOUND;
-	        }
-	        if (isNotificationVibrateEnabled()) {
-	            notification.defaults |= Notification.DEFAULT_VIBRATE;
-	        }
-	        notification.flags |= Notification.FLAG_AUTO_CANCEL;
-	        notification.when = System.currentTimeMillis();
-	        notification.tickerText ="xmpp连接关闭";
-	        notification.setLatestEventInfo(context, "连接消息", notification.tickerText,
-	                contentIntent);
-	        notificationManager.notify(random.nextInt(), notification);
-	}
-
-	public void notifyXmppConnectionError() {
-		// TODO Auto-generated method stub
-		 Intent intent = new Intent(context,
-	               DemoAppActivity.class);
-	        PendingIntent contentIntent = PendingIntent.getActivity(context, random.nextInt(),
-	                intent, PendingIntent.FLAG_UPDATE_CURRENT);
-	        
-	   	 // Notification
-	        Notification notification = new Notification();
-	        notification.icon = getNotificationIcon();
-	        notification.defaults = Notification.DEFAULT_LIGHTS;
-	        if (isNotificationSoundEnabled()) {
-	            notification.defaults |= Notification.DEFAULT_SOUND;
-	        }
-	        if (isNotificationVibrateEnabled()) {
-	            notification.defaults |= Notification.DEFAULT_VIBRATE;
-	        }
-	        notification.flags |= Notification.FLAG_AUTO_CANCEL;
-	        notification.when = System.currentTimeMillis();
-	        notification.tickerText ="xmpp连接出现错误，即将重连";
-	        notification.setLatestEventInfo(context, "连接消息", notification.tickerText,
-	                contentIntent);
-	        notificationManager.notify(random.nextInt(), notification);
-		
-	}
-
-	public void notifyXmppConnectFailed() {
-		Log.i(LOGTAG,"xmppconnectFailed");
-		 Intent intent = new Intent(context,
-	               DemoAppActivity.class);
-	        PendingIntent contentIntent = PendingIntent.getActivity(context, random.nextInt(),
-	                intent, PendingIntent.FLAG_UPDATE_CURRENT);
-	        
-	   	 // Notification
-	        Notification notification = new Notification();
-	        notification.icon = getNotificationIcon();
-	        notification.defaults = Notification.DEFAULT_LIGHTS;
-	        if (isNotificationSoundEnabled()) {
-	            notification.defaults |= Notification.DEFAULT_SOUND;
-	        }
-	        if (isNotificationVibrateEnabled()) {
-	            notification.defaults |= Notification.DEFAULT_VIBRATE;
-	        }
-	        notification.flags |= Notification.FLAG_AUTO_CANCEL;
-	        notification.when = System.currentTimeMillis();
-	        notification.tickerText ="xmpp连接失败";
-	        notification.setLatestEventInfo(context, "连接消息", notification.tickerText,
-	                contentIntent);
-	        notificationManager.notify(random.nextInt(), notification);
-	}
-
-	public void notifyReconnectionThreadStart(int wait) {
-		 Intent intent = new Intent(context,
-	               DemoAppActivity.class);
-	        PendingIntent contentIntent = PendingIntent.getActivity(context, random.nextInt(),
-	                intent, PendingIntent.FLAG_UPDATE_CURRENT);
-	        
-	   	 // Notification
-	        Notification notification = new Notification();
-	        notification.icon = getNotificationIcon();
-	        notification.defaults = Notification.DEFAULT_LIGHTS;
-	        if (isNotificationSoundEnabled()) {
-	            notification.defaults |= Notification.DEFAULT_SOUND;
-	        }
-	        if (isNotificationVibrateEnabled()) {
-	            notification.defaults |= Notification.DEFAULT_VIBRATE;
-	        }
-	        notification.flags |= Notification.FLAG_AUTO_CANCEL;
-	        notification.when = System.currentTimeMillis();
-	        notification.tickerText ="将于"+wait+"秒后重连";
-	        notification.setLatestEventInfo(context, "连接消息", notification.tickerText,
-	                contentIntent);
-	        notificationManager.notify(random.nextInt(), notification);
-	}
+	
+//
+//	public void notifyXmppConnecting() {
+//		Log.i(LOGTAG,"xmppconnecting");
+//	  Intent intent = new Intent(context,
+//               DemoAppActivity.class);
+//        PendingIntent contentIntent = PendingIntent.getActivity(context, random.nextInt(),
+//                intent, PendingIntent.FLAG_UPDATE_CURRENT);
+//        
+//   	 // Notification
+//        Notification notification = new Notification();
+//        notification.icon = getNotificationIcon();
+//        notification.defaults = Notification.DEFAULT_LIGHTS;
+//        if (isNotificationSoundEnabled()) {
+//            notification.defaults |= Notification.DEFAULT_SOUND;
+//        }
+//        if (isNotificationVibrateEnabled()) {
+//            notification.defaults |= Notification.DEFAULT_VIBRATE;
+//        }
+//        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+//        notification.when = System.currentTimeMillis();
+//        notification.tickerText ="xmpp连接中";
+//        notification.setLatestEventInfo(context, "连接消息", notification.tickerText,
+//                contentIntent);
+//        notificationManager.notify(random.nextInt(), notification);
+//			
+//	}
+//
+//	public void notifyXmppConnectionClosed() {
+//		 Log.i(LOGTAG,"xmppconnectClosed");
+//		// TODO Auto-generated method stub
+//		 Intent intent = new Intent(context,
+//	               DemoAppActivity.class);
+//	        PendingIntent contentIntent = PendingIntent.getActivity(context, random.nextInt(),
+//	                intent, PendingIntent.FLAG_UPDATE_CURRENT);
+//	        
+//	   	 // Notification
+//	        Notification notification = new Notification();
+//	        notification.icon = getNotificationIcon();
+//	        notification.defaults = Notification.DEFAULT_LIGHTS;
+//	        if (isNotificationSoundEnabled()) {
+//	            notification.defaults |= Notification.DEFAULT_SOUND;
+//	        }
+//	        if (isNotificationVibrateEnabled()) {
+//	            notification.defaults |= Notification.DEFAULT_VIBRATE;
+//	        }
+//	        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+//	        notification.when = System.currentTimeMillis();
+//	        notification.tickerText ="xmpp连接关闭";
+//	        notification.setLatestEventInfo(context, "连接消息", notification.tickerText,
+//	                contentIntent);
+//	        notificationManager.notify(random.nextInt(), notification);
+//	}
+//
+//	public void notifyXmppConnectionError() {
+//		// TODO Auto-generated method stub
+//		 Intent intent = new Intent(context,
+//	               DemoAppActivity.class);
+//	        PendingIntent contentIntent = PendingIntent.getActivity(context, random.nextInt(),
+//	                intent, PendingIntent.FLAG_UPDATE_CURRENT);
+//	        
+//	   	 // Notification
+//	        Notification notification = new Notification();
+//	        notification.icon = getNotificationIcon();
+//	        notification.defaults = Notification.DEFAULT_LIGHTS;
+//	        if (isNotificationSoundEnabled()) {
+//	            notification.defaults |= Notification.DEFAULT_SOUND;
+//	        }
+//	        if (isNotificationVibrateEnabled()) {
+//	            notification.defaults |= Notification.DEFAULT_VIBRATE;
+//	        }
+//	        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+//	        notification.when = System.currentTimeMillis();
+//	        notification.tickerText ="xmpp连接出现错误，即将重连";
+//	        notification.setLatestEventInfo(context, "连接消息", notification.tickerText,
+//	                contentIntent);
+//	        notificationManager.notify(random.nextInt(), notification);
+//		
+//	}
+//
+//	public void notifyXmppConnectFailed() {
+//		Log.i(LOGTAG,"xmppconnectFailed");
+//		 Intent intent = new Intent(context,
+//	               DemoAppActivity.class);
+//	        PendingIntent contentIntent = PendingIntent.getActivity(context, random.nextInt(),
+//	                intent, PendingIntent.FLAG_UPDATE_CURRENT);
+//	        
+//	   	 // Notification
+//	        Notification notification = new Notification();
+//	        notification.icon = getNotificationIcon();
+//	        notification.defaults = Notification.DEFAULT_LIGHTS;
+//	        if (isNotificationSoundEnabled()) {
+//	            notification.defaults |= Notification.DEFAULT_SOUND;
+//	        }
+//	        if (isNotificationVibrateEnabled()) {
+//	            notification.defaults |= Notification.DEFAULT_VIBRATE;
+//	        }
+//	        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+//	        notification.when = System.currentTimeMillis();
+//	        notification.tickerText ="xmpp连接失败";
+//	        notification.setLatestEventInfo(context, "连接消息", notification.tickerText,
+//	                contentIntent);
+//	        notificationManager.notify(random.nextInt(), notification);
+//	}
+//
+//	public void notifyReconnectionThreadStart(int wait) {
+//		 Intent intent = new Intent(context,
+//	               DemoAppActivity.class);
+//	        PendingIntent contentIntent = PendingIntent.getActivity(context, random.nextInt(),
+//	                intent, PendingIntent.FLAG_UPDATE_CURRENT);
+//	        
+//	   	 // Notification
+//	        Notification notification = new Notification();
+//	        notification.icon = getNotificationIcon();
+//	        notification.defaults = Notification.DEFAULT_LIGHTS;
+//	        if (isNotificationSoundEnabled()) {
+//	            notification.defaults |= Notification.DEFAULT_SOUND;
+//	        }
+//	        if (isNotificationVibrateEnabled()) {
+//	            notification.defaults |= Notification.DEFAULT_VIBRATE;
+//	        }
+//	        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+//	        notification.when = System.currentTimeMillis();
+//	        notification.tickerText ="将于"+wait+"秒后测试连接";
+//	        notification.setLatestEventInfo(context, "连接消息", notification.tickerText,
+//	                contentIntent);
+//	        notificationManager.notify(random.nextInt(), notification);
+//	}
 }

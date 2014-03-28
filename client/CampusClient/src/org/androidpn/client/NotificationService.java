@@ -143,39 +143,42 @@ public class NotificationService extends Service {
                 NotificationService.this.start();
             }
         });
-        Toast.makeText(getApplicationContext(),"notificationService created",Toast.LENGTH_LONG);
+//        Toast.makeText(getApplicationContext(),"notificationService created",Toast.LENGTH_LONG);
+        sendBroadcast(new Intent(Constants.SERVICE_CREATED)); 
     }
 
     @Override
     public void onStart(Intent intent, int startId) {
         Log.d(LOGTAG, "onStart()...");
-        Toast.makeText(getApplicationContext(),"notificationService start",Toast.LENGTH_LONG);
+//        Toast.makeText(getApplicationContext(),"notificationService start",Toast.LENGTH_LONG);
     }
 
     @Override
     public void onDestroy() {
         Log.d(LOGTAG, "onDestroy()...");
-        Toast.makeText(getApplicationContext(),"notificationService destroyed",Toast.LENGTH_LONG);
         stop();
+        sendBroadcast(new Intent(Constants.SERVICE_DESTROYED)); 
     }
 
     @Override
     public IBinder onBind(Intent intent) {
         Log.d(LOGTAG, "onBind()...");
-        Toast.makeText(getApplicationContext(),"notificationService bind",Toast.LENGTH_LONG);
+//        Toast.makeText(getApplicationContext(),"notificationService bind",Toast.LENGTH_LONG);
+        sendBroadcast(new Intent(Constants.SERVICE_ONBIND)); 
         return myBinder;
     }
 
     @Override
     public void onRebind(Intent intent) {
         Log.d(LOGTAG, "onRebind()...");
-        Toast.makeText(getApplicationContext(),"notificationService rebind",Toast.LENGTH_LONG);
+//        Toast.makeText(getApplicationContext(),"notificationService rebind",Toast.LENGTH_LONG);
     }
 
     @Override
     public boolean onUnbind(Intent intent) {
         Log.d(LOGTAG, "onUnbind()...");
-        Toast.makeText(getApplicationContext(),"notificationService unbind",Toast.LENGTH_LONG);
+//        Toast.makeText(getApplicationContext(),"notificationService unbind",Toast.LENGTH_LONG);
+        sendBroadcast(new Intent(Constants.SERVICE_ONUNBIND)); 
         return true;
     }
 
@@ -260,7 +263,10 @@ public class NotificationService extends Service {
     						filter.addAction(Constants.XMPP_CONNECTION_ERROR);
     								filter.addAction(Constants.XMPP_CONNECTING);
     									filter.addAction(Constants.RECONNECTION_THREAD_START);
-   
+        filter.addAction(Constants.SERVICE_CREATED);
+        	filter.addAction(Constants.SERVICE_DESTROYED);
+        		filter.addAction(Constants.SERVICE_ONBIND);
+        			filter.addAction(Constants.SERVICE_ONUNBIND);
         registerReceiver(notificationReceiver, filter);
     }
 

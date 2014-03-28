@@ -82,25 +82,25 @@ public final class NotificationReceiver extends BroadcastReceiver {
         
         else if(Constants.XMPP_CONNECTED.equals(action)){
         	Notifier notifier=new Notifier(context);
-        	notifier.notifyXmppConnected();
+        	notifier.notifyMsg("连接信息","已经连接");//XmppConnected();
         }
         
         else if(Constants.XMPP_CONNECTING.equals(action)){
         	Notifier notifier=new Notifier(context);
-        	notifier.notifyXmppConnecting();
+        	notifier.notifyMsg("连接信息","正在连接");
         }
         
         else if(Constants.XMPP_CONNECTION_CLOSED.equals(action)){
         	Notifier notifier=new Notifier(context);
-        	notifier.notifyXmppConnectionClosed();
+        	notifier.notifyMsg("连接信息","连接关闭");
         }
         else if(Constants.XMPP_CONNECTION_ERROR.equals(action)){
         	Notifier notifier=new Notifier(context);
-        	notifier.notifyXmppConnectionError();
+        	notifier.notifyMsg("连接信息","连接发生错误，正在重连");
         }
         else if(Constants.XMPP_CONNECT_FAILED.equals(action)){
         	Notifier notifier=new Notifier(context);
-        	notifier.notifyXmppConnectFailed();
+        	notifier.notifyMsg("连接信息","连接失败");
         }
         //点击通知
         else if (Constants.ACTION_NOTIFICATION_CLICKED.equals(action)) {
@@ -113,9 +113,20 @@ public final class NotificationReceiver extends BroadcastReceiver {
 		}
         
         else if(Constants.RECONNECTION_THREAD_START.equals(action)){
-        	Notifier notifier=new Notifier(context);
-        	int waiting=intent.getIntExtra("waiting", 0);
-        	notifier.notifyReconnectionThreadStart(waiting);
+        	int wait=intent.getIntExtra("waiting", 0);
+        	new Notifier(context).notifyMsg("连接进程", "将会在"+wait+"秒后测试连接");
+        }
+        else if(Constants.SERVICE_CREATED.equals(action)){
+        	new Notifier(context).notifyMsg("后台服务信息", "oncreate");
+        }
+        else if(Constants.SERVICE_DESTROYED.equals(action)){
+        	new Notifier(context).notifyMsg("后台服务信息", "已销毁");
+        }
+        else if(Constants.SERVICE_ONBIND.equals(action)){
+        	new Notifier(context).notifyMsg("后台服务信息", "onbind");
+        }
+        else if(Constants.SERVICE_ONUNBIND.equals(action)){
+        	new Notifier(context).notifyMsg("后台服务信息", "onunbind");
         }
     }
 

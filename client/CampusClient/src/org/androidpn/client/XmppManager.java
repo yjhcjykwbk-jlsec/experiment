@@ -555,7 +555,8 @@ public class XmppManager {
                     //this thread will be gone with its host-object: the old conn's packet-writer
                     getConnection().startKeepAliveThread(xmppManager);
                     //pause reconnection since connected
-                    pauseReconnectionThread();
+                    // this should not pause, since you can go offline at any time , and you need to reconnect. 
+                    // pauseReconnectionThread();
                     
                 } catch (XMPPException e) {
                     Log.e(LOGTAG, "Failed to login to xmpp server. Caused by: "
