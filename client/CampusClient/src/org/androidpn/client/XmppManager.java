@@ -571,9 +571,9 @@ public class XmppManager {
                     // this should not pause, since you can go offline at any time , and you need to reconnect. 
                     //pauseReconnectionThread();
                     //tell some one online now
-//                    getContext().sendBroadcast(new Intent(Constants.XMPP_CONNECTED).
-//                    		putExtra("from", "XmppManager").
-//                    			putExtra("type", "connected"));
+                    getContext().sendBroadcast(new Intent(Constants.XMPP_CONNECTED).
+                    		putExtra("from", "XmppManager").
+                    			putExtra("type", "connected"));
                     
                 } catch (XMPPException e) {
                     Log.e(LOGTAG, "Failed to login to xmpp server. Caused by: "

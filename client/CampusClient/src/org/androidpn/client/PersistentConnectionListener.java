@@ -62,8 +62,8 @@ public class PersistentConnectionListener implements ConnectionListener {
     @Override
     public void reconnectingIn(int seconds) {
         Log.d(LOGTAG, "reconnectingIn()...");
-        Intent intent=new Intent(Constants.XMPP_CONNECTING);
-        xmppManager.getContext().sendBroadcast(intent); 
+//        Intent intent=new Intent(Constants.XMPP_CONNECTING);
+//        xmppManager.getContext().sendBroadcast(intent); 
     }
 
     @Override

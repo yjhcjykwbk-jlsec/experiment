@@ -81,6 +81,7 @@ public class DemoAppActivity extends Activity {
 	ListView listView;
     UserInfo userInfo;
     WakeLock wakelock;
+    private DataReceiver dr;
     private XmppManager manager;
 	@Override
 	protected void onResume() {
@@ -123,7 +124,7 @@ public class DemoAppActivity extends Activity {
 					if(type==null) return;
 					TextView tv=(TextView) DemoAppActivity.this.findViewById(R.id.view_status);
 					if(type.equals("reconnection")){
-						tv.setText("离线状态，将在"+wait+"秒内重连");
+						tv.setText("将在"+wait+"秒内测试连接");
 					}else if(type.equals("connected")){
 						tv.setText(from+":连接成功");
 					}else if(type.equals("connecting")){
@@ -145,7 +146,7 @@ public class DemoAppActivity extends Activity {
         info = (TextView)findViewById(R.id.info);
         
         //监听连接状态变化
-        DataReceiver dr=new DataReceiver();
+        dr=new DataReceiver();
         IntentFilter filter=new IntentFilter();
         filter.addAction(Constants.XMPP_CONNECTING);
         filter.addAction(Constants.XMPP_CONNECTED);
@@ -422,6 +423,7 @@ public class DemoAppActivity extends Activity {
   	 public void onDestroy(){
   		 Log.d("demoappactivity", "this activity is destroyed");
   		 Toast.makeText(this, "demoactivity has destroyed",Toast.LENGTH_SHORT).show();
+  		 this.unregisterReceiver(dr);
   		 super.onStop();
   	 }
   	 
