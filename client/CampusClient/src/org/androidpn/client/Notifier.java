@@ -61,7 +61,7 @@ public class Notifier {
         return context;
     }
     
-    public void notify(String recipient,String chatXml,String packetId){
+    public void notify(String recipient,String chatXml){
     	if(isNotificationEnabled()){
     		 if (isNotificationToastEnabled()) {
                  Toast.makeText(context, "recved:"+chatXml, Toast.LENGTH_LONG).show();
@@ -308,7 +308,6 @@ public class Notifier {
 
 	public void notifyXmppConnectFailed() {
 		Log.i(LOGTAG,"xmppconnectFailed");
-		// TODO Auto-generated method stub
 		 Intent intent = new Intent(context,
 	               DemoAppActivity.class);
 	        PendingIntent contentIntent = PendingIntent.getActivity(context, random.nextInt(),
@@ -332,4 +331,27 @@ public class Notifier {
 	        notificationManager.notify(random.nextInt(), notification);
 	}
 
+	public void notifyReconnectionThreadStart(int wait) {
+		 Intent intent = new Intent(context,
+	               DemoAppActivity.class);
+	        PendingIntent contentIntent = PendingIntent.getActivity(context, random.nextInt(),
+	                intent, PendingIntent.FLAG_UPDATE_CURRENT);
+	        
+	   	 // Notification
+	        Notification notification = new Notification();
+	        notification.icon = getNotificationIcon();
+	        notification.defaults = Notification.DEFAULT_LIGHTS;
+	        if (isNotificationSoundEnabled()) {
+	            notification.defaults |= Notification.DEFAULT_SOUND;
+	        }
+	        if (isNotificationVibrateEnabled()) {
+	            notification.defaults |= Notification.DEFAULT_VIBRATE;
+	        }
+	        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+	        notification.when = System.currentTimeMillis();
+	        notification.tickerText ="将于"+wait+"秒后重连";
+	        notification.setLatestEventInfo(context, "连接消息", notification.tickerText,
+	                contentIntent);
+	        notificationManager.notify(random.nextInt(), notification);
+	}
 }

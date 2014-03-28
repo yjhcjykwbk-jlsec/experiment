@@ -75,10 +75,9 @@ public final class NotificationReceiver extends BroadcastReceiver {
         //新回复
         else if(Constants.ACTION_SHOW_CHAT.equals(action)){
         	String chatXml=intent.getStringExtra("chatXml"),
-        			recipient=intent.getStringExtra("recipient"),
-        				packetId=intent.getStringExtra("id");
+        			recipient=intent.getStringExtra("recipient");
         	Notifier notifier=new Notifier(context);
-        	notifier.notify(recipient,chatXml,packetId);
+        	notifier.notify(recipient,chatXml);
         }
         
         else if(Constants.XMPP_CONNECTED.equals(action)){
@@ -112,6 +111,12 @@ public final class NotificationReceiver extends BroadcastReceiver {
         else if (Constants.ACTION_NOTIFICATION_CLEARED.equals(action)) {
 			Log.i(LOGTAG, "清除通知");
 		}
+        
+        else if(Constants.RECONNECTION_THREAD_START.equals(action)){
+        	Notifier notifier=new Notifier(context);
+        	int waiting=intent.getIntExtra("waiting", 0);
+        	notifier.notifyReconnectionThreadStart(waiting);
+        }
     }
 
 }

@@ -338,7 +338,6 @@ public class LoginActivity extends Activity {
         public void onServiceDisconnected(ComponentName arg0) {
             mBound = false;
             //Constants.notificationService=
-            mService=null;
         	Log.i("loginactivity#serviceconnection#onservicedisconnected","service is disconnected");
         }
     };
@@ -346,7 +345,8 @@ public class LoginActivity extends Activity {
     public void onDestroy(){
     	super.onDestroy();
     	unbindService(myConnection);
-    	stopService(new Intent(LoginActivity.this,NotificationService.class));
+    	//stopService(new Intent(LoginActivity.this,NotificationService.class));
+    	mService.stopSelf();
     	Toast.makeText(this, "loginActivity has destroyed",Toast.LENGTH_SHORT).show();
     }
 

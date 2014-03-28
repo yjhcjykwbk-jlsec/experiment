@@ -259,6 +259,7 @@ public class NotificationService extends Service {
     				filter.addAction(Constants.XMPP_CONNECT_FAILED);
     						filter.addAction(Constants.XMPP_CONNECTION_ERROR);
     								filter.addAction(Constants.XMPP_CONNECTING);
+    									filter.addAction(Constants.RECONNECTION_THREAD_START);
    
         registerReceiver(notificationReceiver, filter);
     }

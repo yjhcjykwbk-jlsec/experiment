@@ -560,21 +560,22 @@ public class ChatsActivity extends Activity{
 			 //同步当前保存的各个聊天view中的数据，必要时更新当前view的ui
 	         @Override
 	         public void handleMessage(android.os.Message msg) {
-	             Log.d("chatHandler", "handleMessage......");
-	             if(!messageLists.containsKey(recipient)||!chatViews.containsKey(recipient)){
-            		Log.e(LOGTAG,"handleMessage:messageList or chatView not found");
-            		return;
-	             }
-          	
-            	 ChatInfoAdapter chatAdapter=(ChatInfoAdapter) ((ListView)(chatViews.get(recipient).findViewById(R.id.MessageListView))).getAdapter();
-            	 Bundle b = msg.getData();
+	        	 Log.d("chatHandler", "handleMessage......");
+	        	   
+	        	 Bundle b = msg.getData();
             	 String theRecipient=b.getString("recipient");
-            	 List<ChatInfo> messageList=messageLists.get(recipient);
-            	 
             	 if(theRecipient==null){
             		 UIUtil.alert(ChatsActivity.this,"处理到无效消息，会话方为空");
             		 return;
             	 }
+	             if(!messageLists.containsKey(theRecipient)||!chatViews.containsKey(theRecipient)){
+            		Log.e(LOGTAG,"handleMessage:messageList or chatView not found");
+            		return;
+	             }
+          	
+            	 ChatInfoAdapter chatAdapter=(ChatInfoAdapter) ((ListView)(chatViews.get(theRecipient).findViewById(R.id.MessageListView))).getAdapter();
+            	 List<ChatInfo> messageList=messageLists.get(theRecipient);
+            	 
 	             switch(msg.what){
 	             case 1://msg recv or send
 	            	ChatInfo ci=new ChatInfo(b.getString("username"),b.getString("chatXml"),
@@ -583,11 +584,12 @@ public class ChatsActivity extends Activity{
 	            		 UIUtil.alert(ChatsActivity.this,"处理到不完整消息");
 	            		 return;
 	            	}
-            		if(!ci.isSelf()&&!theRecipient.equals(recipient)){
+            		if(!ci.isSelf()){//&&!theRecipient.equals(recipient)){
             			//以广播方式通知用户有新的聊天消息到来
             			Intent intent = new Intent(Constants.ACTION_SHOW_CHAT);
-            			intent.putExtra("recipient", b.getString("username"));
-            			sendBroadcast(intent);
+            			intent.putExtra("recipient", ci.getName());
+            			intent.putExtra("chatXml", ci.getContent());
+            			ChatsActivity.this.sendBroadcast(intent);
             		}
             		
         			//该会话已经有聊天消息队列，将消息添加到聊天队列

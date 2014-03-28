@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
             android:layout_weight="0.45"
-            android:text="www.pku.edu.cn"
+            android:text="http://219.223.194.207/push/"
             android:ems="10" >
 
             <requestFocus/>

@@ -120,5 +120,7 @@ public class Constants {
 
 	public static final String XMPP_CONNECTION_ERROR = "org.androidpn.client.XMPP_CONNECTION_ERROR";
 
+	public static final String RECONNECTION_THREAD_START = "org.androidpn.client.RECONNECTION_THREAD_START";
+
 
 }

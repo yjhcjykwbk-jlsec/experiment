@@ -93,8 +93,12 @@ public class DemoAppActivity extends Activity {
         		new int[]{R.id.ItemTitle,R.id.ItemMessage,R.id.ItemUri}
         		);
 		listView.setAdapter(listItemAdapter);
+		
+		if(manager!=null&&manager.isAuthenticated())
+        	welcomeUser.setText("Welcome"+originSharedPrefs.getString(Constants.XMPP_USERNAME, "未登录用户")+",xmpp连接在线");
+    	else
+           	welcomeUser.setText("Welcome"+originSharedPrefs.getString(Constants.XMPP_USERNAME, "未登录用户")+",xmpp正在连接");
 	}
-
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         Log.d("xiaobingo", "onCreate()...");

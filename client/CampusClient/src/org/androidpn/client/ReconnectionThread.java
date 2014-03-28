@@ -15,6 +15,7 @@
  */
 package org.androidpn.client;
 
+import android.content.Intent;
 import android.util.Log;
 
 /** 
@@ -42,6 +43,9 @@ public class ReconnectionThread extends Thread {
             while (!isInterrupted()) {
                 Log.d(LOGTAG, "Trying to reconnect in " + waiting()
                         + " seconds");
+            	Intent intent=new Intent(Constants.RECONNECTION_THREAD_START);
+            	intent.putExtra("waiting", waiting());
+            	xmppManager.getContext().sendBroadcast(intent);
                 Thread.sleep((long) waiting() * 1000L);//waiting() to waiting
                 xmppManager.connect();
                 waiting++;
