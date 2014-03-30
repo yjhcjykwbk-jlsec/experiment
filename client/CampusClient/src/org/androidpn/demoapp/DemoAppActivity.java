@@ -332,7 +332,10 @@ public class DemoAppActivity extends Activity {
 			}
 			@Override
 			protected void onPostExecute(String resp){
-				Util.alert(DemoAppActivity.this, "推送结果:"+resp);
+				if(resp!=null&&resp!="")
+					Util.alert(DemoAppActivity.this, "推送成功");
+				else
+					Util.alert(DemoAppActivity.this, "推送失败，可能原因有 1当前无法建立http连接 2推送内容格式问题 3推送服务器出错");
 			}
 		}.execute(title,message,uri,broadcast+"");
 	}
