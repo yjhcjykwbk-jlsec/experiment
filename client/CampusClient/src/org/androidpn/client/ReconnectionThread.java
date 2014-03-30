@@ -31,11 +31,11 @@ public class ReconnectionThread extends Thread {
 
     private final XmppManager xmppManager;
 
-    private int waiting;
+    private Integer waiting;
 
-    ReconnectionThread(XmppManager xmppManager) {
+    ReconnectionThread(XmppManager xmppManager,Integer waiting) {
         this.xmppManager = xmppManager;
-        this.waiting = 0;
+        this.waiting = waiting;
     }
 
     public void run() {

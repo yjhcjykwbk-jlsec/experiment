@@ -295,9 +295,6 @@ public class DemoAppActivity extends Activity {
 				editor.remove(Constants.XMPP_USERNAME);
 				editor.remove(Constants.XMPP_PASSWORD);
 				editor.commit();
-//				NotificationService service=Constants.notificationService;
-//				stopService(new Intent(DemoAppActivity.this,NotificationService.class));
-//				service.stopSelf();
 				DemoAppActivity.this.setResult(RESULT_OK,DemoAppActivity.this.getIntent());
 				DemoAppActivity.this.finish();
 			}

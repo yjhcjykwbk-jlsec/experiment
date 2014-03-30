@@ -17,6 +17,7 @@ import org.androidpn.demoapp.R;
 import org.androidpn.util.ActivityUtil;
 import org.androidpn.util.GetPostUtil;
 import org.androidpn.util.IsNetworkConn;
+import org.androidpn.util.Util;
 import org.apache.http.util.ByteArrayBuffer;
 import org.apache.http.util.EncodingUtils;
 
@@ -345,9 +346,10 @@ public class LoginActivity extends Activity {
     @Override
     public void onDestroy(){
     	unbindService(myConnection);
-    	//stopService(new Intent(LoginActivity.this,NotificationService.class));
-    	mService.stopSelf();
-    	mService=null;
+//    	//stopService(new Intent(LoginActivity.this,NotificationService.class));
+//    	mService.stopSelf();
+//    	mService=null;
+    	Util.exit(this);
     	Toast.makeText(this, "loginActivity has destroyed",Toast.LENGTH_SHORT).show();
     	super.onDestroy();
     }

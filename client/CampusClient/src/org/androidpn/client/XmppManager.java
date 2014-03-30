@@ -96,6 +96,7 @@ public class XmppManager {
 
     private ReconnectionThread reconnection;
     
+    private Integer waiting=0;
     
     private List<Pair<PacketListener,PacketFilter>> packetListenerList=new LinkedList<Pair<PacketListener, PacketFilter>>();
 
@@ -116,7 +117,7 @@ public class XmppManager {
         
         handler = new Handler();
         taskList = new ArrayList<Runnable>();
-        reconnection = new ReconnectionThread(this);
+        reconnection = new ReconnectionThread(this,waiting);
        
         // packet filter
         PacketFilter chatPacketFilter=new PacketFilter() {
@@ -242,6 +243,13 @@ public class XmppManager {
                 Log.i(LOGTAG,"pauseReconnectionThread");
             }
         }
+    }
+    
+    public void prepareReconnectionThread(){
+    	if(!isAuthenticated()){
+    		waiting=0;
+    		startReconnectionThread();
+    	}
     }
 
     public Handler getHandler() {
@@ -612,6 +620,7 @@ public class XmppManager {
      * send a packet out to someone
      */
     public void sendMsg(Packet msg){
+    	prepareReconnectionThread();
     	submitLoginTask();
     	addTask(new SendMsgTask(msg));
     }
