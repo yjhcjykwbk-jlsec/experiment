@@ -182,10 +182,6 @@ public class NotificationService extends Service {
         return true;
     }
 
-//    public static Intent getIntent() {
-//        return new Intent(SERVICE_NAME);
-//    }
-
     public ExecutorService getExecutorService() {
         return executorService;
     }
@@ -210,25 +206,6 @@ public class NotificationService extends Service {
         return deviceId;
     }
     
-    /*
-     * use this to send message to someone
-     */
-//    public void sendMsg(int id,String s,String to){
-//		final Message msg=new Message(to,Message.Type.chat);
-//		if(xmppManager==null||xmppManager.getUsername()==null){ 
-//			Log.i("notificationservice#sendMsg","xmppmanager or username is null"); 
-//			return;}
-//		
-//		msg.setFrom(xmppManager.getUsername());
-//		msg.setBody(s);
-//		msg.setPacketID(id+"");
-//		taskSubmitter.submit(new Runnable() {
-//		public void run() {
-//	        NotificationService.this.getXmppManager().sendMsg(msg);
-//	        }
-//	    });
-//    }
-
     public void connect() {
         Log.d(LOGTAG, "connect()...");
         //all asynchronously
@@ -247,32 +224,36 @@ public class NotificationService extends Service {
             }
         });
     }
-
+    
+    /**
+     * 为notificationReceiver注册收听intent-broadcast
+     * 在notificationReceiver.onReceive中处理，其处理方式是notifier.notify
+     */
     private void registerNotificationReceiver() {
         IntentFilter filter = new IntentFilter();
         filter.addAction(Constants.ACTION_SHOW_NOTIFICATION);
         filter.addAction(Constants.ACTION_SHOW_CHAT);
         //@Todo
-        filter.addAction(Constants.ACTION_CHAT_CLICKED); 
         filter.addAction(Constants.ACTION_NOTIFICATION_CLICKED);
         filter.addAction(Constants.ACTION_NOTIFICATION_CLEARED);
-//        filter.addAction(Constants.XMPP_CONNECTED);
-    		filter.addAction(Constants.XMPP_CONNECTION_CLOSED);
-    				filter.addAction(Constants.XMPP_CONNECT_FAILED);
-    						filter.addAction(Constants.XMPP_CONNECTION_ERROR);
-//    								filter.addAction(Constants.XMPP_CONNECTING);
-//    									filter.addAction(Constants.RECONNECTION_THREAD_START);
+//      filter.addAction(Constants.XMPP_CONNECTED);
+    	filter.addAction(Constants.XMPP_CONNECTION_CLOSED);
+    	filter.addAction(Constants.XMPP_CONNECT_FAILED);
+//    	filter.addAction(Constants.XMPP_CONNECTION_ERROR);
+//    	filter.addAction(Constants.XMPP_CONNECTING);
+//    	filter.addAction(Constants.RECONNECTION_THREAD_START);
         filter.addAction(Constants.SERVICE_CREATED);
-        	filter.addAction(Constants.SERVICE_DESTROYED);
-        		filter.addAction(Constants.SERVICE_ONBIND);
-        			filter.addAction(Constants.SERVICE_ONUNBIND);
+        filter.addAction(Constants.SERVICE_DESTROYED);
+        filter.addAction(Constants.SERVICE_ONBIND);
+        filter.addAction(Constants.SERVICE_ONUNBIND);
         registerReceiver(notificationReceiver, filter);
     }
 
     private void unregisterNotificationReceiver() {
         unregisterReceiver(notificationReceiver);
     }
-    /*
+    
+    /**
      * filter out the connectivity intent
      * and register a observer connectivityReceiver on intent
      */

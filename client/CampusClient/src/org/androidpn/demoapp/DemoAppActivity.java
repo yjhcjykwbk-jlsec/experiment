@@ -39,6 +39,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -103,15 +104,12 @@ public class DemoAppActivity extends Activity {
            	welcomeUser.setText("Welcome"+originSharedPrefs.getString(Constants.XMPP_USERNAME, "未登录用户")+",xmpp正在连接");
 	}
 	
-//	@Override
-//	protected void onNewIntent(Intent intent){
-//		String action=intent.getStringExtra("action");
-//		if(action==null) return;
-//		if(action=="reconnection"){
-//			int wait=intent.getIntExtra("wait", 0);
-//			
-//		}
-//	}
+	/**
+	 * 
+	 * @author xu zhigang
+	 * listen to broadcast intent which indicates the current connection status
+	 * and update the UI
+	 */
 	class DataReceiver extends BroadcastReceiver {
 		@Override
 		public void onReceive(Context arg0, Intent intent) {
@@ -122,18 +120,31 @@ public class DemoAppActivity extends Activity {
 			runOnUiThread(new Runnable(){
 				public void run(){
 					if(type==null) return;
+					boolean connected=false;
 					TextView tv=(TextView) DemoAppActivity.this.findViewById(R.id.view_status);
 					if(type.equals("reconnection")){
 						tv.setText("将在"+wait+"秒内测试连接");
+						return;
 					}else if(type.equals("connected")){
 						tv.setText(from+":连接成功");
+						connected=true;
 					}else if(type.equals("connecting")){
 						tv.setText(from+":连接中");
+						connected=false;
+					}else if(type.equals("connectionError")){
+						tv.setText("连接发生错误，正在重连");
+						connected=false;
 					}
+					TextView status=(TextView)DemoAppActivity.this.findViewById(R.id.view_connection_status);
+					if(connected){
+						status.setText("在线");status.setTextColor(Color.GREEN);
+					}
+					else status.setText("离线");status.setTextColor(Color.RED);
 				}
 			});
 		}
 	}
+	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         Log.d("xiaobingo", "onCreate()...");
@@ -145,12 +156,13 @@ public class DemoAppActivity extends Activity {
         listView = (ListView)findViewById(R.id.myList); 
         info = (TextView)findViewById(R.id.info);
         
-        //监听连接状态变化
+        //listen to connection-status change broadcasts
         dr=new DataReceiver();
         IntentFilter filter=new IntentFilter();
         filter.addAction(Constants.XMPP_CONNECTING);
         filter.addAction(Constants.XMPP_CONNECTED);
         filter.addAction(Constants.RECONNECTION_THREAD_START);
+        filter.addAction(Constants.XMPP_CONNECTION_ERROR);
         registerReceiver(dr,filter);
         
         originSharedPrefs = this.getSharedPreferences(
@@ -285,20 +297,6 @@ public class DemoAppActivity extends Activity {
 				DemoAppActivity.this.startActivity(subIntent);
 			}
 		});    
-        
-        TextView btn_logOut=(TextView)findViewById(R.id.LogoutBtn);
-        btn_logOut.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				Editor editor = originSharedPrefs.edit();
-				editor.remove(Constants.XMPP_USERNAME);
-				editor.remove(Constants.XMPP_PASSWORD);
-				editor.commit();
-				DemoAppActivity.this.setResult(RESULT_OK,DemoAppActivity.this.getIntent());
-				DemoAppActivity.this.finish();
-			}
-		});
         
         Button btn_push=(Button)findViewById(R.id.btn_push);
         btn_push.setOnClickListener(new View.OnClickListener() {

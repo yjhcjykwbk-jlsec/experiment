@@ -42,7 +42,7 @@ public class PersistentConnectionListener implements ConnectionListener {
     }
 
     @Override
-    /*
+    /**
      * close a connetion and reconnect the connection
      * @see org.jivesoftware.smack.ConnectionListener#connectionClosedOnError(java.lang.Exception)
      */
@@ -53,17 +53,17 @@ public class PersistentConnectionListener implements ConnectionListener {
             xmppManager.getConnection().disconnect();
         }
         Log.i(LOGTAG,"connection restart");
+        
         //broadcast connect-error-event to other threads
-        Intent intent=new Intent(Constants.XMPP_CONNECTION_ERROR);
+        Intent intent=new Intent(Constants.XMPP_CONNECTION_ERROR).putExtra("type", "connectionError");
         xmppManager.getContext().sendBroadcast(intent); 
+        
         xmppManager.startReconnectionThread();
     }
 
     @Override
     public void reconnectingIn(int seconds) {
         Log.d(LOGTAG, "reconnectingIn()...");
-//        Intent intent=new Intent(Constants.XMPP_CONNECTING);
-//        xmppManager.getContext().sendBroadcast(intent); 
     }
 
     @Override

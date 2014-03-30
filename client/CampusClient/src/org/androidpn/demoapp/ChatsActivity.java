@@ -88,9 +88,8 @@ public class ChatsActivity extends Activity {
 		Toast.makeText(this, "chatsActivity start", Toast.LENGTH_SHORT).show();
 	}
 
-	/*
-	 * if activity is called by intent then judge the intent and route to
-	 * different views
+	/**
+	 * called when new intent invoke this activity
 	 */
 	@Override
 	protected void onNewIntent(Intent intent) {
@@ -164,7 +163,10 @@ public class ChatsActivity extends Activity {
 		SessionManager.setChatsUiListener(chatsHandler);
 	}
 
-	// go to chat view page
+	/**
+	 *  go to chat view page
+	 * @param recipient
+	 */
 	private void setChatView(String recipient) {
 		if (recipient == null)
 			return;
@@ -185,7 +187,7 @@ public class ChatsActivity extends Activity {
 		}
 	}
 
-	/*
+	/**
 	 * init the page's header with three buttons
 	 */
 	private void initHeaderView() {
@@ -284,7 +286,7 @@ public class ChatsActivity extends Activity {
 		}
 	}
 
-	/*
+	/**
 	 * alert a find user form window
 	 */
 	private void alertFindUserForm() {
@@ -307,7 +309,7 @@ public class ChatsActivity extends Activity {
 				}).show();
 	}
 
-	/*
+	/**
 	 * related to find and add friend
 	 */
 	@SuppressWarnings("unchecked")
@@ -352,7 +354,7 @@ public class ChatsActivity extends Activity {
 		}.execute(parameter);
 	}
 
-	/*
+	/**
 	 * add friend send a add-friend request to server in a asynchronous way
 	 */
 	@SuppressWarnings("unchecked")
@@ -386,7 +388,7 @@ public class ChatsActivity extends Activity {
 		}.execute(userId);
 	}
 
-	/*
+	/**
 	 * do pull friend List asynchronously
 	 */
 	@SuppressWarnings("unchecked")
@@ -430,7 +432,7 @@ public class ChatsActivity extends Activity {
 		}.execute();
 	}
 
-	/*
+	/**
 	 * display a user in a alert window
 	 */
 	private void displayUser(final User u) {
@@ -492,7 +494,7 @@ public class ChatsActivity extends Activity {
 		return resp.substring(i + tag.length() + 2, j);
 	}
 
-	/*
+	/**
 	 * manage with chat ui view
 	 */
 	class ChatViewController {
@@ -522,7 +524,7 @@ public class ChatsActivity extends Activity {
 			}
 		}
 
-		/*
+		/**
 		 * page jumped
 		 */
 		public void initView(String recipient, List messageList, View chatView)
