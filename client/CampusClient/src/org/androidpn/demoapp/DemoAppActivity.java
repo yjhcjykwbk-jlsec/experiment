@@ -52,6 +52,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -88,20 +89,8 @@ public class DemoAppActivity extends Activity {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		Log.i("xiaobingo", "onResume...");
-        ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String,String>>();
-        listItem = userInfo.getMyNotifier();  
-        Log.i("xiaobingo", "listItem"+listItem.size()); 
-        SimpleAdapter listItemAdapter = new SimpleAdapter(this,listItem,R.layout.list,
-        		new String[]{"ItemTitle","ItemMessage","ItemUri"},
-        		new int[]{R.id.ItemTitle,R.id.ItemMessage,R.id.ItemUri}
-        		);
-		listView.setAdapter(listItemAdapter);
-		
-		if(manager!=null&&manager.isAuthenticated())
-        	welcomeUser.setText("Welcome"+originSharedPrefs.getString(Constants.XMPP_USERNAME, "未登录用户")+",xmpp连接在线");
-    	else
-           	welcomeUser.setText("Welcome"+originSharedPrefs.getString(Constants.XMPP_USERNAME, "未登录用户")+",xmpp正在连接");
+		BaseAdapter adapter=(BaseAdapter) listView.getAdapter();
+		adapter.notifyDataSetChanged();
 	}
 	
 	/**
@@ -169,10 +158,7 @@ public class DemoAppActivity extends Activity {
                 Constants.SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE);
         
         manager=Constants.xmppManager;
-        if(manager!=null&&manager.isAuthenticated())
-        	welcomeUser.setText("Welcome"+originSharedPrefs.getString(Constants.XMPP_USERNAME, "未登录用户")+",xmpp连接在线");
-    	else
-           	welcomeUser.setText("Welcome"+originSharedPrefs.getString(Constants.XMPP_USERNAME, "未登录用户")+",xmpp正在连接");
+        welcomeUser.setText("Welcome"+originSharedPrefs.getString(Constants.XMPP_USERNAME, "未登录用户"));
         
 		userInfo=(UserInfo)getApplication();		
 		userInfo.initUserInfo();		
@@ -198,7 +184,13 @@ public class DemoAppActivity extends Activity {
 			editor.putString(Constants.USER_SUBSCRIPTION, responseSubscription);
 			editor.commit();  
 		}
-
+        
+        ArrayList<HashMap<String, String>> listItem = userInfo.getMyNotifier();  
+        SimpleAdapter listItemAdapter = new SimpleAdapter(this,listItem,R.layout.list,
+        		new String[]{"ItemTitle","ItemMessage","ItemUri"},
+        		new int[]{R.id.ItemTitle,R.id.ItemMessage,R.id.ItemUri}
+        		);
+		listView.setAdapter(listItemAdapter);
         listView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
@@ -219,9 +211,7 @@ public class DemoAppActivity extends Activity {
 				it.putExtra("ItemUri", getItemUri);
 				startActivity(it);
 			}
-        	
 		}); 
-		
 		
 		// Settings
         //Button btn_subscribe = (Button)findViewById(R.id.btn_subscribe);
@@ -249,6 +239,7 @@ public class DemoAppActivity extends Activity {
 			}
 		});
         
+        //subscribe button clicked
         btn_subscribe = (Button)findViewById(R.id.btn_subscribe);
         btn_subscribe.setOnClickListener(new View.OnClickListener() {			
 			@Override
