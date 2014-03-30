@@ -105,7 +105,6 @@ public class DemoAppActivity extends Activity {
 	}
 	
 	/**
-	 * 
 	 * @author xu zhigang
 	 * listen to broadcast intent which indicates the current connection status
 	 * and update the UI
@@ -113,7 +112,6 @@ public class DemoAppActivity extends Activity {
 	class DataReceiver extends BroadcastReceiver {
 		@Override
 		public void onReceive(Context arg0, Intent intent) {
-			// TODO Auto-generated method stub
 			final String type=intent.getStringExtra("type");
 			final int wait=intent.getIntExtra("wait", 0);
 			final String from=intent.getStringExtra("from");
@@ -139,7 +137,9 @@ public class DemoAppActivity extends Activity {
 					if(connected){
 						status.setText("在线");status.setTextColor(Color.GREEN);
 					}
-					else status.setText("离线");status.setTextColor(Color.RED);
+					else {
+						status.setText("离线");status.setTextColor(Color.RED);
+					}
 				}
 			});
 		}
