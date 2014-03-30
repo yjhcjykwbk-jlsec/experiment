@@ -89,8 +89,11 @@ public class DemoAppActivity extends Activity {
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
+		//update listview
 		BaseAdapter adapter=(BaseAdapter) listView.getAdapter();
 		adapter.notifyDataSetChanged();
+		//update connection status
+		setConnectionStatus();
 	}
 	
 	/**
@@ -107,30 +110,33 @@ public class DemoAppActivity extends Activity {
 			runOnUiThread(new Runnable(){
 				public void run(){
 					if(type==null) return;
-					boolean connected=false;
 					TextView tv=(TextView) DemoAppActivity.this.findViewById(R.id.view_status);
 					if(type.equals("reconnection")){
 						tv.setText("将在"+wait+"秒内测试连接");
-						return;
 					}else if(type.equals("connected")){
 						tv.setText(from+":连接成功");
-						connected=true;
 					}else if(type.equals("connecting")){
 						tv.setText(from+":连接中");
-						connected=false;
 					}else if(type.equals("connectionError")){
 						tv.setText("连接发生错误，正在重连");
-						connected=false;
 					}
-					TextView status=(TextView)DemoAppActivity.this.findViewById(R.id.view_connection_status);
-					if(connected){
-						status.setText("在线");status.setTextColor(Color.GREEN);
-					}
-					else {
-						status.setText("离线");status.setTextColor(Color.RED);
-					}
+					setConnectionStatus();
 				}
 			});
+		}
+	}
+	
+	/**
+	 * set the status of view_connection_status
+	 */
+	private void setConnectionStatus(){
+		TextView status=(TextView)DemoAppActivity.this.findViewById(R.id.view_connection_status);
+		boolean connected=manager.isAuthenticated();
+		if(connected){
+			status.setText("在线");status.setTextColor(Color.GREEN);
+		}
+		else {
+			status.setText("离线");status.setTextColor(Color.RED);
 		}
 	}
 	
@@ -162,7 +168,9 @@ public class DemoAppActivity extends Activity {
         
 		userInfo=(UserInfo)getApplication();		
 		userInfo.initUserInfo();		
-        
+		
+		setConnectionStatus();
+		
         IsNetworkConn isConn = new IsNetworkConn(DemoAppActivity.this);
         if (!isConn.isConnected) {  
 			info.setText("network not connected~");
