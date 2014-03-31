@@ -41,12 +41,11 @@ public class ReconnectionThread extends Thread {
     public void run() {
     	waiting=0;
         try {
+        	xmppManager.getContext().sendBroadcast(new Intent(Constants.RECONNECTION_THREAD).putExtra("type", "reconnectionStart").putExtra("wait", waiting()));
             while (!isInterrupted()) {
                 Log.d(LOGTAG, "Trying to reconnect in " + waiting()
                         + " seconds");
-            	Intent intent=new Intent(Constants.RECONNECTION_THREAD_START).
-            			putExtra("type", "reconnection").putExtra("wait", waiting());
-            	xmppManager.getContext().sendBroadcast(intent);
+                xmppManager.getContext().sendBroadcast(new Intent(Constants.RECONNECTION_THREAD).putExtra("type", "reconnection").putExtra("wait", waiting()));
                 Thread.sleep((long) waiting() * 1000L);//waiting() to waiting
                 xmppManager.connect();
                 waiting++;
@@ -65,12 +64,18 @@ public class ReconnectionThread extends Thread {
     	this.waiting=wait;
     }
     private int waiting() {
-        if (waiting > 20) {
+    	if(waiting>18){
+    		return 120;
+    	}
+        if (waiting > 12) {
+            return 45;
+        }
+        if (waiting >7) {
             return 25;
         }
-        if (waiting > 13) {
-            return 15;
+        if(waiting>2){
+        	return 5;
         }
-        return waiting <= 7 ? 2 : 6;
+        return 1;
     }
 }

@@ -156,7 +156,7 @@ public class DemoAppActivity extends Activity {
         IntentFilter filter=new IntentFilter();
         filter.addAction(Constants.XMPP_CONNECTING);
         filter.addAction(Constants.XMPP_CONNECTED);
-        filter.addAction(Constants.RECONNECTION_THREAD_START);
+        filter.addAction(Constants.RECONNECTION_THREAD);
         filter.addAction(Constants.XMPP_CONNECTION_ERROR);
         registerReceiver(dr,filter);
         
@@ -354,7 +354,6 @@ public class DemoAppActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
 		menu.add(0, MENU_ITEM0, 0, " 退出");
-		menu.add(0, MENU_ITEM1, 0, " 2");
 		return true;
 	}
 
@@ -364,23 +363,6 @@ public class DemoAppActivity extends Activity {
 		case MENU_ITEM0:
 		{	 
 			Util.exit(this);
-		}
-		case MENU_ITEM1:
-		{	 
-			userInfo = (UserInfo)getApplication();
-			ArrayList<HashMap<String, String>> emptyList= new ArrayList<HashMap<String,String>>();
-			userInfo.setMyNotifier(emptyList);
-			userInfo.initUserInfo();
-			ArrayList<HashMap<String, String>> listItem = new ArrayList<HashMap<String,String>>();
-	        listItem = userInfo.getMyNotifier();  
-	        Log.i("xiaobingo", "listItem "+listItem.size()); 
-
-	        SimpleAdapter listItemAdapter = new SimpleAdapter(this,listItem,R.layout.list,
-	        		new String[]{"ItemTitle","ItemMessage","ItemUri"},
-	        		new int[]{R.id.ItemTitle,R.id.ItemMessage,R.id.ItemUri}
-	        		);
-			listView.setAdapter(listItemAdapter);
-			break;
 		}
 		default:
 			break;
@@ -421,7 +403,7 @@ public class DemoAppActivity extends Activity {
   		 Log.d("demoappactivity", "this activity is destroyed");
   		 Toast.makeText(this, "demoactivity has destroyed",Toast.LENGTH_SHORT).show();
   		 this.unregisterReceiver(dr);
-  		 super.onStop();
+  		 super.onDestroy();
   	 }
   	 
 }

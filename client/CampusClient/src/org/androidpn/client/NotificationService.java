@@ -236,12 +236,15 @@ public class NotificationService extends Service {
         //@Todo
         filter.addAction(Constants.ACTION_NOTIFICATION_CLICKED);
         filter.addAction(Constants.ACTION_NOTIFICATION_CLEARED);
+        
 //      filter.addAction(Constants.XMPP_CONNECTED);
-    	filter.addAction(Constants.XMPP_CONNECTION_CLOSED);
+//    	filter.addAction(Constants.XMPP_CONNECTION_CLOSED);
     	filter.addAction(Constants.XMPP_CONNECT_FAILED);
 //    	filter.addAction(Constants.XMPP_CONNECTION_ERROR);
 //    	filter.addAction(Constants.XMPP_CONNECTING);
-//    	filter.addAction(Constants.RECONNECTION_THREAD_START);
+    	
+    	filter.addAction(Constants.RECONNECTION_THREAD);
+    	
         filter.addAction(Constants.SERVICE_CREATED);
         filter.addAction(Constants.SERVICE_DESTROYED);
         filter.addAction(Constants.SERVICE_ONBIND);

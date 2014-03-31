@@ -366,7 +366,7 @@ public class UploadActivity extends Activity {
     	startActivity(intent);
     }
     
-  //按下back键,回到主页
+    //按下back键,回到主页
   	@Override
   	public boolean onKeyDown(int keyCode, KeyEvent event) {  		
   		if (keyCode == KeyEvent.KEYCODE_BACK) {  					

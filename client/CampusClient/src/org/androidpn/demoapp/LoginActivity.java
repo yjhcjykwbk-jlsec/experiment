@@ -3,6 +3,8 @@ package org.androidpn.demoapp;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,6 +41,8 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -46,6 +50,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.view.Gravity;
@@ -237,7 +242,7 @@ public class LoginActivity extends Activity {
 		Constants.serviceManager = serviceManager;
 		serviceManager.setNotificationIcon(R.drawable.notification);
 		
-//		serviceManager.startService();
+		//serviceManager.startService();
 		
 		//this is very important, 
 		Intent intent = new Intent(this,NotificationService.class);
@@ -345,13 +350,31 @@ public class LoginActivity extends Activity {
     };
     @Override
     public void onDestroy(){
-    	unbindService(myConnection);
-//    	//stopService(new Intent(LoginActivity.this,NotificationService.class));
-//    	mService.stopSelf();
-//    	mService=null;
+    	//unbindService(myConnection);
     	Util.exit(this);
     	Toast.makeText(this, "loginActivity has destroyed",Toast.LENGTH_SHORT).show();
     	super.onDestroy();
     }
+    
+    @Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		super.onCreateOptionsMenu(menu);
+		menu.add(0, 1, 0, " ÍË³ö");
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case 1:
+		{	 
+			Util.exit(this);
+		}
+		default:
+			break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+	
 
 }

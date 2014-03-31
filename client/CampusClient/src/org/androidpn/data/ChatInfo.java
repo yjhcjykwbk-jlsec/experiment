@@ -10,6 +10,7 @@ public class ChatInfo {
 	private String chatXml;
 	private Date time;
 	private String packetID;
+	public boolean hasPic=false;
 	//发出
 	private boolean isSelf;
 	//自己发送的，是否发送成功
@@ -22,6 +23,7 @@ public class ChatInfo {
 		this.chatXml = chat;
 		this.packetID=pid;
 		this.time=time;
+		if(this.chatXml.startsWith("<img>")) this.hasPic=true;
 		if(isSelf){
 			this.isSelf=true;
 			this.sent=false;
@@ -33,6 +35,7 @@ public class ChatInfo {
 		this.username = u;
 		this.chatXml = chat;
 		this.packetID=pid;
+		if(this.chatXml.startsWith("<img>")) this.hasPic=true;
 		if(isSelf){
 			this.isSelf=true;
 			this.sent=false;

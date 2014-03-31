@@ -1,5 +1,14 @@
 package org.androidpn.demoapp;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -22,12 +31,18 @@ import org.jivesoftware.smack.packet.Packet;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.MediaStore.MediaColumns;
 import android.util.Log;
 import android.util.Pair;
 import android.view.KeyEvent;
@@ -69,13 +84,15 @@ public class ChatsActivity extends Activity {
 		USERNAME = getIntent().getStringExtra("userID");
 		PASSWORD = getIntent().getStringExtra("Pwd");// used for 8080 connection
 
+		uploadUri=getString(R.string.upload_uri);
+		
 		friendList = Constants.friendList;
 		if (friendList == null)
 			getFriend();
 
 		latestChats = SessionManager.cloneLatestChats();
 		assert (latestChats != null);
-
+		
 		chatAct = new ChatViewController();// handle chat view page
 
 		if (getIntent().getStringExtra("recipient") != null) {
@@ -90,6 +107,7 @@ public class ChatsActivity extends Activity {
 
 	/**
 	 * called when new intent invoke this activity
+	 * and choose which view to set
 	 */
 	@Override
 	protected void onNewIntent(Intent intent) {
@@ -131,7 +149,7 @@ public class ChatsActivity extends Activity {
 		setContentView(chatsView);
 		viewState = 1;
 
-		// init views
+		// init views on the head
 		initHeaderView();
 
 		Log.i(LOGTAG, "setChatsView setListView");
@@ -159,7 +177,7 @@ public class ChatsActivity extends Activity {
 				setChatView(recipient);
 			}
 		});
-
+		
 		SessionManager.setChatsUiListener(chatsHandler);
 	}
 
@@ -191,6 +209,7 @@ public class ChatsActivity extends Activity {
 	 * init the page's header with three buttons
 	 */
 	private void initHeaderView() {
+		//find user button
 		Button findBtn = (Button) this.findViewById(R.id.FindUserBtn);
 		findBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -206,6 +225,7 @@ public class ChatsActivity extends Activity {
 				ChatsActivity.this.finish();
 			}
 		});
+		//contacts button
 		Button contactsBtn = (Button) this.findViewById(R.id.FriendListBtn);
 		contactsBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -222,19 +242,35 @@ public class ChatsActivity extends Activity {
 			}
 		});
 	}
-
+	
+	/**
+	 * be called when contactActivity returned with a recipient
+	 * and this activity will launch a chat with the recipient 
+	 */
+	private String uploadUri=null;
+	private String imgPath="";
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// TODO Auto-generated method stub
 		super.onActivityResult(requestCode, resultCode, data);
 		// requestCode标示请求的标示 resultCode表示有数据
-		if (resultCode == RESULT_OK) {
+		if (requestCode==0&&resultCode == RESULT_OK) {//处理 选择联系人进行对话activity 的返回结果
 			String recipient = data.getStringExtra("recipient");
 			if (recipient == null) {
 				Log.e(LOGTAG, "onActivityResult: contactActivity return null");
 			}
-			setChatView(recipient);
+			else setChatView(recipient);
+		}
+		else if(requestCode==1&&resultCode==RESULT_OK){//处理 选择图片上传activity 的返回结果
+			Uri imageURI = data.getData();
+			Cursor cursor = getContentResolver()
+	                   .query(imageURI, null, null, null, null); 
+	        cursor.moveToFirst(); 
+	        int idx = cursor.getColumnIndex(MediaColumns.DATA); 
+	        imgPath=cursor.getString(idx); 
+	        showSendPic(imgPath);
 		}
 	}
+
 
 	@Override
 	protected void onStop() {
@@ -254,6 +290,14 @@ public class ChatsActivity extends Activity {
 
 	private ChatsHandler chatsHandler = new ChatsHandler();
 
+	
+	//////////////////////////////////related to chats-view update////////////////////////////////////////
+	/**
+	 * @author xu zhigang
+	 * this handler handles with messages which indicates chats update
+	 * for example, a new chat is launched,or some chat has get new messages
+	 * and update the chats-view
+	 */
 	class ChatsHandler extends Handler {
 		@Override
 		public void handleMessage(Message msg) {
@@ -285,6 +329,9 @@ public class ChatsActivity extends Activity {
 			});
 		}
 	}
+	
+	
+	//////////////////////////////related to friends and contacts///////////////////////////////////////////
 
 	/**
 	 * alert a find user form window
@@ -353,7 +400,6 @@ public class ChatsActivity extends Activity {
 			}
 		}.execute(parameter);
 	}
-
 	/**
 	 * add friend send a add-friend request to server in a asynchronous way
 	 */
@@ -493,9 +539,78 @@ public class ChatsActivity extends Activity {
 		}
 		return resp.substring(i + tag.length() + 2, j);
 	}
-
+	
+	///////////////////////////////////////////////////////send related/////////////////////////////////////
 	/**
-	 * manage with chat ui view
+	 * @param to : the recipient of this chat message
+	 * @param content : chat content
+	 */
+	private void handleSendMsg(String to,String content){
+		org.jivesoftware.smack.packet.Message msg = new org.jivesoftware.smack.packet.Message(
+				to, org.jivesoftware.smack.packet.Message.Type.chat);
+		msg.setBody(content);
+		// send msg
+		ChatInfo ci = new ChatInfo(
+				(ChatsActivity.this).recipient, msg.getBody(),
+				new Date(System.currentTimeMillis()), msg
+						.getPacketID(), true);
+		// 聊天消息添加到发送队列
+		addMsg(msg);
+		// 同步到SessionManager
+		SessionManager.addMsg((ChatsActivity.this).recipient,
+				ci);
+	}
+	
+	 /**
+	  *  shows the photo to send in ImageView 
+	  */
+    private void showSendPic(String imgPath) {
+    	ImageView mImageView=(ImageView) ChatsActivity.this.findViewById(R.id.SendImgView);
+    	if (mImageView == null) {
+    		Log.e("setPic", "mImageView is null");
+    		return;
+    	}
+    	if (imgPath == null) {
+    		Log.e("setPic", "imgPath is null");
+    		return;
+    	}
+    	
+    	mImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+    	
+        int targetW = mImageView.getWidth();
+        int targetH = mImageView.getHeight();
+        
+        Log.e("ImageView size", "width: " + targetW + " height: " + targetH);
+        
+        if (targetW == 0 || targetH == 0) {
+        	Log.e("setPic", "width or height is zero");
+        	return;
+        }
+        
+        // 获取图片的大小
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        bmOptions.inJustDecodeBounds = true;
+        BitmapFactory.decodeFile(imgPath, bmOptions);
+        int photoW = bmOptions.outWidth;
+        int photoH = bmOptions.outHeight;
+        Log.i("setPic", "bmOptions.outWidth: " + bmOptions.outWidth);
+        Log.i("setPic", "bmOptions.outHeight: " + bmOptions.outHeight);
+        // Determine how much to scale down the image
+        int scaleFactor = Math.max(photoW/targetW, photoH/targetH);
+        Log.i("scaleFactor", "scale: " + scaleFactor);
+        
+        // Decode the image file into a Bitmap sized to fill the View
+        bmOptions.inJustDecodeBounds = false;
+        bmOptions.inSampleSize = scaleFactor;
+        bmOptions.inPurgeable = true;       
+      
+        Bitmap bitmap = BitmapFactory.decodeFile(imgPath, bmOptions);
+        mImageView.setImageBitmap(bitmap);
+    }
+	
+	///////////////////////////////////related to launch a chat, init chat-view and so on////////////////////////
+	/**
+	 * this class handles with chat pageView
 	 */
 	class ChatViewController {
 		private String LOGTAG = "chatActivity";
@@ -503,8 +618,8 @@ public class ChatsActivity extends Activity {
 		// private List<ChatInfo> messageList;
 		private XmppManager xmppManager = Constants.xmppManager;
 
-		/*
-		 * should start smThread only for once;
+		/**
+		 * should be called only once
 		 */
 		private ChatViewController() {
 			recipient = USERNAME;
@@ -524,8 +639,9 @@ public class ChatsActivity extends Activity {
 			}
 		}
 
+		
 		/**
-		 * page jumped
+		 * set UI to chat pageView
 		 */
 		public void initView(String recipient, List messageList, View chatView)
 				throws Exception {
@@ -546,6 +662,8 @@ public class ChatsActivity extends Activity {
 
 			Button sendBtn = (Button) (ChatsActivity.this)
 					.findViewById(R.id.SendBtn);
+			Button galleryBtn=(Button) (ChatsActivity.this).
+					findViewById(R.id.GalleryBtn);
 			TextView tv = (TextView) (ChatsActivity.this)
 					.findViewById(R.id.ChatTitleLabel);
 			tv.setText(USERNAME + "与" + recipient + "会话中");
@@ -558,59 +676,61 @@ public class ChatsActivity extends Activity {
 							"initView:messageList null and creation failed");
 				messageLists.put(recipient, messageList);
 			}
-
-			BaseAdapter chatAdapter = new ChatInfoAdapter((ChatsActivity.this),
-					messageList);
+		
 			ListView mListView = (ListView) (ChatsActivity.this)
 					.findViewById(R.id.MessageListView);
+			BaseAdapter chatAdapter = new ChatInfoAdapter((ChatsActivity.this),
+					messageList,mListView);
 			mListView.setAdapter(chatAdapter);
 			chatAdapter.notifyDataSetInvalidated();
 
 			// 发送消息
 			sendBtn.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View view) {
-					EditText mTextMessage = (EditText) (ChatsActivity.this)
-							.findViewById(R.id.MessageEdit);
-					String to = (ChatsActivity.this).recipient;
-					String text = mTextMessage.getText().toString();
-					Log.i(LOGTAG,
-							"XMPPChatActivity#send.onclicklistener Sending text "
-									+ text + " to " + to);
-					org.jivesoftware.smack.packet.Message msg = new org.jivesoftware.smack.packet.Message(
-							to, org.jivesoftware.smack.packet.Message.Type.chat);
-					msg.setBody(text);
-					if (xmppManager == null) {
+					if(imgPath==null||imgPath.equals("")){//没有图片上传
+						EditText mTextMessage = (EditText) (ChatsActivity.this)
+								.findViewById(R.id.MessageEdit);
+						String to = (ChatsActivity.this).recipient;
+						String text = mTextMessage.getText().toString();
 						Log.i(LOGTAG,
-								"XMPPChatActivity#send.onclicklistener xmppmanager is null");
-						return;
-					} else {
-						// send msg
-						ChatInfo ci = new ChatInfo(
-								(ChatsActivity.this).recipient, msg.getBody(),
-								new Date(System.currentTimeMillis()), msg
-										.getPacketID(), true);
-						// 聊天消息添加到发送队列
-						addMsg(msg);
-						// 同步到SessionManager
-						SessionManager.addMsg((ChatsActivity.this).recipient,
-								ci);
+								"XMPPChatActivity#send.onclicklistener Sending text "
+										+ text + " to " + to);
+						handleSendMsg(to,text);
+						mTextMessage.setText("");
+					}else{
+						String to=(ChatsActivity.this).recipient;
+						String tmpPath=imgPath;
+						imgPath=""; //复位
+						new UploadImgTask(to,tmpPath,uploadUri).execute("");
+						showSendPic("");
+						
 					}
-					mTextMessage.setText("");
+				}
+			});
+			//添加图片发送
+			galleryBtn.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View arg0) {
+					Intent intent = new Intent();
+			        intent.setType("image/*");
+			        intent.setAction(Intent.ACTION_GET_CONTENT);
+			        intent.addCategory(Intent.CATEGORY_OPENABLE);
+			        startActivityForResult(Intent.createChooser(intent, "选择一张图片"), 1);
 				}
 			});
 		}
 
-		/*
-		 * handle with new message or sent
-		 */
+		//this handler handles with chat-view updating
 		@SuppressWarnings("unchecked")
 		private ChatHandler chatHandler = new ChatHandler();
 
 	}
 
+	
+	///////////////////////////////////////////////related to send message thread///////////////////////////
 	/**
-	 * related to send message thread always try to send packets to server if
-	 * packet in packetList
+	 * this list stores the packets to send
+	 * send-message thread always try to get packet in this list and send it
 	 */
 	private List<Pair> packetList;
 
@@ -684,6 +804,14 @@ public class ChatsActivity extends Activity {
 	// SessionManager.removeListener(recipient);
 	// }
 
+	
+	
+	/////////////////////////////////////////////////////////related to chat-View update////////////////////////////
+	/**
+	 * @author xu zhigang
+	 * this handler handle with messages which indicate new message sending or sent or received
+	 * and update the chat-view
+	 */
 	class ChatHandler extends Handler {
 		// 收到消息或者消息发送成功消息或者发送消息
 		// 同步当前保存的各个聊天view中的数据，必要时更新当前view的ui
@@ -742,7 +870,6 @@ public class ChatsActivity extends Activity {
 					}
 					else messageList.add(ci);
 				}
-	
 				return;
 	
 			case 2:// sent
@@ -767,5 +894,132 @@ public class ChatsActivity extends Activity {
 			}
 		}
 	}
+	
+	/////////////////////////////////////related to upload a image to server and get a url back
+	
+	/**
+	 * @author x
+	 * this class is similar with submitActivity.submit
+	 */
+	class UploadImgTask extends AsyncTask<String,Integer,String>{
+		int serverResponseCode = 0;     	
+        String lineEnd = "\r\n";
+        String twoHyphens = "--";
+        String boundary = "*****";
+        String imgPath=null;
+        String uploadServerUri=null;
+        String recipient=null;
+        private ProgressDialog dialog = null;
+        public UploadImgTask(String to,String imgPath,String uploadUri){
+        	this.imgPath=imgPath;
+			this.uploadServerUri=uploadUri;
+			this.recipient=to;
+        }
+        @Override
+		protected void onPreExecute() {
+			dialog = new ProgressDialog(ChatsActivity.this);
+			dialog.setTitle("正在上传...");
+	//		dialog.setMessage("0k/"+totalSize/1000+"k");
+			dialog.setIndeterminate(false);
+			dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+			dialog.setProgress(0);
+			dialog.show();
+		}
+        @Override
+		protected void onProgressUpdate(Integer... progress) {
+			dialog.setProgress(progress[0]);
+		//	dialog.setMessage(progress[1]/1000+"k/"+totalSize/1000+"k");
+		}
+        protected String doInBackground(String... args) {
+			int bytesRead, bytesAvailable, bufferSize;
+			int maxBufferSize = 1 * 20 * 1024; //20kb
+			byte[] buffer;	
+			long length = 0;
+			int progress;long totalSize;
+			if(imgPath==null) return null;
+			File sourceFile = new File(imgPath);
+			if (!sourceFile.isFile()) {
+		         Log.e("uploadFile", "图片文件不存在");
+		         return null;
+			} 
+			else totalSize = sourceFile.length();
 
+			URL url;
+			try {
+				url = new URL(uploadServerUri);
+				
+				Log.i("uploadFile", "打开url连接");
+				Log.i("XMPPChat","upload uri:"+url.getHost()+url.getPath());
+				HttpURLConnection conn = (HttpURLConnection) url.openConnection(); // 打开HTTP连接
+				// 设置每一个post块大小：128kB，如果不设置，大文件上传将不成功！！
+				conn.setChunkedStreamingMode(128*1024); 
+				  
+				conn.setConnectTimeout(15000); // 15秒内没反应就断开连接 
+				conn.setReadTimeout(10000); 
+				conn.setDoInput(true); // Allow Inputs
+				conn.setDoOutput(true); // Allow Outputs
+				conn.setUseCaches(false); // Don't use a Cached Copy
+				conn.setRequestMethod("POST");
+				conn.setRequestProperty("Connection", "Keep-Alive");
+				conn.setRequestProperty("ENCTYPE", "multipart/form-data");
+				conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
+				  
+				FileInputStream fileInputStream = new FileInputStream(sourceFile);     
+				DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
+				
+				//dos统统不要再writeBytes了，因为上传的是图片，添加文本信息服务器端就解析不了图片了！
+				String lineEnd = "\n";
+				dos.writeBytes(twoHyphens + boundary + lineEnd);
+				dos.writeBytes("Content-Disposition: form-data; name=\"upfile\";filename=\""+ imgPath + "\"" + lineEnd);
+				dos.writeBytes(lineEnd);
+			    do{
+			    	// read file and write it into form...
+			    	bytesAvailable = fileInputStream.available(); // create a buffer of  maximum size
+			    	bufferSize = Math.min(bytesAvailable, maxBufferSize);
+			    	buffer = new byte[bufferSize];
+				  
+			    	bytesRead = fileInputStream.read(buffer, 0, bufferSize); 
+			    	dos.write(buffer, 0, bytesRead);	
+			    	length+=bytesRead;
+			    	Thread.sleep(200);
+			    	progress = (int)((length*100)/totalSize);
+			    	System.out.println("上传进度length："+length+"; progress:"+progress);
+				    publishProgress(progress,(int)length);
+				  }  
+				while (bytesRead > 0) ;
+			    // send multipart form data necesssary after file data...        
+			    dos.writeBytes(lineEnd);
+			    dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
+  
+			    serverResponseCode = conn.getResponseCode();
+			    BufferedReader in = new BufferedReader(
+						new InputStreamReader(conn.getInputStream()));
+				String line;String resp="";
+				while ((line = in.readLine()) != null)
+				{
+					resp += line;
+				}
+				return resp;
+			}
+			catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}
+        @Override
+        protected void onPostExecute(String resp){
+        	 Log.i(LOGTAG,"UPLOAD RESULT:"+resp);
+        	 dialog.dismiss();      
+        	 if(resp==null) Util.alert(ChatsActivity.this, "发送图片失败");
+        	 else handleSendMsg(recipient,"<img>"+resp+"</img>");
+        }
+		
+	}
 }

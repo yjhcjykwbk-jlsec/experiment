@@ -47,7 +47,8 @@ public class Util {
 		editor.remove(Constants.XMPP_USERNAME);
 		editor.remove(Constants.XMPP_PASSWORD);
 		editor.commit(); 
-		Constants.serviceManager.stopService();
+		if(Constants.serviceManager!=null)
+			Constants.serviceManager.stopService();
 		ActivityUtil.getInstance().exit();
 	}
 }

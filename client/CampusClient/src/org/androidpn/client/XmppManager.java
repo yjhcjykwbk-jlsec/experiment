@@ -235,17 +235,11 @@ public class XmppManager {
 //            }
         }
     }
-    public void pauseReconnectionThread() {
-        synchronized (reconnection) {
-            if (reconnection.isAlive()) {
-                reconnection.setName("Xmpp Reconnection Thread");
-                reconnection.interrupt();
-                Log.i(LOGTAG,"pauseReconnectionThread");
-            }
-        }
+    public void delayReconnectionThread() {
+       waiting=100;
     }
     
-    public void prepareReconnectionThread(){
+    public void shiftReconnectionThread(){
     	if(!isAuthenticated()){
     		waiting=0;
     		startReconnectionThread();
@@ -577,7 +571,7 @@ public class XmppManager {
                     getConnection().startKeepAliveThread(xmppManager);
                     //pause reconnection since connected
                     // this should not pause, since you can go offline at any time , and you need to reconnect. 
-                    //pauseReconnectionThread();
+                    delayReconnectionThread();
                     //tell some one online now
                     getContext().sendBroadcast(new Intent(Constants.XMPP_CONNECTED).
                     		putExtra("from", "XmppManager").
@@ -620,7 +614,7 @@ public class XmppManager {
      * send a packet out to someone
      */
     public void sendMsg(Packet msg){
-    	prepareReconnectionThread();
+    	shiftReconnectionThread();
     	submitLoginTask();
     	addTask(new SendMsgTask(msg));
     }

@@ -114,11 +114,16 @@ public final class NotificationReceiver extends BroadcastReceiver {
 			Log.i(LOGTAG, "清除通知");
 		}
         
-        else if(Constants.RECONNECTION_THREAD_START.equals(action)){
+        else if(Constants.RECONNECTION_THREAD.equals(action)){
         	int wait=intent.getIntExtra("wait", 0);
 //        	Intent intent1=new Intent(NotificationReceiver.this,DemoAppActivity.class);
 //        	intent1.putExtra("action", "reconnection").putExtra("wait",wait);
-        	new Notifier(context).notifyMsg("连接进程", "将会在"+wait+"秒后测试连接");
+        	String type=intent.getStringExtra("type");
+        	if(type.equals("reconnectionStart")){
+        		new Notifier(context).notifyMsg("连接进程", "重启！！！");
+        	}
+//        	else
+//        		new Notifier(context).notifyMsg("连接进程", "将会在"+wait+"秒后测试连接");
         }
         else if(Constants.SERVICE_CREATED.equals(action)){
         	new Notifier(context).notifyMsg("后台服务信息", "oncreate");
