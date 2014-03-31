@@ -351,7 +351,6 @@ public class LoginActivity extends Activity {
     @Override
     public void onDestroy(){
     	//unbindService(myConnection);
-    	Util.exit(this);
     	Toast.makeText(this, "loginActivity has destroyed",Toast.LENGTH_SHORT).show();
     	super.onDestroy();
     }

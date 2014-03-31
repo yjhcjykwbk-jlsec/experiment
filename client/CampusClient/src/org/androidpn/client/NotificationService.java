@@ -156,8 +156,8 @@ public class NotificationService extends Service {
     @Override
     public void onDestroy() {
         Log.d(LOGTAG, "onDestroy()...");
-        stop();
         sendBroadcast(new Intent(Constants.SERVICE_DESTROYED)); 
+        stop();
     }
 
     @Override

@@ -49,6 +49,9 @@ public class ReconnectionThread extends Thread {
                 Thread.sleep((long) waiting() * 1000L);//waiting() to waiting
                 xmppManager.connect();
                 waiting++;
+                if(waiting%60==0){
+                	xmppManager.getContext().sendBroadcast(new Intent(Constants.RECONNECTION_THREAD).putExtra("type", "reconnectionAlive").putExtra("wait", waiting()));
+                }
             }
             Log.d(LOGTAG,"reconnection interrupted and wait for next restart");
         } catch (final InterruptedException e) {
