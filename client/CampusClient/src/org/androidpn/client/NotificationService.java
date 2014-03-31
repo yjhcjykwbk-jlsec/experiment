@@ -238,9 +238,9 @@ public class NotificationService extends Service {
         filter.addAction(Constants.ACTION_NOTIFICATION_CLEARED);
         
 //      filter.addAction(Constants.XMPP_CONNECTED);
-//    	filter.addAction(Constants.XMPP_CONNECTION_CLOSED);
+    	filter.addAction(Constants.XMPP_CONNECTION_CLOSED);
     	filter.addAction(Constants.XMPP_CONNECT_FAILED);
-//    	filter.addAction(Constants.XMPP_CONNECTION_ERROR);
+    	filter.addAction(Constants.XMPP_CONNECTION_ERROR);
 //    	filter.addAction(Constants.XMPP_CONNECTING);
     	
     	filter.addAction(Constants.RECONNECTION_THREAD);

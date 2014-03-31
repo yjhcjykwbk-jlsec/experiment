@@ -39,6 +39,9 @@ public class PersistentConnectionListener implements ConnectionListener {
     @Override
     public void connectionClosed() {
         Log.d(LOGTAG, "connectionClosed()...");
+        xmppManager.getContext().sendBroadcast(new Intent(Constants.XMPP_CONNECTION_CLOSED).putExtra("type", "connectionClose"));
+        
+        xmppManager.shiftReconnectionThread().startReconnectionThread();
     }
 
     @Override
@@ -55,10 +58,9 @@ public class PersistentConnectionListener implements ConnectionListener {
         Log.i(LOGTAG,"connection restart");
         
         //broadcast connect-error-event to other threads
-        Intent intent=new Intent(Constants.XMPP_CONNECTION_ERROR).putExtra("type", "connectionError");
-        xmppManager.getContext().sendBroadcast(intent); 
+        xmppManager.getContext().sendBroadcast(new Intent(Constants.XMPP_CONNECTION_ERROR).putExtra("type", "connectionError"));
         
-        xmppManager.startReconnectionThread();
+        xmppManager.shiftReconnectionThread().startReconnectionThread();
     }
 
     @Override

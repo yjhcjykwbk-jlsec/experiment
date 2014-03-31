@@ -57,7 +57,7 @@ public class ConnectivityReceiver extends BroadcastReceiver {
             }
         } else {
             Log.e(LOGTAG, "Network unavailable");
-            notificationService.disconnect();
+            //notificationService.disconnect();
         }
     }
 

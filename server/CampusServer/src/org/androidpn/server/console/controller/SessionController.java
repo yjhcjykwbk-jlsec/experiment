@@ -47,10 +47,9 @@ public class SessionController extends MultiActionController {
     public ModelAndView list(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         ClientSession[] sessions = new ClientSession[0];
-        sessions = SessionManager.getInstance().getSessions().toArray(sessions);
-
+//        sessions = SessionManager.getInstance().getSessions().toArray(sessions);
         List<SessionVO> voList = new ArrayList<SessionVO>();
-        for (ClientSession sess : sessions) {
+        for (ClientSession sess : SessionManager.getInstance().getSessions()) {
             SessionVO vo = new SessionVO();
             vo.setUsername(sess.getUsername());
             vo.setResource(sess.getAddress().getResource());

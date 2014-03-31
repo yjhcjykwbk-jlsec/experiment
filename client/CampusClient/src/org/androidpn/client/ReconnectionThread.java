@@ -31,7 +31,7 @@ public class ReconnectionThread extends Thread {
 
     private final XmppManager xmppManager;
 
-    private Integer waiting;
+    public Integer waiting;
 
     ReconnectionThread(XmppManager xmppManager,Integer waiting) {
         this.xmppManager = xmppManager;
@@ -48,10 +48,11 @@ public class ReconnectionThread extends Thread {
                 xmppManager.getContext().sendBroadcast(new Intent(Constants.RECONNECTION_THREAD).putExtra("type", "reconnection").putExtra("wait", waiting()));
                 Thread.sleep((long) waiting() * 1000L);//waiting() to waiting
                 xmppManager.connect();
-                waiting++;
-                if(waiting%60==0){
+                
+                if(getRunTime()%20==0){
                 	xmppManager.getContext().sendBroadcast(new Intent(Constants.RECONNECTION_THREAD).putExtra("type", "reconnectionAlive").putExtra("wait", waiting()));
                 }
+                waiting++;
             }
             Log.d(LOGTAG,"reconnection interrupted and wait for next restart");
         } catch (final InterruptedException e) {
@@ -67,18 +68,27 @@ public class ReconnectionThread extends Thread {
     	this.waiting=wait;
     }
     private int waiting() {
-    	if(waiting>18){
-    		return 120;
-    	}
-        if (waiting > 12) {
-            return 45;
+        if (waiting > 15) {
+            return 40;
         }
-        if (waiting >7) {
-            return 25;
+        if (waiting>10) {
+            return 20;
         }
-        if(waiting>2){
-        	return 5;
+        if(waiting>4){
+        	return 10;
         }
-        return 1;
+        return 2;
+    }
+    /**
+     * then you know the reconnection thread has run how long since last time wait=0
+     * @return
+     */
+    private int getRunTime(){
+    	int t=0;
+    	if(waiting>15) t=170+40*(waiting-15);
+    	else if(waiting>10) t=70+20*(waiting-10);
+    	else if(waiting>4) t=10+10*(waiting-4);
+    	else t=2*(waiting+1);
+    	return t;
     }
 }

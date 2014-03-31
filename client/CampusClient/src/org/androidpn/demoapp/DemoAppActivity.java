@@ -173,7 +173,8 @@ public class DemoAppActivity extends Activity {
 		
         IsNetworkConn isConn = new IsNetworkConn(DemoAppActivity.this);
         if (!isConn.isConnected) {  
-			info.setText("network not connected~");
+			//info.setText("network not connected~");
+        	Util.alert(this, "请检查是否能连接因特网");
 		}else {
 			/*
       		new Thread() {
@@ -187,10 +188,22 @@ public class DemoAppActivity extends Activity {
 			parameter.append("action=getSubscription"); 
 			parameter.append("&userName=");
 			parameter.append(originSharedPrefs.getString(Constants.XMPP_USERNAME, ""));
-			String responseSubscription = GetPostUtil.send("POST", getString(R.string.androidpnserver)+"/user.do", parameter);
-			Editor editor = originSharedPrefs.edit();
-			editor.putString(Constants.USER_SUBSCRIPTION, responseSubscription);
-			editor.commit();  
+			new AsyncTask<StringBuilder,Integer,String>(){
+				@Override
+				protected String doInBackground(StringBuilder... args) {
+					StringBuilder parameter=args[0];
+					String responseSubscription = GetPostUtil.send("POST", getString(R.string.androidpnserver)+"/user.do", parameter);
+					return responseSubscription;
+				}
+				@Override
+				protected void onPostExecute(String resp){
+					if(resp!=null){
+						Editor editor = originSharedPrefs.edit();
+						editor.putString(Constants.USER_SUBSCRIPTION, resp);
+						editor.commit();  
+					}
+				}
+			}.execute(parameter);
 		}
         
         ArrayList<HashMap<String, String>> listItem = userInfo.getMyNotifier();  

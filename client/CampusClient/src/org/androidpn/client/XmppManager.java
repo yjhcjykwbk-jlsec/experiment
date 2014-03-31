@@ -96,8 +96,6 @@ public class XmppManager {
 
     private ReconnectionThread reconnection;
     
-    private Integer waiting=0;
-    
     private List<Pair<PacketListener,PacketFilter>> packetListenerList=new LinkedList<Pair<PacketListener, PacketFilter>>();
 
     public XmppManager(NotificationService notificationService) {
@@ -117,7 +115,7 @@ public class XmppManager {
         
         handler = new Handler();
         taskList = new ArrayList<Runnable>();
-        reconnection = new ReconnectionThread(this,waiting);
+        reconnection = new ReconnectionThread(this,0);
        
         // packet filter
         PacketFilter chatPacketFilter=new PacketFilter() {
@@ -236,14 +234,15 @@ public class XmppManager {
         }
     }
     public void delayReconnectionThread() {
-       waiting=100;
+       reconnection.waiting=100;
     }
     
-    public void shiftReconnectionThread(){
+    public XmppManager shiftReconnectionThread(){
     	if(!isAuthenticated()){
-    		waiting=0;
-    		startReconnectionThread();
+    		//start reconnect as soon as possible
+    		reconnection.waiting=0;
     	}
+    	return this;
     }
 
     public Handler getHandler() {
@@ -417,6 +416,9 @@ public class XmppManager {
 
                 } catch (XMPPException e) {
                     Log.e(LOGTAG, "XMPP connection failed", e);
+                    //once the connection is not successful, then invoke the reconnection thread 
+                    //which will try to add connect task to the tasklist for reconnection later
+                    xmppManager.startReconnectionThread();
                 }
                 //stop blocking...
                 xmppManager.runTask();
@@ -588,11 +590,12 @@ public class XmppManager {
                         xmppManager.reregisterAccount();
                         return;
                     }
-                    //once the connection is not successful, then invoke the reconnection thread 
-                    //which will try to add connect task to the tasklist for reconnection later
+                   
                     //you should not run reconnection immediately, since it's not proper
                     //and the tasklist can not be blocked ,
                     //if could , i think it will be better
+                    //once the connection is not successful, then invoke the reconnection thread 
+                    //which will try to add connect task to the tasklist for reconnection later
                     xmppManager.startReconnectionThread();
 
                 } catch (Exception e) {
