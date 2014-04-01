@@ -64,7 +64,7 @@
             android:name="org.androidpn.demoapp.MyVideoActivity"
             android:screenOrientation="landscape" >
         </activity>
-
+		
         <service
             android:name="org.androidpn.client.NotificationService"
             android:enabled="true"
@@ -99,7 +99,8 @@
                 <action android:name="org.androidpn.barcode.ReminderReceiver" />
             </intent-filter>
         </receiver>
-
+		<receiver android:name="org.androidpn.demoapp.AlarmReceiver">
+		</receiver>
         <activity
             android:name="org.androidpn.demoapp.LectureAlarmActivity"
             android:label="@string/title_activity_lecture_alarm"

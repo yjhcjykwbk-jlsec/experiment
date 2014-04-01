@@ -115,12 +115,15 @@ public class Constants {
 	public static final String XMPP_CONNECT_FAILED = "org.androidpn.client.XMPP_CONNECT_FAILED";
 	public static final String XMPP_CONNECTION_CLOSED = "org.androidpn.client.XMPP_CONNECTION_CLOSED";
 	public static final String XMPP_CONNECTION_ERROR = "org.androidpn.client.XMPP_CONNECTION_ERROR";
-	public static final String RECONNECTION_THREAD = "org.androidpn.client.RECONNECTION_THREAD_START";
+	
+	public static final String RECONNECTION_THREAD = "org.androidpn.client.RECONNECTION_THREAD";
 
 	public static final String SERVICE_CREATED =  "org.androidpn.client.SERVICE_CREATED";
 	public static final String SERVICE_ONBIND =  "org.androidpn.client.SERVICE_ONBIND";
 	public static final String SERVICE_DESTROYED =  "org.androidpn.client.SERVICE_DESTROYED";
 	public static final String SERVICE_ONUNBIND =  "org.androidpn.client.SERVICE_ONUNBIND";
+
+	public static final String KEEP_RECONNECT = "org.androidpn.client.KEEP_RECONNECT";
 
 
 

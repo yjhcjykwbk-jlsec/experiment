@@ -42,6 +42,7 @@ import org.jivesoftware.smack.packet.Packet;
 import org.jivesoftware.smack.packet.Registration;
 import org.jivesoftware.smack.provider.ProviderManager;
 
+import android.app.AlarmManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -145,7 +146,7 @@ public class XmppManager {
         Log.d(LOGTAG, "disconnect()...");
         terminatePersistentConnection();
     }
-
+    
     /*
      * stop connection 
      * called by disconnect()

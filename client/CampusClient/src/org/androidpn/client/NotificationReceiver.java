@@ -120,14 +120,19 @@ public final class NotificationReceiver extends BroadcastReceiver {
 //        	intent1.putExtra("action", "reconnection").putExtra("wait",wait);
         	String type=intent.getStringExtra("type");
         	if(type.equals("reconnectionStart")){
-        		new Notifier(context).notifyMsg("重连进程", "重启！！！");
+        		new Notifier(context).notifyMsg("重连进程", "启动");
         	}
         	else if(type.equals("reconnectionAlive")){
         		new Notifier(context).notifyMsg("重连进程", "在运行中...");
         	}
-//        	else
-//        		new Notifier(context).notifyMsg("连接进程", "将会在"+wait+"秒后测试连接");
+        	else
+        		new Notifier(context).notifyMsg("连接进程", "将会在"+wait+"秒后测试连接");
         }
+        else if(Constants.KEEP_RECONNECT.equals(action)){
+        	Notifier notifier=new Notifier(context);
+        	notifier.notifyMsg("保持重连","正在运行");//XmppConnected();
+        }
+        
         else if(Constants.SERVICE_CREATED.equals(action)){
         	new Notifier(context).notifyMsg("后台服务信息", "oncreate");
         }

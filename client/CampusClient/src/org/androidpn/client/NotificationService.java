@@ -20,6 +20,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
+import org.androidpn.demoapp.AlarmReceiver;
+
+import android.app.AlarmManager;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -29,6 +34,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Binder;
 import android.os.IBinder;
+import android.os.SystemClock;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -72,7 +78,8 @@ public class NotificationService extends Service {
     private String deviceId;
     
     private LocalBinder myBinder = new LocalBinder();
-
+    
+   
     public NotificationService() {
     	/**
     	 * notificationreceiver是BroadcastReceiver的子类
@@ -144,9 +151,30 @@ public class NotificationService extends Service {
             }
         });
 //        Toast.makeText(getApplicationContext(),"notificationService created",Toast.LENGTH_LONG);
+        keepReconnect();
+        
         sendBroadcast(new Intent(Constants.SERVICE_CREATED)); 
+        
     }
-
+   
+	/**
+	 * Keep a reconnection
+	 * @author:x
+	 */
+	 AlarmManager am;
+	 PendingIntent pIntent;
+	 private void keepReconnect(){
+    	Intent intent=new Intent(this,AlarmReceiver.class);
+    	pIntent=PendingIntent.getBroadcast(this, 1, intent, 0);//getBroadcast(this, 0, intent, 0);
+    	 //触发服务的起始时间，根据传来的时间启动
+        long triggerAtTime = SystemClock.elapsedRealtime()+20*1000;
+        am = (AlarmManager)getSystemService(ALARM_SERVICE);
+        //使用AlarmManger的setRepeating方法设置定期执行的时间间隔（seconds秒）和需要执行的Service
+        //期待的效果是：即使系统待机，依然能够定时：每两分钟检查一次连接
+        //因为系统待机的时候，普通的定时thread一般会被挂起．
+        am.setRepeating(AlarmManager.RTC_WAKEUP, triggerAtTime,300*1000, pIntent);
+	 }
+    
     @Override
     public void onStart(Intent intent, int startId) {
         Log.d(LOGTAG, "onStart()...");
@@ -157,6 +185,7 @@ public class NotificationService extends Service {
     public void onDestroy() {
         Log.d(LOGTAG, "onDestroy()...");
         sendBroadcast(new Intent(Constants.SERVICE_DESTROYED)); 
+ 		am.cancel(pIntent);
         stop();
     }
 
@@ -244,6 +273,7 @@ public class NotificationService extends Service {
 //    	filter.addAction(Constants.XMPP_CONNECTING);
     	
     	filter.addAction(Constants.RECONNECTION_THREAD);
+    	filter.addAction(Constants.KEEP_RECONNECT);
     	
         filter.addAction(Constants.SERVICE_CREATED);
         filter.addAction(Constants.SERVICE_DESTROYED);

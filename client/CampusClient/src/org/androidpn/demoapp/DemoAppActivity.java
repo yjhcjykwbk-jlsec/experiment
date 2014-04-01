@@ -21,6 +21,7 @@ import org.androidpn.client.ChatPacketListener;
 import org.androidpn.client.Constants;
 import org.androidpn.client.NotificationDetailsActivity;
 import org.androidpn.client.NotificationService;
+import org.androidpn.client.Notifier;
 import org.androidpn.client.ServiceManager;
 import org.androidpn.client.XmppManager;
 import org.androidpn.util.ActivityUtil;
@@ -31,7 +32,9 @@ import org.androidpn.util.Util;
 
 import android.R.integer;
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -44,6 +47,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.PowerManager;
+import android.os.SystemClock;
 import android.os.PowerManager.WakeLock;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -418,5 +422,4 @@ public class DemoAppActivity extends Activity {
   		 this.unregisterReceiver(dr);
   		 super.onDestroy();
   	 }
-  	 
 }

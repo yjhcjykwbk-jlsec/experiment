@@ -3,43 +3,32 @@ package org.androidpn.demoapp;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.crypto.EncryptedPrivateKeyInfo;
-
 import org.androidpn.client.Constants;
 import org.androidpn.client.NotificationService;
+import org.androidpn.client.Notifier;
 import org.androidpn.client.NotificationService.LocalBinder;
 import org.androidpn.client.ServiceManager;
-import org.androidpn.client.XmppManager;
 import org.androidpn.demoapp.R;
 import org.androidpn.util.ActivityUtil;
 import org.androidpn.util.GetPostUtil;
 import org.androidpn.util.IsNetworkConn;
 import org.androidpn.util.Util;
-import org.apache.http.util.ByteArrayBuffer;
-import org.apache.http.util.EncodingUtils;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.Notification;
-import android.app.Service;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Rect;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.util.DisplayMetrics;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -50,12 +39,10 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.view.Gravity;
 import android.view.View.OnClickListener;
-import android.view.View.OnFocusChangeListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
@@ -132,7 +119,7 @@ public class LoginActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				hidekeyboard();
-				String theUserName = userName.getText().toString().trim();
+				final String theUserName = userName.getText().toString().trim();
 				String thePassWord = passWord.getText().toString().trim();
 
 				if (theUserName.equals("")) {
@@ -158,7 +145,6 @@ public class LoginActivity extends Activity {
 					Log.i("xiaobingo", "MD5加密后的密码：" + encryptedPW);
 
 					// 发送用户名和密码到android server进行验证
-					String androidpnURL = getString(R.string.androidpnserver);
 					// 用POST方式发送
 					/*--拼接POST字符串--*/
 					StringBuilder parameter = new StringBuilder();
@@ -168,48 +154,60 @@ public class LoginActivity extends Activity {
 					parameter.append("&androidPwd=");
 					parameter.append(encryptedPW);
 					/*--End--*/
-					String resp = GetPostUtil.send("POST", androidpnURL
-							+ "user.do", parameter);
-					Log.i("LoginActivity", "resp:" + resp);
+					AsyncTask<StringBuilder,Integer,String> loginTask=new AsyncTask<StringBuilder,Integer,String>(){
+						@Override
+						protected String doInBackground(StringBuilder... args) {
+							// TODO Auto-generated method stub
+							StringBuilder parameter=args[0];
+							String androidpnURL=getString(R.string.androidpnserver);
+							String resp = GetPostUtil.send("POST", androidpnURL
+									+ "user.do", parameter);
+							return resp;
+						}
+						@Override
+						protected void onPostExecute(String resp){
+							// 验证用户名密码成功
+							if (resp.contains("check:success")) {
+								// 下面将获得的用户名和密码保存在UserInfo对象中
+								userInfo.setMyUserName(theUserName);
+								userInfo.setMyUserPWD(encryptedPW);
+								Log.i("xiaobingo",
+										"userInfo的用户名" + userInfo.getMyUserName());
+								Log.i("xiaobingo",
+										"userInfo的密码" + userInfo.getMyUserPWD());
+								// 获取的用户名和密码写入保存
+								Editor editor = originSharedPrefs.edit();
+								editor.putString(Constants.XMPP_USERNAME, theUserName);
+								editor.putString(Constants.XMPP_PASSWORD, encryptedPW);
+								editor.commit();
+								// 开始连接androidpn server
+								startConnect();
 
-					// 验证用户名密码成功
-					if (resp.contains("check:success")) {
-						// 下面将获得的用户名和密码保存在UserInfo对象中
-						userInfo.setMyUserName(theUserName);
-						userInfo.setMyUserPWD(encryptedPW);
-						Log.i("xiaobingo",
-								"userInfo的用户名" + userInfo.getMyUserName());
-						Log.i("xiaobingo",
-								"userInfo的密码" + userInfo.getMyUserPWD());
-						// 获取的用户名和密码写入保存
-						Editor editor = originSharedPrefs.edit();
-						editor.putString(Constants.XMPP_USERNAME, theUserName);
-						editor.putString(Constants.XMPP_PASSWORD, encryptedPW);
-						editor.commit();
-						// 开始连接androidpn server
-						startConnect();
-
-						// 登陆成功，传输用户名和密码
-						Intent intent = new Intent(LoginActivity.this,
-								DemoAppActivity.class);
-						Bundle bundle = new Bundle();
-						bundle.putString("name", theUserName);
-						bundle.putString("password", encryptedPW);
-						intent.putExtras(bundle);
-						LoginActivity.this.startActivity(intent);
-						setContentView(R.layout.transition);
-						// LoginActivity.this.finish();
-					}
-					// 密码错误
-					else if (resp.contains("check:password failure")) {
-						Toast.makeText(getApplicationContext(), "密码错误！",
-								Toast.LENGTH_SHORT).show();
-					}
-					// 用户不存在
-					else if (resp.contains("check:not exist")) {
-						Toast.makeText(getApplicationContext(), "该用户不存在！",
-								Toast.LENGTH_SHORT).show();
-					}
+								// 登陆成功，传输用户名和密码
+								Intent intent = new Intent(LoginActivity.this,
+										DemoAppActivity.class);
+								Bundle bundle = new Bundle();
+								bundle.putString("name", theUserName);
+								bundle.putString("password", encryptedPW);
+								intent.putExtras(bundle);
+								LoginActivity.this.startActivity(intent);
+								setContentView(R.layout.transition);
+								// LoginActivity.this.finish();
+							}
+							// 密码错误
+							else if (resp.contains("check:password failure")) {
+								Toast.makeText(getApplicationContext(), "密码错误！",
+										Toast.LENGTH_SHORT).show();
+							}
+							// 用户不存在
+							else if (resp.contains("check:not exist")) {
+								Toast.makeText(getApplicationContext(), "该用户不存在！",
+										Toast.LENGTH_SHORT).show();
+							}
+							Log.i("LoginActivity", "resp:" + resp);
+						}
+					};
+					loginTask.execute(parameter);
 				}
 			}
 		});
@@ -375,6 +373,4 @@ public class LoginActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
-
 }
