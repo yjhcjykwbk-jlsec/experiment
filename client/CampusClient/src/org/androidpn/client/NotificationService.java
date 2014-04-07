@@ -172,7 +172,7 @@ public class NotificationService extends Service {
         //使用AlarmManger的setRepeating方法设置定期执行的时间间隔（seconds秒）和需要执行的Service
         //期待的效果是：即使系统待机，依然能够定时：每两分钟检查一次连接
         //因为系统待机的时候，普通的定时thread一般会被挂起．
-        am.setRepeating(AlarmManager.RTC_WAKEUP, triggerAtTime,300*1000, pIntent);
+        am.setRepeating(AlarmManager.RTC_WAKEUP, triggerAtTime,600*1000, pIntent);
 	 }
     
     @Override

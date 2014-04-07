@@ -176,11 +176,36 @@ public class DemoAppActivity extends Activity {
 		setConnectionStatus();
 		
         IsNetworkConn isConn = new IsNetworkConn(DemoAppActivity.this);
-        if (!isConn.isConnected) {  
-			//info.setText("network not connected~");
-        	Util.alert(this, "请检查是否能连接因特网");
-		}else {
-			/*
+        if(isConn.isConnected)
+        (new AsyncTask<String,Integer,String >(){
+			@Override
+			protected String doInBackground(String... arg0) {
+					StringBuilder parameter = new StringBuilder();
+					parameter.append("action=getSubscription");
+					parameter.append("&userName=");
+					parameter.append(originSharedPrefs.getString(
+							Constants.XMPP_USERNAME, ""));
+					String responseSubscription = GetPostUtil.send("POST",
+							getString(R.string.androidpnserver) + "/user.do",
+							parameter);
+					return responseSubscription;
+				}
+
+				// StringBuilder parameter=args[0];
+				@Override
+				protected void onPostExecute(String resp) {
+					if (resp != null) {
+						Editor editor = originSharedPrefs.edit();
+						editor.putString(Constants.USER_SUBSCRIPTION, resp);
+						editor.commit();
+					} else {
+						Util.alert(DemoAppActivity.this, "请检查是否能连接因特网");
+					}
+				}
+			}).execute();
+        else
+        	Util.alert(this, "未连接wifi网络");
+        /*
       		new Thread() {
       			public void run () {
       				RTMPConnectionUtil.ConnectRed5(DemoAppActivity.this);
@@ -188,27 +213,7 @@ public class DemoAppActivity extends Activity {
       		}.start();
       		*/
 			//retrieve subscription catagories
-			StringBuilder parameter = new StringBuilder();
-			parameter.append("action=getSubscription"); 
-			parameter.append("&userName=");
-			parameter.append(originSharedPrefs.getString(Constants.XMPP_USERNAME, ""));
-			new AsyncTask<StringBuilder,Integer,String>(){
-				@Override
-				protected String doInBackground(StringBuilder... args) {
-					StringBuilder parameter=args[0];
-					String responseSubscription = GetPostUtil.send("POST", getString(R.string.androidpnserver)+"/user.do", parameter);
-					return responseSubscription;
-				}
-				@Override
-				protected void onPostExecute(String resp){
-					if(resp!=null){
-						Editor editor = originSharedPrefs.edit();
-						editor.putString(Constants.USER_SUBSCRIPTION, resp);
-						editor.commit();  
-					}
-				}
-			}.execute(parameter);
-		}
+			
         
         ArrayList<HashMap<String, String>> listItem = userInfo.getMyNotifier();  
         SimpleAdapter listItemAdapter = new SimpleAdapter(this,listItem,R.layout.list,

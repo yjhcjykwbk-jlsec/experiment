@@ -69,15 +69,15 @@ public class ReconnectionThread extends Thread {
     }
     private int waiting() {
         if (waiting > 8) {
-            return 60;
+            return 90;
         }
-        if (waiting>5) {
+        if (waiting>3) {
             return 40;
         }
-        if(waiting>2){
+        if(waiting>1){
         	return 10;
         }
-        return 3;
+        return 2;
     }
     /**
      * then you know the reconnection thread has run how long since last time wait=0

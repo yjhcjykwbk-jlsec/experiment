@@ -17,7 +17,7 @@ public class AlarmReceiver extends android.content.BroadcastReceiver{
 	public void onReceive(Context context, Intent intent) {
         Constants.xmppManager.connect();
 //		Constants.xmppManager.getContext().sendBroadcast(new Intent(Constants.KEEP_RECONNECT)); 
-		new Notifier(context).notifyMsg("保持重连进程", "在运行");
+//		new Notifier(context).notifyMsg("保持重连进程", "在运行");
 //		new Notifier(context.getApplicationContext()).notifyMsg("保持重连进程", "在运行");
 //		new Notifier(Constants.xmppManager.getContext()).notifyMsg("保持重连进程", "在运行");
 //		new Notifier(Constants.xmppManager.getContext().getApplicationContext()).notifyMsg("保持重连进程", "在运行");

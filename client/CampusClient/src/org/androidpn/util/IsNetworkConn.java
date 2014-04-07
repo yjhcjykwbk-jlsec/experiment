@@ -11,6 +11,8 @@ import java.util.TimerTask;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
+import android.os.Handler.Callback;
 import android.util.Log;
 
 public class IsNetworkConn{
@@ -22,17 +24,17 @@ public class IsNetworkConn{
 		if(info==null||!info.isAvailable()||!info.isConnectedOrConnecting()){
 			isConnected =false;
 		}
-		else if (sendGet("http://www.baidu.com")) {
-			Log.i("xiaobingo", "连上网了");
-			isConnected = true;
-		}
+//		else if (sendGet("http://www.baidu.com")) {
+////			Log.i("xiaobingo", "连上网了");
+//			isConnected = true;
+//		}
 		else {
-			isConnected = false;
+			isConnected = true;
 		}
 	}
 	
 	//判断是否真的联网了
-		private static boolean sendGet(String url){
+		public static boolean sendGet(String url){
 			
 			
 			BufferedReader in = null;

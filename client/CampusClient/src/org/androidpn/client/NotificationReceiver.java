@@ -125,8 +125,8 @@ public final class NotificationReceiver extends BroadcastReceiver {
         	else if(type.equals("reconnectionAlive")){
         		new Notifier(context).notifyMsg("重连进程", "在运行中...");
         	}
-        	else
-        		new Notifier(context).notifyMsg("连接进程", "将会在"+wait+"秒后测试连接");
+//        	else
+//        		new Notifier(context).notifyMsg("连接进程", "将会在"+wait+"秒后测试连接");
         }
         else if(Constants.KEEP_RECONNECT.equals(action)){
         	Notifier notifier=new Notifier(context);
@@ -139,12 +139,12 @@ public final class NotificationReceiver extends BroadcastReceiver {
         else if(Constants.SERVICE_DESTROYED.equals(action)){
         	new Notifier(context).notifyMsg("后台服务信息", "已销毁");
         }
-        else if(Constants.SERVICE_ONBIND.equals(action)){
-        	new Notifier(context).notifyMsg("后台服务信息", "onbind");
-        }
-        else if(Constants.SERVICE_ONUNBIND.equals(action)){
-        	new Notifier(context).notifyMsg("后台服务信息", "onunbind");
-        }
+//        else if(Constants.SERVICE_ONBIND.equals(action)){
+//        	new Notifier(context).notifyMsg("后台服务信息", "onbind");
+//        }
+//        else if(Constants.SERVICE_ONUNBIND.equals(action)){
+//        	new Notifier(context).notifyMsg("后台服务信息", "onunbind");
+//        }
     }
 
 }

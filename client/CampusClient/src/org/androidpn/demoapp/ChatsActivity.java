@@ -488,10 +488,12 @@ public class ChatsActivity extends Activity {
 		Log.i(LOGTAG, "display user:" + Xmler.getInstance().toXML(u));
 		((TextView) layout.findViewById(R.id.UsernameLabel)).setText(u
 				.getName());
-		((TextView) layout.findViewById(R.id.UserIDLabel)).setText(u.getId()
-				+ "");
-		((TextView) layout.findViewById(R.id.UserEmailLabel)).setText(u
-				.getEmail());
+		String idStr=u.getId()+"";
+		if(idStr.length()>10) idStr=idStr.substring(0,6)+"...";
+		((TextView) layout.findViewById(R.id.UserIDLabel)).setText(idStr);
+		String email=u.getEmail();
+		if(email.length()>10) email=email.substring(0,6)+"...";
+		((TextView) layout.findViewById(R.id.UserEmailLabel)).setText(email);
 		((ImageView) layout.findViewById(R.id.UserPhotoLabel))
 				.setImageDrawable(getResources().getDrawable(
 						Util.getPhoto(u.getName())));
