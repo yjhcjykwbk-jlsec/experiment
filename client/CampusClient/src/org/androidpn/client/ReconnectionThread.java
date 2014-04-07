@@ -46,7 +46,14 @@ public class ReconnectionThread extends Thread {
                 Log.d(LOGTAG, "Trying to reconnect in " + waiting()
                         + " seconds");
                 xmppManager.getContext().sendBroadcast(new Intent(Constants.RECONNECTION_THREAD).putExtra("type", "reconnection").putExtra("wait", waiting()));
-                Thread.sleep((long) waiting() * 1000L);//waiting() to waiting
+                
+                //every 3 seconds, check if need reconnection immediately(waiting change to 0)
+                int wait=waiting();
+                for(int i=0;i<wait;i+=5){
+                	if(waiting==0) break;
+                	Thread.sleep((long) 5 * 1000L);//waiting() to waiting
+                }
+                
                 xmppManager.connect();
                 
 //                if(waiting()>20){
@@ -69,15 +76,15 @@ public class ReconnectionThread extends Thread {
     }
     private int waiting() {
         if (waiting > 8) {
-            return 90;
+            return 50;
         }
         if (waiting>3) {
-            return 40;
+            return 30;
         }
         if(waiting>1){
-        	return 10;
+        	return 15;
         }
-        return 2;
+        return 5;
     }
     /**
      * then you know the reconnection thread has run how long since last time wait=0
