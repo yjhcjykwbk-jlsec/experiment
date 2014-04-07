@@ -3,12 +3,12 @@
 	<!-- 	different url patterns -->
 		<excludes>
 			<pattern>/includes/*</pattern>
-			<pattern>/40*.jsp</pattern>
+      <pattern>/40*.jsp</pattern>
 			<pattern>/dwr/*</pattern>
 			<pattern>/xml.jsp</pattern>
 		</excludes>
 		<includes>
-			<pattern>/*do</pattern>
+			<pattern>/*</pattern>
 		</includes>
 	</decorator> 
 </decorators>

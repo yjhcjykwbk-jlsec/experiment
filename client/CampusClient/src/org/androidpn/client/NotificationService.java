@@ -275,10 +275,10 @@ public class NotificationService extends Service {
     	filter.addAction(Constants.RECONNECTION_THREAD);
     	filter.addAction(Constants.KEEP_RECONNECT);
     	
-        filter.addAction(Constants.SERVICE_CREATED);
-        filter.addAction(Constants.SERVICE_DESTROYED);
-        filter.addAction(Constants.SERVICE_ONBIND);
-        filter.addAction(Constants.SERVICE_ONUNBIND);
+//        filter.addAction(Constants.SERVICE_CREATED);
+//        filter.addAction(Constants.SERVICE_DESTROYED);
+//        filter.addAction(Constants.SERVICE_ONBIND);
+//        filter.addAction(Constants.SERVICE_ONUNBIND);
         registerReceiver(notificationReceiver, filter);
     }
 
