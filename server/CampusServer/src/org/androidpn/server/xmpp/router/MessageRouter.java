@@ -20,6 +20,7 @@ package org.androidpn.server.xmpp.router;
 import org.androidpn.server.service.ServiceLocator;
 import org.androidpn.server.service.UserNotFoundException;
 import org.androidpn.server.service.UserService;
+import org.androidpn.server.xmpp.push.NotificationManager;
 import org.androidpn.server.xmpp.session.ClientSession;
 import org.androidpn.server.xmpp.session.Session;
 import org.androidpn.server.xmpp.session.SessionManager;
@@ -91,8 +92,15 @@ public class MessageRouter {
 				}catch(Exception e){
 					e.printStackTrace();
 				}
-			} else
-				log.info("packet to User " + packet.getTo() + " is invalid");
+			} else{
+				NotificationManager manager=NotificationManager.getInstance();
+				if(manager==null)
+				{ 	log.debug("messagerouter.route:notifi..mgr null");
+					return;
+				}
+				else manager.storeChatMsg(packet);
+				log.info("packet to User " + packet.getTo() + " is stored for future sending");
+			}
 		}
 	}
 

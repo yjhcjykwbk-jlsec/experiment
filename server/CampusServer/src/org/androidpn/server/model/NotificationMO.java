@@ -31,7 +31,7 @@ public class NotificationMO implements Serializable {
 	public NotificationMO(){
 	}
 	
-	public NotificationMO(String apiKey,String title,String message,String uri){
+	public NotificationMO(String apiKey,String title,String message,String uri){//or say api, fromuser, msg, "chat"
 		this.apiKey = apiKey;
 		this.title = title;
 		this.message = message;

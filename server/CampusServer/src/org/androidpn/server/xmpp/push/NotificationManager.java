@@ -17,6 +17,8 @@
  */
 package org.androidpn.server.xmpp.push;
 
+import java.io.InputStream;
+import java.io.StringReader;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +39,12 @@ import org.apache.commons.logging.LogFactory;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.QName;
+import org.hsqldb.lib.StringInputStream;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
 import org.xmpp.packet.IQ;
+import org.xmpp.packet.Message;
 
 /**
  * This class is to manage sending the notifcations to the users.
@@ -58,7 +65,23 @@ public class NotificationManager {
 	
 	public static int sessionCounter=0;
 	public static long difTime=0;
-
+	/**@deprecated
+	 * xuzhigang
+	 * @return
+	 */
+	private static XmlPullParser getParser(){
+		XmlPullParser parser=null;
+		 try {
+	            parser = XmlPullParserFactory.newInstance().newPullParser();
+	            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, true);
+	            //parser.setInput(connection.reader);
+	        }
+	        catch (XmlPullParserException xppe) {
+	            xppe.printStackTrace();
+	            return null;
+	        }
+	        return parser;
+	}
 	/**
 	 * Constructor.
 	 */
@@ -123,7 +146,56 @@ public class NotificationManager {
 		}
 		
 	}
-
+	
+	/**
+	 * @author xuzhigang
+	 * @param toUsername
+	 * @param message
+	 * store chat message in the form of notification 
+	 */
+	public void storeChatMsg(Message msg){
+		String toUsername=msg.getTo()+"";
+		NotificationMO notificationMO = new NotificationMO("chat", msg.getFrom()+"",
+				msg.getBody(), msg.getID());
+		notificationMO.setUsername(toUsername);
+		notificationMO.setStatus(NotificationMO.STATUS_NOT_SEND);//not send
+		try{
+			notificationService.saveNotification(notificationMO);
+		}catch(Exception e){
+			log.warn(" notifications insert to database failure!!");
+		}
+	}
+	
+	/**
+	 * @author xuzhigang
+	 * @param toUsername
+	 * @param message
+	 * store chat message in the form of notification 
+	 */
+	public void resendChatMsg( NotificationMO notificationMO){
+//		NotificationMO notificationMO = new NotificationMO("", "",
+//				msg.toXML(), "chat");
+		Message msg = new Message();
+		msg.setFrom(notificationMO.getTitle());
+		msg.setBody(notificationMO.getMessage());
+		msg.setID(notificationMO.getUri());
+		String toUsername = notificationMO.getUsername();
+		msg.setTo(notificationMO.getUsername());
+		ClientSession session = sessionManager.getSession(toUsername);
+		if (session!=null&&session.getPresence().isAvailable()) {
+			msg.setTo(toUsername);
+			log.info("notificationMgr.resendChatMsg:session of user "+session.getAddress()+" sending...");
+			session.process(msg);
+			notificationMO.setStatus(NotificationMO.STATUS_SEND);
+		}else {
+			log.debug("notificationMgr.resendChatMsg:session of user "+toUsername+" not available");
+		}
+		try {
+			notificationService.saveNotification(notificationMO);
+		} catch (Exception e) {
+			log.warn(" notifications insert to database failure!!");
+		}
+	}
 	/**
 	 * Broadcasts a newly created notification message to all connected users.
 	 * 
@@ -239,7 +311,13 @@ public class NotificationManager {
 			log.warn(" notifications insert to database failure!!");
 		}
 	}
-	public void sendOldNotificationToUser(NotificationMO notificationMO, IQ notificationIQ, String username) {
+	/**
+	 * xuzhigang
+	 * @param notificationMO
+	 * @param notificationIQ
+	 * @param username
+	 */
+	public void resendNotificationToUser(NotificationMO notificationMO, IQ notificationIQ, String username) {
 		log.debug("sendNotifcationToUser()...");
 		ClientSession session = sessionManager.getSession(username);
 		CopyMessageUtil.IQ2Message(notificationIQ, notificationMO);
@@ -270,15 +348,23 @@ public class NotificationManager {
 	public void resendNotifications(String username){
 		List<NotificationMO> notes=notificationService.getUnsentNotifications(username);
 		if(notes==null) return;
-		int i=0;
-		for(NotificationMO note:notes){
-			IQ notificationIQ = createNotificationIQ(note.getApiKey(),note.getTitle(),note.getMessage(),note.getUri());
-		
-			//attention: note has an id, and this will update notificationMO note, not recreate a note
-			this.sendOldNotificationToUser(note, notificationIQ,username);
+		int i = 0;
+		for (NotificationMO note : notes) {
+
+			if (note.getApiKey().equals("chat")) {
+				log.info("resendNOtifications: send chat msg to" +username);
+				this.resendChatMsg(note);
+			} else {
+				IQ notificationIQ = createNotificationIQ(note.getApiKey(), note
+						.getTitle(), note.getMessage(), note.getUri());
+				// attention: note has an id, and this will update
+				// notificationMO note, not recreate a note
+				this.resendNotificationToUser(note, notificationIQ, username);
+			}
 			i++;
-			if(i>15){
-				//every time only push no more than 15 old messages, and use many times to send all
+			if (i > 15) {
+				// every time only push no more than 15 old messages, and use
+				// many times to send all
 				return;
 			}
 		}
