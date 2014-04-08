@@ -270,14 +270,17 @@ public class NotificationManager {
 	public void resendNotifications(String username){
 		List<NotificationMO> notes=notificationService.getUnsentNotifications(username);
 		if(notes==null) return;
+		int i=0;
 		for(NotificationMO note:notes){
 			IQ notificationIQ = createNotificationIQ(note.getApiKey(),note.getTitle(),note.getMessage(),note.getUri());
-			ClientSession session=sessionManager.getSession(username);
-			if(session==null){
-				log.info("resendNOtification: session not found for "+username);
-			}
+		
 			//attention: note has an id, and this will update notificationMO note, not recreate a note
 			this.sendOldNotificationToUser(note, notificationIQ,username);
+			i++;
+			if(i>15){
+				//every time only push no more than 15 old messages, and use many times to send all
+				return;
+			}
 		}
 	}
 	/**

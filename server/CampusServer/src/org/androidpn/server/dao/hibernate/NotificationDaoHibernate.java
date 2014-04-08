@@ -52,7 +52,7 @@ public class NotificationDaoHibernate extends HibernateDaoSupport implements
 		Object[] params = new Object[] {userName};
 		
 		return getHibernateTemplate()
-				.find("from NotificationMO n where n.username=? and status='0' and unix_timestamp(n.createTime)>unix_timestamp(NOW())-3600",params);
+				.find("from NotificationMO n where n.username=? and status='0' and unix_timestamp(n.createTime)>unix_timestamp(NOW())-3600*12 limit 0,15",params);
 	}
 
 	
