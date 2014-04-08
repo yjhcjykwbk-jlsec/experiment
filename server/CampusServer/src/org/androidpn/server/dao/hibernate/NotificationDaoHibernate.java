@@ -48,6 +48,14 @@ public class NotificationDaoHibernate extends HibernateDaoSupport implements
 						params);
 	}
 
+	public List<NotificationMO> queryOldNotificationByUserName(String userName) {
+		Object[] params = new Object[] {userName};
+		
+		return getHibernateTemplate()
+				.find("from NotificationMO n where n.username=? and status='0' and unix_timestamp(n.createTime)>unix_timestamp(NOW())-3600",params);
+	}
+
+	
 	@SuppressWarnings("unchecked")
 	public List<NotificationMO> getNotifications() {
 		return getHibernateTemplate().find(

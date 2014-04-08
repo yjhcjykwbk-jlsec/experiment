@@ -67,6 +67,18 @@ public class NotificationManager {
 		notificationService = ServiceLocator.getNotificationService();
 		userService = ServiceLocator.getUserService();
 	}
+	
+	static NotificationManager instance=null;
+	/**@deprecated
+	 * 
+	 * @return
+	 */
+	public static NotificationManager getInstance(){
+		if(instance==null) {
+			instance=new NotificationManager();
+		}
+		return instance;
+	}
 	/**
 	 * send a xml message to user
 	 * 
@@ -219,6 +231,7 @@ public class NotificationManager {
 			}
 		}else{
 			notificationMO.setStatus(NotificationMO.STATUS_NOT_SEND);
+			log.info("notificationmgr.sendnotificationtouser: user not available");
 		}
 		try{
 			notificationService.saveNotification(notificationMO);
@@ -226,7 +239,47 @@ public class NotificationManager {
 			log.warn(" notifications insert to database failure!!");
 		}
 	}
-
+	public void sendOldNotificationToUser(NotificationMO notificationMO, IQ notificationIQ, String username) {
+		log.debug("sendNotifcationToUser()...");
+		ClientSession session = sessionManager.getSession(username);
+		CopyMessageUtil.IQ2Message(notificationIQ, notificationMO);
+		if (session != null && session.getPresence().isAvailable()) {
+			notificationIQ.setTo(session.getAddress());
+			session.deliver(notificationIQ);
+			notificationMO.setStatus(NotificationMO.STATUS_SEND);
+			try {
+				notificationMO.setClientIp(session.getHostAddress());
+				notificationMO.setResource(session.getAddress().getResource());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}else{
+			notificationMO.setStatus(NotificationMO.STATUS_NOT_SEND);
+			log.info("notificationmgr.sendnotificationtouser: user not available");
+		}
+		try{
+			notificationService.saveNotification(notificationMO);
+		}catch(Exception e){
+			log.warn(" notifications insert to database failure!!");
+		}
+	}
+	/**
+	 * resend messages to user
+	 * @author xuzhigang
+	 */
+	public void resendNotifications(String username){
+		List<NotificationMO> notes=notificationService.getUnsentNotifications(username);
+		if(notes==null) return;
+		for(NotificationMO note:notes){
+			IQ notificationIQ = createNotificationIQ(note.getApiKey(),note.getTitle(),note.getMessage(),note.getUri());
+			ClientSession session=sessionManager.getSession(username);
+			if(session==null){
+				log.info("resendNOtification: session not found for "+username);
+			}
+			//attention: note has an id, and this will update notificationMO note, not recreate a note
+			this.sendOldNotificationToUser(note, notificationIQ,username);
+		}
+	}
 	/**
 	 * Creates a new notification IQ and returns it.
 	 */

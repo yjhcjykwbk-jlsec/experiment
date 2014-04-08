@@ -350,6 +350,7 @@ public class LoginActivity extends Activity {
     public void onDestroy(){
     	//if not unbound, will invoke the exception: Activity has leaked ServiceConnection that was originally bound here
     	unbindService(myConnection);
+    	Constants.serviceManager.stopService();
     	Toast.makeText(this, "loginActivity has destroyed",Toast.LENGTH_SHORT).show();
     	super.onDestroy();
     }

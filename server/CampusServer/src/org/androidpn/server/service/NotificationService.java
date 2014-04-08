@@ -34,6 +34,12 @@ public interface NotificationService {
 	 */
 	public List<NotificationMO> getNotifications();
 	
+	
+	/**
+	 * @param 
+	 * @author xuzhigang
+	 */
+	public List<NotificationMO> getUnsentNotifications(String userName);
 	/**
 	 * @param id
 	 * @return NotificationMO

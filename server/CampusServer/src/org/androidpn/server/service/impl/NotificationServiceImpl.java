@@ -34,7 +34,13 @@ public class NotificationServiceImpl implements NotificationService {
 		log.info(" delete notification:id =" + id);
 		notificationDao.queryNotificationById(id);
 	}
-
+	/**
+	 * @param 
+	 * @author xuzhigang
+	 */
+	public List<NotificationMO> getUnsentNotifications(String userName){
+		return notificationDao.queryOldNotificationByUserName(userName);
+	}
 	public List<NotificationMO> getNotifications(){
 		return notificationDao.getNotifications();
 	}	

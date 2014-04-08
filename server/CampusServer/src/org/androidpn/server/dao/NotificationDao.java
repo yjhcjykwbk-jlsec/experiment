@@ -31,6 +31,12 @@ public interface NotificationDao {
 	public void deleteNotification(Long id);
 	
 	/**
+	 * use this to resend unrecved messages to user if he is online
+	 * @param userName
+	 * @return unrecved messages of userName
+	 */
+	public List<NotificationMO> queryOldNotificationByUserName(String userName) ;
+	/**
 	 * @param id
 	 * @return NotificationMO
 	 */

@@ -170,9 +170,9 @@ public class NotificationService extends Service {
         long triggerAtTime = SystemClock.elapsedRealtime()+20*1000;
         am = (AlarmManager)getSystemService(ALARM_SERVICE);
         //使用AlarmManger的setRepeating方法设置定期执行的时间间隔（seconds秒）和需要执行的Service
-        //期待的效果是：即使系统待机，依然能够定时：每两分钟检查一次连接
+        //期待的效果是：即使系统待机，依然能够定时：每30s检查一次连接
         //因为系统待机的时候，普通的定时thread一般会被挂起．
-        am.setRepeating(AlarmManager.RTC_WAKEUP, triggerAtTime,300*1000, pIntent);
+        am.setRepeating(AlarmManager.RTC_WAKEUP, triggerAtTime,30*1000, pIntent);
 	 }
     
     @Override
@@ -185,7 +185,6 @@ public class NotificationService extends Service {
     public void onDestroy() {
         Log.d(LOGTAG, "onDestroy()...");
         sendBroadcast(new Intent(Constants.SERVICE_DESTROYED)); 
- 		am.cancel(pIntent);
         stop();
     }
 
@@ -267,13 +266,13 @@ public class NotificationService extends Service {
         filter.addAction(Constants.ACTION_NOTIFICATION_CLEARED);
         
 //      filter.addAction(Constants.XMPP_CONNECTED);
-    	filter.addAction(Constants.XMPP_CONNECTION_CLOSED);
-    	filter.addAction(Constants.XMPP_CONNECT_FAILED);
-    	filter.addAction(Constants.XMPP_CONNECTION_ERROR);
+//    	filter.addAction(Constants.XMPP_CONNECTION_CLOSED);
+//    	filter.addAction(Constants.XMPP_CONNECT_FAILED);
+//    	filter.addAction(Constants.XMPP_CONNECTION_ERROR);
 //    	filter.addAction(Constants.XMPP_CONNECTING);
     	
     	filter.addAction(Constants.RECONNECTION_THREAD);
-    	filter.addAction(Constants.KEEP_RECONNECT);
+//    	filter.addAction(Constants.KEEP_RECONNECT);
     	
 //        filter.addAction(Constants.SERVICE_CREATED);
 //        filter.addAction(Constants.SERVICE_DESTROYED);
@@ -320,6 +319,8 @@ public class NotificationService extends Service {
         Log.d("NotificationServiece", "stop()...");
         unregisterNotificationReceiver();
         unregisterConnectivityReceiver();
+        //stop connect ...
+        am.cancel(pIntent);
         xmppManager.disconnect();
         executorService.shutdown();
     }

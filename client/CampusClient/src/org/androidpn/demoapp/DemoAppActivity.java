@@ -15,6 +15,7 @@
  */
 package org.androidpn.demoapp; 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import org.androidpn.client.ChatPacketListener;
@@ -49,6 +50,7 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.SystemClock;
 import android.os.PowerManager.WakeLock;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -123,6 +125,8 @@ public class DemoAppActivity extends Activity {
 						tv.setText(from+":连接中");
 					}else if(type.equals("connectionError")){
 						tv.setText("连接发生错误，正在重连");
+					}else if(type.equals("keepFromService")){
+						tv.setText(DateFormat.format("h:m:s", System.currentTimeMillis())+"后台发起了心跳连接");
 					}
 					setConnectionStatus();
 				}

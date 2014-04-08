@@ -15,6 +15,7 @@ import android.util.Log;
 public class AlarmReceiver extends android.content.BroadcastReceiver{
 	@Override
 	public void onReceive(Context context, Intent intent) {
+        if(Constants.xmppManager==null) return;
         Constants.xmppManager.connect();
 //		Constants.xmppManager.getContext().sendBroadcast(new Intent(Constants.KEEP_RECONNECT)); 
 //		new Notifier(context).notifyMsg("保持重连进程", "在运行");
@@ -22,5 +23,8 @@ public class AlarmReceiver extends android.content.BroadcastReceiver{
 //		new Notifier(Constants.xmppManager.getContext()).notifyMsg("保持重连进程", "在运行");
 //		new Notifier(Constants.xmppManager.getContext().getApplicationContext()).notifyMsg("保持重连进程", "在运行");
 		Log.i("alarmReceiver","onReceive");
+		Constants.xmppManager.getContext().sendBroadcast(new Intent(Constants.XMPP_CONNECTING).
+    			putExtra("from","AlarmReceiver").
+				putExtra("type", "keepFromService"));
 	}
 }

@@ -211,33 +211,42 @@ public class XmppManager {
         return chatPacketListener;
     }
 
-    /*
-     * reconnection thread keeps connection logined in
-     * by calling connect() 
+    /**
+     * @deprecated
+     * @old: reconnection thread keeps connection logined in by calling connect() 
+     * this can not be called by any statements in connect(), or the task queue will be filled by connect()
      */
     public void startReconnectionThread() {
     	Log.i("xmppmanager#startreconnectinthread", "");
-        synchronized (reconnection) {
-            if (!reconnection.isAlive()) {
-                reconnection.setName("Xmpp Reconnection Thread");
-                reconnection.start();
-                Log.i(LOGTAG,"startReconnectionThread");
-            }
-//            else{
-//            	reconnection.handler.post(new Runnable(){
-//					@Override
-//					public void run() {
-//						// TODO Auto-generated method stub
-//						reconnection.setWait(6);
-//					}
-//            	});
+//        synchronized (reconnection) {
+//            if (!reconnection.isAlive()) {
+//                reconnection.setName("Xmpp Reconnection Thread");
+//                reconnection.start();
+//                Log.i(LOGTAG,"startReconnectionThread");
 //            }
-        }
+////            else{
+////            	reconnection.handler.post(new Runnable(){
+////					@Override
+////					public void run() {
+////						// TODO Auto-generated method stub
+////						reconnection.setWait(6);
+////					}
+////            	});
+////            }
+//        }
+    	this.connect();
     }
+   /**
+    * @deprecated
+    */
     public void delayReconnectionThread() {
        reconnection.waiting=100;
     }
     
+    /**
+     * @deprecated
+     * @return
+     */
     public XmppManager shiftReconnectionThread(){
     	if(!isAuthenticated()){
     		//start reconnect as soon as possible
@@ -417,9 +426,9 @@ public class XmppManager {
 
                 } catch (XMPPException e) {
                     Log.e(LOGTAG, "XMPP connection failed", e);
-                    //once the connection is not successful, then invoke the reconnection thread 
-                    //which will try to add connect task to the tasklist for reconnection later
-                    xmppManager.startReconnectionThread();
+//                    //once the connection is not successful, then invoke the reconnection thread 
+//                    //which will try to add connect task to the tasklist for reconnection later
+//                    xmppManager.startReconnectionThread();
                 }
                 //stop blocking...
                 xmppManager.runTask();
@@ -597,12 +606,12 @@ public class XmppManager {
                     //if could , i think it will be better
                     //once the connection is not successful, then invoke the reconnection thread 
                     //which will try to add connect task to the tasklist for reconnection later
-                    xmppManager.startReconnectionThread();
+                   // xmppManager.startReconnectionThread();
 
                 } catch (Exception e) {
                     Log.e(LOGTAG, "Failed to login to xmpp server. Caused by: "
                             + e.getMessage());
-                    xmppManager.startReconnectionThread();
+                   // xmppManager.startReconnectionThread();
                 }
 
                 xmppManager.runTask();
@@ -618,7 +627,7 @@ public class XmppManager {
      * send a packet out to someone
      */
     public void sendMsg(Packet msg){
-    	shiftReconnectionThread();
+    	shiftReconnectionThread().startReconnectionThread();
     	submitLoginTask();
     	addTask(new SendMsgTask(msg));
     }

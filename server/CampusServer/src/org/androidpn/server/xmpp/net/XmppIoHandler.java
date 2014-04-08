@@ -55,12 +55,16 @@ public class XmppIoHandler implements IoHandler {
     private static Map<Integer, XMPPPacketReader> parsers = new ConcurrentHashMap<Integer, XMPPPacketReader>();
 
     private static XmlPullParserFactory factory = null;
+    
+    //added by xuzhigang
+//    private static NotificationManager manager;
 
     static {
         try {
             factory = XmlPullParserFactory.newInstance(
                     MXParser.class.getName(), null);
             factory.setNamespaceAware(true);
+          //  manager=new NotificationManager();
         } catch (XmlPullParserException e) {
             log.error("Error creating a parser factory", e);
         }
@@ -71,6 +75,7 @@ public class XmppIoHandler implements IoHandler {
      */
     protected XmppIoHandler() {
         serverName = XmppServer.getInstance().getServerName();
+      
     }
 
     /**

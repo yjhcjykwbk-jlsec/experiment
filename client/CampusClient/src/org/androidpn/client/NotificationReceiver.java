@@ -134,10 +134,10 @@ public final class NotificationReceiver extends BroadcastReceiver {
         }
         
         else if(Constants.SERVICE_CREATED.equals(action)){
-        	new Notifier(context).notifyMsg("后台服务信息", "oncreate");
+        	new Notifier(context).notifyMsg("后台服务信息", "服务开启");
         }
         else if(Constants.SERVICE_DESTROYED.equals(action)){
-        	new Notifier(context).notifyMsg("后台服务信息", "已销毁");
+        	new Notifier(context).notifyMsg("后台服务信息", "服务异常关闭！");
         }
 //        else if(Constants.SERVICE_ONBIND.equals(action)){
 //        	new Notifier(context).notifyMsg("后台服务信息", "onbind");

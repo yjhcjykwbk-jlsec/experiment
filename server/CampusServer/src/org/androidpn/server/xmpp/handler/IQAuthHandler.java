@@ -20,10 +20,13 @@ package org.androidpn.server.xmpp.handler;
 import gnu.inet.encoding.Stringprep;
 import gnu.inet.encoding.StringprepException;
 
+import org.androidpn.server.model.NotificationMO;
+import org.androidpn.server.util.CopyMessageUtil;
 import org.androidpn.server.xmpp.UnauthenticatedException;
 import org.androidpn.server.xmpp.UnauthorizedException;
 import org.androidpn.server.xmpp.auth.AuthManager;
 import org.androidpn.server.xmpp.auth.AuthToken;
+import org.androidpn.server.xmpp.push.NotificationManager;
 import org.androidpn.server.xmpp.session.ClientSession;
 import org.androidpn.server.xmpp.session.Session;
 import org.dom4j.DocumentHelper;
@@ -32,7 +35,7 @@ import org.dom4j.QName;
 import org.xmpp.packet.IQ;
 import org.xmpp.packet.JID;
 import org.xmpp.packet.PacketError;
-
+import org.xmpp.packet.Presence ;
 /** 
  * This class is to handle the TYPE_IQ jabber:iq:auth protocol.
  *
@@ -146,6 +149,20 @@ public class IQAuthHandler extends IQHandler {
                 session.setAuthToken(token, resource);
                 packet.setFrom(session.getAddress());
                 reply = IQ.createResultIQ(packet);
+                
+                //@add by xuzhigang
+                //now user is authenticated, send him notifications before
+                // by xuzhigang
+//                	String clientAdr = session.getAddress()+"";
+//        			log.debug("authenticated client session username:"+clientAdr);
+//        			int i = clientAdr.indexOf('@');
+//        			if (i >= 0) {
+//        				clientAdr = clientAdr.substring(0, Math.min(clientAdr.length(),
+//        						clientAdr.indexOf('@')));
+//        			}
+//    				log.debug("resend..................notifications to user "
+//    						+ clientAdr);
+              
             }
         } catch (Exception ex) {
             log.error(ex);

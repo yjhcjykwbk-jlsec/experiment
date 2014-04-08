@@ -31,7 +31,7 @@ import org.androidpn.server.xmpp.net.ConnectionCloseListener;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.xmpp.packet.JID;
-
+import org.androidpn.server.xmpp.push.NotificationManager;
 /** 
  * This class manages the sessions connected to the server.
  *
@@ -98,6 +98,7 @@ public class SessionManager {
         connectionsCounter.incrementAndGet();
 
         log.debug("ClientSession created.");
+        
         return session;
     }
 

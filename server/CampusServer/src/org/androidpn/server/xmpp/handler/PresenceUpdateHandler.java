@@ -17,6 +17,7 @@
  */
 package org.androidpn.server.xmpp.handler;
 
+import org.androidpn.server.xmpp.push.NotificationManager;
 import org.androidpn.server.xmpp.router.PacketDeliverer;
 import org.androidpn.server.xmpp.session.ClientSession;
 import org.androidpn.server.xmpp.session.Session;
@@ -94,6 +95,15 @@ public class PresenceUpdateHandler {
                 presence.setError(PacketError.Condition.bad_request);
                 PacketDeliverer.deliver(presence);
             }
+            
+            //send the notifications to the user
+            if(!session.getPresence().isAvailable()) {
+            	log.info("presenceupdatehandler: session not available");
+            }
+            else if (NotificationManager.getInstance() != null) {
+					NotificationManager.getInstance()
+							.resendNotifications(session.getUsername());
+			}
 
         } catch (Exception e) {
             log.error("Internal server error. Triggered by packet: " + packet,
