@@ -8,6 +8,7 @@ import java.util.List;
 import org.androidpn.server.dao.NotificationDao;
 import org.androidpn.server.model.NotificationMO;
 import org.androidpn.server.model.ReportVO;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 /**
@@ -51,8 +52,9 @@ public class NotificationDaoHibernate extends HibernateDaoSupport implements
 	public List<NotificationMO> queryOldNotificationByUserName(String userName) {
 		Object[] params = new Object[] {userName};
 		
-		return getHibernateTemplate()
-				.find("from NotificationMO n where n.username=? and status='0' and unix_timestamp(n.createTime)>unix_timestamp(NOW())-3600*12 limit 0,15",params);
+	    HibernateTemplate t=getHibernateTemplate();
+	    t.setMaxResults(15);
+		return t.find("from NotificationMO n where n.username=? and status='0' and unix_timestamp(n.createTime)>unix_timestamp(NOW())-3600*12",params);
 	}
 
 	
