@@ -20,14 +20,6 @@ package org.androidpn.server.model;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
@@ -37,7 +29,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
  * @author xzg
  */
  
-public class App implements Serializable {
+public class App implements Serializable,Contacter {
 
     private static final long serialVersionUID = 4733464888738356502L;
  

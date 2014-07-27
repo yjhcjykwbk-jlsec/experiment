@@ -91,6 +91,7 @@ public class DemoAppActivity extends Activity {
     WakeLock wakelock;
     private DataReceiver dr;
     private XmppManager manager;
+	private Button btn_apps;
 	@Override
 	protected void onResume() {
 		// TODO Auto-generated method stub
@@ -310,14 +311,27 @@ public class DemoAppActivity extends Activity {
 		});
         
         
-        btn_myVideo = (Button)findViewById(R.id.btn_myVideo);
-        btn_myVideo.setOnClickListener(new View.OnClickListener() {			
+//        btn_myVideo = (Button)findViewById(R.id.btn_myVideo);
+//        btn_myVideo.setOnClickListener(new View.OnClickListener() {			
+//			@Override
+//			public void onClick(View v) {
+//				// TODO Auto-generated method stub
+//				Intent subIntent = new Intent(DemoAppActivity.this, MyVideoActivity.class);
+//				Bundle bd = new Bundle();
+//				bd.putString("userID", originSharedPrefs.getString(Constants.XMPP_USERNAME, "xxxx"));
+//				subIntent.putExtras(bd);
+//				DemoAppActivity.this.startActivity(subIntent);
+//			}
+//		});    
+        
+        btn_apps = (Button)findViewById(R.id.btn_apps);
+        btn_apps.setOnClickListener(new View.OnClickListener() {			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent subIntent = new Intent(DemoAppActivity.this, MyVideoActivity.class);
+				Intent subIntent = new Intent(DemoAppActivity.this, AppNotesActivity.class);
 				Bundle bd = new Bundle();
-				bd.putString("userID", originSharedPrefs.getString(Constants.XMPP_USERNAME, "δ֪�û�"));
+				bd.putString("userID", originSharedPrefs.getString(Constants.XMPP_USERNAME, "xxxx"));
 				subIntent.putExtras(bd);
 				DemoAppActivity.this.startActivity(subIntent);
 			}

@@ -95,9 +95,7 @@ public class SubscriptionsController extends MultiActionController {
         mav.setViewName("subscriptions/list");
         return mav;
     }
-      
-    
-    
+   
     
     /**
      * 增加订阅的http接口

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.androidpn.data.ChatInfo;
-import org.androidpn.data.SessionManager;
+import org.androidpn.data.ChatManager;
 import org.jivesoftware.smack.PacketListener;
 import org.jivesoftware.smack.filter.PacketFilter;
 import org.jivesoftware.smack.packet.IQ;
@@ -40,7 +40,7 @@ public class ChatPacketListener implements PacketListener{
 			String username = jid.substring(0, jid.indexOf('@'));
 			Log.i(LOGTAG, "recv packet from:" + username+" content:"+((Message)packet).getBody());
 			
-			SessionManager.addMsg(
+			ChatManager.addMsg(
 				username,new ChatInfo(username, 
 					((Message) packet).getBody(), new Date(System
 					.currentTimeMillis()), packet
@@ -52,7 +52,7 @@ public class ChatPacketListener implements PacketListener{
 						+ packet.getPacketID());
 				if (((IQ) packet).getError() == null) {
 					// 发送的消息成功被服务器接收
-					SessionManager.msgSent(packet.getPacketID());
+					ChatManager.msgSent(packet.getPacketID());
 //					Intent intent = new Intent(
 //							Constants.ACTION_CHAT_SENT);
 //					intent.putExtra("packetid", packet.getPacketID());

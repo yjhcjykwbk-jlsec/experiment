@@ -15,10 +15,12 @@
  */
 package org.androidpn.client;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.androidpn.server.model.App;
 import org.androidpn.server.model.User;
 import org.jivesoftware.smack.packet.Packet;
 
@@ -102,6 +104,8 @@ public class Constants {
     
     public static List<User> friendList=null;
     
+	public static List<App> appList;
+	
     public static List<Pair> packetList=null;
     
     //public static NotificationService notificationService=null;

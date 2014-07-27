@@ -27,7 +27,7 @@ import org.apache.commons.lang.builder.ToStringStyle;
  *
  * @author Sehwan Noh (devnoh@gmail.com)
  */
-public class User implements Serializable {
+public class User implements Serializable,Contacter {
 
     private static final long serialVersionUID = 4733464888738356502L;
 
@@ -155,4 +155,9 @@ public class User implements Serializable {
                 ToStringStyle.MULTI_LINE_STYLE);
     }
 
+	@Override
+	public String getDesp() {
+		// TODO Auto-generated method stub
+		return "no desp now";
+	}
 }

@@ -3,6 +3,8 @@ package org.androidpn.data;
 import java.util.List;
 
 import org.androidpn.demoapp.R;
+import org.androidpn.server.model.App;
+import org.androidpn.server.model.Contacter;
 import org.androidpn.server.model.User;
 import org.androidpn.util.Util;
 
@@ -15,10 +17,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ContactAdapter extends BaseAdapter {
-	List al;
+	List<Contacter> al;
 	Context c;
 
-	public ContactAdapter(Context c, List al) {
+	public ContactAdapter(Context c, List<Contacter> al) {
 		this.al = al;
 		this.c = c;
 	}
@@ -44,12 +46,13 @@ public class ContactAdapter extends BaseAdapter {
 	@Override
 	public View getView(int arg0, View arg1, ViewGroup arg2) {
 		// TODO Auto-generated method stub\
-		User u=(User)al.get(arg0);
+		App u=(App)al.get(arg0);
 		LayoutInflater li=LayoutInflater.from(c);
 		View layout=li.inflate(R.layout.list_contact, null);
-		((TextView)layout.findViewById(R.id.UsernameLabel_1)).setText(u.getUsername());
-		((ImageView)layout.findViewById(R.id.UserPhotoLabel_1)).
-			setBackgroundDrawable(c.getResources().getDrawable(Util.getPhoto(u.getUsername())));
+		((TextView)layout.findViewById(R.id.NameLabel)).setText(u.getName());
+		((TextView)layout.findViewById(R.id.DespLabel)).setText(u.getDesp());
+		((ImageView)layout.findViewById(R.id.PhotoLabel)).
+			setBackgroundDrawable(c.getResources().getDrawable(Util.getPhoto(u.getName())));
 		return layout;
 	}
 }

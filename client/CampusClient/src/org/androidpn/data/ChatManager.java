@@ -15,7 +15,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-/*
+/**
  * this class main manage static back-end data for chating
  *   @function:
  *   this back-end data is isolate from UI-thread's data
@@ -25,54 +25,61 @@ import android.util.Log;
  *   @attention:
  *   this class is visited by a packet-listener of Notification-Service's xmpp-connection 
  *   it is also visited by ChatsActivity when send chat msg
- *   so it need synchronizing, and this may block xmpp-connection a little
+ *   so it need data synchronizing 
  *   
- *   @author:xuzhigang
+ *   @author xzg
  */
-public class SessionManager {
+public class ChatManager {
 	private final static Map<String,List> sessions= new HashMap<String,List>();//recipient to list of msgs
-	private final static Map<String,String> packetMap=new HashMap<String,String>();//packetID to recipient name
+	private final static Map<String,String> packetMap=new HashMap<String,String>();//map packetID to recipient name
 	private final static Map<String,ChatInfo> latestChats=new HashMap<String,ChatInfo>();
 //	private final static Map<String,Handler> listeners=new HashMap<String,Handler>();
 	private static Handler chatUiHandler=null;
 	private static Handler chatsUiHandler=null;
 	private static String LOGTAG="SessionManager";
 	
-	
+	/**
+	 * 发送一个信息
+	 * 更新会话列表和对应会话的数据和视图
+	 * @param recipient
+	 * @param ci
+	 */
 	public static void addMsg(String recipient,ChatInfo ci){
 		if(recipient==null||ci==null||!ci.isComplete()) return;
 		Log.i(LOGTAG,"sessionManager.addMsg:"+ci.getPacketID()+"#"+ci.getContent());
 		
+		//更新map
 		synchronized(packetMap){
 			packetMap.put(ci.getPacketID(),recipient);
 		}
-		//1
+		
+		//更新会话列表的数据
 		synchronized(latestChats){
 			latestChats.put(recipient, ci);
 		}
-		
 		Bundle b = new Bundle();// 存放数据
 		b.putString("recipient",ci.getName());
 		b.putString("username",ci.getName());
 		b.putString("chatXml",ci.getContent());
 		b.putString("id",ci.getPacketID());
 		b.putBoolean("isSelf", ci.isSelf());
-		
-		//synchronize the data change with the ui thread
-		if(chatsUiHandler!=null){
+		//更新会话列表的ui　
+		if(chatsUiHandler!=null){//通知更新会话列表的视图
 			Message msg=new Message();
 			msg.setData(b);
 			Log.i(LOGTAG,"dispatchMessager: latestchats changed "+ ci.getName());
 			chatsUiHandler.dispatchMessage(msg);
 		}
 		
+		
+		//更新对应会话的数据
 		List lst=getMsgList(recipient);
 		synchronized(lst){
 			lst.add(ci);
-		}
-		//synchronize data change with..
+		}	
+		//更新对应会话的视图
 		Handler handler=chatUiHandler;//listeners.get(recipient);
-		if(handler!=null){
+		if(handler!=null){//通知更新对应会话的视图
 			Message msg=new Message();
 			msg.setData(b);
 			msg.what=1;
@@ -82,6 +89,11 @@ public class SessionManager {
 		}
 	}
 	
+	/**
+	 * 成功发送一个消息(消息编号为packetID)
+	 * 更新对应会话的数据和视图
+	 * @param packetID
+	 */
 	public static void msgSent(String packetID){
 		Log.i(LOGTAG,"sessionManager.msgSent:"+packetID);
 		if(packetID==null) return;
@@ -91,22 +103,21 @@ public class SessionManager {
 			return ;
 		}
 		
+		//更新对应会话的数据
 		List list=sessions.get(recipient);
 		synchronized(list){
 			Iterator it=list.iterator();
 			while(it.hasNext()){
 				ChatInfo ci=(ChatInfo) it.next();
 				if(ci.getPacketID().equals(packetID)){
-					ci.setSent();
+					ci.setSent();break;
 				}
 			}
 		}
-		
-		Log.i(LOGTAG,"try to syn msg-sent event with chat-ui");
-		//synchronize data change with ui-thread
+		//更新对应会话的视图
 		Handler handler=chatUiHandler;//listeners.get(recipient);
-		if(handler!=null){
-			Bundle b = new Bundle();// 存放数据
+		if(handler!=null){//通知更新对应会话视图
+			Bundle b = new Bundle();
 			b.putString("id",packetID);
 			b.putString("recipient",recipient);
 			Message msg=new Message();
@@ -116,6 +127,12 @@ public class SessionManager {
 			handler.dispatchMessage(msg);
 		}
 	}
+	
+	/**
+	 * 获取recipient对应会话的数据(list)
+	 * @param recipient
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	private static List<ChatInfo> getMsgList(String recipient){
 		if(recipient==null) return null;
@@ -128,7 +145,9 @@ public class SessionManager {
 		return sessions.get(recipient);
 	}
 	
+	
 	public static List<ChatInfo> cloneMsgList(String recipient){
+		Log.i(LOGTAG,"cloneMsgList");
 		assert(recipient!=null);
 		List lst=getMsgList(recipient),lst_1;
 		if(lst==null) return null;
@@ -137,34 +156,20 @@ public class SessionManager {
 		}
 		return lst_1;
 	}
-	
-	private static Map<String, ChatInfo> getLatestChats() {
-		// TODO Auto-generated method stub
-//		Map m;
-//		synchronized(latestChats){
-//			m=new HashMap<String,ChatInfo>(latestChats);
-//		}
-//		return m;
-		return latestChats;
-	}
+ 
 	public static Map<String, ChatInfo> cloneLatestChats() {
-		// TODO Auto-generated method stub
+		Log.i(LOGTAG,"cloneLatestChats");
 		Map m;
 		synchronized(latestChats){
 			m=new HashMap<String,ChatInfo>(latestChats);
 		}
 		return m;
 	}
-	/*
-	 * 
+	
+	/**
+	 * 设置用于通知更新＂对应会话的视图＂的handler
 	 */
 	public static void setChatUiListener(Handler handler) {
-//		Log.i(LOGTAG,"sessionManager.setListener:"+recipient);
-//		synchronized(listeners){
-////			if(listeners.get(recipient)!=null) 
-////				throw new Exception("already have a chat-ui watching "+recipient);
-//			listeners.put(recipient, handler);
-//		}
 		if(chatUiHandler!=null){
 			synchronized(chatUiHandler){
 				chatUiHandler=handler;
@@ -174,11 +179,6 @@ public class SessionManager {
 	}
 	
 	public static void removeChatUiListener(){
-//		Log.i(LOGTAG,"sessionManager.removeListener:"+recipient);
-//		synchronized(listeners){
-//			if(recipient!=null)
-//				listeners.remove(recipient);
-//		}
 		if(chatUiHandler!=null){
 			synchronized(chatUiHandler){
 				chatUiHandler=null;
@@ -186,12 +186,13 @@ public class SessionManager {
 		}
 	}
 	
+	/**
+	 * 设置用于通知更新＂会话列表的视图＂的handler
+	 */
 	public static void setChatsUiListener(Handler handler) {
-//		if(chatsUiHandler!=null){
-//			throw new Exception("already have a chats-ui watching");
-//		}
 		chatsUiHandler=handler;
 	}
+	
 	public static void removeChatsUiListener(){
 		chatsUiHandler=null;
 	}

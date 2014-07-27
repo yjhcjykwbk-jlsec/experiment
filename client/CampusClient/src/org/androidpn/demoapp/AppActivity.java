@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.androidpn.client.Constants;
 import org.androidpn.data.ContactAdapter;
+import org.androidpn.server.model.App;
 import org.androidpn.server.model.Contacter;
 import org.androidpn.server.model.User;
 import org.androidpn.util.Util;
@@ -24,45 +25,46 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class ContactActivity extends Activity {
+public class AppActivity extends Activity {
 	private static String LOGTAG="ContactActivity";
 	private String USERNAME;
 	private String PASSWORD;
-	private List<User> friendList;
-
+	private List<App> appList;
+	private ContactAdapter adapter;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		USERNAME = getIntent().getStringExtra("userID");
 		PASSWORD = getIntent().getStringExtra("Pwd");//
 		setContentView(R.layout.activity_contact);
 		
-		friendList=Constants.friendList;
-		if(friendList==null) friendList=new ArrayList<User>();
-		ListView contactList = (ListView) this
+		appList=Constants.appList;
+		if(appList==null) appList=new ArrayList<App>();
+		ListView appList = (ListView) this
 				.findViewById(R.id.ContactListView);
-		ContactAdapter adapter=new ContactAdapter(this,(List)friendList);
-		contactList.setAdapter(adapter);
-		contactList.setOnItemClickListener(new OnItemClickListener(){
+		ContactAdapter adapter=new ContactAdapter(this,(List<Contacter>) appList);
+		appList.setAdapter(adapter);
+		appList.setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				// TODO Auto-generated method stub
 				Log.i(LOGTAG,"item "+arg2+" clicked");
-				User u=(User)arg0.getAdapter().getItem(arg2);
+				App u=(App)arg0.getAdapter().getItem(arg2);
 				if(u!=null&&u.getName()!=null){
-					Intent intent=new Intent(ContactActivity.this,ChatsActivity.class);
-					Bundle bundle=ContactActivity.this.getIntent().getExtras();
-					bundle.putString("recipient", u.getName());
+					Intent intent=new Intent(AppActivity.this,AppNotesActivity.class);
+					Bundle bundle=AppActivity.this.getIntent().getExtras();
+					bundle.putString("appName", u.getName());
 					intent.putExtras(bundle);
 //					startActivity(intent);
 					//返回聊天
 					setResult(RESULT_OK,intent);
-					ContactActivity.this.finish();
+					AppActivity.this.finish();
 				}else{
-					Util.alert(ContactActivity.this, "该用户无效，或无法启动会话");
+					Util.alert(AppActivity.this, "该应用无效，或无法启动会话");
 				}
 			}
 		});
 	}
+	
 }
 
