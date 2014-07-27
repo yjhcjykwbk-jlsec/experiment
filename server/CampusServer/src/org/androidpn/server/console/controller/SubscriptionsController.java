@@ -30,10 +30,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.androidpn.server.model.User;
 import org.androidpn.server.console.vo.SubscriptionsVO;
-import org.androidpn.server.service.ServiceLocator;
-import org.androidpn.server.service.UserNotFoundException;
-import org.androidpn.server.service.UserService;
+import org.androidpn.server.service.*;
 import org.androidpn.server.util.Config;
+import org.androidpn.server.util.Xmler;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
@@ -46,8 +45,10 @@ import org.androidpn.server.model.App;
 public class SubscriptionsController extends MultiActionController {
 
     private UserService userService;
+    private AppService appService;
     public SubscriptionsController() {
         userService = ServiceLocator.getUserService();
+        appService = ServiceLocator.getAppService();
     }
 
     @SuppressWarnings("unchecked")
@@ -63,7 +64,7 @@ public class SubscriptionsController extends MultiActionController {
 //        int count_video_renwenvideo=0;     
 //        int count_video_leisurevideo=0;    
     	Map<String,Integer> subCnt=new HashMap<String,Integer>();
-        List<User> userList = userService.getUsers();
+        List<User> userList = userService.listUsers();
         for (User user : userList) {        	
         	List<App> userSubs = userService.getUserSubscribes(user.getId());//user.getSubscriptions();
         	if(!userSubs.isEmpty()){
@@ -96,9 +97,11 @@ public class SubscriptionsController extends MultiActionController {
     }
       
     
+    
+    
     /**
      * 增加订阅的http接口
-     * subscriptions.do(action=addSubscribe.do,username,appid) 
+     * subscriptions.do(action=addSubscribe,username,appid) 
      * @param request
      * @param response
      * @return
@@ -116,7 +119,7 @@ public class SubscriptionsController extends MultiActionController {
         userService = ServiceLocator.getUserService();
         try{
 	        User us = userService.getUserByUsername(userName);      
-	        userService.subscribe(us.getId(), appId);
+	        userService.addSubscribe(us.getId(), appId);
 	        response.setContentType("text/plain");
 			out.print("subscribe:success");  
 			out.flush();
@@ -148,7 +151,7 @@ public class SubscriptionsController extends MultiActionController {
         userService = ServiceLocator.getUserService();
         try{
 	        User us = userService.getUserByUsername(userName);      
-	        userService.unsubscribe(us.getId(), appId);
+	        userService.delSubscribe(us.getId(), appId);
 	        response.setContentType("text/plain");
 			out.print("unsubscribe:success");  
 			out.flush();
@@ -158,6 +161,26 @@ public class SubscriptionsController extends MultiActionController {
 			out.flush();
         } 
         return null;
+    }    
+    
+    
+    /**
+     * 获取所有可订阅应用
+     * subscriptions.do(action=listApps) 
+     */
+    public ModelAndView listApps(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    	System.out.println("notification get====");
+    	String apiKey = Config.getString("apiKey", "");
+    	
+    	ServletOutputStream out = response.getOutputStream();
+    	
+    	List<App> apps=appService.listApps();
+    	if(apps==null){
+    		return Utils.strView("result", "<result>failed</result>");
+    	}
+     	return Utils.strView("result",
+	 			"<result>succeed</result>"+
+				""+Xmler.getInstance().toXML(apps)+"");
     }    
     
 }

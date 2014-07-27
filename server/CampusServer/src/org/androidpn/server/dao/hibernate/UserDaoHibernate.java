@@ -30,7 +30,8 @@ import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 /** 
  * This class is the implementation of UserDAO using Spring's HibernateTemplate.
  *
- * @author Sehwan Noh (devnoh@gmail.com)
+ * @author Sehwan Noh (devnoh@gmail.com)　xzg
+ * table: apn_user apn_friend
  */
 public class UserDaoHibernate extends HibernateDaoSupport implements UserDao {
 
@@ -87,7 +88,7 @@ public class UserDaoHibernate extends HibernateDaoSupport implements UserDao {
     
     /**
      * @author  xzg
-     * 　添加好友到数据库
+     * 获取好友
      */
     @SuppressWarnings("unchecked")
 	public List<User> getFriends(long id) {

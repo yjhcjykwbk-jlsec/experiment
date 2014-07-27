@@ -19,6 +19,7 @@ package org.androidpn.server.dao;
 
 /** 
  * @author xzg
+ * table: apn_friend
  */
 public interface FriendDao {
     

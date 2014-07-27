@@ -22,11 +22,18 @@ import java.util.ArrayList;
 import org.androidpn.server.model.*;
 /** 
  * @author xzg
+ * apn_subscribe and apn_app
  */
 public interface SubscribeDao {
     
-    public List<User> getListeners(long id);
-    public void  addListener(long userid,long appid);
-    public List<App> getSubscribes(long userId);
-	public void delListener(long userId,long appId);
+    public List<User> getSubscribeUsers(long id);
+    public List<App> getUserSubscribes(long userId);
+    
+    public void  addSubscribe(long userid,long appid);
+	public void delSubscribe(long userId,long appId);
+	
+    public List<App> listApps();
+    public App getApp(long appId);
+    public App getAppByName(String appName);
+
 }

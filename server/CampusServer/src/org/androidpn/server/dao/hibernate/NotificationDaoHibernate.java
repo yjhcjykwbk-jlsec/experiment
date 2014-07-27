@@ -54,7 +54,8 @@ public class NotificationDaoHibernate extends HibernateDaoSupport implements
 		
 	    HibernateTemplate t=getHibernateTemplate();
 	    t.setMaxResults(15);
-		return t.find("from NotificationMO n where n.username=? and status='0' and unix_timestamp(n.createTime)>unix_timestamp(NOW())-3600*12",params);
+		return t.find("from NotificationMO n where n.username=? " +
+				"and status='0' and unix_timestamp(n.createTime)>unix_timestamp(NOW())-3600*12",params);
 	}
 
 	

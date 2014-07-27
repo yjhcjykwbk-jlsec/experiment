@@ -250,7 +250,7 @@ public class NotificationManager {
 	public void sendAllBroadcast(String apiKey, String title, String message,
 			String uri) {
 		IQ notificationIQ = createNotificationIQ(apiKey, title, message, uri);
-		List<User> list = userService.getUsers();
+		List<User> list = userService.listUsers();
 		for (User user : list) {
 			this.sendNotificationToUser(apiKey, user.getUsername(), title, message, uri,notificationIQ);
 		}
@@ -260,7 +260,7 @@ public class NotificationManager {
 	public void sendMyNotifications(String apiKey, String title, String message, String uri, String subscription){
 		IQ notificationIQ = createNotificationIQ(apiKey, title, message, uri);
 		try {
-			List<User> list = userService.getUsersBySubscriptions(subscription);
+			List<User> list = userService.getSubscribeUsers(subscription);
 			System.out.println("attention ,below users:"+list);
 			for(User user : list){
 				this.sendNotificationToUser(apiKey, user.getUsername(), title, message, uri,notificationIQ);

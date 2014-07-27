@@ -48,7 +48,7 @@ public class UserController extends MultiActionController {
     public ModelAndView list(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         PresenceManager presenceManager = new PresenceManager();
-        List<User> userList = userService.getUsers();
+        List<User> userList = userService.listUsers();
         for (User user : userList) {
             if (presenceManager.isAvailable(user)) {
                 // Presence presence = presenceManager.getPresence(user);
@@ -63,12 +63,7 @@ public class UserController extends MultiActionController {
         mav.setViewName("user/list");
         return mav;
     }
-    private ModelAndView strView(String name,String value){
-    	 ModelAndView mav = new ModelAndView();
-         mav.addObject(name, "<xml>"+value+"</xml>");
-         mav.setViewName("xml");
-         return mav;
-    }
+
     public ModelAndView listFriend(HttpServletRequest request,
         HttpServletResponse response) throws Exception {
     	String idStr=request.getParameter("id");
@@ -78,13 +73,13 @@ public class UserController extends MultiActionController {
     		if(u!=null) idStr=u.getId()+"";
     	}
     	if(idStr==null||userService.getUser(idStr)==null) 
-    		return strView("result",
+    		return Utils.strView("result",
 				"<result>failed</result>" +
     			"<errno>1</errno><reason>id not valid</reason>");
     	int id=Integer.parseInt(idStr);
 		 	List<User> userList = userService.getFriends(id);
 		 	Xmler.getInstance().alias("user",User.class);
-		 	return strView("result",
+		 	return Utils.strView("result",
 	 			"<result>succeed</result>"+
 				""+Xmler.getInstance().toXML(userList)+"");
     }
@@ -95,10 +90,10 @@ public class UserController extends MultiActionController {
 		try{
 			User u=userService.getUserByUsername(username);
 		 	Xmler.getInstance().alias("user",User.class);
-			return strView("result",
+			return Utils.strView("result",
 				"<result>succeed</result>"+Xmler.getInstance().toXML(u)+"");
 		}catch(Exception e){
-			return strView("result",
+			return Utils.strView("result",
 				"<result>failed</result>");
 			}
 		}
@@ -122,23 +117,23 @@ public class UserController extends MultiActionController {
 			if(u!=null) idStr1=u.getId()+"";
 		}
 		if(idStr1==null||idStr2==null) 
-			return strView("result",
+			return Utils.strView("result",
 				"<result>failed</result>"+
 				"<errno>1</errno><reason>id1:"+idStr1+" or id2:"+idStr2+" not set</reason>");
 		if(userService.getUser(idStr2)==null) 
-			return strView("result",
+			return Utils.strView("result",
 				"<result>failed</result>"+
 				"<errno>2</errno><reason>the target friend:"+idStr2+" not valid</reason>");
 		Integer id1=Integer.parseInt(idStr1);
 		Integer id2=Integer.parseInt(idStr2);
 		if(id1==null||id2==null) 
-			return strView("result",
+			return Utils.strView("result",
 				"<result>failed</result>"+
 				"<errno>3</errno><reason>id1:"+idStr1+" or id2:"+idStr2+" not valid</reason>");
 		boolean res=userService.addFriend(id1,id2);
 		//status indicates if you are friends, 2 is ..
 		String status=res?"<status>2</status>":"<status>1</status>";
-		return strView("result",
+		return Utils.strView("result",
 				status);
     }
     

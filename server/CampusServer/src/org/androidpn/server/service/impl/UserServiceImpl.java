@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
         return userDao.getUser(new Long(userId));
     }
 
-    public List<User> getUsers() {
+    public List<User> listUsers() {
         return userDao.getUsers();
     }
     
@@ -68,19 +68,20 @@ public class UserServiceImpl implements UserService {
     public List<User> getFriends(long id){
     	return userDao.getFriends(id);
     }
-    public List<User> getUsersBySubscriptions(String subscription) throws UserNotFoundException {
+    public List<User> getSubscribeUsers(String subscription) throws UserNotFoundException {
     	Long appId=new Long(subscription);
-    	return subscribeDao.getListeners(appId);// (List<User>) userDao.getUsersBySubscriptions(subscription);
+    	return subscribeDao.getSubscribeUsers(appId);// (List<User>) userDao.getUsersBySubscriptions(subscription);
     }
  
     public List<App> getUserSubscribes(Long userId){
-    	return subscribeDao.getSubscribes(userId);
+        log.info("getUserSubscribes("+userId+")");
+    	return subscribeDao.getUserSubscribes(userId);
     }
-    public void subscribe(Long userId,Long appId){
-    	subscribeDao.addListener(userId , appId);
+    public void addSubscribe(Long userId,Long appId){
+    	subscribeDao.addSubscribe(userId , appId);
     }
-    public void unsubscribe(Long userId,Long appId){
-    	subscribeDao.delListener(userId,appId);
+    public void delSubscribe(Long userId,Long appId){
+    	subscribeDao.delSubscribe(userId,appId);
     }
     
     public User saveUser(User user) throws UserExistsException {

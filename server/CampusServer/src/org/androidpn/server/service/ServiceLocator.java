@@ -27,7 +27,7 @@ import org.androidpn.server.xmpp.XmppServer;
 public class ServiceLocator {
 
     public static String USER_SERVICE = "userService";
-    
+    public static String APP_SERVICE = "appService";
     public static String NOTIFICATION_SERVICE="notificationService";
     
     /**
@@ -48,6 +48,17 @@ public class ServiceLocator {
     public static UserService getUserService() {
         return (UserService) XmppServer.getInstance().getBean(USER_SERVICE);
     }
+    
+
+    /**
+     * Obtains the app service.
+     * 
+     * @return the app service
+     */
+    public static AppService getAppService() {
+        return (AppService) XmppServer.getInstance().getBean(APP_SERVICE);
+    }
+    
     
     public static NotificationService getNotificationService() {
         return (NotificationService) XmppServer.getInstance().getBean(NOTIFICATION_SERVICE);

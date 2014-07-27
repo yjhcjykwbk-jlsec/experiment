@@ -83,12 +83,16 @@
 	<bean id="userService" class="org.androidpn.server.service.impl.UserServiceImpl">
 		<property name="userDao" ref="userDao" />
 		<property name="friendDao" ref="friendDao" />
+		<property name="subscribeDao" ref="subscribeDao" />
 	</bean>
 	
 	<bean id="notificationService" class="org.androidpn.server.service.impl.NotificationServiceImpl">
 		<property name="notificationDao" ref="notificationDao" />
 	</bean>
-
+	
+	<bean id="appService" class="org.androidpn.server.service.impl.AppServiceImpl">
+		<property name="subscribeDao" ref="subscribeDao" />
+	</bean>
 	<!-- =============================================================== -->
 	<!-- SSL                                                             -->
 	<!-- =============================================================== -->

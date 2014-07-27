@@ -25,31 +25,37 @@ import org.androidpn.server.model.App;
 /** 
  * Business service interface for the user management.
  *
- * @author Sehwan Noh (devnoh@gmail.com)
+ * @author xzg
  */
 public interface UserService {
-
-    public User getUser(String userId);
-
-    public List<User> getUsers();
+	
+	//好友
     
     public List<User> getFriends(long id);
     
     public List<User> getFriends(String name);
     
     public boolean addFriend(int id1,int id2);
+
+    public User getUser(String userId);
     
-    public List<User> getUsersBySubscriptions(String subscription) throws UserNotFoundException;
+    public User getUserByUsername(String username) throws UserNotFoundException;
+
+    public List<User> listUsers();
 
     public User saveUser(User user) throws UserExistsException;
 
-    public User getUserByUsername(String username) throws UserNotFoundException;
-
     public void removeUser(Long userId);
+    
+    
+    //订阅有关接口
+    
+
+    public List<User> getSubscribeUsers(String subName) throws UserNotFoundException;
     
     public List<App> getUserSubscribes(Long userId);
 
-    public void subscribe(Long userId,Long appId);
+    public void addSubscribe(Long userId,Long appId);
     
-    public void unsubscribe(Long userId,Long appId);
+    public void delSubscribe(Long userId,Long appId);
 }

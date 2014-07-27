@@ -1,5 +1,8 @@
 package org.androidpn.demoapp;
 
+import java.util.List;
+
+import org.androidpn.server.model.App;
 import org.androidpn.server.model.User;
 import org.androidpn.util.GetPostUtil;
 import org.androidpn.util.Util;
@@ -11,21 +14,23 @@ import android.util.Log;
 
 public class AppsActivity extends Activity {
 	static String LOGTAG="AppsActivity";
-	
+	private String USERNAME;
+	private String PASSWORD;
+	private List<App> appList;
 	/**
-	 * addSubscribe(username,appname)
+	 * addSubscribe(username,appid)
 	 * ¶©ÔÄ
 	 */
-	private void addSubscribe(String s,String t){
+	private void addSubscribe(String s,Long t){
 		StringBuilder parameter = new StringBuilder();
 		parameter.append("action=addSubscribe"); //
-		parameter.append("&username=" + s + "&appname="+ t);
+		parameter.append("&username=" + s + "&appid="+ t);
 		new AsyncTask<StringBuilder, Integer, String>() {
 			@Override
 			protected String doInBackground(StringBuilder... parameter) {
 				/*--End--*/
 				String resp = GetPostUtil.send("POST",
-						getString(R.string.androidpnserver) + "subscribe.do",
+						getString(R.string.androidpnserver) + "subscriptions.do",
 						parameter[0]);
 				return resp;
 			}
@@ -44,13 +49,13 @@ public class AppsActivity extends Activity {
 		}.execute(parameter);
 	}
 	/**
-	 * delSubscribe(username,appname)
+	 * delSubscribe(username,appid)
 	 * È¡Ïû¶©ÔÄ
 	 */
-	private void delSubscribe(String s,String t){
+	private void delSubscribe(String s,Long t){
 		StringBuilder parameter = new StringBuilder();
 		parameter.append("action=delSubscribe"); //
-		parameter.append("&username=" + s + "&appname="+ t);
+		parameter.append("&username=" + s + "&appid="+ t);
 		new AsyncTask<StringBuilder, Integer, String>() {
 			@Override
 			protected String doInBackground(StringBuilder... parameter) {
@@ -73,5 +78,9 @@ public class AppsActivity extends Activity {
 				}
 			}
 		}.execute(parameter);
+	}
+	
+	private void getSubscriptions(String s){
+		
 	}
 }

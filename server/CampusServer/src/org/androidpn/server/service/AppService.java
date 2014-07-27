@@ -31,9 +31,11 @@ public interface AppService {
 
     public App getApp(Long AppId);
     
-    public App saveApp(App App) throws AppExistsException;
+  //  public App saveApp(App App) throws AppExistsException;
 
     public App getAppByAppname(String Appname) throws AppNotFoundException;
 
-    public void removeApp(Long AppId); 
+  //  public void removeApp(Long AppId); 
+    
+    public List<App> listApps();
 }

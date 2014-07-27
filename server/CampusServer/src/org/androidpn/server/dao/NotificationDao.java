@@ -7,7 +7,7 @@ import org.androidpn.server.model.ReportVO;
 
 /**
  * @author chengqiang.liu
- *
+ * table: apn_notification
  */
 public interface NotificationDao {
 	

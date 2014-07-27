@@ -39,6 +39,8 @@
 		<mapping class="org.androidpn.server.model.User" />
 		<mapping resource="friend.hbm.xml" />
 		<mapping class="org.androidpn.server.model.NotificationMO" />
+		<mapping resource="subscribe.hbm.xml" />
+		<mapping class="org.androidpn.server.model.App" />
 	</session-factory>
 </hibernate-configuration>
 
