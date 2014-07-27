@@ -8,3 +8,5 @@ client/CampusClient/gen
 client/CampusClient/bin
 ocropus
 .metadata
+tools/
+

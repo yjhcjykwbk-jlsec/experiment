@@ -23,7 +23,9 @@ import javax.persistence.EntityExistsException;
 
 import org.androidpn.server.dao.FriendDao;
 import org.androidpn.server.dao.UserDao;
+import org.androidpn.server.dao.SubscribeDao;
 import org.androidpn.server.model.User;
+import org.androidpn.server.model.App;
 import org.androidpn.server.service.UserExistsException;
 import org.androidpn.server.service.UserNotFoundException;
 import org.androidpn.server.service.UserService;
@@ -42,14 +44,16 @@ public class UserServiceImpl implements UserService {
 
     private UserDao userDao;
     private FriendDao friendDao;
-
+    private SubscribeDao subscribeDao;
     public void setUserDao(UserDao userDao) {
         this.userDao = userDao;
     }
     public void setFriendDao(FriendDao friendDao) {
         this.friendDao = friendDao;
     }
-
+    public void setSubscribeDao(SubscribeDao subscribeDao) {
+        this.subscribeDao = subscribeDao;
+    }
     public User getUser(String userId) {
         return userDao.getUser(new Long(userId));
     }
@@ -58,11 +62,25 @@ public class UserServiceImpl implements UserService {
         return userDao.getUsers();
     }
     
+    /**
+     * @author:xu
+     */
     public List<User> getFriends(long id){
     	return userDao.getFriends(id);
     }
     public List<User> getUsersBySubscriptions(String subscription) throws UserNotFoundException {
-    	 return (List<User>) userDao.getUsersBySubscriptions(subscription);
+    	Long appId=new Long(subscription);
+    	return subscribeDao.getListeners(appId);// (List<User>) userDao.getUsersBySubscriptions(subscription);
+    }
+ 
+    public List<App> getUserSubscribes(Long userId){
+    	return subscribeDao.getSubscribes(userId);
+    }
+    public void subscribe(Long userId,Long appId){
+    	subscribeDao.addListener(userId , appId);
+    }
+    public void unsubscribe(Long userId,Long appId){
+    	subscribeDao.delListener(userId,appId);
     }
     
     public User saveUser(User user) throws UserExistsException {

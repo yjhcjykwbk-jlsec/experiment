@@ -133,6 +133,10 @@ class PacketWriter {
         // out a space character each time it runs to keep the TCP/IP connection open.
         int keepAliveInterval = SmackConfiguration.getKeepAliveInterval();
         if (keepAliveInterval > 0) {
+          /**
+           * @author xzg: new a thread with a keepalivetask(runnable),
+           * start the thread to keep sending heart beat to xmpp server
+           */
             KeepAliveTask task = new KeepAliveTask(keepAliveInterval, xmppManager);
             keepAliveThread = new Thread(task);
             task.setThread(keepAliveThread);

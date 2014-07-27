@@ -37,8 +37,8 @@ import org.apache.commons.lang.builder.ToStringStyle;
  * @author Sehwan Noh (devnoh@gmail.com)
  */
 @Entity
-@Table(name = "apn_user")
-public class User implements Serializable {
+@Table(name = "apn_app")
+public class App implements Serializable {
 
     private static final long serialVersionUID = 4733464888738356502L;
 
@@ -46,35 +46,23 @@ public class User implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "username", nullable = false, length = 64, unique = true)
-    private String username;
-
-    @Column(name = "password", length = 64)
-    private String password;
-
-    @Column(name = "email", length = 64)
-    private String email;
-
-    @Column(name = "name", length = 64)
+    @Column(name = "name", nullable = false, length = 64, unique = true)
     private String name;
-
+ 
     @Column(name = "created_date", updatable = false)
     private Date createdDate = new Date();
 
-    @Column(name = "updated_date")
-    private Date updatedDate;
-
-    @Column(name = "subscriptions")
-    private String subscriptions;
+    @Column(name = "desp")
+    private String desp;
     
     @Transient
     private boolean online;
 
-    public User() {
+    public App() {
     }
 
-    public User(final String username) {
-        this.username = username;
+    public App(final String  name) {
+        this.name = name;
     }
 
     public Long getId() {
@@ -85,38 +73,14 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String  name) {
         this.name = name;
     }
-
+ 
     public Date getCreatedDate() {
         return createdDate;
     }
@@ -124,52 +88,28 @@ public class User implements Serializable {
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
     }
-
-    public Date getUpdatedDate() {
-        return updatedDate;
-    }
-
-    public void setUpdatedDate(Date updatedDate) {
-        this.updatedDate = updatedDate;
-    }
-
-    public boolean isOnline() {
-        return online;
-    }
-
-    public void setOnline(boolean online) {
-        this.online = online;
+  
+    public String getDesp() {
+        return desp;
     }
     
-   
-    public String getSubscriptions() {
-        return subscriptions;
-    }
-    
-    public void setSubscriptions(String subscriptions) {
-        this.subscriptions = subscriptions;
+    public void setDesp(String desp) {
+        this.desp=desp;
     }
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof User)) {
+        if (!(o instanceof App)) {
             return false;
         }
 
-        final User obj = (User) o;
-        if (username != null ? !username.equals(obj.username)
-                : obj.username != null) {
-            return false;
-        }
-        if (!(createdDate.getTime() == obj.createdDate.getTime())) {
-            return false;
-        }
-        return true;
+        final App obj = (App) o;
+        return this.id==obj.getId();
     }
 
     @Override
     public int hashCode() {
         int result = 0;
-        result = 29 * result + (username != null ? username.hashCode() : 0);
+        result = 29 * result + (name != null ? name.hashCode() : 0);
         result = 29 * result
                 + (createdDate != null ? createdDate.hashCode() : 0);
         return result;

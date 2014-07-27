@@ -27,29 +27,13 @@ import org.androidpn.server.model.App;
  *
  * @author Sehwan Noh (devnoh@gmail.com)
  */
-public interface UserService {
+public interface AppService {
 
-    public User getUser(String userId);
+    public App getApp(Long AppId);
+    
+    public App saveApp(App App) throws AppExistsException;
 
-    public List<User> getUsers();
-    
-    public List<User> getFriends(long id);
-    
-    public List<User> getFriends(String name);
-    
-    public boolean addFriend(int id1,int id2);
-    
-    public List<User> getUsersBySubscriptions(String subscription) throws UserNotFoundException;
+    public App getAppByAppname(String Appname) throws AppNotFoundException;
 
-    public User saveUser(User user) throws UserExistsException;
-
-    public User getUserByUsername(String username) throws UserNotFoundException;
-
-    public void removeUser(Long userId);
-    
-    public List<App> getUserSubscribes(Long userId);
-
-    public void subscribe(Long userId,Long appId);
-    
-    public void unsubscribe(Long userId,Long appId);
+    public void removeApp(Long AppId); 
 }

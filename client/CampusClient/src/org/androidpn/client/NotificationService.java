@@ -159,7 +159,7 @@ public class NotificationService extends Service {
    
 	/**
 	 * Keep a reconnection
-	 * @author:x
+	 * @author:xu zhigang
 	 */
 	 AlarmManager am;
 	 PendingIntent pIntent;

@@ -73,7 +73,9 @@
 	<bean id="notificationDao" class="org.androidpn.server.dao.hibernate.NotificationDaoHibernate">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-
+		<bean id="subscribeDao" class="org.androidpn.server.dao.hibernate.SubscribeDaoHibernate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
 	<!-- =============================================================== -->
 	<!-- Services                                                        -->
 	<!-- =============================================================== -->

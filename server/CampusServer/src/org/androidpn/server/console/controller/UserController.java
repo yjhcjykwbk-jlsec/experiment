@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.androidpn.server.model.App;
 import org.androidpn.server.model.User;
 import org.androidpn.server.service.ServiceLocator;
 import org.androidpn.server.service.UserNotFoundException;
@@ -192,23 +193,39 @@ public class UserController extends MultiActionController {
     	return null;
     }
     
-    public ModelAndView getSubscription(HttpServletRequest request,
-            HttpServletResponse response) throws Exception {
-    	String userName = ServletRequestUtils.getStringParameter(request, "userName");
-		ServletOutputStream out = response.getOutputStream();
-    	try{
-    		User us = userService.getUserByUsername(userName);
-    		response.setContentType("text/plain");
-			out.print(us.getSubscriptions());  
+    /**
+     * get.do(username)  用户订阅列表
+     * @param request
+     * @param response
+     * @return List<string app.name>
+     * @throws Exception
+     * @author xu
+     */
+    public ModelAndView getSubscription(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    	System.out.println("notification get====");
+    	String userName = ServletRequestUtils.getStringParameter(request, "username");  
+    	String apiKey = Config.getString("apiKey", "");
+    	
+    	ServletOutputStream out = response.getOutputStream();
+    	
+        userService = ServiceLocator.getUserService();
+        try{
+	        User us = userService.getUserByUsername(userName);      
+	        List<App> subs=userService.getUserSubscribes(us.getId());
+	        String s="";
+	        for(App app : subs){
+	        	String name=app.getName();
+	        	s+=name+";";
+	        }
+	        response.setContentType("text/plain");
+			out.print(s);  
 			out.flush();
-    	}catch(UserNotFoundException e){
-    		System.out.println("getSubScription#exception:"+userName+" not found");
-			response.setContentType("text/plain");
-			out.print("check:not exist");
+        }catch(UserNotFoundException e){
+        	response.setContentType("text/plain");
+			out.print("get:failure");  
 			out.flush();
-    	}
-
-    	return null;
-    }
+        } 
+        return null;
+    }    
     
 }

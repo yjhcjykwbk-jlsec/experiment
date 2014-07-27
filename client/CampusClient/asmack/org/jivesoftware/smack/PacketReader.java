@@ -98,7 +98,7 @@ class PacketReader {
     	keepAlive.start();
     }*/
 
-    /**
+    /**z
      * Starts the packet reader thread and returns once a connection to the server
      * has been established. A connection will be attempted for a maximum of five
      * seconds. An XMPPException will be thrown if the connection fails.

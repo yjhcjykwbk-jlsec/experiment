@@ -56,7 +56,16 @@ public class NotificationController extends MultiActionController {
     }
 
     
-    
+    /**
+     * set user's subscribes
+     * @deprecated
+     * 
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     * @author zhanghuabing
+     */
     public ModelAndView get(HttpServletRequest request, HttpServletResponse response) throws Exception{
     	System.out.println("notification get====");
     	String subscriber = ServletRequestUtils.getStringParameter(request, "subscriber");  
@@ -92,7 +101,14 @@ public class NotificationController extends MultiActionController {
     	
     }    
     
-    
+    /**
+     * send.do(xxx) 推送新闻／视频等
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     * @author zhanghuabing
+     */
     public ModelAndView send(HttpServletRequest request,
             HttpServletResponse response) throws Exception {
         String apiKey = Config.getString("apiKey", "");
@@ -100,6 +116,8 @@ public class NotificationController extends MultiActionController {
 	        /**
 	         */
 	        System.out.println("NotificationController.send#"+request.getCharacterEncoding());  // UTF-8
+	        /** author x
+	         * @depreciated
 	        if(request.getParameter("chat")!=null){
 	        	//handle with a chat request
 	        	String fromUsername="",
@@ -112,7 +130,7 @@ public class NotificationController extends MultiActionController {
 	        	}
 	        	notificationManager.sendMessage(apiKey, fromUsername, toUsername, msg, time);
 	        	return null;
-	        }
+	        }*/
 	        String feedTitle = ServletRequestUtils.getStringParameter(request, "feedTitle");
 	        String feedContent = ServletRequestUtils.getStringParameter(request, "feedContent");
 	        String feedLink = ServletRequestUtils.getStringParameter(request, "feedLink");

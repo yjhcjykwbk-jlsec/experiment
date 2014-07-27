@@ -55,7 +55,7 @@ public class SessionManager {
 
     private ClientSessionListener clientSessionListener = new ClientSessionListener();
 
-    private SessionManager() {
+    private SessionManager() { 
         serverName = XmppServer.getInstance().getServerName();
     }
 

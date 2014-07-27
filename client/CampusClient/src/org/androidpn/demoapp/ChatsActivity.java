@@ -369,7 +369,7 @@ public class ChatsActivity extends Activity {
 			protected String doInBackground(StringBuilder... parameter) {
 				/*--End--*/
 				String resp = GetPostUtil.send("POST",
-						getString(R.string.androidpnserver) + "user.xml",
+						getString(R.string.androidpnserver) + "user.do",
 						parameter[0]);
 				return resp;
 			}
@@ -377,6 +377,7 @@ public class ChatsActivity extends Activity {
 			@Override
 			protected void onPostExecute(String resp) {
 				if (resp != null) {
+					Log.i(LOGTAG,"findUser:"+resp);
 					resp = resp.substring(resp.indexOf("\n") + 1);
 					resp = resp.replaceAll("\n", "");
 					int i = resp.indexOf("<user>"), j;
@@ -445,13 +446,14 @@ public class ChatsActivity extends Activity {
 				// TODO Auto-generated method stub
 				String androidpnURL = getString(R.string.androidpnserver);
 				String params = "action=listFriend&username=" + USERNAME;
-				String resp = GetPostUtil.sendPost(androidpnURL + "user.xml",
+				String resp = GetPostUtil.sendPost(androidpnURL + "user.do",
 						params);
 				return resp;
 			}
 
 			@Override
 			protected void onPostExecute(String resp) {
+				Log.i(LOGTAG,"getFriend:"+resp);
 				if (!"succeed".equals(getXmlElement(resp, "result"))) {
 					String reason = getXmlElement(resp, "reason");
 					Util.alert(ChatsActivity.this, "拉取通讯录失败:"

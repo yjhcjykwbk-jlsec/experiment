@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:gravity="fill_vertical|top"
+        android:orientation="vertical" >
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/AppsListView"
+        android:layout_width="wrap_content"
+        android:layout_height="458dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/ChatTitleLabel"
+        android:dividerHeight="5dp" 
+        android:divider="@null">
+
+    </ListView>
+
+    <TextView
+        android:id="@+id/ChatTitleLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="好友列表"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+</RelativeLayout>

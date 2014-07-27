@@ -15,41 +15,20 @@
  * with this program; if not, write to the Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-package org.androidpn.server.service;
-
+package org.androidpn.server.dao;
 import java.util.List;
-
-import org.androidpn.server.model.User;
 import org.androidpn.server.model.App;
-
+import java.util.ArrayList;
+import org.androidpn.server.model.*;
 /** 
- * Business service interface for the user management.
+ * User DAO (Data Access Object) interface. 
  *
  * @author Sehwan Noh (devnoh@gmail.com)
  */
-public interface UserService {
-
-    public User getUser(String userId);
-
-    public List<User> getUsers();
+public interface SubscribeDao {
     
-    public List<User> getFriends(long id);
-    
-    public List<User> getFriends(String name);
-    
-    public boolean addFriend(int id1,int id2);
-    
-    public List<User> getUsersBySubscriptions(String subscription) throws UserNotFoundException;
-
-    public User saveUser(User user) throws UserExistsException;
-
-    public User getUserByUsername(String username) throws UserNotFoundException;
-
-    public void removeUser(Long userId);
-    
-    public List<App> getUserSubscribes(Long userId);
-
-    public void subscribe(Long userId,Long appId);
-    
-    public void unsubscribe(Long userId,Long appId);
+    public List<User> getListeners(long id);
+    public void  addListener(long userid,long appid);
+    public List<App> getSubscribes(long userId);
+	public void delListener(long userId,long appId);
 }

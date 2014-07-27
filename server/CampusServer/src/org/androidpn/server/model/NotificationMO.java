@@ -60,13 +60,13 @@ public class NotificationMO implements Serializable {
     private String apiKey;
 
     @Column(name = "title", length = 512)
-    private String title;
+    private String title;//fromUserName
 
     @Column(name = "message", length = 1024)
     private String message;
     
     @Column(name = "uri", length = 512)
-    private String uri;
+    private String uri;//"chat"
     
     @Column(name = "status",columnDefinition="varchar(10) comment '0: 未发送 1：已发送 2：已接收 3：已查看'")
     private String status;

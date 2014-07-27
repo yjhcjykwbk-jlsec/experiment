@@ -24,16 +24,20 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.androidpn.server.model.User;
 import org.androidpn.server.console.vo.SubscriptionsVO;
 import org.androidpn.server.service.ServiceLocator;
+import org.androidpn.server.service.UserNotFoundException;
 import org.androidpn.server.service.UserService;
+import org.androidpn.server.util.Config;
+import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
-
+import org.androidpn.server.model.App;
 /** 
  * A controller class to process the user related requests.  
  *
@@ -61,16 +65,16 @@ public class SubscriptionsController extends MultiActionController {
     	Map<String,Integer> subCnt=new HashMap<String,Integer>();
         List<User> userList = userService.getUsers();
         for (User user : userList) {        	
-        	String subscriptions = user.getSubscriptions();
-        	if(subscriptions!=null){
-	        	String[] userSub = subscriptions.split(";");
-	        	for(int i=0;i<userSub.length;i++) {
-	        		if(userSub[i]==null||userSub[i].equals("")||userSub[i].equals("null")) continue;
-	        		System.out.println(userSub[i]);
-	        		if(subCnt.containsKey(userSub[i])){
-	        			subCnt.put(userSub[i], subCnt.get(userSub[i])+1);
+        	List<App> userSubs = userService.getUserSubscribes(user.getId());//user.getSubscriptions();
+        	if(!userSubs.isEmpty()){
+	        	for(App app:userSubs) {
+	        		String sub=app.getName();
+	        		if(sub==null||sub=="") continue;
+	        		System.out.println(sub+"");
+	        		if(subCnt.containsKey(sub)){
+	        			subCnt.put(sub, subCnt.get(sub)+1);
 	        		}
-	        		else subCnt.put(userSub[i], 1);
+	        		else subCnt.put(sub, 1);
 	        	}
         	}
         	
@@ -78,7 +82,6 @@ public class SubscriptionsController extends MultiActionController {
 
         List<SubscriptionsVO> subscriptionsList = new ArrayList<SubscriptionsVO>();
         for(Map.Entry<String, Integer>entry:subCnt.entrySet()){
-        	System.out.println("����"+entry.getKey()+"���У�"+entry.getValue()+"��");
         	 SubscriptionsVO vo = new SubscriptionsVO();
         	 vo.setSubscriptionName(entry.getKey());
         	 vo.setCount(entry.getValue());
@@ -92,5 +95,67 @@ public class SubscriptionsController extends MultiActionController {
         return mav;
     }
       
+    
+    /**
+     * addSubscribe.do(subscriber,appid) 增加订阅
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     * @author xu
+     */
+    public ModelAndView addSubscribe(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    	System.out.println("notification get====");
+    	String userName = ServletRequestUtils.getStringParameter(request, "subscriber");  
+    	Long appId = new Long(ServletRequestUtils.getStringParameter(request, "appid"));  
+    	String apiKey = Config.getString("apiKey", "");
+    	
+    	ServletOutputStream out = response.getOutputStream();
+    	
+        userService = ServiceLocator.getUserService();
+        try{
+	        User us = userService.getUserByUsername(userName);      
+	        userService.subscribe(us.getId(), appId);
+	        response.setContentType("text/plain");
+			out.print("subscribe:success");  
+			out.flush();
+        }catch(UserNotFoundException e){
+        	response.setContentType("text/plain");
+			out.print("subscribe:failure");  
+			out.flush();
+        } 
+        return null;
+    }
+    
+    /**
+     * delSubscribe.do(subscriber,appid) 取消订阅
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     * @author xu
+     */
+    public ModelAndView delSubscribe(HttpServletRequest request, HttpServletResponse response) throws Exception{
+    	System.out.println("notification get====");
+    	String userName = ServletRequestUtils.getStringParameter(request, "subscriber");  
+    	Long appId = new Long(ServletRequestUtils.getStringParameter(request, "appid"));  
+    	String apiKey = Config.getString("apiKey", "");
+    	
+    	ServletOutputStream out = response.getOutputStream();
+    	
+        userService = ServiceLocator.getUserService();
+        try{
+	        User us = userService.getUserByUsername(userName);      
+	        userService.unsubscribe(us.getId(), appId);
+	        response.setContentType("text/plain");
+			out.print("unsubscribe:success");  
+			out.flush();
+        }catch(UserNotFoundException e){
+        	response.setContentType("text/plain");
+			out.print("unsubscribe:failure");  
+			out.flush();
+        } 
+        return null;
+    }    
     
 }
