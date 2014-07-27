@@ -15,6 +15,7 @@ import org.androidpn.util.Xmler;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,6 +23,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -37,7 +39,7 @@ import org.androidpn.data.NoteManager;
 import org.androidpn.data.ChatsAdapter;  
 
 public class AppNotesActivity extends Activity {
-	static String LOGTAG="AppsActivity";
+	static String LOGTAG="AppNotesActivity";
 	private String USERNAME;
 	private String PASSWORD;
 	private List<App> appList;
@@ -116,7 +118,7 @@ public class AppNotesActivity extends Activity {
 		if (notesAdapter == null)
 			notesAdapter = new ChatsAdapter(this, latestNotes);
 		lv.setAdapter(notesAdapter);
-
+		
 		// 点击"会话列表"中的表项进入具体会话
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			@Override
@@ -136,6 +138,22 @@ public class AppNotesActivity extends Activity {
 				setNoteView(recipient);
 			}
 		});
+		Button appLstBtn=(Button)this.findViewById(R.id.FriendListBtn);
+		appLstBtn.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v) {
+				getApps();
+				if (appList == null) {
+					Util.alert(AppNotesActivity.this, "应用列表拉取失败，请检查网络状况");
+					return;
+				}
+				Intent intent = new Intent(AppNotesActivity.this,
+						AppActivity.class);
+				intent.putExtras(AppNotesActivity.this.getIntent().getExtras());
+				startActivityForResult(intent, 0);
+			}
+		});
+		
 		//设置后台线程对"会话列表"数据更新的handler
 		NoteManager.setNotesUiListener(notesHandler);
 	}
@@ -204,6 +222,9 @@ public class AppNotesActivity extends Activity {
 			NoteManager.setNoteUiListener(noteHandler);
 		}
 	}
+	
+	
+	
 	class NoteHandler extends Handler{
 		//更新视图
 		@Override
@@ -229,6 +250,8 @@ public class AppNotesActivity extends Activity {
 		}
 	}
 	
+	
+	
 	/**
 	 * addSubscribe(username,appid)
 	 * 订阅
@@ -249,6 +272,7 @@ public class AppNotesActivity extends Activity {
 
 			@Override
 			protected void onPostExecute(String resp) {
+				Log.i(LOGTAG,"addSubs:"+resp);
 				if (!"succeed".equals( Util.getXmlElement(resp, "result"))) {
 					String reason =  Util.getXmlElement(resp, "reason");
 					Util.alert(AppNotesActivity.this, "添加关注失败:"
@@ -260,6 +284,8 @@ public class AppNotesActivity extends Activity {
 			}
 		}.execute(parameter);
 	}
+	
+	
 	/**
 	 * delSubscribe(username,appid)
 	 * 取消订阅
@@ -280,6 +306,7 @@ public class AppNotesActivity extends Activity {
 
 			@Override
 			protected void onPostExecute(String resp) {
+				Log.i(LOGTAG,"delSubs:"+resp);
 				if (!"succeed".equals( Util.getXmlElement(resp, "result"))) {
 					String reason =  Util.getXmlElement(resp, "reason");
 					Util.alert(AppNotesActivity.this, "取消关注失败:"
@@ -291,6 +318,7 @@ public class AppNotesActivity extends Activity {
 			}
 		}.execute(parameter);
 	}
+	
 	
 	/**
 	 * 获取应用列表
@@ -315,6 +343,7 @@ public class AppNotesActivity extends Activity {
 
 			@Override
 			protected void onPostExecute(String resp) {
+				Log.i(LOGTAG,"getApps:"+resp);
 				if (!"succeed".equals( Util.getXmlElement(resp, "result"))) {
 					Util.alert(AppNotesActivity.this, "获取应用列表失败");
 					return;
