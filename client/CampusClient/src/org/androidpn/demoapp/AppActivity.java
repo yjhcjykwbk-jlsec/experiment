@@ -39,11 +39,11 @@ public class AppActivity extends Activity {
 		
 		appList=Constants.appList;
 		if(appList==null) appList=new ArrayList<App>();
-		ListView appList = (ListView) this
+		ListView appView = (ListView) this
 				.findViewById(R.id.ContactListView);
-		ContactAdapter adapter=new ContactAdapter(this,(List<Contacter>) appList);
-		appList.setAdapter(adapter);
-		appList.setOnItemClickListener(new OnItemClickListener(){
+		ContactAdapter adapter=new ContactAdapter(this,(List) appList);
+		appView .setAdapter(adapter);
+		appView .setOnItemClickListener(new OnItemClickListener(){
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {

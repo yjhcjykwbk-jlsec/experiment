@@ -1,14 +1,14 @@
 <decorators defaultdir="/decorators">
-	<decorator name="default" page="default.jsp">  
-	<!-- 	different url patterns -->
+	<decorator name="default" page="default.jsp">
+		<!-- 	different url patterns -->
 		<excludes>
 			<pattern>/includes/*</pattern>
-      <pattern>/40*.jsp</pattern>
+			<pattern>/40*.jsp</pattern>
 			<pattern>/dwr/*</pattern>
 			<pattern>/xml.jsp</pattern>
 		</excludes>
 		<includes>
 			<pattern>/*</pattern>
 		</includes>
-	</decorator> 
+	</decorator>
 </decorators>

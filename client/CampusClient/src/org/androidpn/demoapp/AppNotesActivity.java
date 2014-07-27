@@ -78,6 +78,7 @@ public class AppNotesActivity extends Activity {
 		
 		noteLists=new HashMap<String,List>();
 		
+		setNotesView();
 	}
 	
 	/**
@@ -153,6 +154,7 @@ public class AppNotesActivity extends Activity {
 				startActivityForResult(intent, 0);
 			}
 		});
+		appLstBtn.setText("应用列表");
 		
 		//设置后台线程对"会话列表"数据更新的handler
 		NoteManager.setNotesUiListener(notesHandler);
@@ -329,8 +331,8 @@ public class AppNotesActivity extends Activity {
 			appList=Constants.appList;
 			return;
 		}
-		StringBuilder parameter = new StringBuilder();
-		parameter.append("action=listApps"); //
+		StringBuilder params = new StringBuilder();
+		params.append("action=listApps&username="+USERNAME); //
 		new AsyncTask<StringBuilder, Integer, String>() {
 			@Override
 			protected String doInBackground(StringBuilder... parameter) {
@@ -350,7 +352,7 @@ public class AppNotesActivity extends Activity {
 				}else {
 					int i = resp.indexOf("<list>"), j;
 					if (i < 0 || (j = resp.indexOf("</list>")) < 0) {
-						// UIUtil.alert(NotesActivity.this,"您还没有好友");//"</list>"
+						Util.alert(AppNotesActivity.this,"没有找到应用");//"</list>"
 						appList = Constants.appList = new ArrayList();
 					} 
 					else {
@@ -367,6 +369,6 @@ public class AppNotesActivity extends Activity {
 					}
 				}
 			}
-		}.execute(parameter);
+		}.execute(params);
 	}
 }

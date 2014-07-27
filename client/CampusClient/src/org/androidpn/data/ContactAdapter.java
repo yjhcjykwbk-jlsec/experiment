@@ -46,7 +46,7 @@ public class ContactAdapter extends BaseAdapter {
 	@Override
 	public View getView(int arg0, View arg1, ViewGroup arg2) {
 		// TODO Auto-generated method stub\
-		App u=(App)al.get(arg0);
+		Contacter u=(Contacter)al.get(arg0);
 		LayoutInflater li=LayoutInflater.from(c);
 		View layout=li.inflate(R.layout.list_contact, null);
 		((TextView)layout.findViewById(R.id.NameLabel)).setText(u.getName());

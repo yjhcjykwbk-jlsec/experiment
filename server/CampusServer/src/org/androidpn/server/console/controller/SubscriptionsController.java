@@ -173,12 +173,19 @@ public class SubscriptionsController extends MultiActionController {
     	ServletOutputStream out = response.getOutputStream();
     	
     	List<App> apps=appService.listApps();
+    	
+    	response.setContentType("text/plain");
+    	
     	if(apps==null){
-    		return Utils.strView("result", "<result>failed</result>");
+    		out.print("<result>failed</result>");
+    		out.flush();
     	}
-     	return Utils.strView("result",
-	 			"<result>succeed</result>"+
+    	else{ 
+    		out.print("<result>succeed</result>"+
 				""+Xmler.getInstance().toXML(apps)+"");
+    		out.flush();
+    	}
+    	return null;
     }    
     
 }
