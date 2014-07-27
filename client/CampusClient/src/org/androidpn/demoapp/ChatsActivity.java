@@ -420,8 +420,8 @@ public class ChatsActivity extends Activity {
 			@Override
 			protected void onPostExecute(String resp) {
 				Log.i(LOGTAG, "addfriend.onclick:" + resp);
-				String status = getXmlElement(resp, "status");
-				String reason = getXmlElement(resp, "reason");
+				String status = Util.getXmlElement(resp, "status");
+				String reason =  Util.getXmlElement(resp, "reason");
 				if (status == null) {
 					Util.alert(ChatsActivity.this, "添加失败:"
 							+ (reason == null ? "" : reason));
@@ -454,8 +454,8 @@ public class ChatsActivity extends Activity {
 			@Override
 			protected void onPostExecute(String resp) {
 				Log.i(LOGTAG,"getFriend:"+resp);
-				if (!"succeed".equals(getXmlElement(resp, "result"))) {
-					String reason = getXmlElement(resp, "reason");
+				if (!"succeed".equals( Util.getXmlElement(resp, "result"))) {
+					String reason =  Util.getXmlElement(resp, "reason");
 					Util.alert(ChatsActivity.this, "拉取通讯录失败:"
 							+ (reason == null ? "" : reason));
 					return;
@@ -534,15 +534,6 @@ public class ChatsActivity extends Activity {
 
 	}
 
-	private String getXmlElement(String resp, String tag) {
-		if (resp == null || tag == null)
-			return null;
-		int i = resp.indexOf("<" + tag + ">"), j;
-		if (i < 0 || (j = resp.indexOf("</" + tag + ">")) < 0) {
-			return null;
-		}
-		return resp.substring(i + tag.length() + 2, j);
-	}
 	
 	///////////////////////////////////////////////////////send related/////////////////////////////////////
 	/**

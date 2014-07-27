@@ -281,7 +281,7 @@ public class DemoAppActivity extends Activity {
 				// TODO Auto-generated method stub
 				Intent subIntent = new Intent(DemoAppActivity.this, SubscribeActivity.class);
 				Bundle bd = new Bundle();
-				bd.putString("userID", originSharedPrefs.getString(Constants.XMPP_USERNAME, "δ֪�û�"));
+				bd.putString("userID", originSharedPrefs.getString(Constants.XMPP_USERNAME, "xx"));
 				subIntent.putExtras(bd);
 				DemoAppActivity.this.startActivity(subIntent);
 			}

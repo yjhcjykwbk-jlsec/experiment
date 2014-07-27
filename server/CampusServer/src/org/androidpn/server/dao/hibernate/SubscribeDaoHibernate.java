@@ -32,9 +32,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 /** 
- * This class is the implementation of UserDAO using Spring's HibernateTemplate.
- *
- * @author Sehwan Noh (devnoh@gmail.com)
+ * @author xzg
  */
 public class SubscribeDaoHibernate extends HibernateDaoSupport implements SubscribeDao {
     public List<User> getListeners(long id){

@@ -85,6 +85,10 @@ public class UserDaoHibernate extends HibernateDaoSupport implements UserDao {
         }
     }
     
+    /**
+     * @author  xzg
+     * 　添加好友到数据库
+     */
     @SuppressWarnings("unchecked")
 	public List<User> getFriends(long id) {
 		// TODO Auto-generated method stub

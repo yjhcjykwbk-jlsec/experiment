@@ -97,7 +97,8 @@ public class SubscriptionsController extends MultiActionController {
       
     
     /**
-     * addSubscribe.do(subscriber,appid) 增加订阅
+     * 增加订阅的http接口
+     * subscriptions.do(action=addSubscribe.do,username,appid) 
      * @param request
      * @param response
      * @return
@@ -106,7 +107,7 @@ public class SubscriptionsController extends MultiActionController {
      */
     public ModelAndView addSubscribe(HttpServletRequest request, HttpServletResponse response) throws Exception{
     	System.out.println("notification get====");
-    	String userName = ServletRequestUtils.getStringParameter(request, "subscriber");  
+    	String userName = ServletRequestUtils.getStringParameter(request, "username");  
     	Long appId = new Long(ServletRequestUtils.getStringParameter(request, "appid"));  
     	String apiKey = Config.getString("apiKey", "");
     	
@@ -128,7 +129,8 @@ public class SubscriptionsController extends MultiActionController {
     }
     
     /**
-     * delSubscribe.do(subscriber,appid) 取消订阅
+     * 取消订阅的http接口
+     * subscriptions.do(action=delSubscribe,username,appid) 
      * @param request
      * @param response
      * @return
@@ -137,7 +139,7 @@ public class SubscriptionsController extends MultiActionController {
      */
     public ModelAndView delSubscribe(HttpServletRequest request, HttpServletResponse response) throws Exception{
     	System.out.println("notification get====");
-    	String userName = ServletRequestUtils.getStringParameter(request, "subscriber");  
+    	String userName = ServletRequestUtils.getStringParameter(request, "username");  
     	Long appId = new Long(ServletRequestUtils.getStringParameter(request, "appid"));  
     	String apiKey = Config.getString("apiKey", "");
     	

@@ -28,9 +28,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 /** 
- * This class is the implementation of UserDAO using Spring's HibernateTemplate.
- *
- * @author Sehwan Noh (devnoh@gmail.com)
+ * @author xzg
  */
 public class FriendDaoHibernate extends HibernateDaoSupport implements FriendDao {
 	 

@@ -3,12 +3,13 @@ import java.io.Serializable;
 
 import javax.persistence.Column;  
 import javax.persistence.Embeddable;  
-  
+ 
+/**
+ * @author: xzg
+ */
 @Embeddable  
 public class FriendPK implements Serializable {
-    /**
-	 * 
-	 */
+  
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "id1", nullable = false)

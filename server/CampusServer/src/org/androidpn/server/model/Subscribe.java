@@ -32,9 +32,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
 /** 
- * This class represents the basic user object.
- *
- * @author Sehwan Noh (devnoh@gmail.com)
+ * @author xzg
  */
 @Entity
 @Table(name = "apn_subscribe")

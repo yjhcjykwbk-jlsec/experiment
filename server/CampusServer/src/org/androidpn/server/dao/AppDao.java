@@ -20,9 +20,7 @@ import java.util.List;
 import java.util.ArrayList;
 import org.androidpn.server.model.*;
 /** 
- * User DAO (Data Access Object) interface. 
- *
- * @author Sehwan Noh (devnoh@gmail.com)
+ * @author xzg
  */
 public interface AppDao {
     

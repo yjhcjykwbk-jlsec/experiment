@@ -18,9 +18,7 @@
 package org.androidpn.server.dao;
 
 /** 
- * User DAO (Data Access Object) interface. 
- *
- * @author Sehwan Noh (devnoh@gmail.com)
+ * @author xzg
  */
 public interface FriendDao {
     

@@ -103,6 +103,15 @@ public class UserController extends MultiActionController {
 			}
 		}
     
+    /**
+     * 添加好友的http接口
+     * user.do(action=addFriend,id1,id2)  
+     * @author xzg
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     */
     public ModelAndView addFriend(HttpServletRequest request,
     		HttpServletResponse response) throws Exception {
 		String idStr1=request.getParameter("id1"), //id1 is yourself
@@ -194,12 +203,13 @@ public class UserController extends MultiActionController {
     }
     
     /**
-     * get.do(username)  用户订阅列表
+     * 获取用户订阅列表的http接口
+     * user.do(action=getSubscription,username)  
      * @param request
      * @param response
      * @return List<string app.name>
      * @throws Exception
-     * @author xu
+     * @author xzg
      */
     public ModelAndView getSubscription(HttpServletRequest request, HttpServletResponse response) throws Exception{
     	System.out.println("notification get====");

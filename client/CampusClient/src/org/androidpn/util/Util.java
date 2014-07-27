@@ -13,6 +13,15 @@ import android.content.SharedPreferences.Editor;
  * some common function code related to ui
  */
 public class Util {
+	public static String getXmlElement(String resp, String tag) {
+		if (resp == null || tag == null)
+			return null;
+		int i = resp.indexOf("<" + tag + ">"), j;
+		if (i < 0 || (j = resp.indexOf("</" + tag + ">")) < 0) {
+			return null;
+		}
+		return resp.substring(i + tag.length() + 2, j);
+	}
 	
 	public static int getPhoto(String username){
 		int s=username==null?0:username.hashCode()%4;
@@ -23,7 +32,7 @@ public class Util {
 			default: return R.drawable.photo_4; 
 		}
 	}
-	/*
+	/**
 	 * alert a window in context c
 	 */
 	public static void alert(Context c, String s){
@@ -37,7 +46,7 @@ public class Util {
 			  }
 			  }).show();
 	}
-	/*
+	/**
 	 * exit application
 	 * 
 	 */
