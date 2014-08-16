@@ -148,7 +148,7 @@ public class NotificationManager {
 	}
 	
 	/**
-	 * @author xuzhigang
+	 * @author xzg
 	 * @param toUsername
 	 * @param message
 	 * store chat message in the form of notification 
@@ -243,8 +243,7 @@ public class NotificationManager {
 			}catch(Exception e){
 				log.warn(" notifications insert to database failure!!");
 			}
-			
-		
+
 	}
 	
 	public void sendAllBroadcast(String apiKey, String title, String message,
