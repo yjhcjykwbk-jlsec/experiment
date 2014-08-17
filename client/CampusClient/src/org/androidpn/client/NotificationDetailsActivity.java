@@ -226,7 +226,7 @@ public class NotificationDetailsActivity extends Activity {
 			WebView messageDetial = new WebView(this);
 			messageDetial.getSettings().setJavaScriptEnabled(true);
 			messageDetial.getSettings().setAllowFileAccess(true);
-			messageDetial.getSettings().setPluginsEnabled(true);
+			//messageDetial.getSettings().setPluginsEnabled(true);
 			messageDetial.getSettings().setSupportZoom(true);
 			messageDetial.getSettings().setAppCacheEnabled(true);
 			String former = message.split("xiaobingo")[0];
