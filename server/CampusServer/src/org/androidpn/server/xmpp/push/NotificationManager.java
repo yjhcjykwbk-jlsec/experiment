@@ -256,6 +256,15 @@ public class NotificationManager {
 		
 	}
 	
+	/***
+	 * author xzg
+	 * 推送给订阅者
+	 * @param apiKey
+	 * @param title
+	 * @param message
+	 * @param uri
+	 * @param subscription
+	 */
 	public void sendMyNotifications(String apiKey, String title, String message, String uri, String subscription){
 		IQ notificationIQ = createNotificationIQ(apiKey, title, message, uri);
 		try {

@@ -37,6 +37,7 @@ public class App implements Serializable,Contacter {
     private String name;
     private Date createdDate = new Date();
     private String desp;
+    private String url;
     public App() {
     }
 
@@ -58,6 +59,14 @@ public class App implements Serializable,Contacter {
 
     public void setName(String  name) {
         this.name = name;
+    }
+ 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String  url) {
+        this.url = url;
     }
  
     public Date getCreatedDate() {

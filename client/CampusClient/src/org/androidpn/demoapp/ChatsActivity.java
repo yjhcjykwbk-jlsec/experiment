@@ -17,7 +17,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.androidpn.client.ChatPacketListener;
 import org.androidpn.client.Constants;
 import org.androidpn.client.XmppManager;
 import org.androidpn.data.ChatInfoAdapter;
@@ -61,28 +60,32 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class ChatsActivity extends Activity {
+	/**
+	 * 控制最近与好友会话列表的展示，和与某个好友会话的展示
+	 */
 	private static String LOGTAG = "ChatsActivity";
 	private String USERNAME;
 	private String PASSWORD;
 	private String recipient = null;// who you are talking with
 	private List<User> friendList;
+	
 	private Map<String, ChatInfo> latestChats;
+	/**messageLists保存了会话列表（每项为各会话的最近消息）
+	//该数据只能由当前uithread更新，并与ChatManager中保存的数据保持基本同步
+	//同步方法:当前线程创建之初从ChatManager拷贝一份副本
+	//	后面每次ChatManager处数据更新，则用handler通知uithread更新该数据和相应视图*/
+	Map<String, List> messageLists = new HashMap();
+	
 	private ChatViewController chatViewMgr = null;
-	private Integer viewState = 1;// indicate which view activity currently is
-									// in
-	ChatsAdapter chatsAdapter;
-	boolean inited = false;
-
-	View chatsView = null;
+	
+	
+	//chatsView保存了最近与好友会话列表
+	View chatsView = null;	ChatsAdapter chatsAdapter;
 	
 	//chatViews保存了当前多个会话各自对应的视图
 	Map<String, View> chatViews = new HashMap();
 	
-	//messageLists保存了会话列表（每项为各会话的最近消息）
-	//该数据只能由当前uithread更新，并与ChatManager中保存的数据保持基本同步
-	//同步方法:当前线程创建之初从ChatManager拷贝一份副本
-	//	后面每次Chatmanager处数据更新，则用handler通知uithread更新该数据和相应视图
-	Map<String, List> messageLists = new HashMap();
+	private Integer viewState = 1;// indicate in which view
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -121,15 +124,32 @@ public class ChatsActivity extends Activity {
 	@Override
 	protected void onNewIntent(Intent intent) {
 		Log.i(LOGTAG, "onNewIntent");
+		// 进入与某个好友的会话
 		if (intent.getStringExtra("recipient") != null) {
 			String recipient = intent.getStringExtra("recipient");
 			setChatView(recipient);
 		} else {
-			// SET chats list view  
 			setChatsView();
 		}
 	}
+	
+	@Override
+	protected void onStop() {
+		Toast.makeText(this, "chatsActivity has stopped", Toast.LENGTH_SHORT)
+				.show();
+		super.onStop();
+	}
 
+	@Override
+	protected void onDestroy() {
+		ChatManager.removeChatsUiListener();
+		ChatManager.removeChatUiListener();
+		Toast.makeText(this, "chatsActivity has destroyed", Toast.LENGTH_SHORT)
+				.show();
+		super.onDestroy();
+	}
+
+	
 	@Override
 	protected void onResume() {
 		Toast.makeText(this, "chatsActivity resume", Toast.LENGTH_SHORT).show();
@@ -151,53 +171,80 @@ public class ChatsActivity extends Activity {
 	}
 	
 	/**
+	 * be called when contactActivity returned with a recipient
+	 * and this activity will launch a chat with the recipient 
+	 */
+	private String uploadUri=null;
+	private String imgPath="";
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		super.onActivityResult(requestCode, resultCode, data);
+		// requestCode标示请求的标示 resultCode表示有数据
+		if (requestCode==0&&resultCode == RESULT_OK) {//处理 选择联系人进行对话activity 的返回结果
+			String recipient = data.getStringExtra("recipient");
+			if (recipient == null) {
+				Log.e(LOGTAG, "onActivityResult: contactActivity return null");
+			}
+			else setChatView(recipient);
+		}
+		else if(requestCode==1&&resultCode==RESULT_OK){//处理 选择图片上传activity 的返回结果
+			Uri imageURI = data.getData();
+			Cursor cursor = getContentResolver()
+	                   .query(imageURI, null, null, null, null); 
+	        cursor.moveToFirst(); 
+	        int idx = cursor.getColumnIndex(MediaColumns.DATA); 
+	        imgPath=cursor.getString(idx); 
+	        showSendPic(imgPath);
+		}
+	}
+	
+	/**============================================================================
+	//   set page-view
+	//============================================================================*/
+	/**
 	 * 进入会话列表页面
 	 */
 	private void setChatsView() {
 		Log.i(LOGTAG, "setChatsView setChatsView");
+		viewState = 1;
 		if (chatsView != null) {
 			setContentView(chatsView);
-			viewState = 1;
 			chatsAdapter.notifyDataSetChanged();
 			return;
 		}
 		chatsView = getLayoutInflater().inflate(R.layout.activity_chats, null);
 		setContentView(chatsView);
-		viewState = 1;
 
 		// init views on the head
 		initHeaderView();
 
-		Log.i(LOGTAG, "setChatsView setListView");
 		ListView lv = (ListView) this.findViewById(R.id.ChatListView);
 
 		if (chatsAdapter == null)
 			chatsAdapter = new ChatsAdapter(this, latestChats);
 		lv.setAdapter(chatsAdapter);
 
-		// 点击"会话列表"中的表项进入具体会话
+		// 点击"会话列表"中的表项会进入具体会话
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				//adapterview->adapter->data(ci),
-				Log.i(LOGTAG, "item " + arg2 + " clicked");
 				ChatsAdapter adapter = (ChatsAdapter) arg0.getAdapter();
 				ChatInfo ci = (ChatInfo) adapter.getItem(arg2);
-
 				String recipient = ci.getRecipient();
 				if (recipient == null) {
 					Log.e(LOGTAG, "assert lv.setOnclickLIstener failed");
 					return;
 				}
-				//进入具体会话视图
+				//进入与某个好友的会话视图
 				setChatView(recipient);
 			}
 		});
 		//设置后台线程对"会话列表"数据更新的handler
 		ChatManager.setChatsUiListener(chatsHandler);
 	}
-
+	
+	
 	/**
 	 * 进入具体会话视图
 	 * @param recipient
@@ -253,55 +300,13 @@ public class ChatsActivity extends Activity {
 		});
 	}
 	
-	/**
-	 * be called when contactActivity returned with a recipient
-	 * and this activity will launch a chat with the recipient 
-	 */
-	private String uploadUri=null;
-	private String imgPath="";
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
-		super.onActivityResult(requestCode, resultCode, data);
-		// requestCode标示请求的标示 resultCode表示有数据
-		if (requestCode==0&&resultCode == RESULT_OK) {//处理 选择联系人进行对话activity 的返回结果
-			String recipient = data.getStringExtra("recipient");
-			if (recipient == null) {
-				Log.e(LOGTAG, "onActivityResult: contactActivity return null");
-			}
-			else setChatView(recipient);
-		}
-		else if(requestCode==1&&resultCode==RESULT_OK){//处理 选择图片上传activity 的返回结果
-			Uri imageURI = data.getData();
-			Cursor cursor = getContentResolver()
-	                   .query(imageURI, null, null, null, null); 
-	        cursor.moveToFirst(); 
-	        int idx = cursor.getColumnIndex(MediaColumns.DATA); 
-	        imgPath=cursor.getString(idx); 
-	        showSendPic(imgPath);
-		}
-	}
 
-
-	@Override
-	protected void onStop() {
-		Toast.makeText(this, "chatsActivity has stopped", Toast.LENGTH_SHORT)
-				.show();
-		super.onStop();
-	}
-
-	@Override
-	protected void onDestroy() {
-		ChatManager.removeChatsUiListener();
-		ChatManager.removeChatUiListener();
-		Toast.makeText(this, "chatsActivity has destroyed", Toast.LENGTH_SHORT)
-				.show();
-		super.onDestroy();
-	}
 
 	private ChatsHandler chatsHandler = new ChatsHandler();
 
-	
-	//////////////////////////////////related to chats-view update////////////////////////////////////////
+  /**============================================================================
+	//   chats-view update handler
+	//============================================================================*/
 	/**
 	 * @author xzg
 	 * this handler handles with messages which indicates chats update
@@ -333,16 +338,16 @@ public class ChatsActivity extends Activity {
 			runOnUiThread(new Runnable(){
 				public void run(){
 					latestChats.put(recipient, ci);
-					//if (viewState == 1)
 					chatsAdapter.notifyDataSetChanged();
 				}
 			});
 		}
 	}
 	
-	
-	//////////////////////////////related to friends and contacts///////////////////////////////////////////
-
+ 
+   /**============================================================================
+	//  friends and contacts
+	//============================================================================*/
 	/**
 	 * alert a find user form window
 	 */
@@ -447,7 +452,7 @@ public class ChatsActivity extends Activity {
 	}
 
 	/**
-	 * init(pull from server) friend List asynchronously
+	 * init friend List asynchronously
 	 */
 	@SuppressWarnings("unchecked")
 	private void getFriends() {
@@ -548,10 +553,14 @@ public class ChatsActivity extends Activity {
 	}
 
 	
-	///////////////////////////////////////////////////////send related/////////////////////////////////////
+   /**============================================================================
+	//   send msg related 
+	//============================================================================*/
 	/**
 	 * @param to : the recipient of this chat message
 	 * @param content : chat content
+	 * when send a message, add the msg to the send-packet-thread's queue
+	 * and also don't forget to tell the ChatManager to keep pace
 	 */
 	private void handleSendMsg(String to,String content){
 		org.jivesoftware.smack.packet.Message msg = new org.jivesoftware.smack.packet.Message(
@@ -616,8 +625,11 @@ public class ChatsActivity extends Activity {
         mImageView.setImageBitmap(bitmap);
     }
 	
-	///////////////////////////////////related to launch a chat, init chat-view and so on////////////////////////
-	/**
+
+   /**============================================================================
+  	//   launch a chat, init chat-view and so on
+  	//============================================================================*/
+  	/** 
 	 * 负责管理具体会话的视图和数据
 	 */
 	public class ChatViewController {
@@ -629,9 +641,6 @@ public class ChatsActivity extends Activity {
 		//this handler handles with chat-view updating
 		private ChatHandler chatHandler = new ChatHandler();
 		
-		/**
-		 * should be called only once
-		 */
 		ChatViewController() {
 			recipient = USERNAME;
 			initSendThread();
@@ -656,15 +665,16 @@ public class ChatsActivity extends Activity {
 		public void initView(String recipient)
 				throws Exception {
 			Log.i(LOGTAG, "chatviewController.initview:"+recipient);
+			viewState = 2;
 			ChatsActivity.this.recipient = recipient;
 		
 			View chatView=null;
+			// 试图获取缓存的会话视图
 			if (chatViews.containsKey(recipient)) {
 				chatView = chatViews.get(recipient);
 			}
 			if (chatView != null) {
 				setContentView(chatView);
-				viewState = 2;
 				return;
 			}
 			
@@ -676,7 +686,6 @@ public class ChatsActivity extends Activity {
 					.inflate(R.layout.activity_chat, null);
 			setContentView(chatView);
 			chatViews.put(recipient, chatView);
-			viewState = 2;
 
 			Button sendBtn = (Button) (ChatsActivity.this)
 					.findViewById(R.id.SendBtn);
@@ -737,15 +746,13 @@ public class ChatsActivity extends Activity {
 				}
 			});
 		}
-
 	}
 
-	
-	///////////////////////////////////////////////related to send message thread///////////////////////////
-	/**
-	 * this list stores the packets to send
-	 * send-message thread always try to get packet in this list and send it
-	 */
+   /**============================================================================
+	// send message thread 
+	//============================================================================*/
+	// this list stores the packets to send
+	// send-message thread always try to get packet in this list and send it
 	private List<Pair> packetList;
 
 	@SuppressWarnings("unchecked")
@@ -816,9 +823,9 @@ public class ChatsActivity extends Activity {
 	// SessionManager.removeListener(recipient);
 	// }
 
-	
-	
-	/////////////////////////////////////////////////////////related to chat-View update////////////////////////////
+   /**============================================================================
+	//   chat-View update handler
+	//============================================================================*/
 	/**
 	 * @author xzg
 	 * this handler handle with messages which indicate new message sending or sent or received
@@ -829,9 +836,6 @@ public class ChatsActivity extends Activity {
 		// 同步当前保存的各个聊天view中的数据，必要时更新当前view的ui
 		@Override
 		public void handleMessage(android.os.Message msg) {
-
-			Log.d("chatHandler", "handleMessage......");
-	
 			Bundle b = msg.getData();
 			final String theRecipient = b.getString("recipient");
 			if (theRecipient == null) {
@@ -858,14 +862,13 @@ public class ChatsActivity extends Activity {
 					Util.alert(ChatsActivity.this, "处理到不完整消息");
 					return;
 				}
-				if (!ci.isSelf()) {// &&!theRecipient.equals(recipient)){
+				if (!ci.isSelf()) {//收到消息，而不是成功发送消息
 					// 以广播方式通知用户有新的聊天消息到来
 					Intent intent = new Intent(Constants.ACTION_SHOW_CHAT);
 					intent.putExtra("recipient", ci.getName());
 					intent.putExtra("chatXml", ci.getContent());
 					ChatsActivity.this.sendBroadcast(intent);
 				}
-	
 				// 该会话已经有聊天消息队列，将消息添加到聊天队列
 				if (messageList != null) {
 					// 该会话在当前ui上
@@ -874,7 +877,7 @@ public class ChatsActivity extends Activity {
 							public void run(){
 								messageList.add(ci);
 								chatAdapter.notifyDataSetChanged();
-								if (!ci.isSelf()) {
+								if (!ci.isSelf()) {//收到消息，而不是成功发送消息
 									Util.alert(ChatsActivity.this, "new msg recved");
 								} 
 							}
@@ -883,7 +886,6 @@ public class ChatsActivity extends Activity {
 					else messageList.add(ci);
 				}
 				return;
-	
 			case 2:// sent
 				String packetID = b.getString("id");
 				// 该会话已经有聊天消息队列，更新该消息状态为已发送
@@ -907,8 +909,9 @@ public class ChatsActivity extends Activity {
 		}
 	}
 	
-	/////////////////////////////////////related to upload a image to server and get a url back
-	
+   /**============================================================================
+	// upload an image to server and get a url back
+	//============================================================================*/
 	/**
 	 * @author xzg
 	 * this class is similar with submitActivity.submit

@@ -38,7 +38,7 @@ import org.androidpn.data.ChatInfoAdapter;
 import org.androidpn.data.NoteManager;
 import org.androidpn.data.ChatsAdapter;  
 
-public class AppNotesActivity extends Activity {
+public class AppPlatFormActivity extends Activity {
 	static String LOGTAG="AppNotesActivity";
 	private String USERNAME;
 	private String PASSWORD;
@@ -49,14 +49,9 @@ public class AppNotesActivity extends Activity {
 	//noteViews保存了当前多个会话各自对应的视图
 	private Map<String,View> noteViews; 
 	NoteHandler noteHandler=new NoteHandler();
-	
 	private View notesView;
 	private ChatsAdapter notesAdapter;
 	private Map<String,ChatInfo> latestNotes;//最新各应用发送的消息
-	//messageLists保存了会话列表（每项为各会话的最近消息）
-	//该数据只能由当前uithread更新，并与NoteManager中保存的数据保持基本同步
-	//同步方法:当前线程创建之初从NoteManager拷贝一份副本
-	//	后面每次Notemanager处数据更新，则用handler通知uithread更新该数据和相应视图
 	Map<String, List> noteLists;//各应用对应会话
 	NotesHandler notesHandler=new NotesHandler();
 	Boolean viewState=true;
@@ -70,19 +65,17 @@ public class AppNotesActivity extends Activity {
 		USERNAME = getIntent().getStringExtra("userID");
 		PASSWORD = getIntent().getStringExtra("Pwd");// used for 8080 connection
 		
-		//初始化联系人列表
+		//初始化应用列表
 		getApps();
 		
 		latestNotes=NoteManager.cloneLatestNotes();
 		notesAdapter=new ChatsAdapter(this,latestNotes);
-		
 		noteLists=new HashMap<String,List>();
-		
 		setNotesView();
 	}
 	
 	/**
-	 * 点击返回
+	 * 点击从本activity返回
 	 */
 	@Override
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
@@ -145,12 +138,12 @@ public class AppNotesActivity extends Activity {
 			public void onClick(View v) {
 				getApps();
 				if (appList == null) {
-					Util.alert(AppNotesActivity.this, "应用列表拉取失败，请检查网络状况");
+					Util.alert(AppPlatFormActivity.this, "应用列表拉取失败，请检查网络状况");
 					return;
 				}
-				Intent intent = new Intent(AppNotesActivity.this,
+				Intent intent = new Intent(AppPlatFormActivity.this,
 						AppActivity.class);
-				intent.putExtras(AppNotesActivity.this.getIntent().getExtras());
+				intent.putExtras(AppPlatFormActivity.this.getIntent().getExtras());
 				startActivityForResult(intent, 0);
 			}
 		});
@@ -159,7 +152,8 @@ public class AppNotesActivity extends Activity {
 		//设置后台线程对"会话列表"数据更新的handler
 		NoteManager.setNotesUiListener(notesHandler);
 	}
-	//更新ＣｈａｔｓＶｉｅｗ
+	
+	//更新应用列表中的最近消息
 	class NotesHandler extends Handler{
 		public void handleMessage(Message msg){
 			Bundle b = msg.getData();
@@ -173,10 +167,8 @@ public class AppNotesActivity extends Activity {
 		}
 	}
 	
-	
-	
 	/**
-	 * 进入会话页面
+	 * 进入某个应用的会话页面
 	 */
 	private void setNoteView(String appName) {
 		viewState=true;
@@ -201,16 +193,16 @@ public class AppNotesActivity extends Activity {
 			setContentView(noteView);
 			noteViews.put(appName, noteView);
 			
-			Button sendBtn = (Button) (AppNotesActivity.this)
+			Button sendBtn = (Button) (AppPlatFormActivity.this)
 					.findViewById(R.id.SendBtn);
-			TextView tv = (TextView) (AppNotesActivity.this)
+			TextView tv = (TextView) (AppPlatFormActivity.this)
 					.findViewById(R.id.ChatTitleLabel);
 			tv.setText( appName + "服务中");
 
-			ListView mListView = (ListView) (AppNotesActivity.this)
+			ListView mListView = (ListView) (AppPlatFormActivity.this)
 					.findViewById(R.id.MessageListView);
 			
-			BaseAdapter noteAdapter = new ChatInfoAdapter((AppNotesActivity.this),
+			BaseAdapter noteAdapter = new ChatInfoAdapter((AppPlatFormActivity.this),
 					noteList,mListView);
 			mListView.setAdapter(noteAdapter);
 			noteAdapter.notifyDataSetInvalidated();
@@ -226,7 +218,7 @@ public class AppNotesActivity extends Activity {
 	}
 	
 	
-	
+	//更新某个应用的会话列表页面
 	class NoteHandler extends Handler{
 		//更新视图
 		@Override
@@ -252,11 +244,9 @@ public class AppNotesActivity extends Activity {
 		}
 	}
 	
-	
-	
 	/**
 	 * addSubscribe(username,appid)
-	 * 订阅
+	 * 订阅某个应用
 	 */
 	private void addSubscribe(String s,Long t){
 		StringBuilder parameter = new StringBuilder();
@@ -277,11 +267,11 @@ public class AppNotesActivity extends Activity {
 				Log.i(LOGTAG,"addSubs:"+resp);
 				if (!"succeed".equals( Util.getXmlElement(resp, "result"))) {
 					String reason =  Util.getXmlElement(resp, "reason");
-					Util.alert(AppNotesActivity.this, "添加关注失败:"
+					Util.alert(AppPlatFormActivity.this, "添加关注失败:"
 							+ (reason == null ? "" : reason));
 					return;
 				}else {
-					Util.alert(AppNotesActivity.this, "添加关注成功");
+					Util.alert(AppPlatFormActivity.this, "添加关注成功");
 				}
 			}
 		}.execute(parameter);
@@ -290,7 +280,7 @@ public class AppNotesActivity extends Activity {
 	
 	/**
 	 * delSubscribe(username,appid)
-	 * 取消订阅
+	 * 取消订阅某个应用
 	 */
 	private void delSubscribe(String s,Long t){
 		StringBuilder parameter = new StringBuilder();
@@ -311,11 +301,11 @@ public class AppNotesActivity extends Activity {
 				Log.i(LOGTAG,"delSubs:"+resp);
 				if (!"succeed".equals( Util.getXmlElement(resp, "result"))) {
 					String reason =  Util.getXmlElement(resp, "reason");
-					Util.alert(AppNotesActivity.this, "取消关注失败:"
+					Util.alert(AppPlatFormActivity.this, "取消关注失败:"
 							+ (reason == null ? "" : reason));
 					return;
 				}else {
-					Util.alert(AppNotesActivity.this, "取消关注成功");
+					Util.alert(AppPlatFormActivity.this, "取消关注成功");
 				}
 			}
 		}.execute(parameter);
@@ -324,7 +314,6 @@ public class AppNotesActivity extends Activity {
 	
 	/**
 	 * 获取应用列表
-	 * getApps()
 	 */
 	private void getApps(){
 		if(Constants.appList!=null){
@@ -347,12 +336,12 @@ public class AppNotesActivity extends Activity {
 			protected void onPostExecute(String resp) {
 				Log.i(LOGTAG,"getApps:"+resp);
 				if (!"succeed".equals( Util.getXmlElement(resp, "result"))) {
-					Util.alert(AppNotesActivity.this, "获取应用列表失败");
+					Util.alert(AppPlatFormActivity.this, "获取应用列表失败");
 					return;
 				}else {
 					int i = resp.indexOf("<list>"), j;
 					if (i < 0 || (j = resp.indexOf("</list>")) < 0) {
-						Util.alert(AppNotesActivity.this,"没有找到应用");//"</list>"
+						Util.alert(AppPlatFormActivity.this,"没有找到应用");//"</list>"
 						appList = Constants.appList = new ArrayList();
 					} 
 					else {
@@ -361,9 +350,9 @@ public class AppNotesActivity extends Activity {
 						List<App> list = (List) Xmler.getInstance().fromXML(str);
 
 						if (list == null) {
-							Util.alert(AppNotesActivity.this, "应用列表为空");
+							Util.alert(AppPlatFormActivity.this, "应用列表为空");
 						}else
-							Util.alert(AppNotesActivity.this, "应用列表已经更新");
+							Util.alert(AppPlatFormActivity.this, "应用列表已经更新");
 						appList = Constants.appList = list;
 						// UIUtil.alert(NotesActivity.this,"通讯录已经同步");
 					}

@@ -69,8 +69,7 @@ public class UserServiceImpl implements UserService {
     	return userDao.getFriends(id);
     }
     public List<User> getSubscribeUsers(String subscription) throws UserNotFoundException {
-    	Long appId=new Long(subscription);
-    	return subscribeDao.getSubscribeUsers(appId);// (List<User>) userDao.getUsersBySubscriptions(subscription);
+    	return subscribeDao.getSubscribeUsers(subscription);// (List<User>) userDao.getUsersBySubscriptions(subscription);
     }
  
     public List<App> getUserSubscribes(Long userId){

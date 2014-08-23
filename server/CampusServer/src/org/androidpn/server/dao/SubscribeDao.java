@@ -18,6 +18,8 @@
 package org.androidpn.server.dao;
 import java.util.List;
 import org.androidpn.server.model.App;
+import org.androidpn.server.model.User;
+
 import java.util.ArrayList;
 import org.androidpn.server.model.*;
 /** 
@@ -26,10 +28,11 @@ import org.androidpn.server.model.*;
  */
 public interface SubscribeDao {
     
-    public List<User> getSubscribeUsers(long id);
+    public List<User> getSubscribeUsers(long appId);
+    public List<User> getSubscribeUsers(String appName);
     public List<App> getUserSubscribes(long userId);
     
-    public void  addSubscribe(long userid,long appid);
+    public void  addSubscribe(long userId,long appId);
 	public void delSubscribe(long userId,long appId);
 	
     public List<App> listApps();

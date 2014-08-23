@@ -17,6 +17,7 @@
  */
 package org.androidpn.server.console.controller;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -170,8 +171,8 @@ public class SubscriptionsController extends MultiActionController {
     	System.out.println("notification get====");
     	String apiKey = Config.getString("apiKey", "");
     	
-    	ServletOutputStream out = response.getOutputStream();
-    	
+    	//ServletOutputStream out = response.getOutputStream();
+    	PrintWriter out=response.getWriter();//OutputStream();
     	List<App> apps=appService.listApps();
     	
     	response.setContentType("text/plain");
@@ -181,8 +182,10 @@ public class SubscriptionsController extends MultiActionController {
     		out.flush();
     	}
     	else{ 
-    		out.print("<result>succeed</result>"+
-				""+Xmler.getInstance().toXML(apps)+"");
+    		String strApps="<xml><result>succeed</result>"+
+    				""+Xmler.getInstance().toXML(apps)+"</xml>";
+    		System.out.println(strApps);
+    		out.print(strApps);
     		out.flush();
     	}
     	return null;

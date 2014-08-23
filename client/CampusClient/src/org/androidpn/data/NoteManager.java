@@ -44,7 +44,7 @@ public class NoteManager {
 	 * @param recipient
 	 * @param ci
 	 */
-	public static void recvNote(String recipient,ChatInfo ci){
+	public static void addMsg(String recipient,ChatInfo ci){
 		if(recipient==null||ci==null||!ci.isComplete()) return;
 		Log.i(LOGTAG,"sessionManager.addMsg:"+ci.getPacketID()+"#"+ci.getContent());
 				
@@ -82,16 +82,7 @@ public class NoteManager {
 			handler.dispatchMessage(msg);
 		}
 	}
-	
-	/**
-	 * 成功发送一个消息(消息编号为packetID)
-	 * 更新对应会话的数据和视图
-	 * @param packetID
-	 * @deprecated
-	 */
-	public static void msgSent(String packetID){
-	}
-	
+		
 	/**
 	 * 获取recipient对应会话的数据(list)
 	 * @param recipient
@@ -108,7 +99,6 @@ public class NoteManager {
 		}
 		return sessions.get(appName);
 	}
-	
 	
 	public static List<ChatInfo> cloneNoteList(String recipient){
 		Log.i(LOGTAG,"cloneMsgList");

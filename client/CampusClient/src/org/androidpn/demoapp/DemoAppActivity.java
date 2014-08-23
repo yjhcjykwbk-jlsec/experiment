@@ -173,7 +173,7 @@ public class DemoAppActivity extends Activity {
                 Constants.SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE);
         
         manager=Constants.xmppManager;
-        welcomeUser.setText("Welcome"+originSharedPrefs.getString(Constants.XMPP_USERNAME, "未登录用户"));
+        welcomeUser.setText("欢迎您，"+originSharedPrefs.getString(Constants.XMPP_USERNAME, "未登录用户"));
         
 		userInfo=(UserInfo)getApplication();		
 		userInfo.initUserInfo();		
@@ -260,7 +260,7 @@ public class DemoAppActivity extends Activity {
         });
         
         //chat button clicked
-        btn_chat=(Button)findViewById(R.id.btn_chat);
+    /*    btn_chat=(Button)findViewById(R.id.btn_chat);
         btn_chat.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
@@ -272,7 +272,7 @@ public class DemoAppActivity extends Activity {
 				subIntent.putExtras(bd);
 				DemoAppActivity.this.startActivity(subIntent);
 			}
-		});
+		});*/
         
         //subscribe button clicked
         btn_subscribe = (Button)findViewById(R.id.btn_subscribe);
@@ -288,7 +288,7 @@ public class DemoAppActivity extends Activity {
 			}
 		});
         
-        btn_center = (Button)findViewById(R.id.btn_center);
+       /* btn_center = (Button)findViewById(R.id.btn_center);
         btn_center.setOnClickListener(new View.OnClickListener() {			
 			@Override
 			public void onClick(View v) {
@@ -309,27 +309,27 @@ public class DemoAppActivity extends Activity {
 				DemoAppActivity.this.startActivity(upIntent);
 			}
 		});
+        */
         
-        
-//        btn_myVideo = (Button)findViewById(R.id.btn_myVideo);
-//        btn_myVideo.setOnClickListener(new View.OnClickListener() {			
-//			@Override
-//			public void onClick(View v) {
-//				// TODO Auto-generated method stub
-//				Intent subIntent = new Intent(DemoAppActivity.this, MyVideoActivity.class);
-//				Bundle bd = new Bundle();
-//				bd.putString("userID", originSharedPrefs.getString(Constants.XMPP_USERNAME, "xxxx"));
-//				subIntent.putExtras(bd);
-//				DemoAppActivity.this.startActivity(subIntent);
-//			}
-//		});    
+/*        btn_myVideo = (Button)findViewById(R.id.btn_myVideo);
+        btn_myVideo.setOnClickListener(new View.OnClickListener() {			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent subIntent = new Intent(DemoAppActivity.this, MyVideoActivity.class);
+				Bundle bd = new Bundle();
+				bd.putString("userID", originSharedPrefs.getString(Constants.XMPP_USERNAME, "xxxx"));
+				subIntent.putExtras(bd);
+				DemoAppActivity.this.startActivity(subIntent);
+			}
+		});    */
         
         btn_apps = (Button)findViewById(R.id.btn_apps);
         btn_apps.setOnClickListener(new View.OnClickListener() {			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent subIntent = new Intent(DemoAppActivity.this, AppNotesActivity.class);
+				Intent subIntent = new Intent(DemoAppActivity.this, AppActivity.class);
 				Bundle bd = new Bundle();
 				bd.putString("userID", originSharedPrefs.getString(Constants.XMPP_USERNAME, "xxxx"));
 				subIntent.putExtras(bd);
@@ -337,14 +337,14 @@ public class DemoAppActivity extends Activity {
 			}
 		});    
         
-        Button btn_push=(Button)findViewById(R.id.btn_push);
+       /* Button btn_push=(Button)findViewById(R.id.btn_push);
         btn_push.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
 				alertPushForm();
 			}
-        });
+        });*/
     }
 	
 	private void alertPushForm(){

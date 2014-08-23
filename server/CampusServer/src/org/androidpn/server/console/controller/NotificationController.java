@@ -200,7 +200,7 @@ public class NotificationController extends MultiActionController {
 	    	}
 	    	
 	    	else if(feedLink.contains("www.pkusz.edu.cn")){
-	    		if(feedLink.contains("֪ͨnoti")){  
+	    		if(feedLink.contains("noti")){  
 	    			notificationManager.sendMyNotifications(apiKey, feedTitle, feedContent, feedLink, "pkusz_notification");
 	    		}
 	    	}            
@@ -244,6 +244,49 @@ public class NotificationController extends MultiActionController {
         mav.setViewName("redirect:notification.do");
         return mav;
         
+    }
+    
+    
+    /**
+     * appPush.do(xxx) 应用推送给订阅者
+     * @param request
+     * @param response
+     * @return
+     * @throws Exception
+     * @author xzg
+     */
+    public ModelAndView appPush(HttpServletRequest request,
+            HttpServletResponse response) throws Exception {
+        String apiKey = Config.getString("apiKey", "");
+
+	        /**
+	         */
+	        System.out.println("NotificationController.appPush#"+request.getCharacterEncoding());  // UTF-8
+	        String feedTitle = ServletRequestUtils.getStringParameter(request, "title");
+	        String feedContent = ServletRequestUtils.getStringParameter(request, "message");
+	        String feedLink = ServletRequestUtils.getStringParameter(request, "uri");
+	        String feedSection = ServletRequestUtils.getStringParameter(request, "appName");
+	        System.out.println("---------------------feedTitle--------------------:"+feedTitle);
+	        System.out.println("---------------------feedContent------------------:"+feedContent);
+	        System.out.println("---------------------feedLink------------------:"+feedLink);
+	        System.out.println("---------------------feedSection------------------:"+feedSection);
+	        
+	    	
+    		
+    		if(feedSection!=null&&feedSection!=""){
+    			notificationManager.sendMyNotifications(apiKey, feedTitle, feedContent, feedLink, feedSection);
+    			response.setContentType("text/xml");
+        		ServletOutputStream out = response.getOutputStream();
+    			out.print("<result>succeed</result>");  
+    			out.flush();
+    		}else{
+    			System.out.println("null feedsection");
+    			response.setContentType("text/xml");
+        		ServletOutputStream out = response.getOutputStream();
+    			out.print("<result>failed</result>");  
+    			out.flush();
+    		}
+    		return null;
     }
     
 }

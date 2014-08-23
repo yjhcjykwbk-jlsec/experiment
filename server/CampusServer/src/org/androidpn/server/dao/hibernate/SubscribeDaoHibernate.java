@@ -45,6 +45,17 @@ public class SubscribeDaoHibernate extends HibernateDaoSupport implements Subscr
 				"select u from Subscribe s, App a where s.pk.appid="+id+" and s.pk.userid=u.id");
     	return subUsers;
     }
+    public List<User> getSubscribeUsers(String appName){
+    	log.info("getSubscribeUsers("+appName+")");
+    	String []paras=new String[1];
+    	paras[0]=appName;
+		List<User> subUsers = getHibernateTemplate().find(
+				"select u from App a,Subscribe s,User u where" +
+				" a.name=? and a.id=s.pk.appid and " +
+				"s.pk.userid=u.id",paras);
+		log.info("getSubscribeUsers():"+subUsers.size());
+    	return subUsers;
+    }
     public List<App> getUserSubscribes(long userId){
     	log.info("getUserSubscribs("+userId+")");
 		List<App> subs = getHibernateTemplate().find(

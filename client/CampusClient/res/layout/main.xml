@@ -16,7 +16,7 @@
 			android:layout_width="wrap_content"
 			android:layout_height="fill_parent"
 			android:layout_alignParentLeft="true"
-			android:text="欢迎你，游客！"
+			android:text="欢迎您，游客！"
 			/>
 		<TextView
 			android:id="@+id/info"
@@ -74,30 +74,30 @@
             android:text="订阅"
             android:textColor="@drawable/magenta" />
         
-        <Button android:id="@+id/btn_chat" 
+    <!--     <Button android:id="@+id/btn_chat" 
         	android:text="社区"
         	android:textColor="@drawable/magenta"
             android:layout_width="0dip" 
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/button3"/>
+            android:background="@drawable/button3"/> -->
         
-        <Button android:id="@+id/btn_center" 
+     <!--    <Button android:id="@+id/btn_center" 
         	android:text="资源"
         	android:textColor="@drawable/magenta"
             android:layout_width="0dip" 
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/button3"/>
+         -->
         
-        
-        <Button android:id="@+id/btn_myUpload" 
+      <!--   <Button android:id="@+id/btn_myUpload" 
         	android:text="上传"
         	android:textColor="@drawable/magenta"
             android:layout_width="0dip" 
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/button3"/>
+            android:background="@drawable/button3"/> -->
         
         <Button android:id="@+id/btn_apps"
         	android:text="应用"

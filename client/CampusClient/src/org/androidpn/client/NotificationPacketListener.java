@@ -15,6 +15,10 @@
  */
 package org.androidpn.client;
 
+import java.util.Date;
+
+import org.androidpn.data.ChatInfo;
+import org.androidpn.data.NoteManager;
 import org.jivesoftware.smack.PacketListener;
 import org.jivesoftware.smack.packet.IQ;
 import org.jivesoftware.smack.packet.Packet;
@@ -71,6 +75,17 @@ public class NotificationPacketListener implements PacketListener {
                 
                 //TODO FIXME 发送收到通知回执
                 IQ result = NotificationIQ.createResultIQ(notification);
+                
+                /**
+                 * author: xzg
+                 * then our appPlatFormActivity can also handle this notification
+                 *   by using noteManager
+                 * look at "ChatManager.addMsg" in ChatPacketListener, which is similar 
+                 */
+                NoteManager.addMsg(notificationFrom,
+                		new ChatInfo(notificationFrom,
+                				notificationMessage,new Date(System.currentTimeMillis()), 
+                				packet.getPacketID(), false));
                 
                 try{
                 	xmppManager.getConnection().sendPacket(result);

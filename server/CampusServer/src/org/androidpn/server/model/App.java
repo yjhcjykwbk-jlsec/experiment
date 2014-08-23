@@ -52,7 +52,10 @@ public class App implements Serializable {
 
     @Column(name = "desp")
     private String desp;
-
+    
+    @Column(name = "url")
+    private String url;
+    
 
     public App() {
     }
@@ -75,6 +78,14 @@ public class App implements Serializable {
 
     public void setName(String  name) {
         this.name = name;
+    }
+    
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String  url) {
+        this.url = url;
     }
  
     public Date getCreatedDate() {

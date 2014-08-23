@@ -40,10 +40,6 @@
             android:name="org.androidpn.demoapp.ContactActivity"
             android:screenOrientation="portrait" >
         </activity>
-         <activity
-            android:name="org.androidpn.demoapp.AppActivity"
-            android:screenOrientation="portrait" >
-        </activity>
         <activity
             android:name="org.androidpn.demoapp.SubscribeActivity"
             android:screenOrientation="portrait" >
@@ -61,8 +57,12 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
-            <activity
-            android:name="org.androidpn.demoapp.AppNotesActivity"
+          <activity
+            android:name="org.androidpn.demoapp.AppActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="org.androidpn.demoapp.AppPlatFormActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" >
         </activity>
